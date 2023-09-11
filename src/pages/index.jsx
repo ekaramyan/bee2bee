@@ -1,5 +1,6 @@
 
 import React, { Fragment } from 'react';
+import { useState } from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MainPage from '@/components/MainPage'
@@ -9,11 +10,23 @@ import background from '../assets/img/background.png'
 
 
 export default function index() {
+  const [activeComponent, setActiveComponent] = useState('MainPage');
   return (
-    <div style={{background:`url(${background.src})`, height: '100dvh'}}>
+    <div style={{
+      background:`url(${background.src})`,
+      height: '100dvh', 
+      display:'flex', 
+      flexDirection:'column', 
+      justifyContent:'space-between',
+      alignItems:'center'}}>
       <Header />
-      <MainPage />
-      <Footer />
+      {activeComponent === 'MainPage' && <MainPage />}
+      {activeComponent === 'Contacts' && <Contacts />}
+      {activeComponent === 'Rules' && <Rules />}
+      <Footer 
+       onContactsClick={() => setActiveComponent('Contacts')}
+       onRulesClick={() => setActiveComponent('Rules')}
+       onMainPageClick={() => setActiveComponent('MainPage')}/>
     </div>
   )
 }

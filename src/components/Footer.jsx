@@ -1,7 +1,11 @@
 
 
-export default function Footer() {
+export default function Footer({ onContactsClick, onRulesClick, onMainPageClick }) {
   return (
-    <div>Footer</div>
+    <footer>
+    <button onClick={onMainPageClick}>Main Page</button>
+    <button onClick={onContactsClick}>Contacts</button>
+    <button onClick={onRulesClick}>Rules</button>
+  </footer>
   )
 }
