@@ -56,6 +56,16 @@ const theme = createTheme({
 			letterSpacing: '-0.7px',
 			textTransform: 'uppercase',
 		},
+		auth_head: {
+			transform: 'rotate(-90deg)',
+			color: ' #E06B00',
+			textShadow: '1px 1px 2px #1B170F',
+			fontSize: 48,
+			fontWeight: 900,
+			textTransform: 'uppercase',
+			cursor: 'pointer',
+			lineHeight: 1,
+		},
 	},
 })
 
