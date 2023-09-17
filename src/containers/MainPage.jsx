@@ -3,12 +3,19 @@ import Image from 'next/image'
 import main from '../assets/img/main.png'
 import { Typography } from '@mui/material'
 import Login from '../components/Login'
+import Register from '../components/Register'
+import register from '@/assets/img/auth_bg.svg'
+import login from '@/assets/img/login_bg.svg'
 
 export default function MainPage() {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
+	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
+	}
+	const toggleRegister = () => {
+		setIsRegisterOpen(!isRegisterOpen)
 	}
 
 	return (
@@ -58,14 +65,29 @@ export default function MainPage() {
 				style={{
 					position: 'absolute',
 					top: 0,
-					right: isLoginOpen ? 0 : '-90%',
-					width: '100%',
+					right: isLoginOpen ? 0 : '-35%',
+					width: '45%',
 					height: '100%',
-					backgroundColor: 'rgba(255, 255, 255, 0.9)',
+					background: `url(${login.src}) no-repeat center / cover`,
+
 					transition: 'right 0.3s ease-in-out',
 				}}
 			>
-				<Login toggleLogin={toggleLogin} />
+				<Login toggleOpen={toggleLogin} />
+			</div>
+			<div
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: isRegisterOpen ? 0 : '-35%',
+					width: '45%',
+					height: '100%',
+					background: `url(${register.src}) no-repeat center / cover`,
+
+					transition: 'left 0.3s ease-in-out',
+				}}
+			>
+				<Register toggleOpen={toggleRegister} />
 			</div>
 		</div>
 	)

@@ -57,7 +57,10 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 		},
 		auth_head: {
+			display: 'block',
 			transform: 'rotate(-90deg)',
+			width: '100%',
+			height: '50%',
 			color: ' #E06B00',
 			textShadow: '1px 1px 2px #1B170F',
 			fontSize: 48,

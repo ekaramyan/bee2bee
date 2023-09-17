@@ -1,4 +1,3 @@
-import background from '@/assets/img/auth_bg.svg'
 import {
 	Button,
 	Checkbox,
@@ -8,17 +7,17 @@ import {
 	Typography,
 } from '@mui/material'
 
-export default function Login({ toggleLogin }) {
+export default function Login({ toggleOpen }) {
 	return (
 		<div
 			style={{
-				backgroundImage: `url(${background.src}) no-repeat center`,
 				padding: '120px 20px',
-				height: '80%',
+				height: '100%',
+				width: '100%',
 				display: 'flex',
 			}}
 		>
-			<Typography variant='auth_head' gutterBottom onClick={toggleLogin}>
+			<Typography variant='auth_head' gutterBottom onClick={toggleOpen}>
 				Members Login
 			</Typography>
 			<form action='' method='post'>
