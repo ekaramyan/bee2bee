@@ -21,8 +21,20 @@ const theme = createTheme({
 			contrastText: '#FFFFFFB2',
 		},
 	},
+	button: {
+		fontFamily: 'Noto Sans',
+		fontSize: 20,
+		allVariants: {
+			cursor: 'default',
+			fontSize: 20,
+			fontWeight: 300,
+			color: '#241f55',
+			lineHeight: 1.55,
+		},
+		auth: {},
+	},
 	typography: {
-		fontFamily: 'Roboto',
+		fontFamily: 'Noto Sans',
 		fontSize: 14,
 		button: {
 			textTransform: 'none',
@@ -68,6 +80,18 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 			cursor: 'pointer',
 			lineHeight: 1,
+		},
+		footer_buttons: {
+			cursor: 'pointer',
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
+			textTransform: 'uppercase',
+			active: {
+				color: '#E06B00',
+				textDecoration: 'underline',
+			},
 		},
 	},
 })

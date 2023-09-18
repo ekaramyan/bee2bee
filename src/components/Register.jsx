@@ -1,11 +1,12 @@
 import {
-	Button,
 	Checkbox,
+	Box,
 	FormControlLabel,
 	Grid,
 	TextField,
 	Typography,
 } from '@mui/material'
+import AuthButton from './UI/AuthButton'
 
 export default function Register({ toggleOpen }) {
 	return (
@@ -17,53 +18,53 @@ export default function Register({ toggleOpen }) {
 				display: 'flex',
 			}}
 		>
-			<form action='' method='post'>
-				<Grid container spacing={2}>
+			<form action='' method='post' style={{}}>
+				<Grid container gap={2.5}>
 					{/* 1st row: Email and Password */}
-					<Grid item xs={12}>
+					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
 						<TextField
 							label='Email'
-							variant='outlined'
+							variant='standard'
 							fullWidth
 							type='email'
 							name='email'
 						/>
-					</Grid>
-					<Grid item xs={12}>
 						<TextField
 							label='Password'
-							variant='outlined'
+							variant='standard'
 							fullWidth
 							type='password'
 							name='password'
 						/>
-					</Grid>
+					</Box>
 
-					{/* 2nd row: CAPTCHA and 'Remember Me' Checkbox */}
-					<Grid container item xs={12} spacing={2}>
-						<Grid item xs={6}>
+					<Box
+						style={{
+							display: 'flex',
+							justifyContent: 'space-between',
+							width: '100%',
+							flex: 1,
+						}}
+					>
+						<Grid item>
 							<Typography variant='body2'>
 								{/* Your CAPTCHA component here */}
 								CAPTCHA
 							</Typography>
 						</Grid>
-						<Grid item xs={6}>
+
+						{/* Login Button */}
+						<Grid item style={{ display: 'flex', flexDirection: 'column' }}>
 							<FormControlLabel
 								control={<Checkbox name='remember' color='primary' />}
 								label='Remember me'
 							/>
+							<AuthButton text='Register' type='submit' />
 						</Grid>
-					</Grid>
-
-					{/* Login Button */}
-					<Grid item xs={12}>
-						<Button variant='contained' color='primary' type='submit'>
-							Login
-						</Button>
-					</Grid>
+					</Box>
 
 					{/* 'Forgot your password' Link */}
-					<Grid item xs={12}>
+					<Grid item xs={12} style={{ display: 'flex', justifyContent: 'end' }}>
 						<Typography variant='body2'>
 							<a href='#'>Forgot your password?</a>
 						</Typography>
