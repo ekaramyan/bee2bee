@@ -70,10 +70,14 @@ const theme = createTheme({
 		},
 		auth_head: {
 			display: 'block',
-			transform: 'rotate(-90deg)',
+			position: 'absolute',
+			top: '19%',
+			left: 0,
+			transform: 'rotate(-90deg) translateY(40%)',
+			whiteSpace: 'nowrap',
 			width: '100%',
-			height: '50%',
-			color: ' #E06B00',
+			height: '100%',
+			color: '#E06B00',
 			textShadow: '1px 1px 2px #1B170F',
 			fontSize: 48,
 			fontWeight: 900,
@@ -96,6 +100,9 @@ const theme = createTheme({
 	},
 })
 
-const responsiveTheme = responsiveFontSizes(theme)
+const responsiveTheme = responsiveFontSizes(theme, {
+	breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'],
+	factor: 4,
+})
 
 export default responsiveTheme
