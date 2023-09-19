@@ -33,11 +33,12 @@ export default function Rules() {
 							width: '10px',
 						},
 						'&::-webkit-scrollbar-track': {
+							backgroundColor: '#E06B00',
 							boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
 							webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
 						},
 						'&::-webkit-scrollbar-thumb': {
-							background: '#000000', // Black
+							backgroundColor: '#000000',
 						},
 						scrollbarColor: '#000000 #E06B00', // For Firefox
 					}}
