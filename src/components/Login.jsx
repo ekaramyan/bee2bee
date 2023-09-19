@@ -82,7 +82,7 @@ export default function Login({ toggleOpen }) {
 						}}
 					>
 						<Grid item>
-							<ReCAPTCHA sitekey='*' theme='light' size='compact' />
+							{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
 						</Grid>
 
 						{/* Login Button */}

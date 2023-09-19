@@ -108,7 +108,7 @@ export default function Register({ toggleOpen }) {
 					>
 						<Grid item>
 							<Typography variant='body2'>
-								<ReCAPTCHA sitekey='*' theme='light' size='compact' />
+								{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
 							</Typography>
 						</Grid>
 
