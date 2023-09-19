@@ -33,7 +33,8 @@ export default function Rules() {
 							width: '10px',
 						},
 						'&::-webkit-scrollbar-track': {
-							background: '#E06B00', // Orange
+							boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+							webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
 						},
 						'&::-webkit-scrollbar-thumb': {
 							background: '#000000', // Black
