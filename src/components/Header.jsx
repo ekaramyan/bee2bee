@@ -6,7 +6,7 @@ export default function Header() {
 	return (
 		<header
 			style={{
-				width: '80%',
+				width: '100%',
 				background: '#EAEEE8CC',
 				display: 'flex',
 				alignItems: 'center',

@@ -1,3 +1,4 @@
+import Wrapper from '@/components/UI/Wrapper'
 import { Box, Typography } from '@mui/material'
 
 export default function Rules() {
@@ -9,18 +10,10 @@ export default function Rules() {
 				justifyContent: 'center',
 			}}
 		>
-			<Box
-				style={{
-					width: '50%',
-					height: '100%',
-					maxHeight: '60vh',
-					background: '#EAEEE8',
-					borderRadius: 20,
-					overflow: 'hidden',
-				}}
-			>
+			<Wrapper>
 				<Typography
-					style={{ padding: '10px', borderBottom: '1px solid black' }}
+					variant='block_header'
+					style={{ padding: '10px', borderBottom: '1px solid #E06B00', alignSelf:'start'}}
 				>
 					Rules
 				</Typography>
@@ -71,7 +64,7 @@ export default function Rules() {
 						countries
 					</Typography>
 				</Box>
-			</Box>
+			</Wrapper>
 		</Box>
 	)
 }

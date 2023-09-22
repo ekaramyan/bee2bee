@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
+import { Container } from '@mui/material'
 import theme from '../Theme'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -34,7 +35,7 @@ export default function index() {
 			>
 				<div
 					style={{
-						background: `url(${background.src})`,
+						background: `url(${background.src}) no-repeat center / cover`,
 						height: '100dvh',
 						display: 'flex',
 						flexDirection: 'column',
@@ -42,18 +43,28 @@ export default function index() {
 						alignItems: 'center',
 					}}
 				>
-					<Header />
+					<Container
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							height: '100%',
+							justifyContent: 'space-between',
+						}}
+					>
+						<Header />
 
-					{activeComponent === 'MainPage' && <MainPage />}
-					{activeComponent === 'Contacts' && <Contacts />}
-					{activeComponent === 'Rules' && <Rules />}
+						{activeComponent === 'MainPage' && <MainPage />}
+						{activeComponent === 'Contacts' && <Contacts />}
+						{activeComponent === 'Rules' && <Rules />}
 
-					<Footer
-						onContactsClick={() => setActiveComponent('Contacts')}
-						onRulesClick={() => setActiveComponent('Rules')}
-						onMainPageClick={() => setActiveComponent('MainPage')}
-					/>
+						<Footer
+							onContactsClick={() => setActiveComponent('Contacts')}
+							onRulesClick={() => setActiveComponent('Rules')}
+							onMainPageClick={() => setActiveComponent('MainPage')}
+						/>
+					</Container>
 				</div>
+
 				<div
 					style={{
 						position: 'absolute',

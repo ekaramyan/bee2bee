@@ -15,7 +15,7 @@ export default function Footer({
 	return (
 		<footer
 			style={{
-				width: '80%',
+				width: '100%',
 				background: '#EAEEE8CC',
 				display: 'flex',
 				alignItems: 'center',
@@ -23,6 +23,7 @@ export default function Footer({
 				height: '80px',
 				borderRadius: '20px 20px 0px 0px',
 				padding: '0 20px',
+				justifySelf: 'end',
 			}}
 		>
 			<div style={{ display: 'flex', gap: 20 }}>

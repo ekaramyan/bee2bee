@@ -73,7 +73,7 @@ const theme = createTheme({
 			position: 'absolute',
 			top: '19%',
 			left: 0,
-			transform: 'rotate(-90deg) translateY(40%)',
+			transform: 'rotate(-90deg) translateY(40%) translateX(50%)',
 			whiteSpace: 'nowrap',
 			width: '100%',
 			height: '100%',
@@ -96,6 +96,13 @@ const theme = createTheme({
 				color: '#E06B00',
 				textDecoration: 'underline',
 			},
+		},
+		block_header: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 42,
+			fontWeight: 700,
+			textTransform: 'uppercase',
 		},
 	},
 })

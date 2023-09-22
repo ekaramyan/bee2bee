@@ -28,7 +28,7 @@ export default function Register({ toggleOpen }) {
 			>
 				<Grid container gap={1}>
 					{/* 1st row: Email and Password */}
-					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
+					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
 						<TextField
 							label='Name'
 							variant='standard'
@@ -44,7 +44,7 @@ export default function Register({ toggleOpen }) {
 							name='last name'
 						/>
 					</Box>
-					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
+					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
 						<TextField
 							label='Nickname'
 							variant='standard'
@@ -143,7 +143,7 @@ export default function Register({ toggleOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(35%)',
+						transform: 'rotate(90deg)  translateY(37%) translateX(50%)',
 						top: '-25%',
 						right: 0,
 					}}
