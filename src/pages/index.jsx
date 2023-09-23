@@ -31,68 +31,63 @@ export default function index() {
 				style={{
 					overflow: 'hidden',
 					position: 'relative',
+					background: `url(${background.src}) no-repeat center / cover`,
+					height: '100dvh',
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'space-between',
+					alignItems: 'center',
 				}}
 			>
-				<div
+				<Container
 					style={{
-						background: `url(${background.src}) no-repeat center / cover`,
-						height: '100dvh',
 						display: 'flex',
 						flexDirection: 'column',
+						height: '100%',
 						justifyContent: 'space-between',
-						alignItems: 'center',
 					}}
 				>
-					<Container
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							height: '100%',
-							justifyContent: 'space-between',
-						}}
-					>
-						<Header />
+					<Header />
 
-						{activeComponent === 'MainPage' && <MainPage />}
-						{activeComponent === 'Contacts' && <Contacts />}
-						{activeComponent === 'Rules' && <Rules />}
+					{activeComponent === 'MainPage' && <MainPage />}
+					{activeComponent === 'Contacts' && <Contacts />}
+					{activeComponent === 'Rules' && <Rules />}
 
-						<Footer
-							onContactsClick={() => setActiveComponent('Contacts')}
-							onRulesClick={() => setActiveComponent('Rules')}
-							onMainPageClick={() => setActiveComponent('MainPage')}
-						/>
-					</Container>
-				</div>
+					<Footer
+						onContactsClick={() => setActiveComponent('Contacts')}
+						onRulesClick={() => setActiveComponent('Rules')}
+						onMainPageClick={() => setActiveComponent('MainPage')}
+					/>
+				</Container>
+			</div>
 
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						right: isLoginOpen ? 0 : '-35%',
-						width: '45%',
-						height: '100%',
-						background: `url(${login.src}) no-repeat center / cover`,
+			<div
+				style={{
+					position: 'absolute',
+					top: 0,
+					right: isLoginOpen ? 0 : '-35%',
+					width: '45%',
+					height: '100%',
+					background: `url(${login.src}) no-repeat center / cover`,
 
-						transition: 'right 0.3s ease-in-out',
-					}}
-				>
-					<Login toggleOpen={toggleLogin} />
-				</div>
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: isRegisterOpen ? 0 : '-35%',
-						width: '45%',
-						height: '100%',
-						background: `url(${register.src}) no-repeat center / cover`,
+					transition: 'right 0.3s ease-in-out',
+				}}
+			>
+				<Login toggleOpen={toggleLogin} />
+			</div>
+			<div
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: isRegisterOpen ? 0 : '-35%',
+					width: '45%',
+					height: '100%',
+					background: `url(${register.src}) no-repeat center / cover`,
 
-						transition: 'left 0.3s ease-in-out',
-					}}
-				>
-					<Register toggleOpen={toggleRegister} />
-				</div>
+					transition: 'left 0.3s ease-in-out',
+				}}
+			>
+				<Register toggleOpen={toggleRegister} />
 			</div>
 		</ThemeProvider>
 	)
