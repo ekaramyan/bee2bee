@@ -45,7 +45,7 @@ export default function Login({ toggleOpen }) {
 					height: '100%',
 				}}
 			>
-				<Typography variant='auth_head' gutterBottom onClick={toggleOpen}>
+				<Typography variant='auth_head' gutterBottom onClick={toggleOpen} style={{top:'20%'}}>
 					Members Login
 				</Typography>
 			</div>

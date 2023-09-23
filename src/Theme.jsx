@@ -71,7 +71,6 @@ const theme = createTheme({
 		auth_head: {
 			display: 'block',
 			position: 'absolute',
-			top: '19%',
 			left: 0,
 			transform: 'rotate(-90deg) translateY(40%) translateX(50%)',
 			whiteSpace: 'nowrap',

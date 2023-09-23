@@ -45,7 +45,12 @@ export default function MyCells({ toggleOpen }) {
 					height: '100%',
 				}}
 			>
-				<Typography variant='auth_head' gutterBottom onClick={toggleOpen}>
+				<Typography
+					variant='auth_head'
+					gutterBottom
+					onClick={toggleOpen}
+					style={{ top: '10%' }}
+				>
 					My Cells
 				</Typography>
 			</div>
