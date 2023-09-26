@@ -1,16 +1,20 @@
 import { Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function Footer({
+	tab,
 	onContactsClick,
 	onRulesClick,
 	onMainPageClick,
 }) {
-	const [activeTab, setActiveTab] = useState('Main Page')
+	const [activeTab, setActiveTab] = useState(tab)
 
 	const handleTabClick = (tabName, callback) => {
-		setActiveTab(tabName)
-		callback()
+		setTimeout(() => {
+			setActiveTab(tabName)
+			callback()
+		}, 0)
 	}
 	return (
 		<footer

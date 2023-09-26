@@ -103,6 +103,24 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		level_small: {
+			color: '#FFF',
+			textAlign: 'center',
+			fontFamily: 'Noto Sans',
+			fontSize: 32,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+			padding: '0 10%',
+			lineHeight: 1,
+		},
+		level_big: {
+			color: '#FFF',
+			textAlign: 'center',
+			fontFamily: 'Noto Sans',
+			fontSize: 36,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 	},
 })
 

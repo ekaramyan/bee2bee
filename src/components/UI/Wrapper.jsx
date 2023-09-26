@@ -6,9 +6,8 @@ const Wrapper = ({ children, ...props }) => {
 		<Box
 			style={{
 				width: '100%',
-				height: '100%',
-				maxHeight: '60vh',
-				background: '#EAEEE8',
+				height: '75%',
+				background: '#EAEEE8CC',
 				borderRadius: 20,
 				overflow: 'hidden',
 				padding: '25px 10px 20px 20px',
