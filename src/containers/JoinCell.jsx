@@ -1,8 +1,8 @@
 import React from 'react'
-import Wrapper from './UI/Wrapper'
+import Wrapper from '../components/UI/Wrapper'
 import { Grid, Typography } from '@mui/material'
-import Cell from './UI/Cell'
-import BigCell from './UI/BigCell'
+import Cell from '../components/UI/Cell'
+import BigCell from '../components/UI/BigCell'
 
 export default function JoinCell() {
 	const cells = [

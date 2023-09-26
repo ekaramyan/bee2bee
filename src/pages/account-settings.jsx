@@ -1,11 +1,11 @@
-import MyAccount from '@/containers/MyAccount'
+import AccountSettings from '@/containers/AccountSettings'
 import LoggedInWrapper from '@/components/UI/logged_in_wrapper'
 
-export default function Account() {
+export default function accountSettings() {
 	return (
 		<>
 			<LoggedInWrapper>
-				<MyAccount />
+				<AccountSettings />
 			</LoggedInWrapper>
 		</>
 	)

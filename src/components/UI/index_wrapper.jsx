@@ -60,7 +60,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					style={{
 						position: 'absolute',
 						top: 0,
-						right: isLoginOpen ? 0 : '-35%',
+						right: isLoginOpen ? 0 : '-40%',
 						width: '45%',
 						height: '100%',
 						background: `url(${login.src}) no-repeat center / cover`,
@@ -74,7 +74,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					style={{
 						position: 'absolute',
 						top: 0,
-						left: isRegisterOpen ? 0 : '-35%',
+						left: isRegisterOpen ? 0 : '-40%',
 						width: '45%',
 						height: '100%',
 						background: `url(${register.src}) no-repeat center / cover`,

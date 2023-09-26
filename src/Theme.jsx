@@ -96,6 +96,18 @@ const theme = createTheme({
 				textDecoration: 'underline',
 			},
 		},
+		header_buttons: {
+			cursor: 'pointer',
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
+			textDecoration: 'none',
+			textTransform: 'uppercase',
+			active: {
+				color: '#E06B00',
+			},
+		},
 		block_header: {
 			color: '#1B170F',
 			fontFamily: 'Noto Sans',

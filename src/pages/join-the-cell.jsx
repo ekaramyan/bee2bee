@@ -1,11 +1,11 @@
-import MyAccount from '@/containers/MyAccount'
+import JoinCell from '@/containers/JoinCell'
 import LoggedInWrapper from '@/components/UI/logged_in_wrapper'
 
-export default function Account() {
+export default function JoinTheCell() {
 	return (
 		<>
 			<LoggedInWrapper>
-				<MyAccount />
+				<JoinCell />
 			</LoggedInWrapper>
 		</>
 	)

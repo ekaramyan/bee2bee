@@ -8,12 +8,17 @@ export default function Rules() {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
+				height: '100%',
 			}}
 		>
-			<Wrapper>
+			<Wrapper >
 				<Typography
 					variant='block_header'
-					style={{ padding: '10px', borderBottom: '1px solid #E06B00', alignSelf:'start'}}
+					style={{
+						padding: '10px',
+						borderBottom: '1px solid #E06B00',
+						alignSelf: 'start',
+					}}
 				>
 					Rules
 				</Typography>
