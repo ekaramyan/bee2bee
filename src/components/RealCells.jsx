@@ -9,6 +9,8 @@ import {
 } from '@mui/material'
 import ReCAPTCHA from 'react-google-recaptcha'
 import AuthButton from './UI/AuthButton'
+import Image from 'next/image'
+import cell from '@/assets/img/join_cell_bg.svg'
 
 export default function RealCells({ toggleOpen }) {
 	return (
@@ -21,116 +23,29 @@ export default function RealCells({ toggleOpen }) {
 				alignItems: 'center',
 			}}
 		>
-			<form
-				action=''
-				method='post'
-				style={{ display: 'flex', flex: '3', flexDirection: 'column' }}
-			>
-				<Grid container gap={1}>
-					{/* 1st row: Email and Password */}
-					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
-						<TextField
-							label='Name'
-							variant='standard'
-							fullWidth
-							type='name'
-							name='name'
-						/>
-						<TextField
-							label='Last Name'
-							variant='standard'
-							fullWidth
-							type='last name'
-							name='last name'
-						/>
-					</Box>
-					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
-						<TextField
-							label='Nickname'
-							variant='standard'
-							fullWidth
-							type='nickname'
-							name='nickname'
-						/>
-						<TextField
-							label='Email'
-							variant='standard'
-							fullWidth
-							type='email'
-							name='email'
-						/>
-					</Box>
-					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
-						<TextField
-							label='Your Phone'
-							variant='standard'
-							fullWidth
-							type='phone'
-							name='phone'
-						/>
-						<Select
-							label='Your Country'
-							variant='standard'
-							fullWidth
-							type='select'
-							name='country'
-						/>
-					</Box>
-					<Box
-						item
-						xs={12}
-						style={{ display: 'flex', gap: 20, width: '100%', height: '100%' }}
-					>
-						<TextField
-							label='Date of Birth'
-							variant='standard'
-							fullWidth
-							type='date'
-							name='date'
-							slotProps={{ textField: { placeholder: 'tt.mm.jjjj' } }}
-						/>
-						<TextField
-							label='Password'
-							variant='standard'
-							fullWidth
-							type='password'
-							name='password'
-						/>
-					</Box>
-
-					<Box
+			<Box style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
+				<Grid
+					style={{
+						display: 'grid',
+						gridTemplateColumns: '1fr 3fr',
+						alignItems: 'center',
+						gap: 20,
+					}}
+				>
+					<Typography>yfduhidszngkasnbfgldkbsalkgfsk</Typography>
+					<Grid
 						style={{
-							display: 'flex',
-							justifyContent: 'space-between',
-							width: '100%',
-							flex: 1,
+							display: 'grid',
+							gridTemplateColumns: 'repeat(3, 100px)',
+							gap: 20,
 						}}
 					>
-						<Grid item>
-							<Typography variant='body2'>
-								{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
-							</Typography>
-						</Grid>
-
-						{/* Login Button */}
-						<Grid
-							item
-							style={{
-								display: 'flex',
-								flexDirection: 'column',
-								width: '50%',
-								gap: 10,
-							}}
-						>
-							<FormControlLabel
-								control={<Checkbox name='remember' color='primary' />}
-								label='I Agree with'
-							/>
-							<AuthButton text='Register' type='submit' />
-						</Grid>
-					</Box>
+						<Image src={cell.src} width={100} height={100} />
+						<Image src={cell.src} width={100} height={100} />
+						<Image src={cell.src} width={100} height={100} />
+					</Grid>
 				</Grid>
-			</form>
+			</Box>
 			<div
 				style={{
 					flex: '1',
@@ -143,7 +58,7 @@ export default function RealCells({ toggleOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(37%) translateX(50%)',
+						transform: 'rotate(90deg)  translateY(40%) translateX(50%)',
 						top: '-25%',
 						right: 0,
 					}}
