@@ -3,7 +3,7 @@ import background from '../../assets/img/join_cell_bg.png'
 import Image from 'next/image'
 import { Button, Typography } from '@mui/material'
 
-export default function Cell({ bee, join, level }) {
+export default function Cell({ bee, join, level, onJoinClick }) {
 	return (
 		<div
 			style={{
@@ -20,6 +20,7 @@ export default function Cell({ bee, join, level }) {
 			<Button
 				variant='outlined'
 				href={join}
+				onClick={onJoinClick}
 				style={{
 					width: '50%',
 					color: '#23201C',
