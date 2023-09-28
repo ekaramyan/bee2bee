@@ -3,12 +3,11 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function Footer({
-	tab,
 	onContactsClick,
 	onRulesClick,
 	onMainPageClick,
 }) {
-	const [activeTab, setActiveTab] = useState(tab)
+	// const [activeTab, setActiveTab] = useState(tab)
 
 	const handleTabClick = (tabName, callback) => {
 		setTimeout(() => {
@@ -33,11 +32,11 @@ export default function Footer({
 			<div style={{ display: 'flex', gap: 20 }}>
 				<Typography
 					variant='footer_buttons'
-					style={
-						activeTab === 'Main Page'
-							? { color: '#E06B00', textDecoration: 'underline' }
-							: {}
-					}
+					// style={
+					// 	activeTab === 'Main Page'
+					// 		? { color: '#E06B00', textDecoration: 'underline' }
+					// 		: {}
+					// }
 					onClick={() => handleTabClick('Main Page', onMainPageClick)}
 				>
 					Main Page
@@ -45,11 +44,11 @@ export default function Footer({
 
 				<Typography
 					variant='footer_buttons'
-					style={
-						activeTab === 'Rules'
-							? { color: '#E06B00', textDecoration: 'underline' }
-							: {}
-					}
+					// style={
+					// 	// activeTab === 'Rules'
+					// 	// 	? { color: '#E06B00', textDecoration: 'underline' }
+					// 	// 	: {}
+					// }
 					onClick={() => handleTabClick('Rules', onRulesClick)}
 				>
 					Rules
@@ -57,11 +56,11 @@ export default function Footer({
 
 				<Typography
 					variant='footer_buttons'
-					style={
-						activeTab === 'Contacts'
-							? { color: '#E06B00', textDecoration: 'underline' }
-							: {}
-					}
+					// style={
+					// 	activeTab === 'Contacts'
+					// 		? { color: '#E06B00', textDecoration: 'underline' }
+					// 		: {}
+					// }
 					onClick={() => handleTabClick('Contacts', onContactsClick)}
 				>
 					Contact us

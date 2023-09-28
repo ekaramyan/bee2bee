@@ -49,7 +49,6 @@ const IndexWrapper = ({ children, ...props }) => {
 					<Header loggedIn={false} />
 					{children}
 					<Footer
-						tab={props.tab}
 						onContactsClick={() => router.push('/contacts')}
 						onRulesClick={() => router.push('/rules')}
 						onMainPageClick={() => router.push('/')}
