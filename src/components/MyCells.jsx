@@ -54,63 +54,55 @@ export default function MyCells({ toggleOpen }) {
 					My Cells
 				</Typography>
 			</div>
-			<form
-				action=''
-				method='post'
-				style={{ display: 'flex', flex: '3', flexDirection: 'column' }}
-			>
-				<Grid container gap={2.5}>
-					{/* 1st row: Email and Password */}
-					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
-						<TextField
-							label='Email'
-							variant='standard'
-							fullWidth
-							type='email'
-							name='email'
-						/>
-						<TextField
-							label='Password'
-							variant='standard'
-							fullWidth
-							type='password'
-							name='password'
-						/>
-					</Box>
-
-					<Box
-						style={{
-							display: 'flex',
-							justifyContent: 'space-between',
-							width: '100%',
-							flex: 1,
-						}}
-					>
-						<Grid item>
-							{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
-						</Grid>
-
-						{/* Login Button */}
-						<Grid
-							item
-							style={{ display: 'flex', flexDirection: 'column', width: '50%' }}
+			<Box style={{ width: '75%' }}>
+				<Box
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-start',
+						alignItems: 'center',
+						gap: 30,
+					}}
+				>
+					<Typography variant='my_cells_button'>Follower</Typography>
+					<Typography variant='my_cells_button'>Leader</Typography>
+				</Box>
+				<Box
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-start',
+						alignItems: 'center',
+						gap: 20,
+						width: '100%',
+					}}
+				>
+					<Box style={{ width: '40%' }}>
+						<Typography>Active cells</Typography>
+						<Box
+							style={{
+								background: '#fff',
+								height: '150px',
+								width: '100%',
+								overflowY: 'auto',
+							}}
 						>
-							<FormControlLabel
-								control={<Checkbox name='remember' color='primary' />}
-								label='Remember me'
-							/>
-							<AuthButton text='Login' type='submit' />
-						</Grid>
+							<Typography>text</Typography>
+						</Box>
 					</Box>
-
-					{/* 'Forgot your password' Link */}
-					<Grid item xs={12} style={{ display: 'flex', justifyContent: 'end' }}>
-						<Typography variant='body2'>
-							<a href='#'>Forgot your password?</a>
-						</Typography>
-					</Grid>
-				</Grid>
-			</form>
+					<Box style={{ width: '40%' }}>
+						<Typography>Closed cells</Typography>
+						<Box
+							style={{
+								background: '#fff',
+								height: '150px',
+								width: '100%',
+								overflowY: 'auto',
+							}}
+						>
+							<Typography>text</Typography>
+						</Box>
+					</Box>
+				</Box>
+			</Box>
 		</div>
 	)
 }

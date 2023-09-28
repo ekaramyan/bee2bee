@@ -133,6 +133,18 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		my_cells_button: {
+			cursor: 'pointer',
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 32,
+			fontWeight: 700,
+			textDecoration: 'none',
+			textTransform: 'uppercase',
+			active: {
+				color: '#E06B00',
+			},
+		},
 	},
 })
 

@@ -64,7 +64,7 @@ export default function Header({ loggedIn }) {
 								</Link>
 							</LI>
 							<LI>
-								<Link href={'/faq'}>
+								<Link href={'/rules'}>
 									<Typography variant='header_buttons'>FAQ</Typography>
 								</Link>
 							</LI>

@@ -37,7 +37,8 @@ h5,
 h6 {
 	overflow-wrap: break-word;
 }
-a {
+a,
+button {
 	text-decoration: none;
 }
 #root,
