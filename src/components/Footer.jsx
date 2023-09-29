@@ -1,20 +1,31 @@
 import { Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Footer({
 	onContactsClick,
 	onRulesClick,
 	onMainPageClick,
 }) {
-	// const [activeTab, setActiveTab] = useState(tab)
+	const router = useRouter()
+	const page = router.asPath.split('/')[1]
+	const [activeTab, setActiveTab] = useState(page)
+	console.log(page)
+	useEffect(() => {
+		setActiveTab(page)
+	}, [page])
 
 	const handleTabClick = (tabName, callback) => {
-		setTimeout(() => {
-			setActiveTab(tabName)
-			callback()
-		}, 0)
+		setActiveTab(tabName)
+		callback()
 	}
+
+	const getTabStyles = tabName => {
+		return activeTab === tabName
+			? { color: '#E06B00', textDecoration: 'underline' }
+			: {}
+	}
+
 	return (
 		<footer
 			style={{
@@ -32,36 +43,24 @@ export default function Footer({
 			<div style={{ display: 'flex', gap: 20 }}>
 				<Typography
 					variant='footer_buttons'
-					// style={
-					// 	activeTab === 'Main Page'
-					// 		? { color: '#E06B00', textDecoration: 'underline' }
-					// 		: {}
-					// }
-					onClick={() => handleTabClick('Main Page', onMainPageClick)}
+					style={getTabStyles('')}
+					onClick={() => handleTabClick('', onMainPageClick)}
 				>
 					Main Page
 				</Typography>
 
 				<Typography
 					variant='footer_buttons'
-					// style={
-					// 	// activeTab === 'Rules'
-					// 	// 	? { color: '#E06B00', textDecoration: 'underline' }
-					// 	// 	: {}
-					// }
-					onClick={() => handleTabClick('Rules', onRulesClick)}
+					style={getTabStyles('rules')}
+					onClick={() => handleTabClick('rules', onRulesClick)}
 				>
 					Rules
 				</Typography>
 
 				<Typography
 					variant='footer_buttons'
-					// style={
-					// 	activeTab === 'Contacts'
-					// 		? { color: '#E06B00', textDecoration: 'underline' }
-					// 		: {}
-					// }
-					onClick={() => handleTabClick('Contacts', onContactsClick)}
+					style={getTabStyles('contacts')}
+					onClick={() => handleTabClick('contacts', onContactsClick)}
 				>
 					Contact us
 				</Typography>

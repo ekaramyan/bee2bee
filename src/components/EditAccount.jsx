@@ -9,32 +9,43 @@ export default function EditAccount({
 }) {
 	return (
 		<>
-			<Image src={avatarBg.src} width={200} height={200} />
-			<Box>
-				<Typography> Name & last name</Typography>
-				<Typography> date of birth: 13.12.11</Typography>
+			<Typography variant='block_header'>Account Settings</Typography>
+			<Box
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+					gap: 30,
+				}}
+			>
+				<Image src={avatarBg.src} width={200} height={200} />
+				<Box>
+					<Typography> Name & last name</Typography>
+					<Typography> date of birth: 13.12.11</Typography>
+				</Box>
+				<Grid style={{ display: 'flex', gap: 60 }}>
+					<Box>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Button variant='contained' onClick={onChangeClick}>
+							Change your password
+						</Button>
+					</Box>
+					<Box>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Typography>user: dfgdsfgsfdggfds</Typography>
+						<Button variant='contained' onClick={onResetClick}>
+							Reset your password
+						</Button>
+					</Box>
+				</Grid>
+				<Button variant='contained' onClick={onSaveClick}>
+					Save changes
+				</Button>
 			</Box>
-			<Grid style={{ display: 'flex', gap: 60 }}>
-				<Box>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Button variant='contained' onClick={onChangeClick}>
-						Change your password
-					</Button>
-				</Box>
-				<Box>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Typography>user: dfgdsfgsfdggfds</Typography>
-					<Button variant='contained' onClick={onResetClick}>
-						Reset your password
-					</Button>
-				</Box>
-			</Grid>
-			<Button variant='contained' onClick={onSaveClick}>
-				Save changes
-			</Button>
 		</>
 	)
 }

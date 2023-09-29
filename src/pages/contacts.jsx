@@ -7,7 +7,7 @@ import Contacts from '@/containers/Contacts'
 export default function contacts() {
 	return (
 		<ThemeProvider theme={theme}>
-			<IndexWrapper tab={'contacts'}>
+			<IndexWrapper>
 				<Contacts />
 			</IndexWrapper>
 		</ThemeProvider>

@@ -7,7 +7,7 @@ export default function rules() {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
-				<IndexWrapper tab={'rules'}>
+				<IndexWrapper>
 					<Rules />
 				</IndexWrapper>
 			</ThemeProvider>

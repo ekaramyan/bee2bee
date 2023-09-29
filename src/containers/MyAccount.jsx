@@ -1,17 +1,14 @@
-import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { Box, Typography } from '@mui/material'
 import Wrapper from '../components/UI/Wrapper'
 import Account from '@/components/Account'
 import EditAccount from '@/components/EditAccount'
 
 export default function MyAccount() {
-	const [activeComponent, setActiveComponent] = useState('Account')
+	const router = useRouter()
 	const handleEditClick = () => {
-		setActiveComponent('EditAccount')
+		router.push('account-settings')
 	}
-	// const handleCloseClick = () => {
-	// 	setActiveComponent('Account')
-	// }
 
 	return (
 		<Wrapper>
@@ -25,11 +22,7 @@ export default function MyAccount() {
 					gap: 30,
 				}}
 			>
-				{activeComponent === 'Account' ? (
-					<Account onEditClick={handleEditClick} />
-				) : (
-					<EditAccount />
-				)}
+				<Account onEditClick={handleEditClick} />
 			</Box>
 		</Wrapper>
 	)
