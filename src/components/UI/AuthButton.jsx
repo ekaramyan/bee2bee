@@ -18,6 +18,6 @@ const StyledButton = styled(Button)`
 	}
 `
 
-export default function AuthButton({ text }) {
-	return <StyledButton>{text}</StyledButton>
+export default function AuthButton({ children, ...props }) {
+	return <StyledButton type={props.type}>{children}</StyledButton>
 }
