@@ -5,13 +5,14 @@ const useRegister = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [success, setSuccess] = useState(false)
+	const apiUrl = process.env.API_URL
 
 	const register = async formData => {
 		console.log('started')
 		setLoading(true)
 		try {
 			const response = await axios.post(
-				`${process.env.API_URL}/api/users/register`,
+				`${apiUrl}/api/users/register`,
 				formData,
 				{
 					headers: {
