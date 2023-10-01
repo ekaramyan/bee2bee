@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const useUploadPhoto = () => {
 	const [loading, setLoading] = useState(false)
@@ -13,7 +14,7 @@ const useUploadPhoto = () => {
 
 		setLoading(true)
 		try {
-			const access_token = localStorage.getItem('access_token')
+			const access_token = Cookies.get.get('access_token')
 			const response = await axios.patch(`${apiUrl}/users/me/photo`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',

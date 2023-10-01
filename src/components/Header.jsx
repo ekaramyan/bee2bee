@@ -1,9 +1,20 @@
-import { useMediaQuery, List, ListItem, Typography } from '@mui/material'
+import {
+	useMediaQuery,
+	List,
+	ListItem,
+	Typography,
+	Button,
+} from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import { styled } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
+import { fetchData } from '@/api/fetchData'
 import logo from '../assets/img/logo.svg'
 import account from '@/assets/img/join_cell_bg.svg'
+import { useEffect, useState } from 'react'
 
 const LI = styled(ListItem)`
 	text-decoration: none;
@@ -11,6 +22,31 @@ const LI = styled(ListItem)`
 `
 
 export default function Header({ loggedIn }) {
+	const [data, setData] = useState(null)
+	const router = useRouter()
+	const dispatch = useDispatch()
+	const onExitClick = () => {
+		Cookies.remove('access_token')
+		Cookies.remove('refresh_token')
+		dispatch({ type: 'LOG_OUT' })
+		router.push('/')
+	}
+	const apiUrl = process.env.API_URL
+	const token = Cookies.get('access_token')
+	useEffect(() => {
+		const fetchDataAsync = async () => {
+			try {
+				const response = await fetchData(`${apiUrl}/users/me`, token)
+				setData(response?.data)
+			} catch (error) {
+				console.error('Error fetching data: ', error)
+			}
+		}
+		fetchDataAsync()
+	}, [])
+
+	console.log(data)
+
 	return (
 		<header
 			style={{
@@ -72,9 +108,9 @@ export default function Header({ loggedIn }) {
 						<div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<Image src={account.src} width={50} height={50} />
-								<p>Nickname</p>
+								<p>{data?.nickname}</p>
 							</div>
-							<p>Exit</p>
+							<Button onClick={onExitClick}>Exit</Button>
 						</div>
 					</>
 				) : (

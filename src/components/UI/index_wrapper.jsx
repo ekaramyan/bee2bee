@@ -122,7 +122,6 @@ const IndexWrapper = ({ children, ...props }) => {
 						</div>
 					</>
 				)}
-				
 			</div>
 		</ThemeProvider>
 	)

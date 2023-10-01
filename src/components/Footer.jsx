@@ -1,6 +1,10 @@
-import { Typography } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import en from '@/assets/img/en.png'
+import ge from '@/assets/img/ge.png'
+import ru from '@/assets/img/ru.png'
 
 export default function Footer({
 	onContactsClick,
@@ -64,7 +68,11 @@ export default function Footer({
 					Contact us
 				</Typography>
 			</div>
-			<div>languges</div>
+			<Box style={{ display: 'flex', gap: 10 }}>
+				<Image src={en.src} width={32} height={24} />
+				<Image src={ge.src} width={32} height={24} />
+				<Image src={ru.src} width={32} height={24} />
+			</Box>
 		</footer>
 	)
 }

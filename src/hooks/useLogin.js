@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
+import { useDispatch } from 'react-redux'
 
 const useLogin = () => {
 	const [loading, setLoading] = useState(false)
@@ -8,9 +10,9 @@ const useLogin = () => {
 	const [success, setSuccess] = useState(false)
 	const apiUrl = process.env.API_URL
 	const router = useRouter()
+	const dispatch = useDispatch()
 
 	const login = async formData => {
-		console.log(formData)
 		setLoading(true)
 		try {
 			const response = await axios.post(`${apiUrl}/auth/token`, formData, {
@@ -20,10 +22,10 @@ const useLogin = () => {
 			})
 
 			if (response.status === 200 || response.status === 201) {
-				console.log(response)
-				localStorage.setItem('access_token', response.data.data.access_token)
-				localStorage.setItem('refresh_token', response.data.data.refresh_token)
 				document.cookie = `access_token=${response.data.data.access_token}; path=/`
+				document.cookie = `refresh_token=${response.data.data.refresh_token}; path=/`
+				dispatch({ type: 'LOG_IN' })
+				router.push('join-the-cell')
 				setSuccess(true)
 			} else {
 				setError(response.data.message || 'An error occurred.')
@@ -36,19 +38,19 @@ const useLogin = () => {
 	}
 	const refreshToken = async () => {
 		try {
-			const refresh_token = localStorage.getItem('refresh_token')
+			const refresh_token = Cookies.get('refresh_token')
 			const response = await axios.post(`${apiUrl}/auth/refresh`, {
 				refresh_token: refresh_token,
 			})
-			localStorage.setItem('access_token', response.data.access_token)
-			localStorage.setItem('refresh_token', response.data.refresh_token)
+			document.cookie = `access_token=${response.data.data.access_token}; path=/`
+			document.cookie = `refresh_token=${response.data.data.refresh_token}; path=/`
 			return response.data.access_token
 		} catch (err) {
+			console.error(err)
 			setError('Failed to refresh token')
 			router.push('/')
 		}
 	}
-
 	return { login, refreshToken, loading, error, success }
 }
 

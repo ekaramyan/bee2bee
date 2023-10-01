@@ -1,16 +1,21 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
 import MyAccount from '@/containers/MyAccount'
 import { universalServerSideProps } from '@/api/ssr'
+import useLogin from '@/hooks/useLogin'
 
 export default function Account({ accountData }) {
 	const dispatch = useDispatch()
+	const { refreshToken } = useLogin()
 
 	useEffect(() => {
-		const token = localStorage.getItem('access_token')
-		const refreshToken = localStorage.getItem('refresh_token')
-		if (token && refreshToken) {
+		const token = Cookies.get('access_token')
+		const refresh_token = Cookies.get('refresh_token')
+		if (token && refresh_token) {
 			dispatch({ type: 'LOG_IN' })
+		} else if (!token && refresh_token) {
+			refreshToken()
 		}
 	}, [])
 	return <MyAccount data={accountData} />

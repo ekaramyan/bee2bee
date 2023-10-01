@@ -94,7 +94,7 @@ export default function Contacts() {
 							style={{ display: 'flex', gap: 20, width: '100%' }}
 						>
 							<TextField
-              label='Your Message Text'
+								label='Your Message Text'
 								name='message'
 								fullWidth
 								variant='standard'
@@ -133,7 +133,7 @@ export default function Contacts() {
 									control={<Checkbox name='remember' color='primary' />}
 									label='I Agree with'
 								/>
-								<AuthButton text='Register' type='submit' />
+								<AuthButton type='submit'>Register</AuthButton>
 							</Grid>
 						</Box>
 					</Grid>

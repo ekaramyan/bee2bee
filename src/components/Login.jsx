@@ -13,6 +13,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import AuthButton from './UI/AuthButton'
 import Link from 'next/link'
 
+
 // const recaptchaRef = React.createRef();
 // ...
 // onSubmit = () => {
@@ -32,13 +33,10 @@ import Link from 'next/link'
 // }
 
 export default function Login({ toggleOpen }) {
-	const router = useRouter()
 	const { login, refreshToken, loading, error, success } = useLogin()
-	const dispatch = useDispatch()
 
 	const handleSubmit = async event => {
 		event.preventDefault()
-
 		const formData = {
 			grant_type: '',
 			username: event.target.email.value,
@@ -49,12 +47,8 @@ export default function Login({ toggleOpen }) {
 		}
 
 		login(formData)
-		if (success) {
-			console.log('success')
-			dispatch({ type: 'LOG_IN' })
-			router.push('join-the-cell')
-		}
 	}
+
 	return (
 		<div
 			style={{
@@ -148,8 +142,10 @@ export default function Login({ toggleOpen }) {
 					</Grid>
 				</form>
 				{error && <div>{error}</div>}
-				{success && <div>Successfully registered!</div>}
+				{success && <div>Successfully signed in!</div>}
 			</Box>
 		</div>
 	)
 }
+
+

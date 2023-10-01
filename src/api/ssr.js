@@ -8,7 +8,6 @@ export const universalServerSideProps = async (
 	if (token) {
 		try {
 			const data = await fetchData(url, token)
-			console.log(data)
 			return {
 				props: { [dataKey]: data },
 			}

@@ -8,8 +8,13 @@ export const fetchData = async (url, token) => {
 				Authorization: `Bearer ${token}`,
 			},
 		})
-		console.log(response)
-		return response.data
+		if (response.status === 401) {
+			document.cookie =
+				'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+		} else {
+			console.log(response)
+			return response.data
+		}
 	} catch (error) {
 		throw error
 	}

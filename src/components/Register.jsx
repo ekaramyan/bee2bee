@@ -21,7 +21,6 @@ export default function Register({ toggleOpen }) {
 	const dispatch = useDispatch()
 
 	const handleSubmit = async event => {
-		console.log('submited')
 		event.preventDefault()
 
 		const formData = {
@@ -37,11 +36,6 @@ export default function Register({ toggleOpen }) {
 		}
 
 		register(formData)
-		if (success) {
-			console.log('success')
-			dispatch({ type: 'LOG_IN' })
-			router.push('join-the-cell')
-		}
 	}
 	return (
 		<div
