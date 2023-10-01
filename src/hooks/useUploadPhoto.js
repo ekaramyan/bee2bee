@@ -1,24 +1,25 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const useRegister = () => {
+const useUploadPhoto = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [success, setSuccess] = useState(false)
 	const apiUrl = process.env.API_URL
 
-	const register = async formData => {
+	const upload = async file => {
+		const formData = new FormData()
+		formData.append('photo', file)
+
 		setLoading(true)
 		try {
-			const response = await axios.post(
-				`${apiUrl}/users/register`,
-				formData,
-				{
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				}
-			)
+			const access_token = localStorage.getItem('access_token')
+			const response = await axios.patch(`${apiUrl}/users/me/photo`, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${access_token}`,
+				},
+			})
 
 			if (response.status === 200 || response.status === 201) {
 				setSuccess(true)
@@ -32,7 +33,7 @@ const useRegister = () => {
 		}
 	}
 
-	return { register, loading, error, success }
+	return { upload, loading, error, success }
 }
 
-export default useRegister
+export default useUploadPhoto

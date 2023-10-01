@@ -1,18 +1,15 @@
-import { ThemeProvider } from '@mui/material/styles'
-import theme from '../Theme'
-
 import MainPage from '@/containers/MainPage'
-import contacts from '@/pages/contacts'
-import rules from '@/pages/rules'
-import IndexWrapper from '@/components/UI/index_wrapper'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 export default function index() {
-
-	return (
-		<ThemeProvider theme={theme}>
-			<IndexWrapper>
-				<MainPage />
-			</IndexWrapper>
-		</ThemeProvider>
-	)
+	const dispatch = useDispatch()
+	useEffect(() => {
+		const token = localStorage.getItem('access_token')
+		const refreshToken = localStorage.getItem('refresh_token')
+		if (token && refreshToken) {
+			dispatch({ type: 'LOG_IN' })
+		}
+	}, [])
+	return <MainPage />
 }

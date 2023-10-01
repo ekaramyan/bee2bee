@@ -1,14 +1,4 @@
-import {
-	Checkbox,
-	Box,
-	FormControlLabel,
-	Grid,
-	TextField,
-	Select,
-	Typography,
-} from '@mui/material'
-import ReCAPTCHA from 'react-google-recaptcha'
-import AuthButton from './UI/AuthButton'
+import { Box, Grid, Typography } from '@mui/material'
 import Image from 'next/image'
 import cell from '@/assets/img/join_cell_bg.svg'
 
@@ -26,8 +16,8 @@ export default function RealCells({ toggleOpen }) {
 			<Box style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
 				<Grid
 					style={{
-						display: 'grid',
-						gridTemplateColumns: '1fr 3fr',
+						display: 'flex',
+						flexWrap: 'wrap',
 						alignItems: 'center',
 						gap: 20,
 					}}
@@ -36,7 +26,7 @@ export default function RealCells({ toggleOpen }) {
 					<Grid
 						style={{
 							display: 'grid',
-							gridTemplateColumns: 'repeat(3, 100px)',
+							gridTemplateColumns: 'repeat(3, 0.7fr)',
 							gap: 20,
 						}}
 					>
@@ -51,6 +41,7 @@ export default function RealCells({ toggleOpen }) {
 					flex: '1',
 					position: 'relative',
 					height: '100%',
+					width: '20%',
 				}}
 			>
 				<Typography
@@ -58,8 +49,8 @@ export default function RealCells({ toggleOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(40%) translateX(50%)',
-						top: '-25%',
+						transform: 'rotate(90deg)  translateY(30%) translateX(50%)',
+						top: '-20%',
 						right: 0,
 					}}
 				>

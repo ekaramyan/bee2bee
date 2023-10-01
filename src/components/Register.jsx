@@ -9,19 +9,23 @@ import {
 	MenuItem,
 } from '@mui/material'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 import useRegister from '@/hooks/useRegister'
 import AuthButton from './UI/AuthButton'
 import countryList from '@/countryList'
 
 export default function Register({ toggleOpen }) {
+	const router = useRouter()
 	const { register, loading, error, success } = useRegister()
+	const dispatch = useDispatch()
 
 	const handleSubmit = async event => {
 		console.log('submited')
 		event.preventDefault()
 
 		const formData = {
-			name: event.target.name.value,
+			firstName: event.target.name.value,
 			lastName: event.target['last name'].value,
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
@@ -33,6 +37,11 @@ export default function Register({ toggleOpen }) {
 		}
 
 		register(formData)
+		if (success) {
+			console.log('success')
+			dispatch({ type: 'LOG_IN' })
+			router.push('join-the-cell')
+		}
 	}
 	return (
 		<div
@@ -112,7 +121,7 @@ export default function Register({ toggleOpen }) {
 							name='country'
 						>
 							{countryList.map(country => (
-								<MenuItem key={country.code} value={country.code}>
+								<MenuItem key={country.code} value={country.name}>
 									{country.name}
 								</MenuItem>
 							))}

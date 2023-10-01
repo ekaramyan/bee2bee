@@ -3,11 +3,14 @@ import { Container } from '@mui/material'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from '@mui/material/styles'
+import { useSelector } from 'react-redux'
 import theme from '../../Theme'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Login from '../Login'
 import Register from '../Register'
+import MyCells from '../../components/MyCells'
+import RealCells from '../../components/RealCells'
 import register from '../../assets/img/auth_bg.svg'
 import login from '../../assets/img/login_bg.svg'
 import background from '../../assets/img/background.png'
@@ -16,6 +19,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 	const router = useRouter()
+	const loggedIn = useSelector(state => state.user.loggedIn)
 
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
@@ -46,7 +50,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					}}
 					{...props}
 				>
-					<Header loggedIn={false} />
+					<Header loggedIn={loggedIn} />
 					{children}
 					<Footer
 						onContactsClick={() => router.push('/contacts')}
@@ -55,34 +59,70 @@ const IndexWrapper = ({ children, ...props }) => {
 					/>
 				</Container>
 
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						right: isLoginOpen ? 0 : '-40%',
-						width: '45%',
-						height: '100%',
-						background: `url(${login.src}) no-repeat center / cover`,
+				{loggedIn ? (
+					<>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								right: isLoginOpen ? 0 : '-40%',
+								width: '45%',
+								height: '100%',
+								background: `url(${login.src}) no-repeat center / cover`,
 
-						transition: 'right 0.3s ease-in-out',
-					}}
-				>
-					<Login toggleOpen={toggleLogin} />
-				</div>
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: isRegisterOpen ? 0 : '-40%',
-						width: '45%',
-						height: '100%',
-						background: `url(${register.src}) no-repeat center / cover`,
+								transition: 'right 0.3s ease-in-out',
+							}}
+						>
+							<MyCells toggleOpen={toggleLogin} />
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: isRegisterOpen ? 0 : '-40%',
+								width: '45%',
+								height: '100%',
+								background: `url(${register.src}) no-repeat center / cover`,
 
-						transition: 'left 0.3s ease-in-out',
-					}}
-				>
-					<Register toggleOpen={toggleRegister} />
-				</div>
+								transition: 'left 0.3s ease-in-out',
+							}}
+						>
+							<RealCells toggleOpen={toggleRegister} />
+						</div>
+					</>
+				) : (
+					<>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								right: isLoginOpen ? 0 : '-40%',
+								width: '45%',
+								height: '100%',
+								background: `url(${login.src}) no-repeat center / cover`,
+
+								transition: 'right 0.3s ease-in-out',
+							}}
+						>
+							<Login toggleOpen={toggleLogin} />
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: isRegisterOpen ? 0 : '-40%',
+								width: '45%',
+								height: '100%',
+								background: `url(${register.src}) no-repeat center / cover`,
+
+								transition: 'left 0.3s ease-in-out',
+							}}
+						>
+							<Register toggleOpen={toggleRegister} />
+						</div>
+					</>
+				)}
+				
 			</div>
 		</ThemeProvider>
 	)

@@ -6,8 +6,12 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material'
+import useLogin from '@/hooks/useLogin'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import AuthButton from './UI/AuthButton'
+import Link from 'next/link'
 
 // const recaptchaRef = React.createRef();
 // ...
@@ -28,6 +32,29 @@ import AuthButton from './UI/AuthButton'
 // }
 
 export default function Login({ toggleOpen }) {
+	const router = useRouter()
+	const { login, refreshToken, loading, error, success } = useLogin()
+	const dispatch = useDispatch()
+
+	const handleSubmit = async event => {
+		event.preventDefault()
+
+		const formData = {
+			grant_type: '',
+			username: event.target.email.value,
+			password: event.target.password.value,
+			scope: '',
+			client_id: '',
+			client_secret: '',
+		}
+
+		login(formData)
+		if (success) {
+			console.log('success')
+			dispatch({ type: 'LOG_IN' })
+			router.push('join-the-cell')
+		}
+	}
 	return (
 		<div
 			style={{
@@ -45,17 +72,34 @@ export default function Login({ toggleOpen }) {
 					height: '100%',
 				}}
 			>
-				<Typography variant='auth_head' gutterBottom onClick={toggleOpen} style={{top:'20%'}}>
+				<Typography
+					variant='auth_head'
+					gutterBottom
+					onClick={toggleOpen}
+					style={{ top: '20%' }}
+				>
 					Members Login
 				</Typography>
 			</div>
-			<form
-				action=''
-				method='post'
-				style={{ display: 'flex', flex: '3', flexDirection: 'column' }}
+			<Box
+				style={{
+					width: '75%',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+					gap: 20,
+				}}
 			>
-				<Grid container gap={2.5}>
-					{/* 1st row: Email and Password */}
+				<form
+					onSubmit={handleSubmit}
+					style={{
+						display: 'flex',
+						flex: '3',
+						flexDirection: 'column',
+						gap: 10,
+					}}
+				>
 					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
 						<TextField
 							label='Email'
@@ -85,7 +129,6 @@ export default function Login({ toggleOpen }) {
 							{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
 						</Grid>
 
-						{/* Login Button */}
 						<Grid
 							item
 							style={{ display: 'flex', flexDirection: 'column', width: '50%' }}
@@ -94,18 +137,19 @@ export default function Login({ toggleOpen }) {
 								control={<Checkbox name='remember' color='primary' />}
 								label='Remember me'
 							/>
-							<AuthButton text='Login' type='submit' />
+							<AuthButton type='submit'>Login</AuthButton>
 						</Grid>
 					</Box>
 
-					{/* 'Forgot your password' Link */}
 					<Grid item xs={12} style={{ display: 'flex', justifyContent: 'end' }}>
 						<Typography variant='body2'>
-							<a href='#'>Forgot your password?</a>
+							<Link href='#'>Forgot your password?</Link>
 						</Typography>
 					</Grid>
-				</Grid>
-			</form>
+				</form>
+				{error && <div>{error}</div>}
+				{success && <div>Successfully registered!</div>}
+			</Box>
 		</div>
 	)
 }

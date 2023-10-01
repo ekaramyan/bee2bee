@@ -80,6 +80,7 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 			cursor: 'pointer',
 			lineHeight: 1,
+			userSelect: 'none',
 		},
 		footer_buttons: {
 			cursor: 'pointer',

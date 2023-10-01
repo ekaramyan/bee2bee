@@ -1,15 +1,15 @@
-import { ThemeProvider } from '@mui/material/styles'
-import theme from '../Theme'
-import IndexWrapper from '@/components/UI/index_wrapper'
 import Contacts from '@/containers/Contacts'
-
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 export default function contacts() {
-	return (
-		<ThemeProvider theme={theme}>
-			<IndexWrapper>
-				<Contacts />
-			</IndexWrapper>
-		</ThemeProvider>
-	)
+		const dispatch = useDispatch()
+		useEffect(() => {
+			const token = localStorage.getItem('access_token')
+			const refreshToken = localStorage.getItem('refresh_token')
+			if (token && refreshToken) {
+				dispatch({ type: 'LOG_IN' })
+			}
+		}, [])
+	return <Contacts />
 }

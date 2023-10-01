@@ -2,14 +2,12 @@ import { useRouter } from 'next/router'
 import { Box, Typography } from '@mui/material'
 import Wrapper from '../components/UI/Wrapper'
 import Account from '@/components/Account'
-import EditAccount from '@/components/EditAccount'
 
-export default function MyAccount() {
+export default function MyAccount({ data }) {
 	const router = useRouter()
 	const handleEditClick = () => {
 		router.push('account-settings')
 	}
-
 	return (
 		<Wrapper>
 			<Typography variant='block_header'>My Account</Typography>
@@ -22,7 +20,7 @@ export default function MyAccount() {
 					gap: 30,
 				}}
 			>
-				<Account onEditClick={handleEditClick} />
+				<Account onEditClick={handleEditClick} data={data.data} />
 			</Box>
 		</Wrapper>
 	)

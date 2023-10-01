@@ -1,16 +1,15 @@
-import IndexWrapper from '@/components/UI/index_wrapper'
-import { ThemeProvider } from '@mui/material/styles'
-import theme from '../Theme'
 import Rules from '@/containers/Rules'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 export default function rules() {
-	return (
-		<>
-			<ThemeProvider theme={theme}>
-				<IndexWrapper>
-					<Rules />
-				</IndexWrapper>
-			</ThemeProvider>
-		</>
-	)
+		const dispatch = useDispatch()
+		useEffect(() => {
+			const token = localStorage.getItem('access_token')
+			const refreshToken = localStorage.getItem('refresh_token')
+			if (token && refreshToken) {
+				dispatch({ type: 'LOG_IN' })
+			}
+		}, [])
+	return <Rules />
 }

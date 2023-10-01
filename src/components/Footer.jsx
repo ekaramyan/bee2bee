@@ -10,7 +10,6 @@ export default function Footer({
 	const router = useRouter()
 	const page = router.asPath.split('/')[1]
 	const [activeTab, setActiveTab] = useState(page)
-	console.log(page)
 	useEffect(() => {
 		setActiveTab(page)
 	}, [page])
