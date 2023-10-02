@@ -19,9 +19,14 @@ export default function EditAccount({
 			const reader = new FileReader()
 			reader.onloadend = () => {
 				setPreviewImage(reader.result)
-				upload(file)
 			}
 			reader.readAsDataURL(file)
+		}
+	}
+
+	const handleConfirmPhoto = () => {
+		if (previewImage) {
+			upload(previewImage)
 		}
 	}
 	return (
@@ -42,6 +47,11 @@ export default function EditAccount({
 					<Image src={avatarBg.src} width={200} height={200} />
 				)}
 				<input type='file' onChange={handleImageChange} />
+				{previewImage && (
+					<Button variant='contained' onClick={handleConfirmPhoto}>
+						Confirm Photo
+					</Button>
+				)}
 				<Box
 					style={{
 						display: 'flex',

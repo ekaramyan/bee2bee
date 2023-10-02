@@ -2,9 +2,7 @@ import React from 'react'
 import { Container } from '@mui/material'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { ThemeProvider } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
-import theme from '../../Theme'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Login from '../Login'
@@ -28,7 +26,7 @@ const IndexWrapper = ({ children, ...props }) => {
 		setIsRegisterOpen(!isRegisterOpen)
 	}
 	return (
-		<ThemeProvider theme={theme}>
+		<>
 			<div
 				style={{
 					overflow: 'hidden',
@@ -123,7 +121,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					</>
 				)}
 			</div>
-		</ThemeProvider>
+		</>
 	)
 }
 
