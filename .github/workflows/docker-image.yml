@@ -28,6 +28,6 @@ jobs:
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY_GITACTIONS }}
+        password: ${{ secrets.SSH_PASSWORD }}
         script: |
             bash ~/bootstrap.sh nextjs
