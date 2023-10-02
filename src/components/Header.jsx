@@ -4,6 +4,7 @@ import {
 	ListItem,
 	Typography,
 	Button,
+	Box,
 } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -105,13 +106,13 @@ export default function Header({ loggedIn }) {
 								</Link>
 							</LI>
 						</List>
-						<div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+						<Box style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+							<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 								<Image src={account.src} width={50} height={50} />
 								<p>{data?.nickname}</p>
-							</div>
+							</Box>
 							<Button onClick={onExitClick}>Exit</Button>
-						</div>
+						</Box>
 					</>
 				) : (
 					<div>

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import useLogin from '@/hooks/useLogin'
 
-export default function contacts() {
+export default function ContactsPage() {
 	const dispatch = useDispatch()
 	const { refreshToken } = useLogin()
 	useEffect(() => {

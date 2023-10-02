@@ -5,7 +5,7 @@ import { universalServerSideProps } from '@/api/ssr'
 import AccountSettings from '@/containers/AccountSettings'
 import useLogin from '@/hooks/useLogin'
 
-export default function accountSettings({ accountData }) {
+export default function AccountSettingsPage({ accountData }) {
 	const dispatch = useDispatch()
 		const {refreshToken} = useLogin()
 
