@@ -16,7 +16,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.B2B_GITHUB_TOKEN }}
     - name: Build the hello-docker Docker image
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }} 
