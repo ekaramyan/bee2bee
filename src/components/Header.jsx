@@ -1,5 +1,3 @@
-import { ListItem } from '@mui/material'
-import { styled } from '@mui/material'
 import Logo from './UI/Logo'
 import Socials from './UI/Socials'
 import UserMenu from './UI/UserMenu'

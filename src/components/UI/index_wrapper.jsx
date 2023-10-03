@@ -1,16 +1,17 @@
-import React from 'react'
 import { Container } from '@mui/material'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import Login from '../Login'
-import Register from '../Register'
-import MyCells from '../../components/MyCells'
-import RealCells from '../../components/RealCells'
-import register from '../../assets/img/auth_bg.svg'
-import login from '../../assets/img/login_bg.svg'
+
+const Login = dynamic(() => import('../Login'))
+const Register = dynamic(() => import('../Register'))
+const MyCells = dynamic(() => import('../../components/MyCells'))
+const RealCells = dynamic(() => import('../../components/RealCells'))
+const SideModal = dynamic(() => import('./SideModal'))
+
 import background from '../../assets/img/background.png'
 
 const IndexWrapper = ({ children, ...props }) => {
@@ -59,65 +60,37 @@ const IndexWrapper = ({ children, ...props }) => {
 
 				{loggedIn ? (
 					<>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								right: isLoginOpen ? 0 : '-40%',
-								width: '45%',
-								height: '100%',
-								background: `url(${login.src}) no-repeat center / cover`,
-
-								transition: 'right 0.3s ease-in-out',
-							}}
+						<SideModal
+							isLoginOpen={isLoginOpen}
+							isRegisterOpen={isRegisterOpen}
+							isRight={false}
 						>
 							<MyCells toggleOpen={toggleLogin} />
-						</div>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: isRegisterOpen ? 0 : '-40%',
-								width: '45%',
-								height: '100%',
-								background: `url(${register.src}) no-repeat center / cover`,
-
-								transition: 'left 0.3s ease-in-out',
-							}}
+						</SideModal>
+						<SideModal
+							isLoginOpen={isLoginOpen}
+							isRegisterOpen={isRegisterOpen}
+							isRight={true}
 						>
 							<RealCells toggleOpen={toggleRegister} />
-						</div>
+						</SideModal>
 					</>
 				) : (
 					<>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								right: isLoginOpen ? 0 : '-40%',
-								width: '45%',
-								height: '100%',
-								background: `url(${login.src}) no-repeat center / cover`,
-
-								transition: 'right 0.3s ease-in-out',
-							}}
+						<SideModal
+							isLoginOpen={isLoginOpen}
+							isRegisterOpen={isRegisterOpen}
+							isRight={false}
 						>
 							<Login toggleOpen={toggleLogin} />
-						</div>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: isRegisterOpen ? 0 : '-40%',
-								width: '45%',
-								height: '100%',
-								background: `url(${register.src}) no-repeat center / cover`,
-
-								transition: 'left 0.3s ease-in-out',
-							}}
+						</SideModal>
+						<SideModal
+							isLoginOpen={isLoginOpen}
+							isRegisterOpen={isRegisterOpen}
+							isRight={true}
 						>
 							<Register toggleOpen={toggleRegister} />
-						</div>
+						</SideModal>
 					</>
 				)}
 			</div>

@@ -175,7 +175,12 @@ export default function Register({ toggleOpen }) {
 					</Box>
 				</form>
 				{error && <div>{error}</div>}
-				{success && <div>Successfully registered!</div>}
+				{success && (
+					<div>
+						Successfully registered! Confirm your email address, then you can
+						enter you account
+					</div>
+				)}
 			</Box>
 			<div
 				style={{

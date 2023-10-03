@@ -48,7 +48,7 @@ const useLogin = () => {
 		} catch (err) {
 			console.error(err)
 			setError('Failed to refresh token')
-			router.push('/')
+			// router.push('/')
 		}
 	}
 	return { login, refreshToken, loading, error, success }

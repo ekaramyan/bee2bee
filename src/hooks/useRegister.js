@@ -25,7 +25,7 @@ const useRegister = () => {
 				document.cookie = `refresh_token=${response.data.data.refresh_token}; path=/`
 				setSuccess(true)
 				dispatch({ type: 'LOG_IN' })
-				router.push('join-the-cell')
+				// router.push('join-the-cell')
 			} else {
 				setError(response.data.message || 'An error occurred.')
 			}

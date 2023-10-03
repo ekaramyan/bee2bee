@@ -7,16 +7,36 @@ import {
 	FormControlLabel,
 	Checkbox,
 } from '@mui/material'
+import { styled } from '@mui/material'
 import ReCAPTCHA from 'react-google-recaptcha'
 import AuthButton from '@/components/UI/AuthButton'
 import Wrapper from '@/components/UI/Wrapper'
+import Socials from '@/components/UI/Socials'
+
+const StyledForm = styled('form')``
+
+const FlexBox = styled(Box)`
+	display: flex;
+	gap: 20px;
+	width: 100%;
+`
 
 export default function Contacts() {
+	const renderTextField = (label, type, name) => (
+		<TextField
+			label={label}
+			variant='standard'
+			fullWidth
+			type={type}
+			name={name}
+		/>
+	)
+
 	return (
 		<Wrapper>
 			<Typography
 				variant='block_header'
-				style={{
+				sx={{
 					padding: '10px',
 					borderBottom: '1px solid #E06B00',
 					alignSelf: 'start',
@@ -24,75 +44,32 @@ export default function Contacts() {
 			>
 				Contact us
 			</Typography>
-			<Typography>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed
-				sodales sapien. Aenean consectetur, orci et condimentum facilisis, leo
-				felis ultrices dui, vel cursus est tortor pretium ex.
-			</Typography>
+			<Typography>Lorem ipsum...</Typography>
 			<Grid
-				style={{
+				sx={{
 					display: 'grid',
 					gridTemplateColumns: '1fr 1fr',
 					justifyContent: 'space-between',
 				}}
 			>
 				<form
-					action=''
-					method='post'
 					style={{
-						display: 'grid',
-						flex: '1',
+						display: 'flex',
+						flex: 1,
 						flexDirection: 'column',
 						width: '100%',
 					}}
 				>
 					<Grid container gap={1}>
-						{/* 1st row: Email and Password */}
-						<Box
-							item
-							xs={12}
-							style={{ display: 'flex', gap: 20, width: '100%' }}
-						>
-							<TextField
-								label='First Name'
-								variant='standard'
-								fullWidth
-								type='name'
-								name='name'
-							/>
-							<TextField
-								label='Last Name'
-								variant='standard'
-								fullWidth
-								type='last name'
-								name='last name'
-							/>
-						</Box>
-						<Box
-							item
-							xs={12}
-							style={{ display: 'flex', gap: 20, width: '100%' }}
-						>
-							<TextField
-								label='Email'
-								variant='standard'
-								fullWidth
-								type='email'
-								name='email'
-							/>
-							<TextField
-								label='Subject'
-								variant='standard'
-								fullWidth
-								type='text'
-								name='subject'
-							/>
-						</Box>
-						<Box
-							item
-							xs={12}
-							style={{ display: 'flex', gap: 20, width: '100%' }}
-						>
+						<FlexBox item xs={12}>
+							{renderTextField('First Name', 'name', 'name')}
+							{renderTextField('Last Name', 'last name', 'last name')}
+						</FlexBox>
+						<FlexBox item xs={12}>
+							{renderTextField('Email', 'email', 'email')}
+							{renderTextField('Subject', 'text', 'subject')}
+						</FlexBox>
+						<FlexBox item xs={12}>
 							<TextField
 								label='Your Message Text'
 								name='message'
@@ -103,10 +80,9 @@ export default function Contacts() {
 								rows={3}
 								required
 							></TextField>
-						</Box>
-
+						</FlexBox>
 						<Box
-							style={{
+							sx={{
 								display: 'flex',
 								justifyContent: 'space-between',
 								width: '100%',
@@ -118,15 +94,13 @@ export default function Contacts() {
 									{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
 								</Typography>
 							</Grid>
-
-							{/* Login Button */}
 							<Grid
 								item
-								style={{
+								sx={{
 									display: 'flex',
 									flexDirection: 'column',
 									width: '50%',
-									gap: 10,
+									gap: 2,
 								}}
 							>
 								<FormControlLabel
@@ -138,8 +112,14 @@ export default function Contacts() {
 						</Box>
 					</Grid>
 				</form>
-				<Box>
-					<Typography variant=''> Social MEdia</Typography>
+				<Box
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<Socials />
 				</Box>
 			</Grid>
 		</Wrapper>
