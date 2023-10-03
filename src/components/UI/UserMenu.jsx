@@ -1,13 +1,15 @@
 import { List, Typography, Button, Box, ListItem } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
-import { fetchData } from '@/api/fetchData'
-import account from '@/assets/img/join_cell_bg.svg'
 import { useEffect, useState } from 'react'
 import { styled } from '@mui/material'
+import { fetchData } from '@/api/fetchData'
+import account from '@/assets/img/join_cell_bg.svg'
+import UserAvatar from './UserAvatar'
 
 const LI = styled(ListItem)`
 	text-decoration: none;
@@ -30,13 +32,12 @@ export default function UserMenu() {
 		const fetchDataAsync = async () => {
 			try {
 				const response = await fetchData(`${apiUrl}/users/me`, token)
-				console.log(response, 'status')
-				if (response.status === 401) {
+				setData(response?.data)
+			} catch (error) {
+				if (error.status === 401) {
 					Cookies.remove('access_token')
 					dispatch({ type: 'LOG_OUT' })
 				}
-				setData(response?.data)
-			} catch (error) {
 				console.error('Error fetching data: ', error)
 			}
 		}
@@ -76,7 +77,27 @@ export default function UserMenu() {
 			</List>
 			<Box style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-					<Image src={account.src} width={50} height={50} />
+					<div
+						style={{
+							position: 'relative',
+							width: '50px',
+							height: '56px',
+							backgroundImage: `url(${account.src})`,
+							zIndex: 0,
+							backgroundSize: 'cover',
+							backgroundPosition: 'center',
+							backgroundRepeat: 'no-repeat',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
+						<UserAvatar
+							previewImage={null}
+							width={44}
+							height={52}
+						/>
+					</div>
 					<p>{data?.nickname}</p>
 				</Box>
 				<Button onClick={onExitClick}>Exit</Button>

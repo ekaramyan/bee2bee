@@ -7,7 +7,7 @@ import useLogin from '@/hooks/useLogin'
 
 export default function AccountSettingsPage({ accountData }) {
 	const dispatch = useDispatch()
-		const {refreshToken} = useLogin()
+	const { refreshToken } = useLogin()
 
 	useEffect(() => {
 		const token = Cookies.get('access_token')

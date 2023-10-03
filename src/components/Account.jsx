@@ -1,12 +1,41 @@
-import Image from 'next/image'
 import { Box, Button, Grid, Typography } from '@mui/material'
-import avatarBg from '@/assets/img/consultant_avatar.svg'
+import dynamic from 'next/dynamic'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
+const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
+import avatarBg from '@/assets/img/user_avatar_big.svg'
 
 export default function Account({ onEditClick, data }) {
 	console.log(data)
 	return (
 		<>
-			<Image src={avatarBg.src} width={200} height={200} />
+			<div
+				style={{
+					position: 'relative',
+					width: '210px',
+					height: '240px',
+					backgroundImage: `url(${avatarBg.src})`,
+					zIndex: 2,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
+					backgroundRepeat: 'no-repeat',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				<UserAvatar previewImage={null} />
+				<div
+					style={{
+						position: 'absolute',
+						bottom: 10,
+						right: 10,
+						width: '50px',
+						height: '50px',
+						overflow: 'hidden',
+						borderRadius: '50%',
+					}}
+				></div>
+			</div>
 			<Box
 				style={{
 					display: 'flex',
@@ -31,9 +60,13 @@ export default function Account({ onEditClick, data }) {
 					<Typography>Telegram: {data?.telegram}</Typography>
 				</Box>
 			</Grid>
-			<Button variant='contained' onClick={onEditClick}>
+			<AuthButton
+				variant='contained'
+				style={{ background: '#A5560F' }}
+				onClick={onEditClick}
+			>
 				Edit Account
-			</Button>
+			</AuthButton>
 		</>
 	)
 }

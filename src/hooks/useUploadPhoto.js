@@ -7,18 +7,18 @@ const useUploadPhoto = () => {
 	const [error, setError] = useState(null)
 	const [success, setSuccess] = useState(false)
 	const apiUrl = process.env.API_URL
+	const token = Cookies.get('access_token')
 
 	const upload = async file => {
 		const formData = new FormData()
-		formData.append('photo', file)
+		formData.append('file', file)
 
 		setLoading(true)
 		try {
-			const access_token = Cookies.get.get('access_token')
 			const response = await axios.patch(`${apiUrl}/users/me/photo`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
-					Authorization: `Bearer ${access_token}`,
+					Authorization: `Bearer ${token}`,
 				},
 			})
 

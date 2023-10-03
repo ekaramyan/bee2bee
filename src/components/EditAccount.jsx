@@ -1,8 +1,11 @@
-import Image from 'next/image'
 import { Box, Button, Grid, Typography } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import ImageCompression from 'browser-image-compression'
 import useUploadPhoto from '@/hooks/useUploadPhoto'
-import avatarBg from '@/assets/img/consultant_avatar.svg'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
+const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
+import avatarBg from '@/assets/img/user_avatar_big.svg'
 
 export default function EditAccount({
 	onChangeClick,
@@ -16,19 +19,32 @@ export default function EditAccount({
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		if (file) {
-			const reader = new FileReader()
-			reader.onloadend = () => {
-				setPreviewImage(reader.result)
+			try {
+				const options = {
+					maxSizeMB: 1,
+					maxWidthOrHeight: 1920,
+					useWebWorker: true,
+				}
+
+				const compressedFile = await ImageCompression(file, options)
+
+				setPreviewImage(URL.createObjectURL(compressedFile))
+			} catch (error) {
+				console.error('Error during image compression:', error)
 			}
-			reader.readAsDataURL(file)
 		}
 	}
 
 	const handleConfirmPhoto = () => {
-		if (previewImage) {
-			upload(previewImage)
+		const file = document.querySelector('input[type="file"]').files[0]
+		if (file) {
+			upload(file)
+			if (success) {
+				setPreviewImage(null)
+			}
 		}
 	}
+
 	return (
 		<>
 			<Typography variant='block_header'>Account Settings</Typography>
@@ -41,17 +57,78 @@ export default function EditAccount({
 					gap: 30,
 				}}
 			>
-				{previewImage ? (
-					<Image src={previewImage} alt='Preview' width={200} height={200} />
-				) : (
-					<Image src={avatarBg.src} width={200} height={200} />
-				)}
-				<input type='file' onChange={handleImageChange} />
-				{previewImage && (
+				<div
+					style={{
+						position: 'relative',
+						width: '210px',
+						height: '240px',
+						backgroundImage: `url(${avatarBg.src})`,
+						zIndex: 2,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+						backgroundRepeat: 'no-repeat',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					<UserAvatar previewImage={previewImage} />
+					<div
+						style={{
+							position: 'absolute',
+							bottom: 10,
+							right: 10,
+							width: '50px',
+							height: '50px',
+							overflow: 'hidden',
+							borderRadius: '50%',
+						}}
+					>
+						<input
+							type='file'
+							onChange={handleImageChange}
+							style={{
+								cursor: 'pointer',
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								opacity: 0,
+								width: '100%',
+								height: '100%',
+							}}
+						/>
+						<div
+							style={{
+								width: '100%',
+								height: '100%',
+								backgroundColor: 'green',
+								position: 'relative',
+								pointerEvents: 'none',
+							}}
+						>
+							<div
+								style={{
+									position: 'absolute',
+									top: '50%',
+									left: '50%',
+									transform: 'translate(-50%, -50%)',
+									color: 'white',
+									fontWeight: 'bold',
+									fontSize: '24px',
+								}}
+							>
+								+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{!success && previewImage && (
 					<Button variant='contained' onClick={handleConfirmPhoto}>
 						Confirm Photo
 					</Button>
 				)}
+
 				<Box
 					style={{
 						display: 'flex',
@@ -69,22 +146,30 @@ export default function EditAccount({
 						<Typography>User #: {data?.id}</Typography>
 						<Typography>Email: {data?.email}</Typography>
 						<Typography>Country: {data?.country}</Typography>
-						<Button variant='contained' onClick={onChangeClick}>
+						<AuthButton
+							variant='contained'
+							onClick={onChangeClick}
+							style={{ background: '#119A48' }}
+						>
 							Change your password
-						</Button>
+						</AuthButton>
 					</Box>
 					<Box>
 						<Typography>Nickname: {data?.nickname}</Typography>
 						<Typography>Phone: {data?.phone}</Typography>
 						<Typography>Telegram: {data?.telegram}</Typography>
-						<Button variant='contained' onClick={onResetClick}>
+						<AuthButton variant='contained' onClick={onResetClick}>
 							Reset your password
-						</Button>
+						</AuthButton>
 					</Box>
 				</Grid>
-				<Button variant='contained' onClick={onSaveClick}>
+				<AuthButton
+					variant='contained'
+					onClick={onSaveClick}
+					style={{ background: '#A5560F' }}
+				>
 					Save changes
-				</Button>
+				</AuthButton>
 			</Box>
 		</>
 	)

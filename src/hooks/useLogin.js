@@ -36,9 +36,9 @@ const useLogin = () => {
 			setLoading(false)
 		}
 	}
+	const refresh_token = Cookies.get('refresh_token')
 	const refreshToken = async () => {
 		try {
-			const refresh_token = Cookies.get('refresh_token')
 			const response = await axios.post(`${apiUrl}/auth/refresh`, {
 				refresh_token: refresh_token,
 			})
@@ -48,7 +48,9 @@ const useLogin = () => {
 		} catch (err) {
 			console.error(err)
 			setError('Failed to refresh token')
-			// router.push('/')
+			if (!refresh_token && err.status === 401) {
+				router.push('/')
+			}
 		}
 	}
 	return { login, refreshToken, loading, error, success }
