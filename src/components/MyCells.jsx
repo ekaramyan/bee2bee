@@ -27,7 +27,7 @@ import AuthButton from './UI/AuthButton'
 //   )
 // }
 
-export default function MyCells({ toggleOpen }) {
+export default function MyCells({ toggleOpen, isLoginOpen }) {
 	return (
 		<div
 			style={{
@@ -49,7 +49,13 @@ export default function MyCells({ toggleOpen }) {
 					variant='auth_head'
 					gutterBottom
 					onClick={toggleOpen}
-					style={{ top: '10%' }}
+					style={{
+						top: '10%',
+						color: isLoginOpen ? '#E06B00' : '#1B170F',
+						textShadow: isLoginOpen
+							? '1px 1px 2px #1B170F'
+							: '1px 1px 2px #E06B00',
+					}}
 				>
 					My Cells
 				</Typography>

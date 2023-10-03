@@ -8,12 +8,12 @@ import {
 	Checkbox,
 } from '@mui/material'
 import { styled } from '@mui/material'
+import dynamic from 'next/dynamic'
 import ReCAPTCHA from 'react-google-recaptcha'
-import AuthButton from '@/components/UI/AuthButton'
 import Wrapper from '@/components/UI/Wrapper'
-import Socials from '@/components/UI/Socials'
-
-const StyledForm = styled('form')``
+import useContact from '@/hooks/useContact'
+const AuthButton = dynamic(() => import('@/components/UI/AuthButton'))
+const Socials = dynamic(() => import('@/components/UI/Socials'))
 
 const FlexBox = styled(Box)`
 	display: flex;
@@ -22,6 +22,23 @@ const FlexBox = styled(Box)`
 `
 
 export default function Contacts() {
+	const { sendContactForm, loading, error, success } = useContact()
+	const handleSubmit = async event => {
+		event.preventDefault()
+
+		const formData = new FormData(event.currentTarget)
+		const data = {
+			email: formData.get('email'),
+			firstName: formData.get('name'),
+			lastName: formData.get('last name'),
+			subject: formData.get('subject'),
+			text: formData.get('message'),
+			isConfirmationSent: formData.get('send_me') === 'on',
+		}
+
+		await sendContactForm(data)
+	}
+
 	const renderTextField = (label, type, name) => (
 		<TextField
 			label={label}
@@ -53,6 +70,7 @@ export default function Contacts() {
 				}}
 			>
 				<form
+					onSubmit={handleSubmit}
 					style={{
 						display: 'flex',
 						flex: 1,
@@ -75,7 +93,7 @@ export default function Contacts() {
 								name='message'
 								fullWidth
 								variant='standard'
-								color='secondary'
+								color='primary'
 								multiline
 								rows={3}
 								required
@@ -104,10 +122,10 @@ export default function Contacts() {
 								}}
 							>
 								<FormControlLabel
-									control={<Checkbox name='remember' color='primary' />}
-									label='I Agree with'
+									control={<Checkbox name='send_me' color='primary' />}
+									label='Send Me Conformation Email'
 								/>
-								<AuthButton type='submit'>Register</AuthButton>
+								<AuthButton type='submit'>submit form</AuthButton>
 							</Grid>
 						</Box>
 					</Grid>

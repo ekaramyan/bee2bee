@@ -13,7 +13,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import AuthButton from './UI/AuthButton'
 import Link from 'next/link'
 
-
 // const recaptchaRef = React.createRef();
 // ...
 // onSubmit = () => {
@@ -32,7 +31,7 @@ import Link from 'next/link'
 //   )
 // }
 
-export default function Login({ toggleOpen }) {
+export default function Login({ toggleOpen, isLoginOpen }) {
 	const { login, refreshToken, loading, error, success } = useLogin()
 
 	const handleSubmit = async event => {
@@ -70,7 +69,13 @@ export default function Login({ toggleOpen }) {
 					variant='auth_head'
 					gutterBottom
 					onClick={toggleOpen}
-					style={{ top: '20%' }}
+					style={{
+						top: '10%',
+						color: isLoginOpen ? '#E06B00' : '#1B170F',
+						textShadow: isLoginOpen
+							? '1px 1px 2px #1B170F'
+							: '1px 1px 2px #E06B00',
+					}}
 				>
 					Members Login
 				</Typography>
@@ -147,5 +152,3 @@ export default function Login({ toggleOpen }) {
 		</div>
 	)
 }
-
-

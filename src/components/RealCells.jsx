@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import Image from 'next/image'
 import cell from '@/assets/img/join_cell_bg.svg'
 
-export default function RealCells({ toggleOpen }) {
+export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	return (
 		<div
 			style={{
@@ -52,6 +52,10 @@ export default function RealCells({ toggleOpen }) {
 						transform: 'rotate(90deg)  translateY(30%) translateX(50%)',
 						top: '-20%',
 						right: 0,
+						color: isRegisterOpen ? '#E06B00' : '#1B170F',
+						textShadow: isRegisterOpen
+							? '1px 1px 2px #1B170F'
+							: '1px 1px 2px #E06B00',
 					}}
 				>
 					Real Cells

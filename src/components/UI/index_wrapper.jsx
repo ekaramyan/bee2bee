@@ -65,14 +65,17 @@ const IndexWrapper = ({ children, ...props }) => {
 							isRegisterOpen={isRegisterOpen}
 							isRight={false}
 						>
-							<MyCells toggleOpen={toggleLogin} />
+							<MyCells toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
 						</SideModal>
 						<SideModal
 							isLoginOpen={isLoginOpen}
 							isRegisterOpen={isRegisterOpen}
 							isRight={true}
 						>
-							<RealCells toggleOpen={toggleRegister} />
+							<RealCells
+								toggleOpen={toggleRegister}
+								isRegisterOpen={isRegisterOpen}
+							/>
 						</SideModal>
 					</>
 				) : (
@@ -82,14 +85,17 @@ const IndexWrapper = ({ children, ...props }) => {
 							isRegisterOpen={isRegisterOpen}
 							isRight={false}
 						>
-							<Login toggleOpen={toggleLogin} />
+							<Login toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
 						</SideModal>
 						<SideModal
 							isLoginOpen={isLoginOpen}
 							isRegisterOpen={isRegisterOpen}
 							isRight={true}
 						>
-							<Register toggleOpen={toggleRegister} />
+							<Register
+								toggleOpen={toggleRegister}
+								isRegisterOpen={isRegisterOpen}
+							/>
 						</SideModal>
 					</>
 				)}

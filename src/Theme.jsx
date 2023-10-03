@@ -6,7 +6,29 @@ const theme = createTheme({
 			scrollBehavior: 'smooth',
 		},
 	},
-	components: {},
+	components: {
+		MuiCheckbox: {
+			styleOverrides: {
+				root: {
+					'&:hover': {
+						backgroundColor: 'transparent',
+					},
+				},
+			},
+			defaultProps: {
+				color: 'primary',
+			},
+		},
+		MuiSvgIcon: {
+			styleOverrides: {
+				root: {
+					'&.MuiCheckbox-colorPrimary.Mui-checked': {
+						color: '#000',
+					},
+				},
+			},
+		},
+	},
 
 	palette: {
 		primary: {
@@ -43,6 +65,12 @@ const theme = createTheme({
 			color: '#241f55',
 			lineHeight: 1.55,
 		},
+		body1: {
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			color: '#8C7F77',
+			fontWeight: 300,
+		},
 		main_head: {
 			fontSize: 36,
 			color: '#A5560F',
@@ -73,14 +101,13 @@ const theme = createTheme({
 			whiteSpace: 'nowrap',
 			width: '10%',
 			height: '100%',
-			color: '#E06B00',
-			textShadow: '1px 1px 2px #1B170F',
 			fontSize: 48,
 			fontWeight: 900,
 			textTransform: 'uppercase',
 			cursor: 'pointer',
 			lineHeight: 1,
 			userSelect: 'none',
+			transition: '.3s',
 		},
 		footer_buttons: {
 			cursor: 'pointer',

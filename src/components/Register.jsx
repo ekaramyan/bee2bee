@@ -15,7 +15,7 @@ import useRegister from '@/hooks/useRegister'
 import AuthButton from './UI/AuthButton'
 import countryList from '@/countryList'
 
-export default function Register({ toggleOpen }) {
+export default function Register({ toggleOpen, isRegisterOpen }) {
 	const router = useRouter()
 	const { register, loading, error, success } = useRegister()
 	const dispatch = useDispatch()
@@ -197,6 +197,10 @@ export default function Register({ toggleOpen }) {
 						transform: 'rotate(90deg)  translateY(25%) translateX(50%)',
 						top: '-25%',
 						right: 0,
+						color: isRegisterOpen ? '#E06B00' : '#1B170F',
+						textShadow: isRegisterOpen
+							? '1px 1px 2px #1B170F'
+							: '1px 1px 2px #E06B00',
 					}}
 				>
 					NEw Members
