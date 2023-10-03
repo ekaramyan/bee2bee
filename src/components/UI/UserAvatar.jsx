@@ -33,8 +33,8 @@ export default function UserAvatar({
 			<div
 				style={{
 					position: 'relative',
-					width: width,
-					height: height,
+					width: `${width}px`,
+					height: `${height}px`,
 					overflow: 'hidden',
 					clipPath:
 						'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
@@ -44,16 +44,14 @@ export default function UserAvatar({
 					<Image
 						src={previewImage}
 						alt='User Avatar'
-						width={width}
-						height={height}
+						layout='fill'
 						objectFit='cover'
 					/>
 				) : (
 					<Image
 						src={avatar || ''}
 						alt='User Avatar'
-						width={width}
-						height={height}
+						layout='fill'
 						objectFit='cover'
 					/>
 				)}

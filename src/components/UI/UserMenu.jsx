@@ -1,48 +1,58 @@
 import { List, Typography, Button, Box, ListItem } from '@mui/material'
-import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
-import { useEffect, useState } from 'react'
-import { styled } from '@mui/material'
+import { useEffect, useState, useCallback } from 'react'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
-import UserAvatar from './UserAvatar'
+const UserAvatar = dynamic(() => import('./UserAvatar'))
 
-const LI = styled(ListItem)`
-	text-decoration: none;
-	width: fit-content;
-`
+const tabs = ['join-the-cell', 'account', 'account-settings', 'rules']
+const tabNames = {
+	'join-the-cell': 'Dashboard',
+	account: 'My Account',
+	'account-settings': 'Account Settings',
+	rules: 'FAQ',
+}
 
 export default function UserMenu() {
-	const [data, setData] = useState(null)
 	const router = useRouter()
+	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
+	const [data, setData] = useState(null)
 	const dispatch = useDispatch()
+	const apiUrl = process.env.API_URL
+	const token = Cookies.get('access_token')
+
+	const fetchDataAsync = useCallback(async () => {
+		try {
+			const response = await fetchData(`${apiUrl}/users/me`, token)
+			setData(response?.data)
+		} catch (error) {
+			if (error.status === 401) {
+				Cookies.remove('access_token')
+				dispatch({ type: 'LOG_OUT' })
+			}
+			console.error('Error fetching data: ', error)
+		}
+	}, [apiUrl, token, dispatch])
+
+	useEffect(() => {
+		fetchDataAsync()
+	}, [fetchDataAsync])
+
+	useEffect(() => {
+		setActiveTab(router.asPath.split('/')[1])
+	}, [router.asPath])
+
 	const onExitClick = () => {
 		Cookies.remove('access_token')
 		Cookies.remove('refresh_token')
 		dispatch({ type: 'LOG_OUT' })
 		router.push('/')
 	}
-	const apiUrl = process.env.API_URL
-	const token = Cookies.get('access_token')
-	useEffect(() => {
-		const fetchDataAsync = async () => {
-			try {
-				const response = await fetchData(`${apiUrl}/users/me`, token)
-				setData(response?.data)
-			} catch (error) {
-				if (error.status === 401) {
-					Cookies.remove('access_token')
-					dispatch({ type: 'LOG_OUT' })
-				}
-				console.error('Error fetching data: ', error)
-			}
-		}
-		fetchDataAsync()
-	}, [])
+
 	return (
 		<>
 			<List
@@ -51,29 +61,23 @@ export default function UserMenu() {
 					alignItems: 'center',
 					justifyContent: 'center',
 					width: '60%',
-					gap: 20,
+					gap: 40,
 				}}
 			>
-				<LI>
-					<Link href={'/join-the-cell'}>
-						<Typography variant='header_buttons'>Dashboard</Typography>
+				{tabs.map(tab => (
+					<Link key={tab} href={`/${tab}`}>
+						<Typography
+							variant='header_buttons'
+							style={
+								activeTab === tab
+									? { color: '#E06B00', textDecoration: 'underline' }
+									: {}
+							}
+						>
+							{tabNames[tab]}
+						</Typography>
 					</Link>
-				</LI>
-				<LI>
-					<Link href={'/account'}>
-						<Typography variant='header_buttons'>My Account</Typography>
-					</Link>
-				</LI>
-				<LI>
-					<Link href={'/account-settings'}>
-						<Typography variant='header_buttons'>Account Settings</Typography>
-					</Link>
-				</LI>
-				<LI>
-					<Link href={'/rules'}>
-						<Typography variant='header_buttons'>FAQ</Typography>
-					</Link>
-				</LI>
+				))}
 			</List>
 			<Box style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -92,11 +96,7 @@ export default function UserMenu() {
 							justifyContent: 'center',
 						}}
 					>
-						<UserAvatar
-							previewImage={null}
-							width={44}
-							height={52}
-						/>
+						<UserAvatar previewImage={null} width={44} height={52} />
 					</div>
 					<p>{data?.nickname}</p>
 				</Box>

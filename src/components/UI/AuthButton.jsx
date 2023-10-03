@@ -20,7 +20,7 @@ const StyledButton = styled(Button)`
 
 export default function AuthButton({ children, ...props }) {
 	return (
-		<StyledButton type={props.type} style={props.style}>
+		<StyledButton type={props.type} style={props.style} onClick={props.onClick}>
 			{children}
 		</StyledButton>
 	)
