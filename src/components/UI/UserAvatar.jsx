@@ -5,8 +5,8 @@ import Cookies from 'js-cookie'
 
 export default function UserAvatar({
 	previewImage,
-	width = 190,
-	height = 213,
+	width = 157,
+	height = 181
 }) {
 	const [avatar, setAvatar] = useState(null)
 	const apiUrl = process.env.API_URL

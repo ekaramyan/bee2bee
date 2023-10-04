@@ -170,6 +170,31 @@ const theme = createTheme({
 				color: '#E06B00',
 			},
 		},
+		h6: {
+			color: '#1B170F',
+			fontFamily: ' Noto Sans',
+			fontSize: 36,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
+		user_key: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 400,
+		},
+		user_item: {
+			color: '#8C7F77',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 700,
+		},
+		date: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 18,
+			fontWeight: 400,
+		},
 	},
 })
 

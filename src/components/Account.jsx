@@ -11,8 +11,8 @@ export default function Account({ onEditClick, data }) {
 			<div
 				style={{
 					position: 'relative',
-					width: '210px',
-					height: '240px',
+					width: '174px',
+					height: '204px',
 					backgroundImage: `url(${avatarBg.src})`,
 					zIndex: 2,
 					backgroundSize: 'cover',
@@ -43,21 +43,50 @@ export default function Account({ onEditClick, data }) {
 					alignItems: 'center',
 				}}
 			>
-				<Typography>
+				<Typography variant='h6'>
 					{data?.firstName} {data?.lastName}
 				</Typography>
-				<Typography> date of birth: {data?.birth}</Typography>
+				<Typography variant='date'> date of birth: {data?.birth}</Typography>
 			</Box>
-			<Grid style={{ display: 'flex', gap: 60 }}>
-				<Box>
-					<Typography>User #: {data?.id}</Typography>
-					<Typography>Email: {data?.email}</Typography>
-					<Typography>Country: {data?.country}</Typography>
+			<Grid
+				style={{ display: 'flex', alignItems: 'center', gap: 60, width: '50%' }}
+			>
+				<Box
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'flex-end',
+					}}
+				>
+					<Typography variant='user_key' display='flex'>
+						User #: <Typography variant='user_item'>{data?.id}</Typography>
+					</Typography>
+					<Typography variant='user_key' display='flex'>
+						Email: <Typography variant='user_item'>{data?.email}</Typography>
+					</Typography>
+					<Typography variant='user_key' display='flex'>
+						Country:{' '}
+						<Typography variant='user_item'>{data?.country}</Typography>
+					</Typography>
 				</Box>
-				<Box>
-					<Typography>Nickname: {data?.nickname}</Typography>
-					<Typography>Phone: {data?.phone}</Typography>
-					<Typography>Telegram: {data?.telegram}</Typography>
+				<Box
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'flex-start',
+					}}
+				>
+					<Typography variant='user_key' display='flex'>
+						Nickname:{' '}
+						<Typography variant='user_item'>{data?.nickname}</Typography>
+					</Typography>
+					<Typography variant='user_key' display='flex'>
+						Phone: <Typography variant='user_item'>{data?.phone}</Typography>
+					</Typography>
+					<Typography variant='user_key' display='flex'>
+						Telegram:{' '}
+						<Typography variant='user_item'>{data?.telegram}</Typography>
+					</Typography>
 				</Box>
 			</Grid>
 			<AuthButton

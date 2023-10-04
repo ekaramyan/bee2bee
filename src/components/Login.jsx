@@ -70,7 +70,7 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						top: '10%',
+						top: '22%',
 						color: isLoginOpen ? '#E06B00' : '#1B170F',
 						textShadow: isLoginOpen
 							? '1px 1px 2px #1B170F'
