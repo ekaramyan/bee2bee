@@ -15,17 +15,17 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 	const [previewImage, setPreviewImage] = useState(null)
 	const [compressedFileObject, setCompressedFileObject] = useState(null)
 	const [formData, setFormData] = useState({
-		firstName: data?.firstName || '',
-		lastName: data?.lastName || '',
-		birth: data?.birth || '',
-		id: data?.id || '',
-		email: data?.email || '',
-		country: data?.country || '',
-		nickname: data?.nickname || '',
-		phone: data?.phone || '',
-		telegram: data?.telegram || '',
-		additionalEmail: data?.additionalEmail || '',
-		additionalTelegram: data?.additionalTelegram || '',
+		firstName: data?.firstName || '-',
+		lastName: data?.lastName || '-',
+		birth: data?.birth || '-',
+		id: data?.id || '-',
+		email: data?.email || '-',
+		country: data?.country || '-',
+		nickname: data?.nickname || '-',
+		phone: data?.phone || '-',
+		telegram: data?.telegram || '-',
+		additionalEmail: data?.additionalEmail || '-',
+		additionalTelegram: data?.additionalTelegram || '-',
 	})
 	const router = useRouter()
 	console.log(suc)
@@ -249,7 +249,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										name='additionalEmail'
 										style={{
 											width: '100%',
-											background: 'none',
+											background: 'transparent',
 											border: 'none',
 											borderBottom: '1px solid transparent',
 											outline: 'none',

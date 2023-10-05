@@ -140,9 +140,16 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 						</Grid>
 					</Box>
 
-					<Grid item xs={12} style={{ display: 'flex', justifyContent: 'end' }}>
-						<Typography variant='body2'>
-							<Link href='#'>Forgot your password?</Link>
+					<Grid
+						item
+						xs={12}
+						style={{ display: 'flex', justifyContent: 'center' }}
+					>
+						<Typography variant='forgot'>
+							Forgot Your Password?
+							<Link href='#' style={{ color: '#E06B00' }}>
+								Reset It Here
+							</Link>
 						</Typography>
 					</Grid>
 				</form>

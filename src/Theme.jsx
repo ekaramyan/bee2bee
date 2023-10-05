@@ -195,6 +195,14 @@ const theme = createTheme({
 			fontSize: 18,
 			fontWeight: 400,
 		},
+		forgot: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
+			display: 'flex',
+			gap: 5,
+		},
 	},
 })
 
