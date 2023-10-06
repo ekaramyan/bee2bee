@@ -25,7 +25,7 @@ const useLogin = () => {
 				document.cookie = `access_token=${response.data.data.access_token}; path=/`
 				document.cookie = `refresh_token=${response.data.data.refresh_token}; path=/`
 				dispatch({ type: 'LOG_IN' })
-				router.push('join-the-cell')
+				router.push('cells')
 				setSuccess(true)
 			} else {
 				setError(response.data.message || 'An error occurred.')
@@ -49,6 +49,7 @@ const useLogin = () => {
 			console.error(err)
 			setError('Failed to refresh token')
 			if (!refresh_token && err.status === 401) {
+				dispatch({ type: 'LOG_OUT' })
 				router.push('/')
 			}
 		}

@@ -1,31 +1,4 @@
-import {
-	Box,
-	Checkbox,
-	FormControlLabel,
-	Grid,
-	TextField,
-	Typography,
-} from '@mui/material'
-import ReCAPTCHA from 'react-google-recaptcha'
-import AuthButton from './UI/AuthButton'
-
-// const recaptchaRef = React.createRef();
-// ...
-// onSubmit = () => {
-//   const recaptchaValue = recaptchaRef.current.getValue();
-//   this.props.onSubmit(recaptchaValue);
-// }
-// render() {
-//   return (
-//     <form onSubmit={this.onSubmit} >
-//       <ReCAPTCHA
-//         ref={recaptchaRef}
-//         sitekey="Your client site key"
-//         onChange={onChange}
-//       />
-//     </form>
-//   )
-// }
+import { Box, Typography } from '@mui/material'
 
 export default function MyCells({ toggleOpen, isLoginOpen }) {
 	return (

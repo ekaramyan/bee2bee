@@ -9,9 +9,9 @@ import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
 
-const tabs = ['join-the-cell', 'account', 'account-settings', 'rules']
+const tabs = ['cells', 'account', 'account-settings', 'rules']
 const tabNames = {
-	'join-the-cell': 'Dashboard',
+	cells: 'Dashboard',
 	account: 'My Account',
 	'account-settings': 'Account Settings',
 	rules: 'FAQ',
