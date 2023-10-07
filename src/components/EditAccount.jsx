@@ -28,7 +28,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		additionalTelegram: data?.additionalTelegram || '-',
 	})
 	const router = useRouter()
-	console.log(suc)
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		if (file) {
@@ -200,19 +199,19 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								}}
 							>
 								<Typography variant='user_key' display='flex'>
-									User #:{' '}
+									User #:
 									<Typography variant='user_item'>{data?.id}</Typography>
 								</Typography>
 								<Typography variant='user_key' display='flex'>
-									Email:{' '}
+									Email:
 									<Typography variant='user_item'>{data?.email}</Typography>
 								</Typography>
 								<Typography variant='user_key' display='flex'>
-									Phone:{' '}
+									Phone:
 									<Typography variant='user_item'>{data?.phone}</Typography>
 								</Typography>
 								<Typography variant='user_key' display='flex'>
-									Telegram Username:{' '}
+									Telegram Username:
 									<Typography variant='user_item'>{data?.telegram}</Typography>
 								</Typography>
 							</Box>

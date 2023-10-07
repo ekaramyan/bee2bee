@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 export default function UserAvatar({
 	previewImage,
 	width = 157,
-	height = 181
+	height = 181,
 }) {
 	const [avatar, setAvatar] = useState(null)
 	const apiUrl = process.env.API_URL
@@ -41,19 +41,9 @@ export default function UserAvatar({
 				}}
 			>
 				{previewImage ? (
-					<Image
-						src={previewImage}
-						alt='User Avatar'
-						layout='fill'
-						objectFit='cover'
-					/>
+					<Image src={previewImage} layout='fill' objectFit='cover' />
 				) : (
-					<Image
-						src={avatar || ''}
-						alt='User Avatar'
-						layout='fill'
-						objectFit='cover'
-					/>
+					<Image src={avatar || ''} layout='fill' objectFit='cover' />
 				)}
 			</div>
 		)

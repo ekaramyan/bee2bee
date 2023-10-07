@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 export default function useCells() {
 	const [loading, setLoading] = useState(false)
@@ -7,6 +8,7 @@ export default function useCells() {
 	const [success, setSuccess] = useState(false)
 	const [data, setData] = useState(null)
 	const apiUrl = process.env.API_URL
+	const token = Cookies.get('access_token')
 
 	const getCells = async (type, additionalParams = {}) => {
 		setLoading(true)
@@ -43,6 +45,7 @@ export default function useCells() {
 			const response = await axios.get(url, {
 				headers: {
 					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
 				},
 			})
 

@@ -3,20 +3,21 @@ import background from '../../assets/img/join_cell_bg.png'
 import Image from 'next/image'
 import { Button, Typography } from '@mui/material'
 
-export default function Cell({ bee, join, level, onJoinClick }) {
+export default function Cell({ bee, join, level, price, onJoinClick }) {
 	return (
 		<div
 			style={{
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				justifyContent: 'center',
+				justifyContent: 'start',
+				gap: 25,
 				width: '33.3%',
 				height: '30vh',
 				background: `url(${background.src})  center / contain no-repeat`,
 			}}
 		>
-			<Image src={bee} alt='cell' width={50} height={75} />
+			<Image src={bee} alt='cell' width={65} height={90} />
 			<Button
 				variant='outlined'
 				href={join}
@@ -38,7 +39,9 @@ export default function Cell({ bee, join, level, onJoinClick }) {
 			>
 				JOIN
 			</Button>
-			<Typography variant='level_small'>{level}</Typography>
+			<Typography variant='level_small'>
+				{level} {price}$
+			</Typography>
 		</div>
 	)
 }
