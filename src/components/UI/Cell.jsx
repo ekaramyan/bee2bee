@@ -2,6 +2,7 @@ import React from 'react'
 import background from '../../assets/img/join_cell_bg.png'
 import Image from 'next/image'
 import { Button, Typography } from '@mui/material'
+import Link from 'next/link'
 
 export default function Cell({ bee, join, level, price, onJoinClick }) {
 	return (
@@ -18,27 +19,28 @@ export default function Cell({ bee, join, level, price, onJoinClick }) {
 			}}
 		>
 			<Image src={bee} alt='cell' width={65} height={90} />
-			<Button
-				variant='outlined'
-				href={join}
-				onClick={onJoinClick}
-				style={{
-					width: '50%',
-					color: '#23201C',
-					textAlign: 'center',
-					textShadow: '1px 1px 1px #FFF',
-					fontFamily: 'Noto Sans',
-					fontSize: 24,
-					fontWeight: 900,
-					textTransform: 'uppercase',
-					borderRadius: 5,
-					border: '1px solid #1B170F',
-					background: 'rgba(217, 217, 217, 0.00)',
-					cursor: 'pointer',
-				}}
-			>
-				JOIN
-			</Button>
+			<Link href={`cells/${join}`}>
+				<Button
+					variant='outlined'
+					onClick={onJoinClick}
+					style={{
+						width: '100%',
+						color: '#23201C',
+						textAlign: 'center',
+						textShadow: '1px 1px 1px #FFF',
+						fontFamily: 'Noto Sans',
+						fontSize: 24,
+						fontWeight: 900,
+						textTransform: 'uppercase',
+						borderRadius: 5,
+						border: '1px solid #1B170F',
+						background: 'rgba(217, 217, 217, 0.00)',
+						cursor: 'pointer',
+					}}
+				>
+					JOIN
+				</Button>
+			</Link>
 			<Typography variant='level_small'>
 				{level} {price}$
 			</Typography>

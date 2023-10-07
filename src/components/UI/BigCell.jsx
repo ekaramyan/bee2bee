@@ -3,7 +3,7 @@ import background from '../../assets/img/join_cell_bg_large.svg'
 import Image from 'next/image'
 import { Button, Typography, Box, Grid } from '@mui/material'
 
-export default function BigCell({ bee, join, level, onCloseClick }) {
+export default function BigCell({ bee, join, level, price, onCloseClick }) {
 	return (
 		<div
 			style={{
@@ -51,7 +51,9 @@ export default function BigCell({ bee, join, level, onCloseClick }) {
 				<Typography>dfdfhdfshdh</Typography>
 				<Typography>dfdfhdfshdh</Typography>
 			</Grid>
-			<Typography variant='level_big'>{level}</Typography>
+			<Typography variant='level_big'>
+				{level} {price}$
+			</Typography>
 			<Button
 				onClick={onCloseClick}
 				style={{

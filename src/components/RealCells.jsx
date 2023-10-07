@@ -1,8 +1,19 @@
-import { Box, Grid, Typography } from '@mui/material'
-import Image from 'next/image'
-import cell from '@/assets/img/join_cell_bg.svg'
+import { Box, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
+import useCells from '@/hooks/useCells'
+import RealCell from './UI/RealCell'
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
+	const {
+		data: data,
+		loading: loading,
+		error: error,
+		getCells: getCells,
+	} = useCells()
+
+	useEffect(() => {
+		getCells('all')
+	}, [])
 	return (
 		<div
 			style={{
@@ -13,29 +24,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				alignItems: 'center',
 			}}
 		>
-			<Box style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
-				<Grid
-					style={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						alignItems: 'center',
-						gap: 20,
-					}}
-				>
-					<Typography>yfduhidszngkasnbfgldkbsalkgfsk</Typography>
-					<Grid
-						style={{
-							display: 'grid',
-							gridTemplateColumns: 'repeat(3, 0.7fr)',
-							gap: 20,
-						}}
-					>
-						<Image src={cell.src} width={100} height={100} />
-						<Image src={cell.src} width={100} height={100} />
-						<Image src={cell.src} width={100} height={100} />
-					</Grid>
-				</Grid>
-			</Box>
+			<RealCell data={data} />
 			<div
 				style={{
 					flex: '1',

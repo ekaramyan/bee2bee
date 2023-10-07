@@ -203,6 +203,20 @@ const theme = createTheme({
 			display: 'flex',
 			gap: 5,
 		},
+		active_cells: {
+			color: '#119A48',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
+			textTransform: 'uppercase',
+		},
+		level_dark: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 24,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 	},
 })
 

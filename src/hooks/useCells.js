@@ -18,20 +18,25 @@ export default function useCells() {
 
 		switch (type) {
 			case 'all_inactive_archived':
-				url += `all/list?is_active=False&is_archived=True`
+				url += `all/list?is_active=false&is_archived=true`
 				break
 			case 'all_active':
-				url += `all/list?is_active=True&is_archived=False`
+				url += `all/list?is_active=true&is_archived=false`
 				break
-			case 'me_leader':
-				url += `me/leader/list`
+			case 'me_leader_active':
+				url += `me/leader/list?is_active=true&is_archived=false`
+				break
+			case 'me_leader_inactive':
+				url += `me/leader/list?is_active=false&is_archived=true`
 				break
 			case 'me_follower_active':
 				url += `me/follower/list?is_active=true&is_archived=false`
 				break
 			case 'me_follower_inactive':
-				url += `me/follower/list?is_active=False&is_archived=True`
+				url += `me/follower/list?is_active=false&is_archived=true`
 				break
+			case 'all':
+				url += `cells/all/list`
 			case 'by_id':
 				url += additionalParams.id
 				break

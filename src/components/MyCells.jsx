@@ -1,6 +1,7 @@
 import useCells from '@/hooks/useCells'
 import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import CellBox from './UI/CellBox'
 
 export default function MyCells({ toggleOpen, isLoginOpen }) {
 	const [isFollower, setIsFollower] = useState(true)
@@ -18,25 +19,24 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 		getCells: getFollowerInactiveCells,
 	} = useCells()
 	const {
-		data: leaderData,
-		loading: leaderLoading,
-		error: leaderError,
-		getCells: getLeaderCells,
+		data: leaderActiveData,
+		loading: leaderActiveLoading,
+		error: leaderActiveError,
+		getCells: getLeaderActiveCells,
 	} = useCells()
 	const {
-		data: allActiveData,
-		loading: allActiveLoading,
-		error: allActiveError,
-		getCells: getAllActiveCells,
+		data: leaderInactiveData,
+		loading: leaderLoading,
+		error: leaderInactiveError,
+		getCells: getLeaderInactiveCells,
 	} = useCells()
 
 	useEffect(() => {
 		getFollowerActiveCells('me_follower_active')
 		getFollowerInactiveCells('me_follower_inactive')
-		getLeaderCells('me_leader')
-		getAllActiveCells('all_active')
+		getLeaderActiveCells('me_leader_active')
+		getLeaderInactiveCells('me_leader_inactive')
 	}, [])
-	console.log(followerActiveData)
 	return (
 		<div
 			style={{
@@ -109,63 +109,27 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 					}}
 				>
 					{isFollower ? (
-						<Box style={{ width: '40%' }}>
-							<Typography>Active cells</Typography>
-							<Box
-								style={{
-									background: '#fff',
-									height: '150px',
-									width: '100%',
-									overflowY: 'auto',
-								}}
-							>
-								<Typography>text</Typography>
-							</Box>
-						</Box>
+						<>
+							<CellBox isActive={true} data={followerActiveData} />
+							<CellBox isActive={false} data={followerInactiveData} />
+						</>
 					) : (
-						<Box style={{ width: '40%' }}>
-							<Typography>Active cells</Typography>
-							<Box
-								style={{
-									background: '#fff',
-									height: '150px',
-									width: '100%',
-									overflowY: 'auto',
-								}}
-							>
-								<Typography>text</Typography>
-							</Box>
-						</Box>
+						<>
+							<CellBox isActive={true} data={leaderActiveData} />
+							<CellBox isActive={false} data={leaderInactiveData} />
+						</>
 					)}
-					{isFollower ? (
-						<Box style={{ width: '40%' }}>
-							<Typography>Closed cells</Typography>
-							<Box
-								style={{
-									background: '#fff',
-									height: '150px',
-									width: '100%',
-									overflowY: 'auto',
-								}}
-							>
-								<Typography>text</Typography>
-							</Box>
-						</Box>
+					{/* {isFollower ? (
+						<>
+							<CellBox title='Active cells' data={followerActiveData} />
+							<CellBox title='Closed cells' data={followerInactiveData} />
+						</>
 					) : (
-						<Box style={{ width: '40%' }}>
-							<Typography>Closed cells</Typography>
-							<Box
-								style={{
-									background: '#fff',
-									height: '150px',
-									width: '100%',
-									overflowY: 'auto',
-								}}
-							>
-								<Typography>text</Typography>
-							</Box>
-						</Box>
-					)}
+						<>
+							<CellBox title='Active cells' data={leaderActiveData} />
+							<CellBox title='Closed cells' data={leaderInactiveData} />
+						</>
+					)} */}
 				</Box>
 			</Box>
 		</div>
