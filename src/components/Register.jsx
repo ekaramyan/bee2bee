@@ -40,7 +40,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 	return (
 		<div
 			style={{
-				padding: '120px 20px',
+				padding: '2% 20px',
 				height: '100%',
 				width: '100%',
 				display: 'flex',
@@ -194,8 +194,8 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(25%) translateX(50%)',
-						top: '-25%',
+						transform: 'rotate(90deg)  translateY(30%) translateX(50%)',
+						top: '-20%',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen

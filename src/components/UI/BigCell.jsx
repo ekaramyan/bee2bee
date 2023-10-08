@@ -2,6 +2,7 @@ import React from 'react'
 import background from '../../assets/img/join_cell_bg_large.svg'
 import Image from 'next/image'
 import { Button, Typography, Box, Grid } from '@mui/material'
+import refresh from '@/assets/img/refresh.svg'
 
 export default function BigCell({ bee, join, level, price, onCloseClick }) {
 	return (
@@ -17,7 +18,9 @@ export default function BigCell({ bee, join, level, price, onCloseClick }) {
 				gap: 20,
 			}}
 		>
-			<Button>update</Button>
+			<Button>
+				<Image src={refresh.src} width={31} height={25} />
+			</Button>
 			<Image src={bee} alt='cell' width={38} height={60} />
 			<Button
 				variant='outlined'

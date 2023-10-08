@@ -5,9 +5,11 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { useEffect, useState, useCallback } from 'react'
+import Image from 'next/image'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
+import logout from '@/assets/img/logout.svg'
 
 const tabs = ['cells', 'account', 'account-settings', 'rules']
 const tabNames = {
@@ -100,7 +102,9 @@ export default function UserMenu() {
 					</div>
 					<p>{data?.nickname}</p>
 				</Box>
-				<Button onClick={onExitClick}>Exit</Button>
+				<Button onClick={onExitClick} style={{ cursor: 'pointer' }}>
+					<Image src={logout.src} width={18} height={18} />
+				</Button>
 			</Box>
 		</>
 	)

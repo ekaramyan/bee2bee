@@ -17,7 +17,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	return (
 		<div
 			style={{
-				padding: '120px 20px',
+				padding: '2% 20px',
 				height: '100%',
 				width: '100%',
 				display: 'flex',
@@ -30,7 +30,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					flex: '1',
 					position: 'relative',
 					height: '100%',
-					width: '20%',
+					width: '10%',
 				}}
 			>
 				<Typography
@@ -38,8 +38,8 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(30%) translateX(50%)',
-						top: '-20%',
+						transform: 'rotate(90deg)  translateY(35%) translateX(50%)',
+						top: '-15%',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen
