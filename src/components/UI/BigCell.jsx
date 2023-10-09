@@ -11,11 +11,12 @@ export default function BigCell({ bee, join, level, price, onCloseClick }) {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				justifyContent: 'center',
+				justifyContent: 'space-between',
 				width: '100%',
 				height: '100%',
 				background: `url(${background.src})  center / contain no-repeat`,
 				gap: 20,
+				padding: '5% 2%',
 			}}
 		>
 			<Button>

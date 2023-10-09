@@ -132,8 +132,9 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 							fullWidth
 							type='date'
 							name='date'
-							slotProps={{ textField: { placeholder: 'tt.mm.jjjj' } }}
+							InputLabelProps={{ shrink: true }}
 						/>
+
 						<TextField
 							label='Password'
 							variant='standard'

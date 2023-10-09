@@ -14,7 +14,7 @@ export default function RealCell({ data }) {
 					gap: 20,
 				}}
 			>
-				<Typography variant='level_dark'>Starter</Typography>
+				<Typography variant='level_dark'>Starter 30$</Typography>
 				<Grid
 					style={{
 						display: 'grid',
@@ -27,8 +27,11 @@ export default function RealCell({ data }) {
 							background: `url(${cell.src}) no-repeat center / contain`,
 							width: 100,
 							height: 100,
+							padding: '20%',
 						}}
-					></div>
+					>
+						№1 S-#205
+					</div>
 				</Grid>
 			</Grid>
 		</Box>
