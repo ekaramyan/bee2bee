@@ -217,6 +217,13 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		my_cells_titles: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 	},
 })
 

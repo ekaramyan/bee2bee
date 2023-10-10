@@ -2,8 +2,10 @@ import { Box, Typography } from '@mui/material'
 
 export default function CellBox({ isActive, data }) {
 	return (
-		<Box style={{ width: '40%' }}>
-			<Typography>{isActive ? 'Active' : 'Closed'} cells</Typography>
+		<Box style={{ width: '40%', marginTop: 15 }}>
+			<Typography variant='my_cells_titles'>
+				{isActive ? 'Active' : 'Closed'} cells
+			</Typography>
 			<Box
 				style={{
 					background: '#fff',
@@ -18,7 +20,10 @@ export default function CellBox({ isActive, data }) {
 							key={cell.id}
 							variant={isActive ? 'active_cells' : 'closed_cells'}
 						>
-							<b>{cell.id}</b> || {cell.createdAt}
+							<b>
+								{cell.cellLevel.level.slice(0, 1)}-#{cell.id}
+							</b>{' '}
+							{cell.createdAt}
 						</Typography>
 					))}
 			</Box>

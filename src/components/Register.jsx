@@ -14,6 +14,7 @@ import { useRouter } from 'next/router'
 import useRegister from '@/hooks/useRegister'
 import AuthButton from './UI/AuthButton'
 import countryList from '@/countryList'
+import Link from 'next/link'
 
 export default function Register({ toggleOpen, isRegisterOpen }) {
 	const router = useRouter()
@@ -167,10 +168,18 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 								gap: 10,
 							}}
 						>
-							<FormControlLabel
-								control={<Checkbox name='remember' color='primary' />}
-								label='I Agree with'
-							/>
+							<Box style={{ display: 'flex', alignItems: 'center' }}>
+								<Checkbox name='remember' color='primary' />
+								<Typography variant='forgot'>
+									Agree with{' '}
+									<Link
+										href='privacy-policy'
+										style={{ color: '#E06B00', textDecoration: 'underline' }}
+									>
+										Privacy policy
+									</Link>
+								</Typography>
+							</Box>
 							<AuthButton type='submit'>Register</AuthButton>
 						</Grid>
 					</Box>

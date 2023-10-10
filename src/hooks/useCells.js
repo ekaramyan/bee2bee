@@ -37,6 +37,8 @@ export default function useCells() {
 				break
 			case 'all':
 				url += `cells/all/list`
+			case 'queue':
+				url += `/cells/queue?level_id=${additionalParams.level}&limit=3`
 			case 'by_id':
 				url += additionalParams.id
 				break

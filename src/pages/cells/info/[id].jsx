@@ -1,4 +1,4 @@
-import OneCell from '@/containers/OneCell'
+import CellInfo from '@/containers/CellInfo'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
@@ -19,12 +19,12 @@ export default function Cell({ cellData }) {
 		}
 	}, [])
 
-	return <OneCell data={cellData.data} />
+	return <CellInfo data={cellData.data} />
 }
 
 export async function getServerSideProps(context) {
-	const { req, query } = context
-	const { id } = query
+	const { req } = context
+	const id = context.params.id
 	const token = req.cookies.access_token
 	const apiUrl = process.env.API_URL
 	const url = `${apiUrl}/cells/all/list?level_id=${id}`

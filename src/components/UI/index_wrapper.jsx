@@ -51,11 +51,7 @@ const IndexWrapper = ({ children, ...props }) => {
 				>
 					<Header loggedIn={loggedIn} />
 					{children}
-					<Footer
-						onContactsClick={() => router.push('/contacts')}
-						onRulesClick={() => router.push('/rules')}
-						onMainPageClick={() => router.push('/')}
-					/>
+					<Footer					/>
 				</Container>
 
 				{loggedIn ? (

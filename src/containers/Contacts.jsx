@@ -132,11 +132,16 @@ export default function Contacts() {
 				<Box
 					style={{
 						display: 'flex',
+						flexDirection: 'column',
 						justifyContent: 'center',
 						alignItems: 'center',
+						gap: 20,
 					}}
 				>
-					<Socials />
+					<>
+						<Typography variant='level_dark'>Social Media</Typography>
+						<Socials width={30} height={30} />
+					</>
 				</Box>
 			</Grid>
 		</Wrapper>

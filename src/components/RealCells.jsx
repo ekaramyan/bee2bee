@@ -12,8 +12,9 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	} = useCells()
 
 	useEffect(() => {
-		getCells('all')
+		getCells('queue', { level: 1 })
 	}, [])
+	console.log(data, 'data')
 	return (
 		<div
 			style={{

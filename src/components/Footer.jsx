@@ -6,11 +6,7 @@ import en from '@/assets/img/en.png'
 import ge from '@/assets/img/ge.png'
 import ru from '@/assets/img/ru.png'
 
-export default function Footer({
-	onContactsClick,
-	onRulesClick,
-	onMainPageClick,
-}) {
+export default function Footer({}) {
 	const router = useRouter()
 	const page = router.asPath.split('/')[1]
 	const [activeTab, setActiveTab] = useState(page)
@@ -20,7 +16,6 @@ export default function Footer({
 
 	const handleTabClick = (tabName, callback) => {
 		setActiveTab(tabName)
-		callback()
 	}
 
 	const getTabStyles = tabName => {
@@ -46,24 +41,42 @@ export default function Footer({
 			<div style={{ display: 'flex', gap: 20 }}>
 				<Typography
 					variant='footer_buttons'
-					style={getTabStyles('')}
-					onClick={() => handleTabClick('', onMainPageClick)}
+					style={getTabStyles('about')}
+					onClick={() => handleTabClick('about', router.push('/about'))}
 				>
-					Main Page
+					About us
 				</Typography>
 
 				<Typography
 					variant='footer_buttons'
 					style={getTabStyles('rules')}
-					onClick={() => handleTabClick('rules', onRulesClick)}
+					onClick={() => handleTabClick('rules', router.push('/rules'))}
 				>
 					Rules
 				</Typography>
 
 				<Typography
 					variant='footer_buttons'
+					style={getTabStyles('privacy-policy')}
+					onClick={() =>
+						handleTabClick('privacy-policy', router.push('/privacy-policy'))
+					}
+				>
+					Privacy policy
+				</Typography>
+
+				<Typography
+					variant='footer_buttons'
+					style={getTabStyles('help')}
+					onClick={() => handleTabClick('help', router.push('/help'))}
+				>
+					Help
+				</Typography>
+
+				<Typography
+					variant='footer_buttons'
 					style={getTabStyles('contacts')}
-					onClick={() => handleTabClick('contacts', onContactsClick)}
+					onClick={() => handleTabClick('contacts', router.push('/contacts'))}
 				>
 					Contact us
 				</Typography>

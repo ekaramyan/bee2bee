@@ -2,8 +2,6 @@ import Logo from './UI/Logo'
 import Socials from './UI/Socials'
 import UserMenu from './UI/UserMenu'
 
-
-
 export default function Header({ loggedIn }) {
 	return (
 		<header
@@ -33,7 +31,7 @@ export default function Header({ loggedIn }) {
 					<UserMenu />
 				) : (
 					<div>
-						<Socials />
+						<Socials width={40} height={40} />
 					</div>
 				)}
 			</div>
