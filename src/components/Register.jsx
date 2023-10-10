@@ -194,9 +194,12 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 			</Box>
 			<div
 				style={{
+					display: 'flex',
+					justifyContent: 'center',
 					flex: '1',
 					position: 'relative',
-					height: '100%',
+					height: 20,
+					width: 20,
 				}}
 			>
 				<Typography
@@ -204,8 +207,9 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(30%) translateX(50%)',
-						top: '-20%',
+						transform: 'rotate(90deg)  translateY(50%) translateX(50%)',
+						top: '-750%',
+						left: '90%',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen
@@ -213,7 +217,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 							: '1px 1px 2px #E06B00',
 					}}
 				>
-					NEw Members
+					New Members
 				</Typography>
 			</div>
 		</div>

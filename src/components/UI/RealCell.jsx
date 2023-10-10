@@ -3,7 +3,7 @@ import { Grid, Box, Typography } from '@mui/material'
 import cell from '@/assets/img/join_cell_bg.svg'
 
 export default function RealCell({ data }) {
-	console.log(data)
+	// console.log(data)
 	return (
 		<Box style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
 			<Grid

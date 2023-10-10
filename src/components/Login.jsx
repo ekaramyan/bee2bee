@@ -51,7 +51,7 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 	return (
 		<div
 			style={{
-				padding: '2% 20px',
+				padding: '2% 35px',
 				height: '100%',
 				width: '100%',
 				display: 'flex',

@@ -14,7 +14,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	useEffect(() => {
 		getCells('queue', { level: 1 })
 	}, [])
-	console.log(data, 'data')
+	// console.log(data, 'data')
 	return (
 		<div
 			style={{
@@ -28,10 +28,12 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 			<RealCell data={data} />
 			<div
 				style={{
+					display: 'flex',
+					justifyContent: 'center',
 					flex: '1',
 					position: 'relative',
-					height: '100%',
-					width: '10%',
+					height: 20,
+					width: 20,
 				}}
 			>
 				<Typography
@@ -39,8 +41,9 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(35%) translateX(50%)',
-						top: '-15%',
+						transform: 'rotate(90deg)  translateY(50%) translateX(50%)',
+						top: '-750%',
+						left: '90%',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen

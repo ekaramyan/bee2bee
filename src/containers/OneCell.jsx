@@ -24,7 +24,7 @@ export default function OneCell({ data }) {
 	return (
 		<Wrapper>
 			<Typography variant='block_header'>Join the cell</Typography>
-			{id && data ? (
+			{id && data && data[0].id ? (
 				<BigCell
 					bee={cells[id - 1].bee}
 					join={`info/${data[0].id}`}
