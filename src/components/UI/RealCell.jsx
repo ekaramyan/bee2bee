@@ -24,6 +24,7 @@ export default function RealCell({ level, data }) {
 				>
 					{data?.map((item, index) => (
 						<div
+							key={index}
 							style={{
 								background: `url(${cell.src}) no-repeat center / contain`,
 								width: 100,
