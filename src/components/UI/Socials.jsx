@@ -31,7 +31,7 @@ export default function Socials({ width, height }) {
 				}}
 			>
 				{socials.map(item => (
-					<Link href={item.url}>
+					<Link key={item.index} href={item.url}>
 						<Image src={item.img.src} width={width} height={height} />
 					</Link>
 				))}
