@@ -9,8 +9,7 @@ export default function MyAccount({ data }) {
 		router.push('account-settings')
 	}
 	return (
-		<Wrapper>
-			<Typography variant='block_header'>My Account</Typography>
+		<Wrapper header={'My Account'}>
 			<Box
 				style={{
 					display: 'flex',

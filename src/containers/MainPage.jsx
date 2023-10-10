@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import main from '../assets/img/main.png'
+import main from '../assets/img/main.webp'
 import { Typography } from '@mui/material'
 
 

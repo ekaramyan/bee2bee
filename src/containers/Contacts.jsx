@@ -49,101 +49,101 @@ export default function Contacts() {
 	)
 
 	return (
-		<Wrapper>
-			<Typography
-				variant='block_header'
-				sx={{
-					padding: '10px',
-					borderBottom: '1px solid #E06B00',
-					alignSelf: 'start',
-				}}
-			>
-				Contact us
-			</Typography>
-			<Typography>Lorem ipsum...</Typography>
-			<Grid
-				sx={{
-					display: 'grid',
-					gridTemplateColumns: '1fr 1fr',
-					justifyContent: 'space-between',
-				}}
-			>
-				<form
-					onSubmit={handleSubmit}
-					style={{
-						display: 'flex',
-						flex: 1,
-						flexDirection: 'column',
-						width: '100%',
+		<Box
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				height: '100%',
+			}}
+		>
+			<Wrapper header={'Contact us'}>
+				<Typography>Lorem ipsum...</Typography>
+				<Grid
+					sx={{
+						display: 'grid',
+						gridTemplateColumns: '1fr 1fr',
+						justifyContent: 'space-between',
+						alignItems: 'center',
 					}}
 				>
-					<Grid container gap={1}>
-						<FlexBox item xs={12}>
-							{renderTextField('First Name', 'name', 'name')}
-							{renderTextField('Last Name', 'last name', 'last name')}
-						</FlexBox>
-						<FlexBox item xs={12}>
-							{renderTextField('Email', 'email', 'email')}
-							{renderTextField('Subject', 'text', 'subject')}
-						</FlexBox>
-						<FlexBox item xs={12}>
-							<TextField
-								label='Your Message Text'
-								name='message'
-								fullWidth
-								variant='standard'
-								color='primary'
-								multiline
-								rows={3}
-								required
-							></TextField>
-						</FlexBox>
-						<Box
-							sx={{
-								display: 'flex',
-								justifyContent: 'space-between',
-								width: '100%',
-								flex: 1,
-							}}
-						>
-							<Grid item>
-								<Typography variant='body2'>
-									{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
-								</Typography>
-							</Grid>
-							<Grid
-								item
+					<form
+						onSubmit={handleSubmit}
+						style={{
+							display: 'flex',
+							flex: 1,
+							flexDirection: 'column',
+							width: '100%',
+						}}
+					>
+						<Grid container gap={1}>
+							<FlexBox item xs={12}>
+								{renderTextField('First Name', 'name', 'name')}
+								{renderTextField('Last Name', 'last name', 'last name')}
+							</FlexBox>
+							<FlexBox item xs={12}>
+								{renderTextField('Email', 'email', 'email')}
+								{renderTextField('Subject', 'text', 'subject')}
+							</FlexBox>
+							<FlexBox item xs={12}>
+								<TextField
+									label='Your Message Text'
+									name='message'
+									fullWidth
+									variant='standard'
+									color='primary'
+									multiline
+									rows={3}
+									required
+								></TextField>
+							</FlexBox>
+							<Box
 								sx={{
 									display: 'flex',
-									flexDirection: 'column',
-									width: '50%',
-									gap: 2,
+									justifyContent: 'space-between',
+									width: '100%',
+									flex: 1,
 								}}
 							>
-								<FormControlLabel
-									control={<Checkbox name='send_me' color='primary' />}
-									label='Send Me Conformation Email'
-								/>
-								<AuthButton type='submit'>submit form</AuthButton>
-							</Grid>
-						</Box>
-					</Grid>
-				</form>
-				<Box
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-						gap: 20,
-					}}
-				>
-					<>
-						<Typography variant='level_dark'>Social Media</Typography>
-						<Socials width={30} height={30} />
-					</>
-				</Box>
-			</Grid>
-		</Wrapper>
+								<Grid item>
+									<Typography variant='body2'>
+										{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
+									</Typography>
+								</Grid>
+								<Grid
+									item
+									sx={{
+										display: 'flex',
+										flexDirection: 'column',
+										width: '50%',
+										gap: 2,
+									}}
+								>
+									<FormControlLabel
+										control={<Checkbox name='send_me' color='primary' />}
+										label='Send Me Conformation Email'
+									/>
+									<AuthButton type='submit'>submit form</AuthButton>
+								</Grid>
+							</Box>
+						</Grid>
+					</form>
+					<Box
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
+							gap: 20,
+						}}
+					>
+						<>
+							<Typography variant='level_dark'>Social Media</Typography>
+							<Socials width={30} height={30} />
+						</>
+					</Box>
+				</Grid>
+			</Wrapper>
+		</Box>
 	)
 }

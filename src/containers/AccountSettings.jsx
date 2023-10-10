@@ -6,7 +6,7 @@ export default function AccountSettings({ data }) {
 	const onChangeClick = () => {}
 	const onResetClick = () => {}
 	return (
-		<Wrapper>
+		<Wrapper header={'Account Settings'}>
 			<EditAccount
 				onChangeClick={onChangeClick}
 				onResetClick={onResetClick}

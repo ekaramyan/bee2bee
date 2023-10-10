@@ -1,5 +1,4 @@
-import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const Wrapper = ({ children, ...props }) => {
 	return (
@@ -17,6 +16,16 @@ const Wrapper = ({ children, ...props }) => {
 			}}
 			{...props}
 		>
+			<Typography
+				variant='block_header'
+				sx={{
+					padding: '10px',
+					borderBottom: '1px solid #E06B00',
+					alignSelf: 'start',
+				}}
+			>
+				{props.header}
+			</Typography>
 			{children}
 		</Box>
 	)

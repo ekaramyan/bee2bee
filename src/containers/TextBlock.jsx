@@ -11,17 +11,7 @@ export default function Rules({ header, text }) {
 				height: '100%',
 			}}
 		>
-			<Wrapper>
-				<Typography
-					variant='block_header'
-					style={{
-						padding: '10px',
-						borderBottom: '1px solid #E06B00',
-						alignSelf: 'start',
-					}}
-				>
-					{header}
-				</Typography>
+			<Wrapper header={header}>
 				<Box
 					style={{
 						maxHeight: '50vh',

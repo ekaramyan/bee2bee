@@ -5,16 +5,27 @@ import RealCell from './UI/RealCell'
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	const {
-		data: data,
+		// data: data,
 		loading: loading,
 		error: error,
 		getCells: getCells,
 	} = useCells()
-
+	const [data, setData] = useState(null)
 	useEffect(() => {
-		getCells('queue', { level: 1 })
+		const numberOfLevels = 5
+		const tempData = []
+
+		const fetchData = async () => {
+			for (let i = 1; i <= numberOfLevels; i++) {
+				const dataForLevel = await getCells('queue', { level: i })
+				tempData.push(dataForLevel?.data)
+			}
+			setData(tempData)
+		}
+
+		fetchData()
 	}, [])
-	// console.log(data, 'data')
+	console.log(data, 'data')
 	return (
 		<div
 			style={{
@@ -22,10 +33,22 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				height: '100%',
 				width: '100%',
 				display: 'flex',
+
 				alignItems: 'center',
 			}}
 		>
-			<RealCell data={data} />
+			<Box>
+				{data?.map((item, index) => (
+					<RealCell
+						key={index}
+						data={item}
+						level={
+							item[0] &&
+							`${item[0]?.cellLevel.level} ${item[0]?.cellLevel.price}$`
+						}
+					/>
+				))}
+			</Box>
 			<div
 				style={{
 					display: 'flex',

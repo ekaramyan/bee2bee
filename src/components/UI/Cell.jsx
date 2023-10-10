@@ -1,5 +1,5 @@
 import React from 'react'
-import background from '../../assets/img/join_cell_bg.png'
+import background from '../../assets/img/join_cell_bg.webp'
 import Image from 'next/image'
 import { Button, Typography } from '@mui/material'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ export default function Cell({ bee, join, level, price, onJoinClick }) {
 				flexDirection: 'column',
 				alignItems: 'center',
 				justifyContent: 'start',
-				gap: 25,
+				gap: 20,
 				width: '33.3%',
 				height: '30vh',
 				background: `url(${background.src})  center / contain no-repeat`,

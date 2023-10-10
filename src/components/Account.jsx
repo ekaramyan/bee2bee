@@ -5,7 +5,6 @@ const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
 import avatarBg from '@/assets/img/user_avatar_big.svg'
 
 export default function Account({ onEditClick, data }) {
-	console.log(data)
 	return (
 		<>
 			<div

@@ -14,6 +14,8 @@ export default function ContactsPage() {
 			dispatch({ type: 'LOG_IN' })
 		} else if (!token && refresh_token) {
 			refreshToken()
+		} else {
+			dispatch({ type: 'LOG_OUT' })
 		}
 	}, [])
 	return <Contacts />

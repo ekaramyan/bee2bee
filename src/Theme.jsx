@@ -224,6 +224,43 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		real_cells_queue: {
+			textAlign: 'center',
+			color: '#FFF',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
+		consultant_name: {
+			color: '#E06B00',
+			fontFamily: 'Noto Sans',
+			fontSize: 24,
+			fontWeight: 700,
+			lineHeight: 1.16,
+			textTransform: 'uppercase',
+		},
+		consultant_header: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 22,
+			fontWeight: 400,
+			lineHeight: 1.1,
+		},
+		consultant_label: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
+			lineHeight: 1,
+		},
+		consultant_data: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 	},
 })
 

@@ -38,9 +38,7 @@ export default function JoinCell() {
 	]
 
 	return (
-		<Wrapper>
-			<Typography variant='block_header'>Join the cell</Typography>
-
+		<Wrapper header={'Join the cell'}>
 			<Grid
 				style={{
 					width: '100%',

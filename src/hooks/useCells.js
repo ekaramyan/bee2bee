@@ -37,8 +37,10 @@ export default function useCells() {
 				break
 			case 'all':
 				url += `cells/all/list`
+				break
 			case 'queue':
-				url += `/cells/queue?level_id=${additionalParams.level}&limit=3`
+				url += `queue?level_id=${additionalParams.level}&limit=3`
+				break
 			case 'by_id':
 				url += additionalParams.id
 				break
@@ -59,6 +61,7 @@ export default function useCells() {
 			if (response.status === 200) {
 				setSuccess(true)
 				setData(response.data)
+				return response.data
 			} else {
 				setError('Failed to fetch the data.')
 			}

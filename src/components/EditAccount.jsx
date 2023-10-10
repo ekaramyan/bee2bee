@@ -80,10 +80,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 	}
 	return (
 		<>
-			<Typography variant='block_header' gutterBottom>
-				Account Settings
-			</Typography>
-
 			<Box
 				sx={{
 					display: 'flex',

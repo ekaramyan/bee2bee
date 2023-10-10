@@ -2,10 +2,10 @@ import Image from 'next/image'
 import { Grid, Box, Typography } from '@mui/material'
 import cell from '@/assets/img/join_cell_bg.svg'
 
-export default function RealCell({ data }) {
-	// console.log(data)
+export default function RealCell({ level, data }) {
+	console.log(data)
 	return (
-		<Box style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
+		<Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 			<Grid
 				style={{
 					display: 'flex',
@@ -14,7 +14,7 @@ export default function RealCell({ data }) {
 					gap: 20,
 				}}
 			>
-				<Typography variant='level_dark'>Starter 30$</Typography>
+				<Typography variant='level_dark'>{level}</Typography>{' '}
 				<Grid
 					style={{
 						display: 'grid',
@@ -22,16 +22,25 @@ export default function RealCell({ data }) {
 						gap: 20,
 					}}
 				>
-					<div
-						style={{
-							background: `url(${cell.src}) no-repeat center / contain`,
-							width: 100,
-							height: 100,
-							padding: '20%',
-						}}
-					>
-						№1 S-#205
-					</div>
+					{data?.map((item, index) => (
+						<div
+							style={{
+								background: `url(${cell.src}) no-repeat center / contain`,
+								width: 100,
+								height: 100,
+								padding: '20%',
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								textAlign: 'center',
+							}}
+						>
+							<Typography variant='real_cells_queue'>
+								№{index + 1} <br /> {item.cellLevel.level.slice(0, 1)}-#
+								{item.id}
+							</Typography>
+						</div>
+					))}
 				</Grid>
 			</Grid>
 		</Box>
