@@ -1,10 +1,14 @@
-import Image from 'next/image'
-import avatar from '@/assets/img/leader_avatar.svg'
+import CellUserAvatar from './CellUserAvatar'
+import avatarBg from '@/assets/img/leader_avatar.svg'
 
-export default function Leader({ style }) {
+export default function Leader({ style, onClick, avatar }) {
 	return (
-		<div style={style}>
-			<Image src={avatar.src} width={150} height={150} />
+		<div style={style} onClick={onClick}>
+			<div
+				style={{ background: `url(${avatarBg.src}) no-repeat center / 100%` }}
+			>
+				<CellUserAvatar avatar={avatar?.src} width={130} height={150} />
+			</div>
 		</div>
 	)
 }

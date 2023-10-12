@@ -20,9 +20,11 @@ export default function BigCell({ children, ...props }) {
 
 	return (
 		<Box style={combinedStyle}>
-			<Button>
-				<Image src={refresh.src} width={31} height={25} />
-			</Button>
+			{!props.activeUser && (
+				<Button>
+					<Image src={refresh.src} width={31} height={25} />
+				</Button>
+			)}
 			{children}
 			<Button
 				onClick={props.onCloseClick}

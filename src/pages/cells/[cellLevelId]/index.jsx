@@ -24,7 +24,7 @@ export default function Cell({ cellData }) {
 
 export async function getServerSideProps(context) {
 	const { req, query } = context
-	const { id } = query
+	const id = context.params.cellLevelId
 	const token = req.cookies.access_token
 	const apiUrl = process.env.API_URL
 	const url = `${apiUrl}/cells/all/list?level_id=${id}`

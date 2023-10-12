@@ -22,8 +22,8 @@ export default function CellBox({ isActive, data }) {
 						>
 							<b>
 								{cell.cellLevel.level.slice(0, 1)}-#{cell.id}
-							</b>{' '}
-							{cell.createdAt}
+							</b>
+							{cell.createdAt} <br />
 						</Typography>
 					))}
 			</Box>

@@ -11,6 +11,7 @@ const Fw = styled(Follower)`
 		justify-self: end;
 		grid-column: 1 / 2;
 		grid-row: 1 / 2;
+		transform: translateX(50%);
 	}
 
 	&:nth-of-type(2) {
@@ -18,6 +19,7 @@ const Fw = styled(Follower)`
 		justify-self: start;
 		grid-column: 3 / 4;
 		grid-row: 1 / 2;
+		transform: translateX(-50%);
 	}
 
 	&:nth-of-type(3) {
@@ -35,6 +37,7 @@ const Fw = styled(Follower)`
 		justify-self: end;
 		grid-column: 1 / 2;
 		grid-row: 3 / 4;
+		transform: translateX(50%);
 	}
 
 	&:nth-of-type(6) {
@@ -42,25 +45,42 @@ const Fw = styled(Follower)`
 		justify-self: start;
 		grid-column: 3 / 4;
 		grid-row: 3 / 4;
+		transform: translateX(-50%);
 	}
 `
 
-export default function CellComponent() {
+export default function CellComponent({ leader, followers, onUserClick }) {
+	console.log(leader)
+	console.log(followers)
+
+	const paddedFollowers = [
+		...followers.slice(0, 6),
+		...Array(6 - followers.length).fill({}),
+	]
+	console.log(paddedFollowers)
+	console.log(leader)
 	return (
-		<div
-			style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(3, 1fr)',
-				gridTemplateRows: 'repeat(3, 0.7fr)',
-				gap: 20,
-			}}
-		>
-			{Array(6)
-				.fill(null)
-				.map((_, idx) => (
-					<Fw key={idx} />
+		<>
+			<div
+				style={{
+					display: 'grid',
+					gridTemplateColumns: 'repeat(3, 1fr)',
+					gridTemplateRows: 'repeat(3, 0.7fr)',
+					gap: 10,
+				}}
+			>
+				{paddedFollowers.map((follower, idx) => (
+					<Fw
+						key={idx}
+						isAccepted={follower?.isAccepted}
+						onClick={() => onUserClick(follower.follower)}
+					/>
 				))}
-			<Leader style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }} />
-		</div>
+				<Leader
+					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
+					onClick={() => onUserClick(leader)}
+				/>
+			</div>
+		</>
 	)
 }

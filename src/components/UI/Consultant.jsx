@@ -1,8 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import ConsultantAvatar from './ConsultantAvatar'
 
-export default function Consultant() {
-	const test = 'test'
+export default function Consultant({ data }) {
 	return (
 		<Box style={{ display: 'flex', justifyContent: 'center', gap: 20 }}>
 			<ConsultantAvatar />
@@ -15,17 +14,21 @@ export default function Consultant() {
 						marginBottom: 5,
 					}}
 				>
-					<Typography variant='consultant_name'>{test}</Typography>
+					<Typography variant='consultant_name'>
+						{data.firstName} {data.lastName}
+					</Typography>
 					<Typography variant='consultant_header'>Consultant</Typography>
 				</Box>
 				<Typography variant='consultant_label'>
-					Username: <Typography variant='consultant_data'>{test}</Typography>
+					Username:{' '}
+					<Typography variant='consultant_data'>{data.nickname}</Typography>
 				</Typography>
 				<Typography variant='consultant_label'>
-					Phone: <Typography variant='consultant_data'>{test}</Typography>
+					Phone: <Typography variant='consultant_data'>{data.phone}</Typography>
 				</Typography>
 				<Typography variant='consultant_label'>
-					Telegram: <Typography variant='consultant_data'>{test}</Typography>
+					Telegram:{' '}
+					<Typography variant='consultant_data'>{data.telegram}</Typography>
 				</Typography>
 			</Box>
 		</Box>
