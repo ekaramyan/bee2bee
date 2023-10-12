@@ -97,7 +97,7 @@ const theme = createTheme({
 			display: 'block',
 			position: 'absolute',
 			left: 0,
-			transform: 'rotate(-90deg) translateY(50%) translateX(25%)',
+			transform: 'rotate(-90deg) translateY(49%) translateX(25%)',
 			whiteSpace: 'nowrap',
 			width: '10%',
 			height: '100%',

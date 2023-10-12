@@ -43,8 +43,9 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 						key={index}
 						data={item}
 						level={
-							item[0] &&
-							`${item[0]?.cellLevel.level} ${item[0]?.cellLevel.price}$`
+							item && item[0]
+								? `${item[0]?.cellLevel.level} ${item[0]?.cellLevel.price}$`
+								: ''
 						}
 					/>
 				))}
@@ -64,7 +65,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(50%) translateX(50%)',
+						transform: 'rotate(90deg)  translateY(-75%) translateX(50%)',
 						top: '-750%',
 						left: '90%',
 						right: 0,

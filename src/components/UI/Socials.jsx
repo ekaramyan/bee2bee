@@ -5,19 +5,20 @@ import facebook from '@/assets/img/socials/facebook.svg'
 import instagram from '@/assets/img/socials/instagram.svg'
 import telegram from '@/assets/img/socials/telegram.svg'
 import vk from '@/assets/img/socials/vk.svg'
-import whatsapp from '@/assets/img/socials/whatsapp.svg'
 import youtube from '@/assets/img/socials/youtube.svg'
 import Link from 'next/link'
 
 export default function Socials({ width, height }) {
 	const socials = [
-		{ img: facebook, url: 'facebook.com' },
-		{ img: telegram, url: 'telegram.org' },
-		{ img: instagram, url: 'facebook.com' },
-		{ img: vk, url: 'vk.com' },
-		{ img: whatsapp, url: 'whatsapp.com' },
-		{ img: tiktok, url: 'tiktok.com' },
-		{ img: youtube, url: 'youtube.com' },
+		{ img: facebook, url: 'https://www.facebook.com/bee2bee.site' },
+		{ img: telegram, url: 'https://t.me/+DUrXAGnWJp85ZDk6' },
+		{ img: instagram, url: 'https://www.instagram.com/bee2bee.online/' },
+		{ img: vk, url: 'https://vk.com/bee2bee.site' },
+		{ img: tiktok, url: 'https://www.tiktok.com/@bee2bee.site' },
+		{
+			img: youtube,
+			url: 'https://www.youtube.com/channel/UCUkQI5A8r-X1DGYTi4dgoOw',
+		},
 	]
 	return (
 		<>

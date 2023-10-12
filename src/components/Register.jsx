@@ -208,7 +208,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 					onClick={toggleOpen}
 					style={{
 						transform: 'rotate(90deg)  translateY(50%) translateX(50%)',
-						top: '-750%',
+						top: '-900%',
 						left: '90%',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',

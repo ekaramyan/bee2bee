@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Grid, Box, Typography } from '@mui/material'
 import cell from '@/assets/img/join_cell_bg.svg'
 
