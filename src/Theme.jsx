@@ -177,6 +177,13 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		h6_light: {
+			color: '#fff',
+			fontFamily: ' Noto Sans',
+			fontSize: 24,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 		user_key: {
 			color: '#1B170F',
 			fontFamily: 'Noto Sans',
@@ -188,6 +195,25 @@ const theme = createTheme({
 			fontFamily: 'Noto Sans',
 			fontSize: 20,
 			fontWeight: 700,
+		},
+		cell_user_key: {
+			color: '#fff',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 400,
+		},
+		cell_user_item: {
+			color: '#fff',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
+		cell_user_subtext: {
+			color: '#fff',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 400,
 		},
 		date: {
 			color: '#1B170F',
