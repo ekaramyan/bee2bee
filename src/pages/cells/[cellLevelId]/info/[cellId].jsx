@@ -18,7 +18,7 @@ export default function Cell({ cellData }) {
 			refreshToken()
 		}
 	}, [])
-
+	console.log(cellData)
 	return <CellInfo data={cellData.data} />
 }
 

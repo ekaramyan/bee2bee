@@ -5,7 +5,8 @@ import CellUserAvatar from './UI/CellUserAvatar'
 import avatarBg from '@/assets/img/leader_avatar.svg'
 import AuthButton from './UI/AuthButton'
 
-export default function UserInfo({ user }) {
+export default function UserInfo({ user, role }) {
+	console.log(role)
 	const router = useRouter()
 	const { cellId } = router.query
 	const userId = user.id
@@ -24,9 +25,11 @@ export default function UserInfo({ user }) {
 		patchFollower,
 	} = useCellActions()
 	const onAcceptClick = () => {
-		patchFollower( cellId, userId, acceptData )
+		patchFollower(cellId, userId, acceptData)
 	}
-	const onDeleteClick = () => {}
+	const onDeleteClick = () => {
+		deleteFollower(cellId, userId, acceptData)
+	}
 	const onLeaveClick = () => {}
 
 	return (
@@ -79,46 +82,50 @@ export default function UserInfo({ user }) {
 					</Typography>
 					{/* <Typography variant='cell_user_item'>Expired</Typography> */}
 				</Box>
-				<>
-					<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-						<AuthButton
-							variant='contained'
-							onClick={onAcceptClick}
-							type='submit'
-							style={{
-								background: '#119A48',
-								width: '50%',
-							}}
-						>
-							accept
-						</AuthButton>
-						<AuthButton
-							variant='contained'
-							onClick={onDeleteClick}
-							type='submit'
-							style={{
-								background: '#FF0000',
-								width: '50%',
-							}}
-						>
-							delete
-						</AuthButton>
-					</Box>
-					<Typography variant='cell_user_subtext'>
-						votes to remove: 0/5
-					</Typography>
-				</>
-				<AuthButton
-					variant='contained'
-					onClick={onLeaveClick}
-					type='submit'
-					style={{
-						background: '#A5560F',
-						width: '30%',
-					}}
-				>
-					Leave
-				</AuthButton>
+				{role === 'follower' && (
+					<>
+						<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+							<AuthButton
+								variant='contained'
+								onClick={onAcceptClick}
+								type='submit'
+								style={{
+									background: '#119A48',
+									width: '50%',
+								}}
+							>
+								accept
+							</AuthButton>
+							<AuthButton
+								variant='contained'
+								onClick={onDeleteClick}
+								type='submit'
+								style={{
+									background: '#FF0000',
+									width: '50%',
+								}}
+							>
+								delete
+							</AuthButton>
+						</Box>
+						<Typography variant='cell_user_subtext'>
+							votes to remove: 0/5
+						</Typography>
+					</>
+				)}
+				{role === 'leader' && (
+					<AuthButton
+						variant='contained'
+						onClick={onLeaveClick}
+						type='submit'
+						style={{
+							background: '#A5560F',
+							width: '30%',
+						}}
+					>
+						Leave
+					</AuthButton>
+				)}
 			</Grid>
 		</Grid>
 	)

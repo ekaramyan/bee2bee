@@ -215,6 +215,14 @@ const theme = createTheme({
 			fontSize: 16,
 			fontWeight: 400,
 		},
+		cell_id: {
+			color: '#fff',
+			fontFamily: 'Noto Sans',
+			fontSize: 28,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+			lineHeight: 1,
+		},
 		date: {
 			color: '#1B170F',
 			fontFamily: 'Noto Sans',

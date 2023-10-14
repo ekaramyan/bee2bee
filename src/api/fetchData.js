@@ -2,6 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const fetchData = async (url, token) => {
+	const apiUrl = process.env.API_URL
 	try {
 		const response = await axios.get(url, {
 			headers: {

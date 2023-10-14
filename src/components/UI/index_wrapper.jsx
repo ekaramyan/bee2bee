@@ -34,6 +34,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
 					height: '100dvh',
+					minHeight: '1000px',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
@@ -51,11 +52,23 @@ const IndexWrapper = ({ children, ...props }) => {
 				>
 					<Header loggedIn={loggedIn} />
 					{children}
-					<Footer					/>
+					<Footer />
 				</Container>
 
 				{loggedIn ? (
 					<>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								backgroundColor: 'rgba(0, 0, 0, 0.5)',
+								display: isLoginOpen ? 'block' : 'none',
+								zIndex: 9,
+							}}
+						></div>
 						<SideModal
 							isLoginOpen={isLoginOpen}
 							isRegisterOpen={isRegisterOpen}
@@ -76,6 +89,22 @@ const IndexWrapper = ({ children, ...props }) => {
 					</>
 				) : (
 					<>
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								backgroundColor:
+									isLoginOpen || isRegisterOpen
+										? 'rgba(0, 0, 0, 0.2)'
+										: 'transparent',
+								transition: 'all .3s',
+								pointerEvents: isLoginOpen || isRegisterOpen ? 'auto' : 'none',
+								zIndex: 9,
+							}}
+						></div>
 						<SideModal
 							isLoginOpen={isLoginOpen}
 							isRegisterOpen={isRegisterOpen}

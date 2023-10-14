@@ -30,10 +30,11 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
 			phone: event.target.phone.value,
+			telegram: event.target.telegram.value,
 			birth: event.target.date.value,
 			email: event.target.email.value,
 			password: event.target.password.value,
-			passwordConfirmation: event.target.password.value,
+			passwordConfirmation: event.target.confirm_password.value,
 		}
 
 		register(formData)
@@ -73,15 +74,15 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 							label='Name'
 							variant='standard'
 							fullWidth
-							type='name'
+							type='text'
 							name='name'
 						/>
 						<TextField
 							label='Last Name'
 							variant='standard'
 							fullWidth
-							type='last name'
-							name='last name'
+							type='text'
+							name='lastName'
 						/>
 					</Box>
 					<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
@@ -105,7 +106,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 							label='Your Phone'
 							variant='standard'
 							fullWidth
-							type='phone'
+							type='tel'
 							name='phone'
 						/>
 						<Select
@@ -144,7 +145,27 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 							name='password'
 						/>
 					</Box>
+					<Box
+						item
+						xs={12}
+						style={{ display: 'flex', gap: 20, width: '100%', height: '100%' }}
+					>
+						<TextField
+							label='Telegram'
+							variant='standard'
+							fullWidth
+							type='text'
+							name='telegram'
+						/>
 
+						<TextField
+							label='Confirm Password'
+							variant='standard'
+							fullWidth
+							type='password'
+							name='confirm_password'
+						/>
+					</Box>
 					<Box
 						style={{
 							display: 'flex',

@@ -50,15 +50,11 @@ const Fw = styled(Follower)`
 `
 
 export default function CellComponent({ leader, followers, onUserClick }) {
-	console.log(leader)
-	console.log(followers)
 
 	const paddedFollowers = [
 		...followers.slice(0, 6),
 		...Array(6 - followers.length).fill({}),
 	]
-	console.log(paddedFollowers)
-	console.log(leader)
 	return (
 		<>
 			<div
@@ -73,12 +69,12 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 					<Fw
 						key={idx}
 						isAccepted={follower?.isAccepted}
-						onClick={() => onUserClick(follower.follower)}
+						onClick={() => onUserClick(follower.follower, 'follower')}
 					/>
 				))}
 				<Leader
 					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
-					onClick={() => onUserClick(leader)}
+					onClick={() => onUserClick(leader, 'leader')}
 				/>
 			</div>
 		</>

@@ -13,8 +13,10 @@ export default function Cell({ bee, join, level, price, onJoinClick }) {
 				alignItems: 'center',
 				justifyContent: 'start',
 				gap: 20,
-				width: '33.3%',
-				height: '30vh',
+				minWidth: '33.3%',
+				minHeight: '30vh',
+				height: 300,
+				width: 'fit-content',
 				background: `url(${background.src})  center / contain no-repeat`,
 			}}
 		>
