@@ -64,9 +64,17 @@ const IndexWrapper = ({ children, ...props }) => {
 								left: 0,
 								right: 0,
 								bottom: 0,
-								backgroundColor: 'rgba(0, 0, 0, 0.5)',
-								display: isLoginOpen ? 'block' : 'none',
+								backgroundColor:
+									isLoginOpen || isRegisterOpen
+										? 'rgba(0, 0, 0, 0.2)'
+										: 'transparent',
+								transition: 'all .3s',
+								pointerEvents: isLoginOpen || isRegisterOpen ? 'auto' : 'none',
 								zIndex: 9,
+							}}
+							onClick={() => {
+								setIsLoginOpen(false)
+								setIsRegisterOpen(false)
 							}}
 						></div>
 						<SideModal
@@ -103,6 +111,10 @@ const IndexWrapper = ({ children, ...props }) => {
 								transition: 'all .3s',
 								pointerEvents: isLoginOpen || isRegisterOpen ? 'auto' : 'none',
 								zIndex: 9,
+							}}
+							onClick={() => {
+								setIsLoginOpen(false)
+								setIsRegisterOpen(false)
 							}}
 						></div>
 						<SideModal

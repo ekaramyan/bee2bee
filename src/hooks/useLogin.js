@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { fetchData } from '@/api/fetchData'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { useDispatch } from 'react-redux'
@@ -25,6 +26,15 @@ const useLogin = () => {
 				document.cookie = `access_token=${response.data.data.access_token}; path=/`
 				document.cookie = `refresh_token=${response.data.data.refresh_token}; path=/`
 				dispatch({ type: 'LOG_IN' })
+				const user = await fetchData(
+					`${apiUrl}/users/me`,
+					response.data.data.access_token
+				)
+
+				const userId = await user.data.id
+				dispatch({ type: 'SET_USER_ID', payload: userId })
+				document.cookie = `userId=${userId}; path=/`
+				console.log(userId)
 				router.push('cells')
 				setSuccess(true)
 			} else {

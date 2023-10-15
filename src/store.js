@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import Cookies from 'js-cookie'
 
 const initialState = {
 	loggedIn: false,
+	userId: null,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -9,7 +11,11 @@ const userReducer = (state = initialState, action) => {
 		case 'LOG_IN':
 			return { ...state, loggedIn: true }
 		case 'LOG_OUT':
-			return { ...state, loggedIn: false }
+			localStorage.removeItem('userId')
+			Cookies.remove('access_token')
+			return { ...state, loggedIn: false, userId: null }
+		case 'SET_USER_ID':
+			return { ...state, userId: action.payload }
 		default:
 			return state
 	}

@@ -34,14 +34,14 @@ export default function useCellActions() {
 		}
 	}
 
-	const postFollower = async (cellId, followerId, data) => {
+	const postFollower = async (cellId, followerId) => {
 		setLoading(true)
 		try {
 			const response = await axios.post(
 				`${baseCellUrl}/${cellId}/follower/${followerId}`,
-				data,
+				{},
 				{
-					headers: headers,
+					headers: { Authorization: `Bearer ${token}` },
 				}
 			)
 			setSuccess(true)

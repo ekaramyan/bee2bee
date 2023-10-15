@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Cookies from 'js-cookie'
 import Wrapper from '../components/UI/Wrapper'
 import { Typography, Button, Grid } from '@mui/material'
 import BigCell from '@/components/UI/BigCell'
@@ -10,11 +11,15 @@ import worker from '@/assets/img/bees/worker.png'
 import pro from '@/assets/img/bees/pro.png'
 import expert from '@/assets/img/bees/expert.png'
 import Link from 'next/link'
+import useCellActions from '@/hooks/useCellActions'
 
 export default function OneCell({ data }) {
 	const router = useRouter()
+	const { postFollower } = useCellActions()
+	const userId = parseInt(Cookies.get('userId'))
+	console.log(userId)
 	const { cellLevelId: id } = router.query
-	console.log(id)
+	console.log(data, 'cell data')
 	const cells = [
 		{ bee: starter },
 		{ bee: beginner },
@@ -22,6 +27,9 @@ export default function OneCell({ data }) {
 		{ bee: pro },
 		{ bee: expert },
 	]
+	const onJoinClick = () => {
+		postFollower(data[0]?.id, userId)
+	}
 
 	return (
 		<Wrapper header={'Join the cell'}>
@@ -44,6 +52,7 @@ export default function OneCell({ data }) {
 								border: '1px solid #1B170F',
 								background: 'rgba(217, 217, 217, 0.00)',
 							}}
+							onClick={onJoinClick}
 						>
 							JOIN
 						</Button>

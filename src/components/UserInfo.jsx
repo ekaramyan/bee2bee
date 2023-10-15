@@ -4,9 +4,11 @@ import useCellActions from '@/hooks/useCellActions'
 import CellUserAvatar from './UI/CellUserAvatar'
 import avatarBg from '@/assets/img/leader_avatar.svg'
 import AuthButton from './UI/AuthButton'
+import { useState } from 'react'
+import Cookies from 'js-cookie'
 
-export default function UserInfo({ user, role }) {
-	console.log(role)
+export default function UserInfo({ user, role, isAutoCreated }) {
+	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
 	const { cellId } = router.query
 	const userId = user.id
@@ -28,10 +30,12 @@ export default function UserInfo({ user, role }) {
 		patchFollower(cellId, userId, acceptData)
 	}
 	const onDeleteClick = () => {
-		deleteFollower(cellId, userId, acceptData)
+		deleteFollower(cellId, userId)
 	}
-	const onLeaveClick = () => {}
-
+	const onLeaveClick = () => {
+		deleteFollower(cellId, myId)
+	}
+	console.log(isAutoCreated)
 	return (
 		<Grid style={{ padding: '2% 0%', width: '100%' }}>
 			<Grid
@@ -82,7 +86,7 @@ export default function UserInfo({ user, role }) {
 					</Typography>
 					{/* <Typography variant='cell_user_item'>Expired</Typography> */}
 				</Box>
-				{role === 'follower' && (
+				{role === 'leader' && (
 					<>
 						<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
 							<AuthButton
@@ -113,7 +117,7 @@ export default function UserInfo({ user, role }) {
 						</Typography>
 					</>
 				)}
-				{role === 'leader' && (
+				{userId === myId && !isAutoCreated && (
 					<AuthButton
 						variant='contained'
 						onClick={onLeaveClick}

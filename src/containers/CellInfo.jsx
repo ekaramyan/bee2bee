@@ -8,9 +8,10 @@ import Consultant from '@/components/UI/Consultant'
 import { Box, Typography } from '@mui/material'
 import BigCell from '@/components/UI/BigCell'
 import UserInfo from '@/components/UserInfo'
+import useIsLeader from '@/hooks/useIsLeader'
 
 export default function CellInfo({ data }) {
-  console.log(data)
+	console.log(data)
 	const router = useRouter()
 	const { cellLevelId: id } = router.query
 	const { cellId } = router.query
@@ -21,10 +22,18 @@ export default function CellInfo({ data }) {
 	const followers = cellData?.cellUsers
 	const [activeUser, setActiveUser] = useState(null)
 	const [role, setRole] = useState(null)
+	const [isAutoCreated, setIsAutoCreated] = useState(null)
 
-	const handleUserClick = (user, role) => {
+	const userId = parseInt(Cookies.get('userId'))
+	console.log(cellData)
+	const checkRole = useIsLeader()
+
+	const handleUserClick = (user, autoCreate) => {
+		console.log(userId)
 		setActiveUser(user)
-		setRole(role)
+		const userRole = checkRole(leader?.id, userId)
+		setRole(userRole)
+		setIsAutoCreated(autoCreate)
 	}
 
 	const refreshFetch = async () => {
@@ -50,7 +59,11 @@ export default function CellInfo({ data }) {
 						style={{ width: '50%', gap: 8 }}
 					>
 						{activeUser ? (
-							<UserInfo user={activeUser} role={role} />
+							<UserInfo
+								user={activeUser}
+								role={role}
+								isAutoCreated={isAutoCreated}
+							/>
 						) : (
 							<>
 								<Typography variant='cell_id'>№{cellId}</Typography>

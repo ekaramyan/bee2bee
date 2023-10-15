@@ -75,9 +75,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		})
 	}
 
-	if (!data) {
-		router.push('/')
-	}
+	// if (!data) {
+	// 	router.push('/')
+	// }
 	return (
 		<>
 			<Box

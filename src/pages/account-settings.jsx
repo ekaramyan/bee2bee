@@ -14,7 +14,7 @@ export default function AccountSettingsPage({ accountData }) {
 		const refresh_token = Cookies.get('refresh_token')
 		if (token && refresh_token) {
 			dispatch({ type: 'LOG_IN' })
-		} else if (!token && refresh_token) {
+		} else if (!accountData && refresh_token) {
 			refreshToken()
 		}
 	}, [])
