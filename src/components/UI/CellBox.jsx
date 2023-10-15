@@ -18,11 +18,11 @@ export default function CellBox({ isActive, data }) {
 			>
 				{data &&
 					data.data.map(cell => (
-						<Link href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}>
-							<Typography
-								key={cell.id}
-								variant={isActive ? 'active_cells' : 'closed_cells'}
-							>
+						<Link
+							key={cell.id}
+							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
+						>
+							<Typography variant={isActive ? 'active_cells' : 'closed_cells'}>
 								<b>
 									{cell.cellLevel.level.slice(0, 1)}-#{cell.id}
 								</b>

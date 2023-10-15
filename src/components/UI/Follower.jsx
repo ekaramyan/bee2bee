@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import Image from 'next/image'
 import CellUserAvatar from './CellUserAvatar'
 import green from '@/assets/img/follower_avatar_green.svg'
 import yellow from '@/assets/img/follower_avatar_yellow.svg'

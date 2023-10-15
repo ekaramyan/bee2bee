@@ -50,7 +50,6 @@ const Fw = styled(Follower)`
 `
 
 export default function CellComponent({ leader, followers, onUserClick }) {
-	console.log(followers)
 	const trimmedFollowers = followers.slice(0, 6)
 	const paddedFollowers = [
 		...trimmedFollowers.slice(0, 6),
