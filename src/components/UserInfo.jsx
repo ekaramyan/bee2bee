@@ -7,7 +7,7 @@ import AuthButton from './UI/AuthButton'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 
-export default function UserInfo({ user, role, isAutoCreated }) {
+export default function UserInfo({ user, role, isAutoCreated, isAccepted }) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
 	const { cellId } = router.query
@@ -86,7 +86,7 @@ export default function UserInfo({ user, role, isAutoCreated }) {
 					</Typography>
 					{/* <Typography variant='cell_user_item'>Expired</Typography> */}
 				</Box>
-				{role === 'leader' && (
+				{role === 'leader' && userId !== myId && !isAccepted && (
 					<>
 						<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
 							<AuthButton
@@ -117,7 +117,7 @@ export default function UserInfo({ user, role, isAutoCreated }) {
 						</Typography>
 					</>
 				)}
-				{userId === myId && !isAutoCreated && (
+				{userId === myId && !isAutoCreated && role !== 'leader' && (
 					<AuthButton
 						variant='contained'
 						onClick={onLeaveClick}

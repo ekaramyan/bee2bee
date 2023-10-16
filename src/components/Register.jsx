@@ -8,8 +8,8 @@ import {
 	Typography,
 	MenuItem,
 } from '@mui/material'
+import { useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import useRegister from '@/hooks/useRegister'
 import AuthButton from './UI/AuthButton'
@@ -19,7 +19,24 @@ import Link from 'next/link'
 export default function Register({ toggleOpen, isRegisterOpen }) {
 	const router = useRouter()
 	const { register, loading, error, success } = useRegister()
-	const dispatch = useDispatch()
+	const [validationErrors, setValidationErrors] = useState({})
+
+	const validateDateOfBirth = date => {
+		const birthDate = new Date(date)
+		const today = new Date()
+		const year1900 = new Date('1900-01-01')
+		return birthDate >= year1900 && birthDate <= today
+	}
+
+	const validateName = name => /^[a-zA-Z\s]+$/.test(name)
+
+	const validatePassword = password => {
+		return (
+			password.length >= 8 &&
+			/[a-zA-Z]/.test(password) &&
+			/[0-9]/.test(password)
+		)
+	}
 
 	const handleSubmit = async event => {
 		event.preventDefault()
@@ -35,6 +52,41 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 			email: event.target.email.value,
 			password: event.target.password.value,
 			passwordConfirmation: event.target.confirm_password.value,
+		}
+		const errors = {}
+
+		if (!validateDateOfBirth(formData.birth)) {
+			errors.birth =
+				'Invalid date of birth. It should be between 1900 and today.'
+		}
+
+		if (!validateName(formData.firstName)) {
+			errors.firstName =
+				'Invalid first name. Only alphabets and spaces are allowed.'
+		}
+
+		if (!validateName(formData.lastName)) {
+			errors.lastName =
+				'Invalid last name. Only alphabets and spaces are allowed.'
+		}
+
+		if (!validateName(formData.nickname)) {
+			errors.nickname =
+				'Invalid nickname. Only alphabets and spaces are allowed.'
+		}
+
+		if (!validatePassword(password)) {
+			errors.password =
+				'Password must be at least 8 characters long, with at least one digit and one letter.'
+		}
+
+		if (formData.password !== formData.passwordConfirmation) {
+			errors.password = 'Passwords do not match.'
+		}
+
+		if (Object.keys(errors).length > 0) {
+			setValidationErrors(errors)
+			return
 		}
 
 		register(formData)
@@ -205,6 +257,11 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 						</Grid>
 					</Box>
 				</form>
+				{validationErrors.birth && <div>{validationErrors.birth}</div>}
+				{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
+				{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
+				{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
+				{validationErrors.password && <div>{validationErrors.password}</div>}
 				{error && <div>{error}</div>}
 				{success && (
 					<div>

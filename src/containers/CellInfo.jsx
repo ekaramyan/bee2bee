@@ -23,17 +23,19 @@ export default function CellInfo({ data }) {
 	const [activeUser, setActiveUser] = useState(null)
 	const [role, setRole] = useState(null)
 	const [isAutoCreated, setIsAutoCreated] = useState(null)
+	const [isAccepted, setIsAccepted] = useState(null)
 
 	const userId = parseInt(Cookies.get('userId'))
 	console.log(cellData)
 	const checkRole = useIsLeader()
 
-	const handleUserClick = (user, autoCreate) => {
+	const handleUserClick = (user, autoCreate, accept) => {
 		console.log(userId)
 		setActiveUser(user)
 		const userRole = checkRole(leader?.id, userId)
 		setRole(userRole)
 		setIsAutoCreated(autoCreate)
+		setIsAccepted(accept)
 	}
 
 	const refreshFetch = async () => {
@@ -63,6 +65,7 @@ export default function CellInfo({ data }) {
 								user={activeUser}
 								role={role}
 								isAutoCreated={isAutoCreated}
+								isAccepted={isAccepted}
 							/>
 						) : (
 							<>

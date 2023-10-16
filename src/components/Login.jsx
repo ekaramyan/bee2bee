@@ -147,7 +147,7 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 					>
 						<Typography variant='forgot'>
 							Forgot Your Password?
-							<Link href='#' style={{ color: '#E06B00' }}>
+							<Link href='/auth/reset' style={{ color: '#E06B00' }}>
 								Reset It Here
 							</Link>
 						</Typography>

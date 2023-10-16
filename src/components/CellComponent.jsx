@@ -70,7 +70,11 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 						key={idx}
 						isAccepted={follower?.isAccepted}
 						onClick={() =>
-							onUserClick(follower.follower, follower.isAutoCreated)
+							onUserClick(
+								follower.follower,
+								follower.isAutoCreated,
+								follower.isAccepted
+							)
 						}
 					/>
 				))}
