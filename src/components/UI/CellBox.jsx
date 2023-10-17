@@ -2,7 +2,6 @@ import { Box, Typography } from '@mui/material'
 import Link from 'next/link'
 
 export default function CellBox({ isActive, data }) {
-	console.log(data, 'myCells')
 	return (
 		<Box style={{ width: '40%', marginTop: 15 }}>
 			<Typography variant='my_cells_titles'>

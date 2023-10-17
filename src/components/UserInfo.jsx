@@ -1,22 +1,32 @@
-import { Box, Typography, Grid, Button } from '@mui/material'
+import { Box, Typography, Grid } from '@mui/material'
 import { useRouter } from 'next/router'
 import useCellActions from '@/hooks/useCellActions'
 import CellUserAvatar from './UI/CellUserAvatar'
 import avatarBg from '@/assets/img/leader_avatar.svg'
 import AuthButton from './UI/AuthButton'
-import { useState } from 'react'
 import Cookies from 'js-cookie'
 
-export default function UserInfo({ user, role, isAutoCreated, isAccepted }) {
+export default function UserInfo({
+	user,
+	role,
+	isAutoCreated,
+	isAccepted,
+	followersCount,
+}) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
 	const { cellId } = router.query
 	const userId = user.id
+	console.log(followersCount)
 	const acceptData = {
 		isAccepted: true,
 		acceptedAt: Date.now(),
 		isPayed: true,
 		payedAt: Date.now(),
+	}
+	const closeData = {
+		isActive: false,
+		isArchived: true,
 	}
 	const {
 		loading,
@@ -25,9 +35,15 @@ export default function UserInfo({ user, role, isAutoCreated, isAccepted }) {
 		deleteFollower,
 		postFollower,
 		patchFollower,
+		closeCell,
 	} = useCellActions()
 	const onAcceptClick = () => {
-		patchFollower(cellId, userId, acceptData)
+		if (role === 'leader' && followersCount >= 6) {
+			patchFollower(cellId, userId, acceptData)
+			closeCell(cellId, closeData)
+		} else {
+			patchFollower(cellId, userId, acceptData)
+		}
 	}
 	const onDeleteClick = () => {
 		deleteFollower(cellId, userId)
@@ -35,7 +51,6 @@ export default function UserInfo({ user, role, isAutoCreated, isAccepted }) {
 	const onLeaveClick = () => {
 		deleteFollower(cellId, myId)
 	}
-	console.log(isAutoCreated)
 	return (
 		<Grid style={{ padding: '2% 0%', width: '100%' }}>
 			<Grid

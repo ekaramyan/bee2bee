@@ -4,13 +4,9 @@ import useCells from '@/hooks/useCells'
 import RealCell from './UI/RealCell'
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
-	const {
-		// data: data,
-		loading: loading,
-		error: error,
-		getCells: getCells,
-	} = useCells()
-	const [data, setData] = useState(null)
+	const { getCells } = useCells()
+	const [data, setData] = useState([])
+
 	useEffect(() => {
 		const numberOfLevels = 5
 		const tempData = []
@@ -18,14 +14,14 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 		const fetchData = async () => {
 			for (let i = 1; i <= numberOfLevels; i++) {
 				const dataForLevel = await getCells('queue', { level: i })
-				tempData.push(dataForLevel?.data)
+				tempData.push(dataForLevel?.data || [])
 			}
 			setData(tempData)
 		}
 
 		fetchData()
 	}, [])
-	console.log(data, 'data')
+
 	return (
 		<div
 			style={{
@@ -33,21 +29,12 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				height: '100%',
 				width: '100%',
 				display: 'flex',
-
 				alignItems: 'center',
 			}}
 		>
 			<Box>
-				{data?.map((item, index) => (
-					<RealCell
-						key={index}
-						data={item}
-						level={
-							item && item[0]
-								? `${item[0]?.cellLevel.level} ${item[0]?.cellLevel.price}$`
-								: ''
-						}
-					/>
+				{data.map((item, index) => (
+					<RealCell key={index} data={item} />
 				))}
 			</Box>
 			<div
@@ -65,7 +52,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(-75%) translateX(50%)',
+						transform: 'rotate(90deg) translateY(-75%) translateX(50%)',
 						top: '-750%',
 						left: '90%',
 						right: 0,

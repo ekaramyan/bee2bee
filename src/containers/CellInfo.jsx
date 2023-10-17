@@ -54,7 +54,7 @@ export default function CellInfo({ data }) {
 				<Box style={{ display: 'flex', gap: 25 }}>
 					<BigCell
 						onCloseClick={() =>
-							activeUser ? setActiveUser(null) : router.back()
+							activeUser ? setActiveUser(null) : router.push('/cells')
 						}
 						onRefreshClick={refreshFetch}
 						activeUser={activeUser}
@@ -66,6 +66,7 @@ export default function CellInfo({ data }) {
 								role={role}
 								isAutoCreated={isAutoCreated}
 								isAccepted={isAccepted}
+								followersCount={followers.length}
 							/>
 						) : (
 							<>

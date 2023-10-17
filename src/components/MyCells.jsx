@@ -119,17 +119,6 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 							<CellBox isActive={false} data={leaderInactiveData} />
 						</>
 					)}
-					{/* {isFollower ? (
-						<>
-							<CellBox title='Active cells' data={followerActiveData} />
-							<CellBox title='Closed cells' data={followerInactiveData} />
-						</>
-					) : (
-						<>
-							<CellBox title='Active cells' data={leaderActiveData} />
-							<CellBox title='Closed cells' data={leaderInactiveData} />
-						</>
-					)} */}
 				</Box>
 			</Box>
 		</div>

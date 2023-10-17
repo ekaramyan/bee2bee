@@ -74,6 +74,22 @@ export default function useCellActions() {
 		}
 	}
 
+	const closeCell = async (cellId, data) => {
+		setLoading(true)
+		try {
+			const response = await axios.patch(`${baseCellUrl}/${cellId}`, data, {
+				headers: headers,
+			})
+			setSuccess(true)
+			return response.data
+		} catch (err) {
+			setError(err.message || 'Error occurred while closing the cell.')
+			throw err
+		} finally {
+			setLoading(false)
+		}
+	}
+
 	return {
 		loading,
 		error,
@@ -81,5 +97,6 @@ export default function useCellActions() {
 		deleteFollower,
 		postFollower,
 		patchFollower,
+		closeCell,
 	}
 }
