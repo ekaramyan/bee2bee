@@ -1,10 +1,10 @@
 import { Box } from '@mui/material'
 import Wrapper from '../components/UI/Wrapper'
-import LoginComponent from '@/components/loginComponent'
+import RegisterComponent from '@/components/RegisterComponent'
 
-export default function Login() {
+export default function RegisterContainer() {
 	return (
-		<Wrapper header={'Login'}>
+		<Wrapper header={'Register'}>
 			<Box
 				style={{
 					display: 'flex',
@@ -15,7 +15,7 @@ export default function Login() {
 					height: '60vh',
 				}}
 			>
-				<LoginComponent />
+				<RegisterComponent />
 			</Box>
 		</Wrapper>
 	)

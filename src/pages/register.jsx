@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import useLogin from '@/hooks/useLogin'
-import Register from '@/containers/RegisterPage'
+import RegisterContainer from '@/containers/RegisterContainer'
 
 export default function RegisterPage() {
 	const dispatch = useDispatch()
@@ -16,5 +16,5 @@ export default function RegisterPage() {
 			refreshToken()
 		}
 	}, [])
-	return <Register />
+	return <RegisterContainer />
 }

@@ -1,11 +1,10 @@
-import TextBlock from '@/containers/TextBlock'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import useLogin from '@/hooks/useLogin'
-import Login from '@/containers/LoginPage'
+import LoginContainer from '@/containers/LoginContainer'
 
-export default function AboutPage() {
+export default function LoginPage() {
 	const dispatch = useDispatch()
 	const { refreshToken } = useLogin()
 	useEffect(() => {
@@ -17,5 +16,5 @@ export default function AboutPage() {
 			refreshToken()
 		}
 	}, [])
-	return <Login />
+	return <LoginContainer />
 }
