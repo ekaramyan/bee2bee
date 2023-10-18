@@ -93,9 +93,9 @@ export default function UserMenu() {
 					<Typography variant=''>X</Typography>
 				</Button>
 
-				{Object.keys(mobileTabs).map(tab => (
+				{Object.keys(mobileTabs).map((tab, index) => (
 					<>
-						<Link key={tab} href={`/${tab}`}>
+						<Link key={index} href={`/${tab}`}>
 							<Typography variant='block_header' onClick={toggleBurgerMenu}>
 								{mobileTabs[tab]}
 							</Typography>
@@ -121,8 +121,8 @@ export default function UserMenu() {
 						gap: 40,
 					}}
 				>
-					{tabs.map(tab => (
-						<Link key={tab} href={`/${tab}`}>
+					{tabs.map((tab, index) => (
+						<Link key={index} href={`/${tab}`}>
 							<Typography
 								variant='header_buttons'
 								style={

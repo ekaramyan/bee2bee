@@ -51,6 +51,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						gap: 20,
 						height: '100%',
 						minHeight: '100dvh',
+						width: '100%',
 						justifyContent: 'space-between',
 					}}
 					{...props}

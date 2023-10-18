@@ -6,6 +6,7 @@ import {
 	Select,
 	Typography,
 	MenuItem,
+	useMediaQuery,
 } from '@mui/material'
 import { useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -90,6 +91,7 @@ export default function RegisterComponent() {
 
 		register(formData)
 	}
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Box
 			style={{
@@ -111,7 +113,16 @@ export default function RegisterComponent() {
 					gap: 5,
 				}}
 			>
-				<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
+				<Box
+					item
+					xs={12}
+					style={{
+						display: 'flex',
+						gap: isMobile ? 5 : 20,
+						width: '100%',
+						flexDirection: isMobile ? 'column' : 'row',
+					}}
+				>
 					<TextField
 						label='Name'
 						variant='standard'
@@ -127,7 +138,17 @@ export default function RegisterComponent() {
 						name='lastName'
 					/>
 				</Box>
-				<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
+				<Box
+					item
+					xs={12}
+					style={{
+						display: 'flex',
+						gap: isMobile ? 5 : 20,
+
+						width: '100%',
+						flexDirection: isMobile ? 'column' : 'row',
+					}}
+				>
 					<TextField
 						label='Nickname'
 						variant='standard'
@@ -143,7 +164,16 @@ export default function RegisterComponent() {
 						name='email'
 					/>
 				</Box>
-				<Box item xs={12} style={{ display: 'flex', gap: 20, width: '100%' }}>
+				<Box
+					item
+					xs={12}
+					style={{
+						display: 'flex',
+						gap: isMobile ? 15 : 20,
+						width: '100%',
+						flexDirection: isMobile ? 'column' : 'row',
+					}}
+				>
 					<TextField
 						label='Your Phone'
 						variant='standard'
@@ -168,7 +198,14 @@ export default function RegisterComponent() {
 				<Box
 					item
 					xs={12}
-					style={{ display: 'flex', gap: 20, width: '100%', height: '100%' }}
+					style={{
+						display: 'flex',
+						gap: isMobile ? 5 : 20,
+						marginTop: isMobile ? 10 : 0,
+						width: '100%',
+						height: '100%',
+						flexDirection: isMobile ? 'column' : 'row',
+					}}
 				>
 					<TextField
 						label='Date of Birth'
@@ -190,7 +227,13 @@ export default function RegisterComponent() {
 				<Box
 					item
 					xs={12}
-					style={{ display: 'flex', gap: 20, width: '100%', height: '100%' }}
+					style={{
+						display: 'flex',
+						gap: isMobile ? 5 : 20,
+						width: '100%',
+						height: '100%',
+						flexDirection: isMobile ? 'column' : 'row',
+					}}
 				>
 					<TextField
 						label='Telegram'
@@ -214,6 +257,7 @@ export default function RegisterComponent() {
 						justifyContent: 'space-between',
 						width: '100%',
 						flex: 1,
+						flexDirection: isMobile ? 'column' : 'row',
 					}}
 				>
 					<Grid item>
@@ -227,7 +271,7 @@ export default function RegisterComponent() {
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							width: '50%',
+							width: isMobile ? '100%' : '50%',
 							gap: 10,
 						}}
 					>

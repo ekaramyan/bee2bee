@@ -5,6 +5,7 @@ import {
 	Grid,
 	TextField,
 	Typography,
+	useMediaQuery,
 } from '@mui/material'
 import useLogin from '@/hooks/useLogin'
 import { useDispatch } from 'react-redux'
@@ -32,7 +33,7 @@ import Link from 'next/link'
 // }
 
 export default function LoginComponent() {
-	const { login, refreshToken, loading, error, success } = useLogin()
+	const { login, loading, error, success } = useLogin()
 
 	const handleSubmit = async event => {
 		event.preventDefault()
@@ -48,83 +49,98 @@ export default function LoginComponent() {
 		login(formData)
 	}
 
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
 	return (
-		
-			<Box
+		<Box
+			style={{
+				width: '75%',
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
+				gap: 20,
+			}}
+		>
+			<form
+				onSubmit={handleSubmit}
 				style={{
-					width: '75%',
 					display: 'flex',
+					flexDirection: isMobile ? 'column' : 'row',
+					flex: '3',
 					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-					gap: 20,
+					gap: 10,
 				}}
 			>
-				<form
-					onSubmit={handleSubmit}
+				<Box
+					item
+					xs={12}
 					style={{
 						display: 'flex',
-						flex: '3',
-						flexDirection: 'column',
-						gap: 10,
+						flexDirection: isMobile ? 'column' : 'row',
+						gap: 20,
 					}}
 				>
-					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
-						<TextField
-							label='Email'
-							variant='standard'
-							fullWidth
-							type='email'
-							name='email'
-						/>
-						<TextField
-							label='Password'
-							variant='standard'
-							fullWidth
-							type='password'
-							name='password'
-						/>
-					</Box>
+					<TextField
+						label='Email'
+						variant='standard'
+						fullWidth
+						type='email'
+						name='email'
+					/>
+					<TextField
+						label='Password'
+						variant='standard'
+						fullWidth
+						type='password'
+						name='password'
+					/>
+				</Box>
 
-					<Box
-						style={{
-							display: 'flex',
-							justifyContent: 'space-between',
-							width: '100%',
-							flex: 1,
-						}}
-					>
-						<Grid item>
-							{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
-						</Grid>
-
-						<Grid
-							item
-							style={{ display: 'flex', flexDirection: 'column', width: '50%' }}
-						>
-							<FormControlLabel
-								control={<Checkbox name='remember' color='primary' />}
-								label='Remember me'
-							/>
-							<AuthButton type='submit'>Login</AuthButton>
-						</Grid>
-					</Box>
+				<Box
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						flexDirection: isMobile ? 'column' : 'row',
+						width: '100%',
+						flex: 1,
+					}}
+				>
+					<Grid item>
+						{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
+					</Grid>
 
 					<Grid
 						item
-						xs={12}
-						style={{ display: 'flex', justifyContent: 'center' }}
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							width: isMobile ? '100%' : '50%',
+						}}
 					>
-						<Typography variant='forgot'>
-							Forgot Your Password?
-							<Link href='/auth/reset' style={{ color: '#E06B00' }}>
-								Reset It Here
-							</Link>
-						</Typography>
+						<FormControlLabel
+							control={<Checkbox name='remember' color='primary' />}
+							label='Remember me'
+						/>
+						<AuthButton type='submit'>Login</AuthButton>
 					</Grid>
-				</form>
-				{error && <div>{error}</div>}
-				{success && <div>Successfully signed in!</div>}
-			</Box>
+				</Box>
+
+				<Grid
+					item
+					xs={12}
+					style={{ display: 'flex', justifyContent: 'center' }}
+				>
+					<Typography variant='forgot'>
+						Forgot Your Password?
+						<Link href='/auth/reset' style={{ color: '#E06B00' }}>
+							Reset It Here
+						</Link>
+					</Typography>
+				</Grid>
+			</form>
+			{error && <div>{error}</div>}
+			{success && <div>Successfully signed in!</div>}
+		</Box>
 	)
 }
