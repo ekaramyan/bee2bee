@@ -84,6 +84,9 @@ const theme = createTheme({
 			fontSize: 56,
 			fontWeight: 900,
 			textTransform: 'uppercase',
+			'@media (max-width:1300px)': {
+				fontSize: 30,
+			},
 		},
 		main_bottom: {
 			color: '#1B170F',
@@ -92,6 +95,9 @@ const theme = createTheme({
 			fontWeight: 700,
 			letterSpacing: '-0.7px',
 			textTransform: 'uppercase',
+			'@media (max-width:1300px)': {
+				fontSize: 40,
+			},
 		},
 		auth_head: {
 			display: 'block',

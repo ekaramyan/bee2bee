@@ -1,10 +1,11 @@
-import { Container } from '@mui/material'
+import { Container, useMediaQuery, Box } from '@mui/material'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import AuthButton from './AuthButton'
 
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
@@ -19,6 +20,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 	const router = useRouter()
 	const loggedIn = useSelector(state => state.user.loggedIn)
+	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
@@ -33,8 +35,8 @@ const IndexWrapper = ({ children, ...props }) => {
 					overflow: 'hidden',
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
-					height: '100dvh',
-					minHeight: '1000px',
+					height: isMobile ? '100%' : '100dvh',
+					minHeight: isMobile ? '100dvh' : '1000px',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
@@ -45,95 +47,127 @@ const IndexWrapper = ({ children, ...props }) => {
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
+						alignItems: 'center',
+						gap: 20,
 						height: '100%',
+						minHeight: '100dvh',
 						justifyContent: 'space-between',
 					}}
 					{...props}
 				>
 					<Header loggedIn={loggedIn} />
+					{isMobile && !loggedIn && (
+						<Box
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								gap: 30,
+								width: '90%',
+							}}
+						>
+							<AuthButton
+								onClick={() => router.push('/register')}
+								style={{ width: '50%' }}
+							>
+								New members
+							</AuthButton>
+							<AuthButton
+								onClick={() => router.push('/login')}
+								style={{ background: '#A5560F', width: '50%' }}
+							>
+								Log in
+							</AuthButton>
+						</Box>
+					)}
 					{children}
 					<Footer />
 				</Container>
-
-				{loggedIn ? (
+				{!isMobile && (
 					<>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								right: 0,
-								bottom: 0,
-								backgroundColor:
-									isLoginOpen || isRegisterOpen
-										? 'rgba(0, 0, 0, 0.2)'
-										: 'transparent',
-								transition: 'all .3s',
-								pointerEvents: isLoginOpen || isRegisterOpen ? 'auto' : 'none',
-								zIndex: 9,
-							}}
-							onClick={() => {
-								setIsLoginOpen(false)
-								setIsRegisterOpen(false)
-							}}
-						></div>
-						<SideModal
-							isLoginOpen={isLoginOpen}
-							isRegisterOpen={isRegisterOpen}
-							isRight={false}
-						>
-							<MyCells toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
-						</SideModal>
-						<SideModal
-							isLoginOpen={isLoginOpen}
-							isRegisterOpen={isRegisterOpen}
-							isRight={true}
-						>
-							<RealCells
-								toggleOpen={toggleRegister}
-								isRegisterOpen={isRegisterOpen}
-							/>
-						</SideModal>
-					</>
-				) : (
-					<>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								right: 0,
-								bottom: 0,
-								backgroundColor:
-									isLoginOpen || isRegisterOpen
-										? 'rgba(0, 0, 0, 0.2)'
-										: 'transparent',
-								transition: 'all .3s',
-								pointerEvents: isLoginOpen || isRegisterOpen ? 'auto' : 'none',
-								zIndex: 9,
-							}}
-							onClick={() => {
-								setIsLoginOpen(false)
-								setIsRegisterOpen(false)
-							}}
-						></div>
-						<SideModal
-							isLoginOpen={isLoginOpen}
-							isRegisterOpen={isRegisterOpen}
-							isRight={false}
-						>
-							<Login toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
-						</SideModal>
-						<SideModal
-							isLoginOpen={isLoginOpen}
-							isRegisterOpen={isRegisterOpen}
-							isRight={true}
-						>
-							<Register
-								toggleOpen={toggleRegister}
-								isRegisterOpen={isRegisterOpen}
-							/>
-						</SideModal>
+						{loggedIn ? (
+							<>
+								<div
+									style={{
+										position: 'absolute',
+										top: 0,
+										left: 0,
+										right: 0,
+										bottom: 0,
+										backgroundColor:
+											isLoginOpen || isRegisterOpen
+												? 'rgba(0, 0, 0, 0.2)'
+												: 'transparent',
+										transition: 'all .3s',
+										pointerEvents:
+											isLoginOpen || isRegisterOpen ? 'auto' : 'none',
+										zIndex: 9,
+									}}
+									onClick={() => {
+										setIsLoginOpen(false)
+										setIsRegisterOpen(false)
+									}}
+								></div>
+								<SideModal
+									isLoginOpen={isLoginOpen}
+									isRegisterOpen={isRegisterOpen}
+									isRight={false}
+								>
+									<MyCells toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
+								</SideModal>
+								<SideModal
+									isLoginOpen={isLoginOpen}
+									isRegisterOpen={isRegisterOpen}
+									isRight={true}
+								>
+									<RealCells
+										toggleOpen={toggleRegister}
+										isRegisterOpen={isRegisterOpen}
+									/>
+								</SideModal>
+							</>
+						) : (
+							<>
+								<div
+									style={{
+										position: 'absolute',
+										top: 0,
+										left: 0,
+										right: 0,
+										bottom: 0,
+										backgroundColor:
+											isLoginOpen || isRegisterOpen
+												? 'rgba(0, 0, 0, 0.2)'
+												: 'transparent',
+										transition: 'all .3s',
+										pointerEvents:
+											isLoginOpen || isRegisterOpen ? 'auto' : 'none',
+										zIndex: 9,
+									}}
+									onClick={() => {
+										setIsLoginOpen(false)
+										setIsRegisterOpen(false)
+									}}
+								></div>
+								<SideModal
+									isLoginOpen={isLoginOpen}
+									isRegisterOpen={isRegisterOpen}
+									isRight={false}
+								>
+									<Login toggleOpen={toggleLogin} isLoginOpen={isLoginOpen} />
+								</SideModal>
+								<SideModal
+									isLoginOpen={isLoginOpen}
+									isRegisterOpen={isRegisterOpen}
+									isRight={true}
+								>
+									<Register
+										toggleOpen={toggleRegister}
+										isRegisterOpen={isRegisterOpen}
+									/>
+								</SideModal>
+							</>
+						)}
 					</>
 				)}
 			</div>

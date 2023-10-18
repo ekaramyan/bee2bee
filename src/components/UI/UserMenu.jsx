@@ -1,10 +1,19 @@
-import { List, Typography, Button, Box } from '@mui/material'
+import {
+	List,
+	Typography,
+	ButtonBase,
+	Button,
+	Box,
+	useMediaQuery,
+} from '@mui/material'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { useEffect, useState, useCallback } from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
+import Drawer from '@mui/material/Drawer'
 import Image from 'next/image'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
@@ -18,14 +27,28 @@ const tabNames = {
 	'account-settings': 'Account Settings',
 	rules: 'FAQ',
 }
+const mobileTabs = {
+	cells: 'Dashboard',
+	account: 'My Account',
+	'account-settings': 'Account Settings',
+	'my-cells': 'my cells',
+	'real-cells': 'Real cells',
+	rules: 'FAQ',
+	about: 'about us',
+	'privacy-policy': 'Privacy policy',
+	help: 'help',
+	contact: 'contact us',
+}
 
 export default function UserMenu() {
 	const router = useRouter()
-	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
-	const [data, setData] = useState(null)
 	const dispatch = useDispatch()
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
+	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
+	const [data, setData] = useState(null)
+	const [burgerOpen, setBurgerOpen] = useState(false)
+	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -55,33 +78,81 @@ export default function UserMenu() {
 		router.push('/')
 	}
 
+	const renderMobileMenu = () => (
+		<Drawer anchor='top' open={burgerOpen} onClose={toggleBurgerMenu}>
+			<List
+				style={{
+					height: '100dvh',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				<Button onClick={toggleBurgerMenu} style={{ cursor: 'pointer' }}>
+					<Typography variant=''>X</Typography>
+				</Button>
+
+				{Object.keys(mobileTabs).map(tab => (
+					<>
+						<Link key={tab} href={`/${tab}`}>
+							<Typography variant='block_header' onClick={toggleBurgerMenu}>
+								{mobileTabs[tab]}
+							</Typography>
+						</Link>
+					</>
+				))}
+			</List>
+		</Drawer>
+	)
+	const toggleBurgerMenu = () => {
+		setBurgerOpen(!burgerOpen)
+	}
+
 	return (
 		<>
-			<List
+			{!isMobile && (
+				<List
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						width: '60%',
+						gap: 40,
+					}}
+				>
+					{tabs.map(tab => (
+						<Link key={tab} href={`/${tab}`}>
+							<Typography
+								variant='header_buttons'
+								style={
+									activeTab === tab
+										? { color: '#E06B00', textDecoration: 'underline' }
+										: {}
+								}
+							>
+								{tabNames[tab]}
+							</Typography>
+						</Link>
+					))}
+				</List>
+			)}
+			<Box
 				style={{
 					display: 'flex',
 					alignItems: 'center',
-					justifyContent: 'center',
-					width: '60%',
-					gap: 40,
+					gap: isMobile ? 20 : 5,
 				}}
 			>
-				{tabs.map(tab => (
-					<Link key={tab} href={`/${tab}`}>
-						<Typography
-							variant='header_buttons'
-							style={
-								activeTab === tab
-									? { color: '#E06B00', textDecoration: 'underline' }
-									: {}
-							}
-						>
-							{tabNames[tab]}
-						</Typography>
-					</Link>
-				))}
-			</List>
-			<Box style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+				{isMobile && (
+					<>
+						<MenuIcon
+							onClick={toggleBurgerMenu}
+							style={{ cursor: 'pointer', justifySelf: 'flex-end' }}
+						/>
+						{renderMobileMenu()}
+					</>
+				)}
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 					<div
 						style={{
@@ -100,11 +171,25 @@ export default function UserMenu() {
 					>
 						<UserAvatar previewImage={null} width={44} height={52} />
 					</div>
-					<p>{data?.nickname}</p>
+					{!isMobile && <p>{data?.nickname}</p>}
 				</Box>
-				<Button onClick={onExitClick} style={{ cursor: 'pointer' }}>
-					<Image src={logout.src} width={18} height={18} />
-				</Button>
+				<>
+					{isMobile ? (
+						<ButtonBase
+							onClick={onExitClick}
+							style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
+						>
+							<Image src={logout.src} width={18} height={18} />
+						</ButtonBase>
+					) : (
+						<Button
+							onClick={onExitClick}
+							style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
+						>
+							<Image src={logout.src} width={18} height={18} />
+						</Button>
+					)}
+				</>
 			</Box>
 		</>
 	)

@@ -1,9 +1,15 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 
 export default function CellBox({ isActive, data }) {
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
-		<Box style={{ width: '40%', marginTop: 15 }}>
+		<Box
+			style={{
+				width: isMobile ? '100%' : '40%',
+				marginTop: 15,
+			}}
+		>
 			<Typography variant='my_cells_titles'>
 				{isActive ? 'Active' : 'Closed'} cells
 			</Typography>
@@ -12,7 +18,9 @@ export default function CellBox({ isActive, data }) {
 					background: '#fff',
 					height: '150px',
 					width: '100%',
+					minWidth: 150,
 					overflowY: 'auto',
+					borderRadius: 5,
 				}}
 			>
 				{data &&
