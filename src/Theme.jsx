@@ -146,6 +146,13 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		burger_tabs: {
+			color: '#1B170F',
+			fontFamily: 'Noto Sans',
+			fontSize: 22,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 		level_small: {
 			color: '#FFF',
 			textAlign: 'center',

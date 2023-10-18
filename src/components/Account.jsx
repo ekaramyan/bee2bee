@@ -1,10 +1,11 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
 import avatarBg from '@/assets/img/user_avatar_big.svg'
 
 export default function Account({ onEditClick, data }) {
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
 			<div
@@ -23,17 +24,6 @@ export default function Account({ onEditClick, data }) {
 				}}
 			>
 				<UserAvatar previewImage={null} />
-				<div
-					style={{
-						position: 'absolute',
-						bottom: 10,
-						right: 10,
-						width: '50px',
-						height: '50px',
-						overflow: 'hidden',
-						borderRadius: '50%',
-					}}
-				></div>
 			</div>
 			<Box
 				style={{
@@ -48,13 +38,20 @@ export default function Account({ onEditClick, data }) {
 				<Typography variant='date'> date of birth: {data?.birth}</Typography>
 			</Box>
 			<Grid
-				style={{ display: 'flex', alignItems: 'center', gap: 60, width: '50%' }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					flexDirection: isMobile ? 'column' : 'row',
+					gap: isMobile ? 0 : 60,
+					width: isMobile ? '100%' : '50%',
+				}}
 			>
 				<Box
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: 'flex-end',
+						alignItems: isMobile ? 'center' : 'flex-end',
 					}}
 				>
 					<Typography variant='user_key' display='flex'>
@@ -72,7 +69,7 @@ export default function Account({ onEditClick, data }) {
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: 'flex-start',
+						alignItems: isMobile ? 'center' : 'flex-start',
 					}}
 				>
 					<Typography variant='user_key' display='flex'>

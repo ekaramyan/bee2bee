@@ -10,6 +10,7 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 				width: '100%',
 				display: 'flex',
 				alignItems: 'center',
+				justifyContent: 'space-between',
 			}}
 		>
 			<div
@@ -24,7 +25,7 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						top: '10%',
+						top: '8%',
 						color: isLoginOpen ? '#E06B00' : '#1B170F',
 						textShadow: isLoginOpen
 							? '1px 1px 2px #1B170F'

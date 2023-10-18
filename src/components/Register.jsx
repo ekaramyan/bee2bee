@@ -10,6 +10,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 				width: '100%',
 				display: 'flex',
 				alignItems: 'center',
+				justifyContent: 'space-between',
 			}}
 		>
 			<RegisterComponent />
@@ -17,10 +18,10 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 				style={{
 					display: 'flex',
 					justifyContent: 'center',
-					flex: '1',
+					justifySelf: 'end',
 					position: 'relative',
-					height: 20,
-					width: 20,
+					height: 50,
+					width: 80,
 				}}
 			>
 				<Typography
@@ -28,9 +29,10 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg)  translateY(50%) translateX(50%)',
-						top: '-900%',
-						left: '90%',
+						transform: 'rotate(90deg) translateY(-80%) translateX(100%)',
+						top: '-350%',
+						left: '0%',
+						alignSelf: 'end',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen

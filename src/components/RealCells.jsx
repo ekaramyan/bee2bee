@@ -30,6 +30,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				width: '100%',
 				display: 'flex',
 				alignItems: 'center',
+				justifyContent: 'space-between',
 			}}
 		>
 			<Box>
@@ -41,10 +42,10 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				style={{
 					display: 'flex',
 					justifyContent: 'center',
-					flex: '1',
+					justifySelf: 'end',
 					position: 'relative',
-					height: 20,
-					width: 20,
+					height: 50,
+					width: 80,
 				}}
 			>
 				<Typography
@@ -52,9 +53,10 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg) translateY(-75%) translateX(50%)',
-						top: '-750%',
-						left: '90%',
+						transform: 'rotate(90deg) translateY(-80%) translateX(100%)',
+						top: '-300%',
+						left: '0%',
+						alignSelf: 'end',
 						right: 0,
 						color: isRegisterOpen ? '#E06B00' : '#1B170F',
 						textShadow: isRegisterOpen

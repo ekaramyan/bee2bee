@@ -10,6 +10,7 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 				width: '100%',
 				display: 'flex',
 				alignItems: 'center',
+				justifyContent: 'space-between',
 			}}
 		>
 			<div

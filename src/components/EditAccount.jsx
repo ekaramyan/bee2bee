@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Select, MenuItem, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import ImageCompression from 'browser-image-compression'
+import countryList from '@/countryList'
 import useUploadPhoto from '@/hooks/useUploadPhoto'
 import useUpdateUser from '@/hooks/useUpdateUser'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
@@ -78,6 +79,8 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 	// if (!data) {
 	// 	router.push('/')
 	// }
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
 	return (
 		<>
 			<Box
@@ -166,11 +169,12 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 					</Typography>
 					<Typography variant='date'>Date of Birth: {data?.birth}</Typography>
 				</Box>
-				<form style={{ width: '60%', marginTop: 5 }}>
+				<form style={{ width: isMobile ? '100%' : '60%', marginTop: 5 }}>
 					<Box
 						sx={{
 							display: 'flex',
 							flexDirection: 'column',
+							alignItems: 'center',
 							gap: 2,
 							width: '100%',
 						}}
@@ -178,8 +182,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						<Box
 							sx={{
 								display: 'flex',
-								flexDirection: 'row',
+								flexDirection: isMobile ? 'column' : 'row',
 								justifyContent: 'center',
+								alignItems: 'center',
 								gap: 2,
 								width: '100%',
 							}}
@@ -188,7 +193,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									alignItems: 'flex-end',
+									alignItems: isMobile ? 'center' : 'flex-end',
 									gap: 1,
 									width: '50%',
 									paddingRight: 2,
@@ -215,6 +220,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
+									alignItems: isMobile ? 'center' : 'start',
 									gap: 0.5,
 									width: '50%',
 								}}
@@ -266,29 +272,40 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									}}
 								>
 									Country:
-									<input
-										type='text'
+									<Select
+										label={formData?.country}
+										disableUnderline
+										variant='standard'
 										value={formData?.country}
 										onChange={handleInputChange}
+										fullWidth
+										type='select'
 										name='country'
-										style={{
+										sx={{
 											width: '100%',
 											background: 'none',
 											border: 'none',
-											borderBottom: '1px solid transparent',
+											borderBottom: '0 !important',
 											outline: 'none',
 											color: '#119A48',
 											fontSize: 20,
 											fontWeight: 700,
+											paddingLeft: 2,
 										}}
-									/>
+									>
+										{countryList.map(country => (
+											<MenuItem key={country.code} value={country.name}>
+												{country.name}
+											</MenuItem>
+										))}
+									</Select>
 								</label>
 								<label
 									style={{
 										display: 'flex',
 										width: '100%',
 										alignItems: 'center',
-										whiteSpace: 'nowrap',
+										whiteSpace: isMobile ? 'wrap' : 'nowrap',
 										color: '#1B170F',
 										fontFamily: 'Noto Sans',
 										fontSize: 20,
@@ -320,22 +337,29 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						<Box
 							sx={{
 								display: 'flex',
-								flexDirection: 'row',
+								flexDirection: isMobile ? 'column' : 'row',
 								justifyContent: 'center',
-								gap: 5,
+								alignItems: 'center',
+								gap: isMobile ? 2 : 5,
 							}}
 						>
 							<AuthButton
 								variant='contained'
 								onClick={onChangeClick}
-								style={{ background: '#119A48', width: '50%' }}
+								style={{
+									background: '#119A48',
+									width: isMobile ? '100%' : '50%',
+								}}
 							>
 								Change your password
 							</AuthButton>
 							<AuthButton
 								variant='contained'
 								onClick={onResetClick}
-								style={{ background: '#FF6B00', width: '50%' }}
+								style={{
+									background: '#FF6B00',
+									width: isMobile ? '100%' : '50%',
+								}}
 							>
 								Reset your password
 							</AuthButton>
@@ -347,6 +371,8 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								marginTop: 4,
 								display: 'flex',
 								justifyContent: 'center',
+								alignItems: 'center',
+								maxWidth: isMobile ? 270 : 'none',
 								width: '100%',
 							}}
 						>
@@ -356,7 +382,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								type='submit'
 								style={{
 									background: '#A5560F',
-									width: '50%',
+									width: isMobile ? '100%' : '50%',
 								}}
 							>
 								Save changes

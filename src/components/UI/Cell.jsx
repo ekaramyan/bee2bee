@@ -1,10 +1,11 @@
 import React from 'react'
 import background from '../../assets/img/join_cell_bg.webp'
 import Image from 'next/image'
-import { Button, Typography } from '@mui/material'
+import { Button, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 
 export default function Cell({ bee, join, level, price, onJoinClick }) {
+	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	return (
 		<div
 			style={{
@@ -13,7 +14,7 @@ export default function Cell({ bee, join, level, price, onJoinClick }) {
 				alignItems: 'center',
 				justifyContent: 'start',
 				gap: 20,
-				minWidth: '33.3%',
+				minWidth: isMobile ? '100%' : '33.3%',
 				minHeight: '30vh',
 				height: 300,
 				width: 'fit-content',
@@ -43,7 +44,7 @@ export default function Cell({ bee, join, level, price, onJoinClick }) {
 					JOIN
 				</Button>
 			</Link>
-			<Typography variant='level_small'>
+			<Typography variant='level_small' component={'h6'}>
 				{level} {price}$
 			</Typography>
 		</div>
