@@ -22,7 +22,9 @@ export default function ChangePassForm() {
 			<Box
 				style={{
 					width: '100%',
-					height: '90%',
+					minHeight: '60vh',
+					height: '100%',
+					maxHeight: '70vh',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
