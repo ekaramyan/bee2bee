@@ -6,6 +6,7 @@ import { universalServerSideProps } from '@/api/ssr'
 import useLogin from '@/hooks/useLogin'
 
 export default function Account({ accountData }) {
+	console.log(accountData, 'account data')
 	const dispatch = useDispatch()
 	const { refreshToken } = useLogin()
 
