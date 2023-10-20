@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled, useMediaQuery } from '@mui/material'
 import Follower from './UI/Follower'
 import Leader from './UI/Leader'
 
@@ -55,6 +55,7 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 		...trimmedFollowers.slice(0, 6),
 		...Array(6 - trimmedFollowers.length).fill({}),
 	]
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
 			<div
@@ -63,6 +64,7 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 					gridTemplateColumns: 'repeat(3, 1fr)',
 					gridTemplateRows: 'repeat(3, 0.7fr)',
 					gap: 10,
+					maxWidth: isMobile && 420,
 				}}
 			>
 				{paddedFollowers.map((follower, idx) => (

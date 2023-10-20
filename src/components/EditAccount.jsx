@@ -333,7 +333,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 							</Box>
 						</Box>
 
-						{/* Buttons */}
 						<Box
 							sx={{
 								display: 'flex',
@@ -341,6 +340,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								justifyContent: 'center',
 								alignItems: 'center',
 								gap: isMobile ? 2 : 5,
+								width: isMobile ? 'none' : '100%',
 							}}
 						>
 							<AuthButton
@@ -364,8 +364,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								Reset your password
 							</AuthButton>
 						</Box>
-
-						{/* Save Button */}
 						<Box
 							style={{
 								marginTop: 4,

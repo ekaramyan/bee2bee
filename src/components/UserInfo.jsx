@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from '@mui/material'
+import { Box, Typography, Grid,  } from '@mui/material'
 import { useRouter } from 'next/router'
 import useCellActions from '@/hooks/useCellActions'
 import CellUserAvatar from './UI/CellUserAvatar'
@@ -17,7 +17,6 @@ export default function UserInfo({
 	const router = useRouter()
 	const { cellId } = router.query
 	const userId = user.id
-	console.log(followersCount)
 	const acceptData = {
 		isAccepted: true,
 		acceptedAt: Date.now(),
@@ -52,7 +51,9 @@ export default function UserInfo({
 		deleteFollower(cellId, myId)
 	}
 	return (
-		<Grid style={{ padding: '2% 0%', width: '100%' }}>
+		<Grid
+			style={{ padding: '2% 0%', width: '100%' }}
+		>
 			<Grid
 				style={{
 					display: 'flex',

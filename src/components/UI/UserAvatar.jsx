@@ -2,6 +2,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
+import Link from 'next/link'
 
 export default function UserAvatar({
 	previewImage,
@@ -30,7 +31,8 @@ export default function UserAvatar({
 	}, [])
 	{
 		return (
-			<div
+			<Link
+				href={'/account'}
 				style={{
 					position: 'relative',
 					width: `${width}px`,
@@ -45,7 +47,7 @@ export default function UserAvatar({
 				) : (
 					<Image src={avatar || ''} layout='fill' objectFit='cover' />
 				)}
-			</div>
+			</Link>
 		)
 	}
 }

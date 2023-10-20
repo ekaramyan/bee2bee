@@ -37,7 +37,7 @@ const mobileTabs = {
 	about: 'about us',
 	'privacy-policy': 'Privacy policy',
 	help: 'help',
-	contact: 'contact us',
+	contacts: 'contact us',
 }
 
 export default function UserMenu() {

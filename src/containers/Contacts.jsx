@@ -5,6 +5,7 @@ import {
 	TextField,
 	FormControlLabel,
 	Checkbox,
+	useMediaQuery,
 } from '@mui/material'
 import { styled } from '@mui/material'
 import dynamic from 'next/dynamic'
@@ -37,7 +38,7 @@ export default function Contacts() {
 
 		await sendContactForm(data)
 	}
-
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const renderTextField = (label, type, name) => (
 		<TextField
 			label={label}
@@ -61,10 +62,12 @@ export default function Contacts() {
 				<Typography>Lorem ipsum...</Typography>
 				<Grid
 					sx={{
-						display: 'grid',
+						display: isMobile ? 'flex' : 'grid',
+						flexDirection: 'column',
 						gridTemplateColumns: '1fr 1fr',
 						justifyContent: 'space-between',
 						alignItems: 'center',
+						paddingBottom: isMobile && '20%',
 					}}
 				>
 					<form
@@ -77,14 +80,56 @@ export default function Contacts() {
 						}}
 					>
 						<Grid container gap={1}>
-							<FlexBox item xs={12}>
-								{renderTextField('First Name', 'name', 'name')}
-								{renderTextField('Last Name', 'last name', 'last name')}
-							</FlexBox>
-							<FlexBox item xs={12}>
-								{renderTextField('Email', 'email', 'email')}
-								{renderTextField('Subject', 'text', 'subject')}
-							</FlexBox>
+							<Box
+								item
+								xs={12}
+								style={{
+									display: 'flex',
+									flexDirection: isMobile ? 'column' : 'row',
+									gap: 20,
+									width: '100%',
+								}}
+							>
+								<TextField
+									label='First Name'
+									variant='standard'
+									fullWidth
+									type='name'
+									name='name'
+								/>
+								<TextField
+									label='Last Name'
+									variant='standard'
+									fullWidth
+									type='last name'
+									name='last name'
+								/>
+							</Box>
+							<Box
+								item
+								xs={12}
+								style={{
+									display: 'flex',
+									flexDirection: isMobile ? 'column' : 'row',
+									gap: 20,
+									width: '100%',
+								}}
+							>
+								<TextField
+									label='Email'
+									variant='standard'
+									fullWidth
+									type='email'
+									name='email'
+								/>
+								<TextField
+									label='Subject'
+									variant='standard'
+									fullWidth
+									type='text'
+									name='Subject'
+								/>
+							</Box>
 							<FlexBox item xs={12}>
 								<TextField
 									label='Your Message Text'
@@ -100,12 +145,14 @@ export default function Contacts() {
 							<Box
 								sx={{
 									display: 'flex',
+									flexDirection: isMobile ? 'column' : 'row',
+									alignItems: 'center',
 									justifyContent: 'space-between',
 									width: '100%',
 									flex: 1,
 								}}
 							>
-								<Grid item>
+								<Grid item style={{ display: 'flex', width: '50%' }}>
 									<Typography variant='body2'>
 										{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
 									</Typography>
@@ -115,7 +162,8 @@ export default function Contacts() {
 									sx={{
 										display: 'flex',
 										flexDirection: 'column',
-										width: '50%',
+										width: isMobile ? '100%' : '50%',
+										alignItems: isMobile && 'center',
 										gap: 2,
 									}}
 								>
@@ -128,20 +176,22 @@ export default function Contacts() {
 							</Box>
 						</Grid>
 					</form>
-					<Box
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'center',
-							alignItems: 'center',
-							gap: 20,
-						}}
-					>
-						<>
-							<Typography variant='level_dark'>Social Media</Typography>
-							<Socials width={30} height={30} />
-						</>
-					</Box>
+					{!isMobile && (
+						<Box
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+								gap: 20,
+							}}
+						>
+							<>
+								<Typography variant='level_dark'>Social Media</Typography>
+								<Socials width={30} height={30} />
+							</>
+						</Box>
+					)}
 				</Grid>
 			</Wrapper>
 		</Box>

@@ -196,6 +196,9 @@ const theme = createTheme({
 			fontSize: 24,
 			fontWeight: 700,
 			textTransform: 'uppercase',
+			'@media(max-width:1300px)': {
+				color: '#1B170F',
+			},
 		},
 		user_key: {
 			color: '#1B170F',
@@ -214,6 +217,9 @@ const theme = createTheme({
 			fontFamily: 'Noto Sans',
 			fontSize: 20,
 			fontWeight: 400,
+			'@media(max-width:1300px)': {
+				color: '#1B170F',
+			},
 		},
 		cell_user_item: {
 			color: '#fff',
@@ -221,6 +227,9 @@ const theme = createTheme({
 			fontSize: 20,
 			fontWeight: 700,
 			textTransform: 'uppercase',
+			'@media(max-width:1300px)': {
+				color: '#1B170F',
+			},
 		},
 		cell_user_subtext: {
 			color: '#fff',
@@ -230,6 +239,14 @@ const theme = createTheme({
 		},
 		cell_id: {
 			color: '#fff',
+			fontFamily: 'Noto Sans',
+			fontSize: 28,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+			lineHeight: 1,
+		},
+		cell_id_mobile: {
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 28,
 			fontWeight: 700,
@@ -321,6 +338,14 @@ const theme = createTheme({
 			fontSize: 16,
 			fontWeight: 700,
 			textTransform: 'uppercase',
+		},
+		join_cells_titles_mobile: {
+			color: '#A5560F',
+			fontFamily: 'Noto Sans',
+			fontSize: 16,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+			paddingLeft: 12,
 		},
 		join_cells: {
 			color: '#EAEEE8',
