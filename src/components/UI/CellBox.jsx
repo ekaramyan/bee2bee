@@ -24,9 +24,9 @@ export default function CellBox({ isActive, data }) {
 				}}
 			>
 				{data &&
-					data.data.map(cell => (
+					data.data.map((cell, index) => (
 						<Link
-							key={cell.id}
+							key={index}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
 							<Typography variant={isActive ? 'active_cells' : 'closed_cells'}>

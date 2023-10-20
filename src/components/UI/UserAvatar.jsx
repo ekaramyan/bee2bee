@@ -24,7 +24,9 @@ export default function UserAvatar({
 				setAvatar(objectUrl)
 				return () => URL.revokeObjectURL(objectUrl)
 			} catch (error) {
-				console.error('Error fetching data: ', error)
+				if (!error.response || error.response.status !== 404) {
+					console.error('Error fetching data: ', error)
+				}
 			}
 		}
 		fetchDataAsync()

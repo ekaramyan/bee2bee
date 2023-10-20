@@ -27,7 +27,7 @@ export default function RealCell({ data }) {
 				>
 					{data.map((item, index) => (
 						<Link
-							key={item.id}
+							key={index}
 							href={`/cells/${item.cellLevel.id}/info/${item.id}`}
 						>
 							<div
