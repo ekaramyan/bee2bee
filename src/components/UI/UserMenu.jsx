@@ -13,11 +13,11 @@ import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { useEffect, useState, useCallback } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import Drawer from '@mui/material/Drawer'
 import Image from 'next/image'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
+import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
 
 const tabs = ['cells', 'account', 'account-settings', 'rules']
@@ -26,18 +26,6 @@ const tabNames = {
 	account: 'My Account',
 	'account-settings': 'Account Settings',
 	rules: 'FAQ',
-}
-const mobileTabs = {
-	cells: 'Dashboard',
-	account: 'My Account',
-	'account-settings': 'Account Settings',
-	'my-cells': 'my cells',
-	'real-cells': 'Real cells',
-	rules: 'FAQ',
-	about: 'about us',
-	'privacy-policy': 'Privacy policy',
-	help: 'help',
-	contacts: 'contact us',
 }
 
 export default function UserMenu() {
@@ -78,44 +66,6 @@ export default function UserMenu() {
 		router.push('/')
 	}
 
-	const renderMobileMenu = () => (
-		<Drawer anchor='top' open={burgerOpen} onClose={toggleBurgerMenu}>
-			<ButtonBase
-				onClick={toggleBurgerMenu}
-				style={{
-					cursor: 'pointer',
-					alignSelf: 'end',
-					border: '2px solid #E06B00',
-					borderRadius: '50%',
-					color: '#E06B00',
-					width: 40,
-					height: 40,
-					margin: '30px 30px 0 0',
-				}}
-			>
-				<p style={{ fontSize: 20, fontWeight: 200 }}>X</p>
-			</ButtonBase>
-			<List
-				style={{
-					height: '100dvh',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-			>
-				{Object.keys(mobileTabs).map((tab, index) => (
-					<>
-						<Link key={index} href={`/${tab}`}>
-							<Typography variant='burger_tabs' onClick={toggleBurgerMenu}>
-								{mobileTabs[tab]}
-							</Typography>
-						</Link>
-					</>
-				))}
-			</List>
-		</Drawer>
-	)
 	const toggleBurgerMenu = () => {
 		setBurgerOpen(!burgerOpen)
 	}
@@ -157,11 +107,12 @@ export default function UserMenu() {
 			>
 				{isMobile && (
 					<>
-						<MenuIcon
-							onClick={toggleBurgerMenu}
-							style={{ cursor: 'pointer', justifySelf: 'flex-end' }}
+						<MenuIcon onClick={toggleBurgerMenu} />
+						<BurgerMenu
+							loggedIn={true}
+							toggleBurgerMenu={toggleBurgerMenu}
+							burgerOpen={burgerOpen}
 						/>
-						{renderMobileMenu()}
 					</>
 				)}
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
