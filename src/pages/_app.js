@@ -7,8 +7,6 @@ import IndexWrapper from '@/components/UI/index_wrapper'
 import store from '@/store'
 
 function MyApp({ Component, pageProps }) {
-
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Provider store={store}>
