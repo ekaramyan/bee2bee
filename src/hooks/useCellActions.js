@@ -15,11 +15,11 @@ export default function useCellActions() {
 		Authorization: `Bearer ${token}`,
 	}
 
-	const deleteFollower = async (cellId, followerId) => {
+	const deleteFollower = async followerId => {
 		setLoading(true)
 		try {
 			const response = await axios.delete(
-				`${baseCellUrl}/${cellId}/follower/${followerId}`,
+				`${apiUrl}/cells-followers/${followerId}`,
 				{
 					headers: headers,
 				}
@@ -54,11 +54,11 @@ export default function useCellActions() {
 		}
 	}
 
-	const patchFollower = async (cellId, followerId, data) => {
+	const patchFollower = async (followerId, data) => {
 		setLoading(true)
 		try {
 			const response = await axios.patch(
-				`${baseCellUrl}/${cellId}/follower/${followerId}`,
+				`${apiUrl}/cells-followers/${followerId}`,
 				data,
 				{
 					headers: headers,

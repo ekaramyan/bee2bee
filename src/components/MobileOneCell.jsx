@@ -9,6 +9,7 @@ export default function MobileOneCell({
 	data,
 	leaderActiveData,
 	followerActiveData,
+	waitingData,
 	onJoinClick,
 	onRefreshClick,
 	id,
@@ -91,7 +92,11 @@ export default function MobileOneCell({
 					data={leaderActiveData}
 					style={{ gridArea: 'leader' }}
 				/>
-				<DataBox title='waiting' style={{ gridArea: 'waiting' }} />
+				<DataBox
+					title='waiting'
+					data={waitingData}
+					style={{ gridArea: 'waiting' }}
+				/>
 			</Grid>
 		</>
 	)

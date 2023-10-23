@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import Wrapper from '../components/UI/Wrapper'
 import { useMediaQuery } from '@mui/material'
 import useCells from '@/hooks/useCells'
@@ -18,7 +18,6 @@ export default function OneCell({ data }) {
 	const router = useRouter()
 	const { postFollower } = useCellActions()
 	const userId = parseInt(Cookies.get('userId'))
-	console.log(userId)
 	const { cellLevelId: id } = router.query
 	const cells = [
 		{ bee: starter },
@@ -30,7 +29,6 @@ export default function OneCell({ data }) {
 	const onJoinClick = () => {
 		postFollower(data[0]?.id, userId)
 	}
-	const onRefreshClick = () => {}
 
 	const {
 		data: followerActiveData,
@@ -44,12 +42,24 @@ export default function OneCell({ data }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
+	const {
+		data: waitingData,
+		loading: waitingLoading,
+		error: waitingError,
+		getCells: getWaitingCells,
+	} = useCells()
+
+	const onRefreshClick = useCallback(async () => {
+		getFollowerActiveCells('me_followers_level', { level: id })
+		getLeaderActiveCells('me_leader_level', { level: id })
+		getWaitingCells('waiting', { level: id })
+	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
 
 	useEffect(() => {
-		getFollowerActiveCells('me_follower_active')
-		getLeaderActiveCells('me_leader_active')
+		onRefreshClick()
 	}, [])
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
 	return (
 		<Wrapper
 			header={
@@ -64,6 +74,7 @@ export default function OneCell({ data }) {
 						data={data}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
+						waitingData={waitingData}
 						onJoinClick={onJoinClick}
 						onRefreshClick={onRefreshClick}
 						id={id}
@@ -73,6 +84,7 @@ export default function OneCell({ data }) {
 						data={data}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
+						waitingData={waitingData}
 						onJoinClick={onJoinClick}
 						onRefreshClick={onRefreshClick}
 						cells={cells}

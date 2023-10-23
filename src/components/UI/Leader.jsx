@@ -3,12 +3,21 @@ import avatarBg from '@/assets/img/leader_avatar.svg'
 
 export default function Leader({ style, onClick, avatar }) {
 	return (
-		<div style={style} onClick={onClick}>
-			<div
-				style={{ background: `url(${avatarBg.src}) no-repeat center / 100%` }}
-			>
-				<CellUserAvatar avatar={avatar?.src} width={130} height={150} />
-			</div>
+		<div
+			onClick={onClick}
+			style={{
+				...style,
+				background: `url(${avatarBg.src}) no-repeat center / cover`,
+				width: '140px',
+				height: '156px',
+			}}
+		>
+			<CellUserAvatar
+				avatarUrl={avatar}
+				width={125}
+				height={145}
+				isLeader={true}
+			/>
 		</div>
 	)
 }

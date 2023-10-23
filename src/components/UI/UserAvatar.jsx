@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
+import defaultAvatar from '../../assets/img/default.jpg'
 
 export default function UserAvatar({
 	previewImage,
@@ -47,7 +48,11 @@ export default function UserAvatar({
 				{previewImage ? (
 					<Image src={previewImage} layout='fill' objectFit='cover' />
 				) : (
-					<Image src={avatar || ''} layout='fill' objectFit='cover' />
+					<Image
+						src={avatar || defaultAvatar}
+						layout='fill'
+						objectFit='cover'
+					/>
 				)}
 			</Link>
 		)

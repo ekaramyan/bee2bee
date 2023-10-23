@@ -1,4 +1,4 @@
-import { Box, Typography, Grid,  } from '@mui/material'
+import { Box, Typography, Grid } from '@mui/material'
 import { useRouter } from 'next/router'
 import useCellActions from '@/hooks/useCellActions'
 import CellUserAvatar from './UI/CellUserAvatar'
@@ -11,8 +11,10 @@ export default function UserInfo({
 	role,
 	isAutoCreated,
 	isAccepted,
+	cellUserId,
 	followersCount,
 }) {
+	console.log(user)
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
 	const { cellId } = router.query
@@ -27,33 +29,26 @@ export default function UserInfo({
 		isActive: false,
 		isArchived: true,
 	}
-	const {
-		loading,
-		error,
-		success,
-		deleteFollower,
-		postFollower,
-		patchFollower,
-		closeCell,
-	} = useCellActions()
-	const onAcceptClick = () => {
-		if (role === 'leader' && followersCount >= 6) {
-			patchFollower(cellId, userId, acceptData)
-			closeCell(cellId, closeData)
-		} else {
-			patchFollower(cellId, userId, acceptData)
+	const { loading, error, success, deleteFollower, patchFollower, closeCell } =
+		useCellActions()
+	const onAcceptClick = async () => {
+		try {
+			await patchFollower(cellUserId, acceptData)
+			if (role === 'leader' && followersCount === 6) {
+				await closeCell(cellId, closeData)
+			}
+		} catch (error) {
+			console.error('Error:', error.message)
 		}
 	}
 	const onDeleteClick = () => {
-		deleteFollower(cellId, userId)
+		deleteFollower(cellUserId)
 	}
 	const onLeaveClick = () => {
-		deleteFollower(cellId, myId)
+		deleteFollower(cellUserId)
 	}
 	return (
-		<Grid
-			style={{ padding: '2% 0%', width: '100%' }}
-		>
+		<Grid style={{ padding: '2% 0%', width: '100%' }}>
 			<Grid
 				style={{
 					display: 'flex',
@@ -66,13 +61,19 @@ export default function UserInfo({
 			>
 				<div
 					style={{
-						background: `url(${avatarBg.src}) no-repeat center / contain`,
+						background: `url(${avatarBg.src}) no-repeat center / cover`,
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
+						width: '140px',
+						height: '156px',
 					}}
 				>
-					<CellUserAvatar avatar={user?.avatar?.src} width={145} height={145} />
+					<CellUserAvatar
+						avatarUrl={user?.avatarUrl}
+						width={125}
+						height={145}
+					/>
 				</div>
 				<Typography component={'h6'} variant='h6_light'>
 					{user?.firstName} {user?.lastName}

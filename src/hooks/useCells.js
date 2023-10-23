@@ -35,6 +35,15 @@ export default function useCells() {
 			case 'me_follower_inactive':
 				url += `me/follower/list?is_active=false&is_archived=true`
 				break
+			case 'me_followers_level':
+				url += `me/follower/list?level_id=${additionalParams.level}`
+				break
+			case 'me_leader_level':
+				url += `me/leader/list?level_id=${additionalParams.level}`
+				break
+			case 'waiting':
+				url += `queue?level_id=${additionalParams.level}`
+				break
 			case 'all':
 				url += `cells/all/list`
 				break

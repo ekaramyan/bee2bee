@@ -49,6 +49,7 @@ const useLogin = () => {
 	const refresh_token = Cookies.get('refresh_token')
 	const refreshToken = async () => {
 		console.log('refresh')
+		console.log(refresh_token)
 		try {
 			const response = await axios.post(`${apiUrl}/auth/refresh`, {
 				refresh_token: refresh_token,

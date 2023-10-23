@@ -17,14 +17,11 @@ export default function MobileCellInfoComponent({
 	consultant,
 	isAutoCreated,
 	isAccepted,
+	cellUserId,
 	handleUserClick,
 	refreshFetch,
-	setActiveUser,
 	handleCloseClick,
 }) {
-	const router = useRouter()
-	console.log('render')
-
 	return (
 		<Box
 			style={{
@@ -81,6 +78,7 @@ export default function MobileCellInfoComponent({
 				<UserInfo
 					user={user}
 					role={role}
+					cellUserId={cellUserId}
 					isAutoCreated={isAutoCreated}
 					isAccepted={isAccepted}
 					followersCount={followers.length}

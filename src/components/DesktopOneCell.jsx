@@ -10,6 +10,7 @@ export default function DesktopOneCell({
 	data,
 	leaderActiveData,
 	followerActiveData,
+	waitingData,
 	onJoinClick,
 	onRefreshClick,
 	cells,
@@ -70,7 +71,11 @@ export default function DesktopOneCell({
 					data={leaderActiveData}
 					style={{ gridArea: 'leader' }}
 				/>
-				<DataBox title='waiting' style={{ gridArea: 'waiting' }} />
+				<DataBox
+					title='waiting'
+					data={waitingData}
+					style={{ gridArea: 'waiting' }}
+				/>
 			</Grid>
 			<Typography variant='level_big'>
 				{data[0]?.cellLevel.level} {data[0]?.cellLevel.price}$

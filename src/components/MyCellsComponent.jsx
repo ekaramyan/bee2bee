@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import CellBox from './UI/CellBox'
 
-export default function MyCellsComponent() {
+export default function MyCellsComponent({ isOpen }) {
 	const [isFollower, setIsFollower] = useState(true)
 
 	const {
@@ -36,7 +36,7 @@ export default function MyCellsComponent() {
 		getFollowerInactiveCells('me_follower_inactive')
 		getLeaderActiveCells('me_leader_active')
 		getLeaderInactiveCells('me_leader_inactive')
-	}, [])
+	}, [isOpen])
 	return (
 		<Box style={{ width: '75%' }}>
 			<Box

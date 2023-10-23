@@ -56,6 +56,7 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 		...Array(6 - trimmedFollowers.length).fill({}),
 	]
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+	console.log(followers)
 	return (
 		<>
 			<div
@@ -75,14 +76,17 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 							onUserClick(
 								follower.follower,
 								follower.isAutoCreated,
-								follower.isAccepted
+								follower.isAccepted,
+								follower.id
 							)
 						}
+						avatar={follower?.follower?.avatarUrl || ''}
 					/>
 				))}
 				<Leader
 					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
 					onClick={() => onUserClick(leader)}
+					avatar={leader.avatarUrl || ''}
 				/>
 			</div>
 		</>

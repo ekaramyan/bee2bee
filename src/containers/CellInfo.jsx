@@ -1,19 +1,14 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
-import CellComponent from '@/components/CellComponent'
-import Consultant from '@/components/UI/Consultant'
-import { Box, Typography, useMediaQuery } from '@mui/material'
-import BigCell from '@/components/UI/BigCell'
-import UserInfo from '@/components/UserInfo'
+import { useMediaQuery } from '@mui/material'
 import useIsLeader from '@/hooks/useIsLeader'
 import CellInfoComponent from '@/components/CellInfoComponent'
 import MobileCellInfoComponent from '@/components/MobileCellInfoComponent'
 
 export default function CellInfo({ data }) {
-	console.log(data)
 	const router = useRouter()
 	const { cellLevelId: id } = router.query
 	const { cellId } = router.query
@@ -26,18 +21,19 @@ export default function CellInfo({ data }) {
 	const [role, setRole] = useState(null)
 	const [isAutoCreated, setIsAutoCreated] = useState(null)
 	const [isAccepted, setIsAccepted] = useState(null)
+	const [cellUserId, setCellUserId] = useState(null)
 
 	const userId = parseInt(Cookies.get('userId'))
 	console.log(cellData)
 	const checkRole = useIsLeader()
 
-	const handleUserClick = (user, autoCreate, accept) => {
-		console.log(userId)
+	const handleUserClick = (user, autoCreate, accept, id) => {
 		setActiveUser(user)
 		const userRole = checkRole(leader?.id, userId)
 		setRole(userRole)
 		setIsAutoCreated(autoCreate)
 		setIsAccepted(accept)
+		setCellUserId(id)
 	}
 
 	const refreshFetch = async () => {
@@ -48,6 +44,10 @@ export default function CellInfo({ data }) {
 		const newData = res.data
 		setCellData(newData)
 	}
+	useEffect(() => {
+		refreshFetch()
+	}, [cellId])
+
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
@@ -63,6 +63,7 @@ export default function CellInfo({ data }) {
 						consultant={consultant}
 						isAutoCreated={isAutoCreated}
 						isAccepted={isAccepted}
+						cellUserId={cellUserId}
 						handleUserClick={handleUserClick}
 						refreshFetch={refreshFetch}
 						setActiveUser={setActiveUser}
@@ -81,6 +82,7 @@ export default function CellInfo({ data }) {
 						consultant={consultant}
 						isAutoCreated={isAutoCreated}
 						isAccepted={isAccepted}
+						cellUserId={cellUserId}
 						handleUserClick={handleUserClick}
 						refreshFetch={refreshFetch}
 						setActiveUser={setActiveUser}

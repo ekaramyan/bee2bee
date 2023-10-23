@@ -35,7 +35,7 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 					My Cells
 				</Typography>
 			</div>
-			<MyCellsComponent />
+			<MyCellsComponent isOpen={isLoginOpen} />
 		</div>
 	)
 }

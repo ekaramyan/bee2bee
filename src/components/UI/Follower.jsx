@@ -22,7 +22,7 @@ export default function Follower({ className, onClick, avatar, isAccepted }) {
 				height: '100px',
 			}}
 		>
-			<CellUserAvatar avatar={avatar?.src} width={80} height={90} />
+			<CellUserAvatar avatarUrl={avatar} width={80} height={90} />
 		</Box>
 	)
 }

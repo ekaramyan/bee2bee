@@ -14,9 +14,9 @@ export default function CellInfoComponent({
 	consultant,
 	isAutoCreated,
 	isAccepted,
+	cellUserId,
 	handleUserClick,
 	refreshFetch,
-	setActiveUser,
 	handleCloseClick,
 }) {
 	console.log(followers)
@@ -34,6 +34,7 @@ export default function CellInfoComponent({
 						role={role}
 						isAutoCreated={isAutoCreated}
 						isAccepted={isAccepted}
+						cellUserId={cellUserId}
 						followersCount={followers.length}
 					/>
 				) : (

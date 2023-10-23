@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 require('dotenv').config()
 
-console.log(process.env.API_URL)
+console.log(process.env.API_URL.slice(0, -4))
 
 const nextConfig = {
 	output: 'standalone',
-	// images: {
-	// 	domains: [process.env.APP_DOMAIN],
-	// },
+	images: {
+		domains: [process.env.API_URL.slice(0, -4)],
+	},
 	env: {
 		API_URL: process.env.API_URL,
 		API_TOKEN: process.env.API_TOKEN,

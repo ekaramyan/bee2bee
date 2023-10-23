@@ -55,6 +55,7 @@ export default function JoinCell() {
 						key={cell?.id}
 						bee={cells[index].bee}
 						join={cell.id}
+						canJoin={cell.canJoin}
 						level={cell?.level}
 						price={cell?.price}
 						onJoinClick={() => router.push(cell.id)}
