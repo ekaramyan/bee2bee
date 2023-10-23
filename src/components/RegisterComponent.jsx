@@ -20,6 +20,8 @@ export default function RegisterComponent() {
 	const router = useRouter()
 	const { register, loading, error, success } = useRegister()
 	const [validationErrors, setValidationErrors] = useState({})
+	const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] =
+		useState(false)
 
 	const validateDateOfBirth = date => {
 		const birthDate = new Date(date)
@@ -43,10 +45,10 @@ export default function RegisterComponent() {
 
 		const formData = {
 			firstName: event.target.name.value,
-			lastName: event.target['last name'].value,
+			lastName: event.target.lastName.value,
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
-			phone: event.target.phone.value,
+			phone: String(event.target.phone.value),
 			telegram: event.target.telegram.value,
 			birth: event.target.date.value,
 			email: event.target.email.value,
@@ -75,13 +77,17 @@ export default function RegisterComponent() {
 				'Invalid nickname. Only alphabets and spaces are allowed.'
 		}
 
-		if (!validatePassword(password)) {
+		if (!validatePassword(formData.password)) {
 			errors.password =
 				'Password must be at least 8 characters long, with at least one digit and one letter.'
 		}
 
 		if (formData.password !== formData.passwordConfirmation) {
 			errors.password = 'Passwords do not match.'
+		}
+
+		if (!hasAgreedToPrivacyPolicy) {
+			errors.checkbox = 'You must agree to the privacy policy.'
 		}
 
 		if (Object.keys(errors).length > 0) {
@@ -217,11 +223,11 @@ export default function RegisterComponent() {
 					/>
 
 					<TextField
-						label='Password'
+						label='Telegram'
 						variant='standard'
 						fullWidth
-						type='password'
-						name='password'
+						type='text'
+						name='telegram'
 					/>
 				</Box>
 				<Box
@@ -236,13 +242,12 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Telegram'
+						label='Password'
 						variant='standard'
 						fullWidth
-						type='text'
-						name='telegram'
+						type='password'
+						name='password'
 					/>
-
 					<TextField
 						label='Confirm Password'
 						variant='standard'
@@ -276,7 +281,12 @@ export default function RegisterComponent() {
 						}}
 					>
 						<Box style={{ display: 'flex', alignItems: 'center' }}>
-							<Checkbox name='remember' color='primary' />
+							<Checkbox
+								name='confirm'
+								color='primary'
+								checked={hasAgreedToPrivacyPolicy}
+								onChange={e => setHasAgreedToPrivacyPolicy(e.target.checked)}
+							/>
 							<Typography variant='forgot'>
 								Agree with{' '}
 								<Link
@@ -296,6 +306,7 @@ export default function RegisterComponent() {
 			{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
 			{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
 			{validationErrors.password && <div>{validationErrors.password}</div>}
+			{validationErrors.checkbox && <div>{validationErrors.checkbox}</div>}
 			{error && <div>{error}</div>}
 			{success && (
 				<div>

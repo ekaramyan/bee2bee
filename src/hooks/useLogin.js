@@ -34,7 +34,6 @@ const useLogin = () => {
 				const userId = await user.data.id
 				dispatch({ type: 'SET_USER_ID', payload: userId })
 				document.cookie = `userId=${userId}; path=/`
-				console.log(userId)
 				router.push('cells')
 				setSuccess(true)
 			} else {

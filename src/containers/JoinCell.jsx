@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useRouter } from 'next/router'
+import Confetti from 'react-confetti'
 import Cell from '../components/UI/Cell'
 import starter from '@/assets/img/bees/starter.png'
 import beginner from '@/assets/img/bees/beginner.png'
@@ -13,7 +14,9 @@ import pro from '@/assets/img/bees/pro.png'
 import expert from '@/assets/img/bees/expert.png'
 
 export default function JoinCell() {
+	const [birthday, setBirthday] = useState(null)
 	const [data, setData] = useState(null)
+	const [showConfetti, setShowConfetti] = useState(false)
 	const router = useRouter()
 	const token = Cookies.get('access_token')
 	const url = process.env.API_URL
@@ -22,6 +25,9 @@ export default function JoinCell() {
 			try {
 				const response = await fetchData(`${url}/cell-levels`, token)
 				setData(response.data)
+				const user = await fetchData(`${url}/users/me`, token)
+				setBirthday(user.data.birth)
+				console.log(user)
 			} catch (err) {
 				console.error(err)
 			}
@@ -29,6 +35,25 @@ export default function JoinCell() {
 
 		fetchDataAsync()
 	}, [])
+
+	useEffect(() => {
+		const currentDate = new Date()
+		const birthdayDate = new Date(birthday)
+
+		if (
+			currentDate.getDate() === birthdayDate.getDate() &&
+			currentDate.getMonth() === birthdayDate.getMonth()
+		) {
+			setShowConfetti(true)
+
+			const timeout = setTimeout(() => {
+				setShowConfetti(false)
+			}, 5000)
+
+			return () => clearTimeout(timeout)
+		}
+	}, [birthday])
+
 	const cells = [
 		{ bee: starter },
 		{ bee: beginner },
@@ -50,6 +75,20 @@ export default function JoinCell() {
 					alignContent: 'center',
 				}}
 			>
+				{showConfetti && (
+					<div
+						style={{
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							width: '100%',
+							height: '100%',
+							zIndex: 1000,
+						}}
+					>
+						<Confetti width={window.innerWidth} height={window.innerHeight} />
+					</div>
+				)}
 				{data?.map((cell, index) => (
 					<Cell
 						key={cell?.id}
