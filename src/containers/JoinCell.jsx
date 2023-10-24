@@ -5,8 +5,9 @@ import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
 import { Grid } from '@mui/material'
 import { useRouter } from 'next/router'
-import Confetti from 'react-confetti'
-import Cell from '../components/UI/Cell'
+import dynamic from 'next/dynamic'
+const Confetti = dynamic(() => import('react-confetti'))
+const Cell = dynamic(() => import('../components/UI/Cell'))
 import starter from '@/assets/img/bees/starter.png'
 import beginner from '@/assets/img/bees/beginner.png'
 import worker from '@/assets/img/bees/worker.png'

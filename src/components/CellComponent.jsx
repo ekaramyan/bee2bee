@@ -1,6 +1,7 @@
 import { styled, useMediaQuery } from '@mui/material'
-import Follower from './UI/Follower'
-import Leader from './UI/Leader'
+import dynamic from 'next/dynamic'
+const Follower = dynamic(() => import('./UI/Follower'))
+const Leader = dynamic(() => import('./UI/Leader'))
 
 const Fw = styled(Follower)`
 	align-self: center;

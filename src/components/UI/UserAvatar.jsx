@@ -4,19 +4,30 @@ import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
 import defaultAvatar from '../../assets/img/default.jpg'
+import { useRouter } from 'next/router'
 
 export default function UserAvatar({
 	previewImage,
+	avatarUrl,
 	width = 157,
 	height = 181,
+	isLeader = false,
+	isClickable = false,
+	clickUrl = '/account',
 }) {
 	const [avatar, setAvatar] = useState(null)
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
+	const router = useRouter()
+	const { cellId } = router.query
+
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
-				const avatarResponse = await axios.get(`${apiUrl}/users/me/photo`, {
+				const url = avatarUrl
+					? `${apiUrl}${avatarUrl}`
+					: `${apiUrl}/users/me/photo`
+				const avatarResponse = await axios.get(url, {
 					headers: { Authorization: `Bearer ${token}` },
 					responseType: 'blob',
 				})
@@ -30,12 +41,33 @@ export default function UserAvatar({
 				}
 			}
 		}
+
 		fetchDataAsync()
-	}, [])
-	{
+	}, [cellId, avatarUrl])
+
+	const avatarImage = (
+		<Image
+			src={previewImage || avatar || defaultAvatar}
+			width={isClickable ? width : width - 5}
+			height={isClickable ? height : height - 5}
+			style={{
+				position: 'relative',
+				overflow: 'hidden',
+				clipPath:
+					'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+				transform: isLeader
+					? 'translateY(8px) translateX(10px)'
+					: 'translateY(-1px)',
+				objectFit: 'cover',
+			}}
+		/>
+	)
+
+	if (isClickable) {
 		return (
 			<Link
-				href={'/account'}
+				href={clickUrl}
+				passHref
 				style={{
 					position: 'relative',
 					width: `${width}px`,
@@ -45,16 +77,10 @@ export default function UserAvatar({
 						'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
 				}}
 			>
-				{previewImage ? (
-					<Image src={previewImage} layout='fill' objectFit='cover' />
-				) : (
-					<Image
-						src={avatar || defaultAvatar}
-						layout='fill'
-						objectFit='cover'
-					/>
-				)}
+				{avatarImage}
 			</Link>
 		)
 	}
+
+	return avatarImage
 }

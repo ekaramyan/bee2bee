@@ -7,11 +7,10 @@ import {
 	Typography,
 	useMediaQuery,
 } from '@mui/material'
+import dynamic from 'next/dynamic'
 import useLogin from '@/hooks/useLogin'
-import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
-import AuthButton from './UI/AuthButton'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import Link from 'next/link'
 
 // const recaptchaRef = React.createRef();

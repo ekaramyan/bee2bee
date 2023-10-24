@@ -1,4 +1,4 @@
-import CellUserAvatar from './CellUserAvatar'
+import UserAvatar from './UserAvatar'
 import avatarBg from '@/assets/img/leader_avatar.svg'
 
 export default function Leader({ style, onClick, avatar }) {
@@ -10,14 +10,10 @@ export default function Leader({ style, onClick, avatar }) {
 				background: `url(${avatarBg.src}) no-repeat center / cover`,
 				width: '140px',
 				height: '156px',
+				cursor: 'pointer',
 			}}
 		>
-			<CellUserAvatar
-				avatarUrl={avatar}
-				width={125}
-				height={145}
-				isLeader={true}
-			/>
+			<UserAvatar avatarUrl={avatar} width={123} height={140} isLeader={true} />
 		</div>
 	)
 }

@@ -1,10 +1,11 @@
 import { Box, Typography, Grid } from '@mui/material'
 import { useRouter } from 'next/router'
-import useCellActions from '@/hooks/useCellActions'
-import CellUserAvatar from './UI/CellUserAvatar'
-import avatarBg from '@/assets/img/leader_avatar.svg'
-import AuthButton from './UI/AuthButton'
+import dynamic from 'next/dynamic'
 import Cookies from 'js-cookie'
+import useCellActions from '@/hooks/useCellActions'
+const CellUserAvatar = dynamic(() => import('./UI/UserAvatar'))
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
+import avatarBg from '@/assets/img/leader_avatar.svg'
 
 export default function UserInfo({
 	user,

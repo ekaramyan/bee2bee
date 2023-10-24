@@ -1,10 +1,11 @@
 import { useMediaQuery } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react'
-import Logo from './UI/Logo'
-import Socials from './UI/Socials'
-import UserMenu from './UI/UserMenu'
-import BurgerMenu from './UI/BurgerMenu'
+import dynamic from 'next/dynamic'
+const Logo = dynamic(() => import('./UI/Logo'))
+const Socials = dynamic(() => import('./UI/Socials'))
+const UserMenu = dynamic(() => import('./UI/UserMenu'))
+const BurgerMenu = dynamic(() => import('./UI/BurgerMenu'))
 
 export default function Header({ loggedIn }) {
 	const [burgerOpen, setBurgerOpen] = useState(false)

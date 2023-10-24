@@ -107,7 +107,11 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						justifyContent: 'center',
 					}}
 				>
-					<UserAvatar previewImage={previewImage} />
+					<UserAvatar
+						previewImage={previewImage}
+						isClickable={true}
+						clickUrl=''
+					/>
 					<div
 						style={{
 							position: 'absolute',

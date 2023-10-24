@@ -9,12 +9,13 @@ import {
 	useMediaQuery,
 } from '@mui/material'
 import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { useRouter } from 'next/router'
-import useRegister from '@/hooks/useRegister'
-import AuthButton from './UI/AuthButton'
-import countryList from '@/countryList'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import ReCAPTCHA from 'react-google-recaptcha'
+import useRegister from '@/hooks/useRegister'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
+import countryList from '@/countryList'
 
 export default function RegisterComponent() {
 	const router = useRouter()

@@ -131,7 +131,12 @@ export default function UserMenu() {
 							justifyContent: 'center',
 						}}
 					>
-						<UserAvatar previewImage={null} width={44} height={52} />
+						<UserAvatar
+							previewImage={null}
+							width={44}
+							height={52}
+							isClickable={true}
+						/>
 					</div>
 					{!isMobile && <p>{data?.nickname}</p>}
 				</Box>

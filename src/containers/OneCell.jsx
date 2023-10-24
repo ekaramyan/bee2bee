@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { useEffect, useCallback } from 'react'
-import Wrapper from '../components/UI/Wrapper'
 import { useMediaQuery } from '@mui/material'
+import dynamic from 'next/dynamic'
 import useCells from '@/hooks/useCells'
 import starter from '@/assets/img/bees/starter.png'
 import beginner from '@/assets/img/bees/beginner.png'
@@ -11,8 +10,10 @@ import worker from '@/assets/img/bees/worker.png'
 import pro from '@/assets/img/bees/pro.png'
 import expert from '@/assets/img/bees/expert.png'
 import useCellActions from '@/hooks/useCellActions'
-import DesktopOneCell from '@/components/DesktopOneCell'
-import MobileOneCell from '@/components/MobileOneCell'
+import { fetchData } from '@/api/fetchData'
+import Wrapper from '../components/UI/Wrapper'
+const DesktopOneCell = dynamic(() => import('@/components/DesktopOneCell'))
+const MobileOneCell = dynamic(() => import('@/components/MobileOneCell'))
 
 export default function OneCell({ data }) {
 	const router = useRouter()
@@ -56,9 +57,15 @@ export default function OneCell({ data }) {
 		onRefreshClick()
 	}, [])
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+	const token = Cookies.get('access_token')
+	const apiUrl = process.env.API_URL
 
-	const onJoinClick = () => {
-		if (userId !== leaderActiveData?.data[0]?.leader?.id) {
+	const onJoinClick = async () => {
+		const users = await fetchData(`${apiUrl}/cells/${data[0]?.id}`, token)
+		if (
+			userId !== leaderActiveData?.data[0]?.leader?.id &&
+			users.data.cellUsers.length > 6
+		) {
 			postFollower(data[0]?.id, userId)
 		}
 	}

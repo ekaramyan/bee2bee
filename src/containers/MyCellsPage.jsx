@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
+import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
-import MyCellsComponent from '@/components/MyCellsComponent'
+const MyCellsComponent = dynamic(() => import('@/components/MyCellsComponent'))
 
 export default function MyCells() {
 	return (

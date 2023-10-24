@@ -1,10 +1,24 @@
 import { Box, Typography } from '@mui/material'
-import ConsultantAvatar from './ConsultantAvatar'
+import UserAvatar from './UserAvatar'
+import avatarBg from '@/assets/img/consultant_avatar.svg'
 
 export default function Consultant({ data }) {
 	return (
 		<Box style={{ display: 'flex', justifyContent: 'center', gap: 20 }}>
-			<ConsultantAvatar />
+			<Box
+				style={{
+					background: `url(${avatarBg.src}) no-repeat center / cover`,
+					width: '140px',
+					height: '158px',
+				}}
+			>
+				<UserAvatar
+					avatarUrl={data?.avatarUrl}
+					width={125}
+					height={145}
+					isLeader={true}
+				/>
+			</Box>
 			<Box style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
 				<Box
 					style={{

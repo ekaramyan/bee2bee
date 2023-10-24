@@ -1,8 +1,9 @@
-import CellComponent from '@/components/CellComponent'
-import Consultant from '@/components/UI/Consultant'
 import { Box, Typography } from '@mui/material'
-import BigCell from '@/components/UI/BigCell'
-import UserInfo from '@/components/UserInfo'
+import dynamic from 'next/dynamic'
+const CellComponent = dynamic(() => import('@/components/CellComponent'))
+const Consultant = dynamic(() => import('@/components/UI/Consultant'))
+const BigCell = dynamic(() => import('@/components/UI/BigCell'))
+const UserInfo = dynamic(() => import('@/components/UserInfo'))
 
 export default function CellInfoComponent({
 	cellId,

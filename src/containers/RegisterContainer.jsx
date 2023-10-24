@@ -1,6 +1,9 @@
 import { Box } from '@mui/material'
+import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
-import RegisterComponent from '@/components/RegisterComponent'
+const RegisterComponent = dynamic(() =>
+	import('@/components/RegisterComponent')
+)
 
 export default function RegisterContainer() {
 	return (

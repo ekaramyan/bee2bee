@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
-import EditAccount from '@/components/EditAccount'
+const EditAccount = dynamic(() => import('@/components/EditAccount'))
 
 export default function AccountSettings({ data }) {
 	const router = useRouter()

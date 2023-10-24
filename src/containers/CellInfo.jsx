@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
-import Wrapper from '../components/UI/Wrapper'
 import {
 	Typography,
 	useMediaQuery,
@@ -13,8 +11,14 @@ import {
 	styled,
 } from '@mui/material'
 import useIsLeader from '@/hooks/useIsLeader'
-import CellInfoComponent from '@/components/CellInfoComponent'
-import MobileCellInfoComponent from '@/components/MobileCellInfoComponent'
+import dynamic from 'next/dynamic'
+import Wrapper from '../components/UI/Wrapper'
+const CellInfoComponent = dynamic(() =>
+	import('@/components/CellInfoComponent')
+)
+const MobileCellInfoComponent = dynamic(() =>
+	import('@/components/MobileCellInfoComponent')
+)
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -135,7 +139,7 @@ export default function CellInfo({ data }) {
 				<StyledDialog open={showErrorDialog} TransitionComponent={Transition}>
 					<DialogContent>
 						<Typography variant='body1'>
-							You are leader in this cell, you can't join it as follower
+							You are leader in this cell, you cannot join it as follower
 						</Typography>
 					</DialogContent>
 				</StyledDialog>

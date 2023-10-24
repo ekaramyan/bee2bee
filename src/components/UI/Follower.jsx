@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import CellUserAvatar from './CellUserAvatar'
+import CellUserAvatar from './UserAvatar'
 import green from '@/assets/img/follower_avatar_green.svg'
 import yellow from '@/assets/img/follower_avatar_yellow.svg'
 
@@ -20,9 +20,10 @@ export default function Follower({ className, onClick, avatar, isAccepted }) {
 				backgroundSize: 'contain',
 				width: '100px',
 				height: '100px',
+				cursor: 'pointer',
 			}}
 		>
-			<CellUserAvatar avatarUrl={avatar} width={80} height={90} />
+			<CellUserAvatar avatarUrl={avatar} width={80} height={92} />
 		</Box>
 	)
 }

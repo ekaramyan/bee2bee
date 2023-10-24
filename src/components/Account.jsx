@@ -23,7 +23,11 @@ export default function Account({ onEditClick, data }) {
 					justifyContent: 'center',
 				}}
 			>
-				<UserAvatar previewImage={null} />
+				<UserAvatar
+					previewImage={null}
+					isClickable={true}
+					clickUrl='/account-settings'
+				/>
 			</div>
 			<Box
 				style={{
