@@ -1,4 +1,7 @@
-/** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+	enabled: false,
+})
+
 require('dotenv').config()
 
 console.log(process.env.API_URL.slice(0, -4))
@@ -15,4 +18,4 @@ const nextConfig = {
 	},
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)

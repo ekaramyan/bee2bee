@@ -39,15 +39,6 @@ export default function Contacts() {
 		await sendContactForm(data)
 	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	const renderTextField = (label, type, name) => (
-		<TextField
-			label={label}
-			variant='standard'
-			fullWidth
-			type={type}
-			name={name}
-		/>
-	)
 
 	return (
 		<Box

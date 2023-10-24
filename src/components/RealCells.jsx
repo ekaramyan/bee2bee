@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useCells from '@/hooks/useCells'
-import RealCell from './UI/RealCell'
+import dynamic from 'next/dynamic'
+const RealCell = dynamic(() => import('@/components/UI/RealCell'))
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	const { getCells } = useCells()

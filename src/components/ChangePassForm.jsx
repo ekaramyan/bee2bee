@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, TextField } from '@mui/material'
 import Link from 'next/link'
-import AuthButton from './UI/AuthButton'
+import dynamic from 'next/dynamic'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
 
 export default function ChangePassForm({
 	isChange,

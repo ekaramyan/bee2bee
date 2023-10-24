@@ -1,11 +1,10 @@
-import CellComponent from '@/components/CellComponent'
-import Consultant from '@/components/UI/Consultant'
 import Image from 'next/image'
 import { Box, Typography, Button } from '@mui/material'
-import BigCell from '@/components/UI/BigCell'
-import UserInfo from '@/components/UserInfo'
+import dynamic from 'next/dynamic'
 import refresh from '@/assets/img/refresh_dark.svg'
-import { useRouter } from 'next/router'
+const CellComponent = dynamic(() => import('@/components/CellComponent'))
+const Consultant = dynamic(() => import('@/components/UI/Consultant'))
+const UserInfo = dynamic(() => import('@/components/UserInfo'))
 
 export default function MobileCellInfoComponent({
 	cellId,
@@ -42,7 +41,7 @@ export default function MobileCellInfoComponent({
 				}}
 			>
 				{!user && (
-					<Button onClick={refreshFetch}>
+					<Button onClick={refreshFetch} style={{ cursor: 'pointer' }}>
 						<Image src={refresh.src} width={35} height={35} />
 					</Button>
 				)}

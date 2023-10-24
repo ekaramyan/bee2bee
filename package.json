@@ -14,6 +14,7 @@
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.13.3",
     "@mui/styled-engine-sc": "5.12.0",
+    "@next/bundle-analyzer": "^13.5.6",
     "@reduxjs/toolkit": "^1.9.6",
     "axios": "1.4.0",
     "browser-image-compression": "^2.0.2",
@@ -31,5 +32,8 @@
     "redux": "^4.2.1",
     "sharp": "^0.32.6",
     "styled-components": "5.3.11"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.9.1"
   }
 }

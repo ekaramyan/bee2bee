@@ -6,7 +6,8 @@ import {
 	FormControlLabel,
 	Checkbox,
 } from '@mui/material'
-import AuthButton from './UI/AuthButton'
+import dynamic from 'next/dynamic'
+const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import useReset from '@/hooks/useReset'
 
 export default function ChangePassForm() {

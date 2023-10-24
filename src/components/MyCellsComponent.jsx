@@ -1,7 +1,8 @@
 import useCells from '@/hooks/useCells'
 import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import CellBox from './UI/CellBox'
+import dynamic from 'next/dynamic'
+const CellBox = dynamic(() => import('@/components/UI/CellBox'))
 
 export default function MyCellsComponent({ isOpen }) {
 	const [isFollower, setIsFollower] = useState(true)

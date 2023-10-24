@@ -2,8 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Grid, Box } from '@mui/material'
 import { useRouter } from 'next/router'
-import DataBox from '@/components/UI/DataBox'
+import dynamic from 'next/dynamic'
 import refresh from '@/assets/img/refresh_dark.svg'
+const DataBox = dynamic(() => import('@/components/UI/DataBox'))
 
 export default function MobileOneCell({
 	data,

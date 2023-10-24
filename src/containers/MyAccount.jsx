@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import Wrapper from '../components/UI/Wrapper'
 import Account from '@/components/Account'
 

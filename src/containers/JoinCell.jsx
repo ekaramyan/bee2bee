@@ -8,11 +8,11 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 const Confetti = dynamic(() => import('react-confetti'))
 const Cell = dynamic(() => import('../components/UI/Cell'))
-import starter from '@/assets/img/bees/starter.png'
-import beginner from '@/assets/img/bees/beginner.png'
-import worker from '@/assets/img/bees/worker.png'
-import pro from '@/assets/img/bees/pro.png'
-import expert from '@/assets/img/bees/expert.png'
+import starter from '@/assets/img/bees/starter.webp'
+import beginner from '@/assets/img/bees/beginner.webp'
+import worker from '@/assets/img/bees/worker.webp'
+import pro from '@/assets/img/bees/pro.webp'
+import expert from '@/assets/img/bees/expert.webp'
 
 export default function JoinCell() {
 	const [birthday, setBirthday] = useState(null)
