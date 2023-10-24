@@ -26,9 +26,6 @@ export default function OneCell({ data }) {
 		{ bee: pro },
 		{ bee: expert },
 	]
-	const onJoinClick = () => {
-		postFollower(data[0]?.id, userId)
-	}
 
 	const {
 		data: followerActiveData,
@@ -59,6 +56,12 @@ export default function OneCell({ data }) {
 		onRefreshClick()
 	}, [])
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
+	const onJoinClick = () => {
+		if (userId !== leaderActiveData?.data[0]?.leader?.id) {
+			postFollower(data[0]?.id, userId)
+		}
+	}
 
 	return (
 		<Wrapper

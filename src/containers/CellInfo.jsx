@@ -1,12 +1,39 @@
+import React from 'react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
-import { useMediaQuery } from '@mui/material'
+import {
+	Typography,
+	useMediaQuery,
+	Dialog,
+	DialogContent,
+	Slide,
+	styled,
+} from '@mui/material'
 import useIsLeader from '@/hooks/useIsLeader'
 import CellInfoComponent from '@/components/CellInfoComponent'
 import MobileCellInfoComponent from '@/components/MobileCellInfoComponent'
+
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+	'& .MuiDialog-paper': {
+		top: '10px',
+		margin: '0',
+		position: 'absolute',
+		backgroundColor: '#fff',
+		borderRadius: 15,
+		boxShadow: 'none',
+		transition: '.3s',
+	},
+	'& .MuiBackdrop-root': {
+		backgroundColor: 'transparent',
+	},
+}))
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+	return <Slide direction='down' ref={ref} {...props} />
+})
 
 export default function CellInfo({ data }) {
 	const router = useRouter()
@@ -23,8 +50,9 @@ export default function CellInfo({ data }) {
 	const [isAccepted, setIsAccepted] = useState(null)
 	const [cellUserId, setCellUserId] = useState(null)
 
+	const [showErrorDialog, setShowErrorDialog] = useState(false)
+
 	const userId = parseInt(Cookies.get('userId'))
-	console.log(cellData)
 	const checkRole = useIsLeader()
 
 	const handleUserClick = (user, autoCreate, accept, id) => {
@@ -48,6 +76,15 @@ export default function CellInfo({ data }) {
 		refreshFetch()
 	}, [cellId])
 
+	useEffect(() => {
+		if (userId === leader.id) {
+			setShowErrorDialog(true)
+			const timer = setTimeout(() => {
+				setShowErrorDialog(false)
+			}, 5000)
+			return () => clearTimeout(timer)
+		}
+	}, [])
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
@@ -93,6 +130,15 @@ export default function CellInfo({ data }) {
 				)
 			) : (
 				<>Loading...</>
+			)}
+			{showErrorDialog && (
+				<StyledDialog open={showErrorDialog} TransitionComponent={Transition}>
+					<DialogContent>
+						<Typography variant='body1'>
+							You are leader in this cell, you can't join it as follower
+						</Typography>
+					</DialogContent>
+				</StyledDialog>
 			)}
 		</Wrapper>
 	)
