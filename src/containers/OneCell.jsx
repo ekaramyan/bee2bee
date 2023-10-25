@@ -16,7 +16,6 @@ const DesktopOneCell = dynamic(() => import('@/components/DesktopOneCell'))
 const MobileOneCell = dynamic(() => import('@/components/MobileOneCell'))
 
 export default function OneCell({ data, joinList, level }) {
-	console.log(level)
 	const router = useRouter()
 	const { postFollower } = useCellActions()
 	const userId = parseInt(Cookies.get('userId'))
@@ -63,12 +62,19 @@ export default function OneCell({ data, joinList, level }) {
 
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${data[0]?.id}`, token)
+		console.log(
+			userId !== leaderActiveData?.data[0]?.leader?.id
+			// &&
+			// Number(users.data.cellUsers.length) < 6
+		)
 		if (
 			userId !== leaderActiveData?.data[0]?.leader?.id &&
-			users.data.cellUsers.length > 6
+			users.data.cellUsers.length < 6
 		) {
-			postFollower(data[0]?.id, userId)
+			console.log('success')
+			postFollower(toJoin, userId)
 		}
+		router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
 	}
 
 	return (

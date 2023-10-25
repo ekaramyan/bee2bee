@@ -31,7 +31,8 @@ export default function RegisterComponent() {
 		return birthDate >= year1900 && birthDate <= today
 	}
 
-	const validateName = name => /^[a-zA-Z\s]+$/.test(name)
+	const validateName = name =>
+		/^[a-zA-Z\u0400-\u04FF\u10A0-\u10FF\s]+$/.test(name)
 
 	const validatePassword = password => {
 		return (
@@ -312,7 +313,7 @@ export default function RegisterComponent() {
 			{success && (
 				<div>
 					Successfully registered! Confirm your email address, then you can
-					enter you account
+					enter your account
 				</div>
 			)}
 		</Box>

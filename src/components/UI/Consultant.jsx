@@ -35,14 +35,15 @@ export default function Consultant({ data }) {
 				</Box>
 				<Typography variant='consultant_label'>
 					Username:{' '}
-					<Typography variant='consultant_data'>{data.nickname}</Typography>
+					<Typography variant='consultant_data'>{data.firstName}</Typography>
 				</Typography>
 				<Typography variant='consultant_label'>
-					Phone: <Typography variant='consultant_data'>{data.phone}</Typography>
+					Phone:{' '}
+					<Typography variant='consultant_data'>+{data.phone}</Typography>
 				</Typography>
 				<Typography variant='consultant_label'>
 					Telegram:{' '}
-					<Typography variant='consultant_data'>{data.telegram}</Typography>
+					<Typography variant='consultant_data'>{data.nickname}</Typography>
 				</Typography>
 			</Box>
 		</Box>

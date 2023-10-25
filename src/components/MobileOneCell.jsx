@@ -30,37 +30,29 @@ export default function MobileOneCell({
 				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={35} height={35} />
 				</Button>{' '}
-				<Link
-					href={cellId ? `${id}/info/${cellId}` : `/cells/${id}`}
+				<Button
+					variant='outlined'
+					disabled={!cellId}
 					style={{
 						cursor: cellId ? 'pointer' : 'not-allowed',
+						width: '15%',
+						color: cellId ? '#23201C' : 'rgb(123 123 122)',
+						textAlign: 'center',
+						textShadow: '1px 1px 1px #FFF',
+						fontFamily: 'Noto Sans',
+						fontSize: 24,
+						fontWeight: 900,
+						textTransform: 'uppercase',
+						borderRadius: 5,
+						border: cellId ? '1px solid #1B170F' : '2px solid rgb(123 123 122)',
+						background: cellId
+							? 'rgba(217, 217, 217, 0.00)'
+							: 'rgba(217, 217, 217, 0.2)',
 					}}
+					onClick={onJoinClick}
 				>
-					<Button
-						variant='outlined'
-						disabled={!cellId}
-						style={{
-							width: '100%',
-							color: cellId ? '#23201C' : 'rgb(123 123 122)',
-							textAlign: 'center',
-							textShadow: '1px 1px 1px #FFF',
-							fontFamily: 'Noto Sans',
-							fontSize: 24,
-							fontWeight: 900,
-							textTransform: 'uppercase',
-							borderRadius: 5,
-							border: cellId
-								? '1px solid #1B170F'
-								: '2px solid rgb(123 123 122)',
-							background: cellId
-								? 'rgba(217, 217, 217, 0.00)'
-								: 'rgba(217, 217, 217, 0.2)',
-						}}
-						onClick={onJoinClick}
-					>
-						JOIN
-					</Button>
-				</Link>
+					JOIN
+				</Button>
 				<Button
 					onClick={() => router.back()}
 					style={{
