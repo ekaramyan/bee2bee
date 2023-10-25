@@ -81,7 +81,7 @@ export default function CellInfo({ data }) {
 	}, [cellId])
 
 	useEffect(() => {
-		if (userId === leader.id) {
+		if (userId === leader?.id) {
 			setShowErrorDialog(true)
 			const timer = setTimeout(() => {
 				setShowErrorDialog(false)

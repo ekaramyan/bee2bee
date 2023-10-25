@@ -22,7 +22,7 @@ export default function BigCell({ children, ...props }) {
 	return (
 		<Box style={combinedStyle}>
 			{!props.activeUser && (
-				<Button onClick={props.onRefreshClick}>
+				<Button onClick={props.onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={31} height={25} />
 				</Button>
 			)}

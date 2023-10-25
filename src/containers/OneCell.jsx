@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { useMediaQuery } from '@mui/material'
@@ -15,7 +15,8 @@ import Wrapper from '../components/UI/Wrapper'
 const DesktopOneCell = dynamic(() => import('@/components/DesktopOneCell'))
 const MobileOneCell = dynamic(() => import('@/components/MobileOneCell'))
 
-export default function OneCell({ data }) {
+export default function OneCell({ data, joinList, level }) {
+	console.log(level)
 	const router = useRouter()
 	const { postFollower } = useCellActions()
 	const userId = parseInt(Cookies.get('userId'))
@@ -27,7 +28,6 @@ export default function OneCell({ data }) {
 		{ bee: pro },
 		{ bee: expert },
 	]
-
 	const {
 		data: followerActiveData,
 		loading: followerActiveLoading,
@@ -56,6 +56,7 @@ export default function OneCell({ data }) {
 	useEffect(() => {
 		onRefreshClick()
 	}, [])
+	const toJoin = joinList?.data[0]?.id
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
@@ -78,10 +79,11 @@ export default function OneCell({ data }) {
 					: 'Join the cell'
 			}
 		>
-			{id && data && data[0]?.id ? (
+			{id && data ? (
 				isMobile ? (
 					<MobileOneCell
-						data={data}
+						data={level}
+						cellId={toJoin}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
 						waitingData={waitingData}
@@ -91,7 +93,8 @@ export default function OneCell({ data }) {
 					/>
 				) : (
 					<DesktopOneCell
-						data={data}
+						data={level}
+						cellId={toJoin}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
 						waitingData={waitingData}

@@ -8,6 +8,7 @@ const DataBox = dynamic(() => import('@/components/UI/DataBox'))
 
 export default function MobileOneCell({
 	data,
+	cellId,
 	leaderActiveData,
 	followerActiveData,
 	waitingData,
@@ -26,15 +27,21 @@ export default function MobileOneCell({
 					alignItems: 'center',
 				}}
 			>
-				<Button onClick={onRefreshClick}>
+				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={35} height={35} />
 				</Button>{' '}
-				<Link href={`${id}/info/${data[0].id}`}>
+				<Link
+					href={cellId ? `${id}/info/${cellId}` : `/cells/${id}`}
+					style={{
+						cursor: cellId ? 'pointer' : 'not-allowed',
+					}}
+				>
 					<Button
 						variant='outlined'
+						disabled={!cellId}
 						style={{
 							width: '100%',
-							color: '#23201C',
+							color: cellId ? '#23201C' : 'rgb(123 123 122)',
 							textAlign: 'center',
 							textShadow: '1px 1px 1px #FFF',
 							fontFamily: 'Noto Sans',
@@ -42,8 +49,12 @@ export default function MobileOneCell({
 							fontWeight: 900,
 							textTransform: 'uppercase',
 							borderRadius: 5,
-							border: '1px solid #1B170F',
-							background: 'rgba(217, 217, 217, 0.00)',
+							border: cellId
+								? '1px solid #1B170F'
+								: '2px solid rgb(123 123 122)',
+							background: cellId
+								? 'rgba(217, 217, 217, 0.00)'
+								: 'rgba(217, 217, 217, 0.2)',
 						}}
 						onClick={onJoinClick}
 					>

@@ -29,7 +29,7 @@ export default function Cell({
 			}}
 		>
 			<Image src={bee} alt='cell' width={65} height={90} />
-			{canJoin && (
+			{canJoin ? (
 				<Link href={`cells/${join}`}>
 					<Button
 						variant='outlined'
@@ -52,6 +52,8 @@ export default function Cell({
 						JOIN
 					</Button>
 				</Link>
+			) : (
+				<div style={{ height: 50 }} />
 			)}
 			<Typography variant='level_small' component={'h6'}>
 				{level} {price}$

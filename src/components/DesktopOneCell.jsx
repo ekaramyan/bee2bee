@@ -9,6 +9,7 @@ const DataBox = dynamic(() => import('@/components/UI/DataBox'))
 
 export default function DesktopOneCell({
 	data,
+	cellId,
 	leaderActiveData,
 	followerActiveData,
 	waitingData,
@@ -17,6 +18,7 @@ export default function DesktopOneCell({
 	cells,
 	id,
 }) {
+	console.log(data)
 	const router = useRouter()
 	return (
 		<BigCell
@@ -24,12 +26,18 @@ export default function DesktopOneCell({
 			style={{ gap: 10, justifyContent: 'center' }}
 		>
 			<Image src={cells[id - 1].bee} alt='cell' width={38} height={60} />
-			<Link href={`${id}/info/${data[0].id}`}>
+			<Link
+				href={cellId ? `${id}/info/${cellId}` : `/cells/${id}`}
+				style={{
+					cursor: cellId ? 'pointer' : 'not-allowed',
+				}}
+			>
 				<Button
 					variant='outlined'
+					disabled={!cellId}
 					style={{
 						width: '100%',
-						color: '#23201C',
+						color: cellId ? '#23201C' : 'rgb(123 123 122)',
 						textAlign: 'center',
 						textShadow: '1px 1px 1px #FFF',
 						fontFamily: 'Noto Sans',
@@ -37,14 +45,19 @@ export default function DesktopOneCell({
 						fontWeight: 900,
 						textTransform: 'uppercase',
 						borderRadius: 5,
-						border: '1px solid #1B170F',
-						background: 'rgba(217, 217, 217, 0.00)',
+						border: cellId
+							? '1px solid #1B170F'
+							: '1px solid rgba(217, 217, 217, 0.2)',
+						background: cellId
+							? 'rgba(217, 217, 217, 0.00)'
+							: 'rgba(217, 217, 217, 0.2)',
 					}}
 					onClick={onJoinClick}
 				>
 					JOIN
 				</Button>
 			</Link>
+
 			<Grid
 				style={{
 					display: 'grid',
@@ -79,7 +92,7 @@ export default function DesktopOneCell({
 				/>
 			</Grid>
 			<Typography variant='level_big'>
-				{data[0]?.cellLevel.level} {data[0]?.cellLevel.price}$
+				{data?.level} {data?.price}$
 			</Typography>
 		</BigCell>
 	)
