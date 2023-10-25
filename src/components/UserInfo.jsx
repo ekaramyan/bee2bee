@@ -6,6 +6,7 @@ import useCellActions from '@/hooks/useCellActions'
 const CellUserAvatar = dynamic(() => import('./UI/UserAvatar'))
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import avatarBg from '@/assets/img/leader_avatar.svg'
+import { useEffect } from 'react'
 
 export default function UserInfo({
 	user,
@@ -32,6 +33,12 @@ export default function UserInfo({
 	const acceptedCount = followers.filter(
 		follower => follower.follower.isConfirmed
 	).length
+
+	useEffect(() => {
+		if (followers.length === 6 && acceptedCount === 6) {
+			router.push('/cells')
+		}
+	}, [acceptedCount])
 
 	const { loading, error, success, deleteFollower, patchFollower, closeCell } =
 		useCellActions()

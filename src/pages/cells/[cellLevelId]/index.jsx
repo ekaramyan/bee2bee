@@ -35,8 +35,6 @@ export async function getServerSideProps(context) {
 		'levelData'
 	)
 
-	console.log(levelDataProps)
-
 	return {
 		props: {
 			...cellDataProps.props,

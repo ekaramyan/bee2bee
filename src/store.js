@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 const initialState = {
 	loggedIn: false,
 	userId: null,
+	avatarUrl: null,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -16,6 +17,8 @@ const userReducer = (state = initialState, action) => {
 			return { ...state, loggedIn: false, userId: null }
 		case 'SET_USER_ID':
 			return { ...state, userId: action.payload }
+		case 'SET_AVATAR_URL':
+			return { ...state, avatarUrl: action.payload }
 		default:
 			return state
 	}

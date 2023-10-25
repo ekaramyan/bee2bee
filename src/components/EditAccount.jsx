@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import { Box, Typography, Select, MenuItem, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ImageCompression from 'browser-image-compression'
+import { useDispatch } from 'react-redux'
 import countryList from '@/countryList'
 import useUploadPhoto from '@/hooks/useUploadPhoto'
 import useUpdateUser from '@/hooks/useUpdateUser'
@@ -29,6 +30,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		additionalTelegram: data?.additionalTelegram || '',
 	})
 	const router = useRouter()
+	const dispatch = useDispatch()
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		if (file) {
@@ -57,16 +59,12 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		}
 	}
 
-	// useEffect(() => {
-	// 	if (success) {
-	// 		setPreviewImage(null)
-	// 	}
-	// }, [success])
-
 	const onSaveClick = async e => {
 		e.preventDefault()
 		handleConfirmPhoto()
 		update(formData)
+		const newAvatarUrl = String(Math.random())
+		dispatch({ type: 'SET_AVATAR_URL', payload: newAvatarUrl })
 	}
 
 	const handleInputChange = e => {
@@ -76,9 +74,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		})
 	}
 
-	// if (!data) {
-	// 	router.push('/')
-	// }
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	return (
@@ -109,6 +104,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 				>
 					<UserAvatar
 						previewImage={previewImage}
+						avatarUrl='/users/me/photo'
+						width={158}
+						height={184}
 						isClickable={true}
 						clickUrl=''
 					/>

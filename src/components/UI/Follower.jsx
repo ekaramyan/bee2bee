@@ -3,7 +3,13 @@ import CellUserAvatar from './UserAvatar'
 import green from '@/assets/img/follower_avatar_green.svg'
 import yellow from '@/assets/img/follower_avatar_yellow.svg'
 
-export default function Follower({ className, onClick, avatar, isAccepted }) {
+export default function Follower({
+	className,
+	onClick,
+	avatar,
+	isAccepted,
+	user,
+}) {
 	return (
 		<Box
 			onClick={onClick}
@@ -20,7 +26,7 @@ export default function Follower({ className, onClick, avatar, isAccepted }) {
 				backgroundSize: 'contain',
 				width: '100px',
 				height: '100px',
-				cursor: 'pointer',
+				cursor: user ? 'pointer' : 'default',
 			}}
 		>
 			<CellUserAvatar avatarUrl={avatar} width={80} height={92} />

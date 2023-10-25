@@ -136,6 +136,7 @@ export default function UserMenu() {
 							width={44}
 							height={52}
 							isClickable={true}
+							avatarUrl='/users/me/photo'
 						/>
 					</div>
 					{!isMobile && <p>{data?.nickname}</p>}

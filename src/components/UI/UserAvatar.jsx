@@ -3,8 +3,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
-import defaultAvatar from '../../assets/img/default.jpg'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import defaultAvatar from '../../assets/img/default.jpg'
 
 export default function UserAvatar({
 	previewImage,
@@ -20,13 +21,13 @@ export default function UserAvatar({
 	const token = Cookies.get('access_token')
 	const router = useRouter()
 	const { cellId } = router.query
+	const avatarReload = useSelector(state => state.user.avatarUrl)
 
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
-				const url = avatarUrl
-					? `${apiUrl}${avatarUrl}`
-					: `${apiUrl}/users/me/photo`
+				const url = `${apiUrl}${avatarUrl}`
+
 				const avatarResponse = await axios.get(url, {
 					headers: { Authorization: `Bearer ${token}` },
 					responseType: 'blob',
@@ -43,7 +44,7 @@ export default function UserAvatar({
 		}
 
 		fetchDataAsync()
-	}, [cellId, avatarUrl])
+	}, [cellId, avatarUrl, avatarReload])
 
 	const avatarImage = (
 		<Image

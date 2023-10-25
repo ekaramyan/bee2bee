@@ -2,6 +2,7 @@ import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 
 export default function CellBox({ isActive, data }) {
+	console.log(data)
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Box
@@ -23,7 +24,7 @@ export default function CellBox({ isActive, data }) {
 					borderRadius: 5,
 				}}
 			>
-				{data &&
+				{data?.data &&
 					data.data.map((cell, index) => (
 						<Link
 							key={index}
@@ -32,7 +33,7 @@ export default function CellBox({ isActive, data }) {
 							<Typography variant={isActive ? 'active_cells' : 'closed_cells'}>
 								<b>
 									{cell.cellLevel.level.slice(0, 1)}-#{cell.id}
-								</b>
+								</b>{' '}
 								{cell.createdAt} <br />
 							</Typography>
 						</Link>

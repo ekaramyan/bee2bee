@@ -59,7 +59,7 @@ export default function OneCell({ data, joinList, level }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
-
+	console.log(joinList)
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
 		console.log(users)
@@ -67,7 +67,6 @@ export default function OneCell({ data, joinList, level }) {
 			!leaderActiveData ||
 			(userId !== users?.data?.leader?.id && users.data.cellUsers.length < 6)
 		) {
-			console.log('success')
 			postFollower(toJoin, userId)
 		}
 		router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)

@@ -57,7 +57,7 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 		...Array(6 - trimmedFollowers.length).fill({}),
 	]
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	console.log(followers)
+
 	return (
 		<>
 			<div
@@ -82,6 +82,7 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 							)
 						}
 						avatar={follower?.follower?.avatarUrl || ''}
+						user={follower.follower}
 					/>
 				))}
 				<Leader

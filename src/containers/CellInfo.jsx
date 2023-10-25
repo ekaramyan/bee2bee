@@ -89,61 +89,76 @@ export default function CellInfo({ data }) {
 			return () => clearTimeout(timer)
 		}
 	}, [])
+
+	const acceptedCount = followers.filter(
+		follower => follower.follower.isConfirmed
+	).length
+
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
-		<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
-			{id && cellData ? (
-				isMobile ? (
-					<MobileCellInfoComponent
-						cellId={cellId}
-						cellData={cellData}
-						user={activeUser}
-						role={role}
-						leader={leader}
-						followers={followers}
-						consultant={consultant}
-						isAutoCreated={isAutoCreated}
-						isAccepted={isAccepted}
-						cellUserId={cellUserId}
-						handleUserClick={handleUserClick}
-						refreshFetch={refreshFetch}
-						setActiveUser={setActiveUser}
-						handleCloseClick={() =>
-							activeUser ? setActiveUser(null) : router.push('/cells')
-						}
-					/>
+		<>
+			{followers.length === 6 && acceptedCount === 6 && (
+				<Typography variant='body1'> Cell is closed</Typography>
+			)}
+			<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
+				{id && cellData ? (
+					isMobile ? (
+						<MobileCellInfoComponent
+							cellId={cellId}
+							cellData={cellData}
+							user={activeUser}
+							role={role}
+							leader={leader}
+							followers={followers}
+							consultant={consultant}
+							isAutoCreated={isAutoCreated}
+							isAccepted={isAccepted}
+							cellUserId={cellUserId}
+							handleUserClick={handleUserClick}
+							refreshFetch={refreshFetch}
+							setActiveUser={setActiveUser}
+							handleCloseClick={() =>
+								activeUser ? setActiveUser(null) : router.push('/cells')
+							}
+						/>
+					) : (
+						<CellInfoComponent
+							cellId={cellId}
+							cellData={cellData}
+							user={activeUser}
+							role={role}
+							leader={leader}
+							followers={followers}
+							consultant={consultant}
+							isAutoCreated={isAutoCreated}
+							isAccepted={isAccepted}
+							cellUserId={cellUserId}
+							handleUserClick={handleUserClick}
+							refreshFetch={refreshFetch}
+							setActiveUser={setActiveUser}
+							handleCloseClick={() =>
+								activeUser ? setActiveUser(null) : router.push('/cells')
+							}
+						/>
+					)
 				) : (
-					<CellInfoComponent
-						cellId={cellId}
-						cellData={cellData}
-						user={activeUser}
-						role={role}
-						leader={leader}
-						followers={followers}
-						consultant={consultant}
-						isAutoCreated={isAutoCreated}
-						isAccepted={isAccepted}
-						cellUserId={cellUserId}
-						handleUserClick={handleUserClick}
-						refreshFetch={refreshFetch}
-						setActiveUser={setActiveUser}
-						handleCloseClick={() =>
-							activeUser ? setActiveUser(null) : router.push('/cells')
-						}
-					/>
-				)
-			) : (
-				<>Loading...</>
-			)}
-			{showErrorDialog && (
-				<StyledDialog open={showErrorDialog} TransitionComponent={Transition}>
-					<DialogContent>
-						<Typography variant='body1'>
-							You are leader in this cell, you cannot join it as follower
-						</Typography>
-					</DialogContent>
-				</StyledDialog>
-			)}
-		</Wrapper>
+					<>Loading...</>
+				)}
+
+				{showErrorDialog && (
+					<StyledDialog
+						open={showErrorDialog}
+						TransitionComponent={Transition}
+						onClick={() => setShowErrorDialog(false)}
+					>
+						<DialogContent>
+							<Typography variant='body1'>
+								You are leader in this cell, you cannot join it as follower
+							</Typography>
+						</DialogContent>
+					</StyledDialog>
+				)}
+			</Wrapper>
+		</>
 	)
 }

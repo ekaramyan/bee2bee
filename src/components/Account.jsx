@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
@@ -27,6 +27,9 @@ export default function Account({ onEditClick, data }) {
 					previewImage={null}
 					isClickable={true}
 					clickUrl='/account-settings'
+					avatarUrl='/users/me/photo'
+					width={158}
+					height={184}
 				/>
 			</div>
 			<Box
