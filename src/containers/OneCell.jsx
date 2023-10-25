@@ -61,15 +61,11 @@ export default function OneCell({ data, joinList, level }) {
 	const apiUrl = process.env.API_URL
 
 	const onJoinClick = async () => {
-		const users = await fetchData(`${apiUrl}/cells/${data[0]?.id}`, token)
-		console.log(
-			userId !== leaderActiveData?.data[0]?.leader?.id
-			// &&
-			// Number(users.data.cellUsers.length) < 6
-		)
+		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
+		console.log(users)
 		if (
-			userId !== leaderActiveData?.data[0]?.leader?.id &&
-			users.data.cellUsers.length < 6
+			!leaderActiveData ||
+			(userId !== users?.data?.leader?.id && users.data.cellUsers.length < 6)
 		) {
 			console.log('success')
 			postFollower(toJoin, userId)
@@ -85,7 +81,7 @@ export default function OneCell({ data, joinList, level }) {
 					: 'Join the cell'
 			}
 		>
-			{id && data ? (
+			{id && joinList ? (
 				isMobile ? (
 					<MobileOneCell
 						data={level}

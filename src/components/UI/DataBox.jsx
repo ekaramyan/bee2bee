@@ -25,7 +25,7 @@ export default function DataBox({ title, data, style }) {
 					padding: isMobile ? '5px 12px' : 3,
 				}}
 			>
-				{data &&
+				{data?.data &&
 					data.data.map((cell, index) => (
 						<Link
 							key={cell.id}

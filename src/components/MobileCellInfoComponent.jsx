@@ -80,7 +80,7 @@ export default function MobileCellInfoComponent({
 					cellUserId={cellUserId}
 					isAutoCreated={isAutoCreated}
 					isAccepted={isAccepted}
-					followersCount={followers.length}
+					followers={followers}
 				/>
 			) : (
 				<>

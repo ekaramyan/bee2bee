@@ -18,7 +18,6 @@ export default function DesktopOneCell({
 	cells,
 	id,
 }) {
-	console.log(data)
 	const router = useRouter()
 	return (
 		<BigCell

@@ -7,7 +7,7 @@ const RegisterComponent = dynamic(() =>
 
 export default function RegisterContainer() {
 	return (
-		<Wrapper header={'Register'}>
+		<Wrapper>
 			<Box
 				style={{
 					display: 'flex',

@@ -20,7 +20,6 @@ export default function CellInfoComponent({
 	refreshFetch,
 	handleCloseClick,
 }) {
-	console.log(followers)
 	return (
 		<Box style={{ display: 'flex', gap: 25 }}>
 			<BigCell
@@ -36,7 +35,7 @@ export default function CellInfoComponent({
 						isAutoCreated={isAutoCreated}
 						isAccepted={isAccepted}
 						cellUserId={cellUserId}
-						followersCount={followers.length}
+						followers={followers}
 					/>
 				) : (
 					<>

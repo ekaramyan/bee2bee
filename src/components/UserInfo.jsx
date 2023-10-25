@@ -13,9 +13,8 @@ export default function UserInfo({
 	isAutoCreated,
 	isAccepted,
 	cellUserId,
-	followersCount,
+	followers,
 }) {
-	console.log(user)
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
 	const { cellId } = router.query
@@ -30,12 +29,16 @@ export default function UserInfo({
 		isActive: false,
 		isArchived: true,
 	}
+	const acceptedCount = followers.filter(
+		follower => follower.follower.isConfirmed
+	).length
+
 	const { loading, error, success, deleteFollower, patchFollower, closeCell } =
 		useCellActions()
 	const onAcceptClick = async () => {
 		try {
 			await patchFollower(cellUserId, acceptData)
-			if (role === 'leader' && followersCount === 6) {
+			if (role === 'leader' && followers.length === 6 && acceptedCount === 6) {
 				await closeCell(cellId, closeData)
 			}
 		} catch (error) {
