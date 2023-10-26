@@ -15,6 +15,9 @@ const StyledButton = styled(Button)`
 		&:hover {
 			opacity: 0.8;
 		}
+		@media (max-width: 1300px) {
+			font-size: 18px;
+		}
 	}
 `
 

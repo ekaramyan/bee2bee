@@ -145,6 +145,9 @@ const theme = createTheme({
 			fontSize: 42,
 			fontWeight: 700,
 			textTransform: 'uppercase',
+			'@media (max-width:1300px)': {
+				fontSize: 32,
+			},
 		},
 		burger_tabs: {
 			color: '#1B170F',
@@ -181,6 +184,9 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 			active: {
 				color: '#E06B00',
+			},
+			'@media(max-width:1300px)': {
+				fontSize: 24,
 			},
 		},
 		h6: {

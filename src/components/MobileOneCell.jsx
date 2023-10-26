@@ -36,6 +36,7 @@ export default function MobileOneCell({
 					style={{
 						cursor: cellId ? 'pointer' : 'not-allowed',
 						width: '15%',
+						minWidth: 80,
 						color: cellId ? '#23201C' : 'rgb(123 123 122)',
 						textAlign: 'center',
 						textShadow: '1px 1px 1px #FFF',

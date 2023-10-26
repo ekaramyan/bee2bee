@@ -47,7 +47,7 @@ export default function Account({ onEditClick, data }) {
 			<Grid
 				style={{
 					display: 'flex',
-					alignItems: 'center',
+					alignItems:  'center',
 					justifyContent: 'center',
 					flexDirection: isMobile ? 'column' : 'row',
 					gap: isMobile ? 0 : 60,
@@ -58,7 +58,7 @@ export default function Account({ onEditClick, data }) {
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: isMobile ? 'center' : 'flex-end',
+						alignItems: isMobile ? 'flex-start' : 'flex-end',
 					}}
 				>
 					<Typography variant='user_key' display='flex'>
@@ -76,7 +76,7 @@ export default function Account({ onEditClick, data }) {
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: isMobile ? 'center' : 'flex-start',
+						alignItems: isMobile ? 'flex-start' : 'flex-start',
 					}}
 				>
 					<Typography variant='user_key' display='flex'>

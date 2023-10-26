@@ -23,14 +23,13 @@ export default function ChangePassForm() {
 			<Box
 				style={{
 					width: '100%',
-					minHeight: '60vh',
 					height: '100%',
-					maxHeight: '70vh',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
 					justifyContent: 'center',
 					gap: 20,
+					padding: '20px 10px',
 				}}
 			>
 				<form

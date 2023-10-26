@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
-import { Grid } from '@mui/material'
+import { Grid, useMediaQuery } from '@mui/material'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 const Confetti = dynamic(() => import('react-confetti'))
@@ -21,6 +21,7 @@ export default function JoinCell() {
 	const router = useRouter()
 	const token = Cookies.get('access_token')
 	const url = process.env.API_URL
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
@@ -74,6 +75,7 @@ export default function JoinCell() {
 					flexWrap: 'wrap',
 					justifyContent: 'center',
 					alignContent: 'center',
+					gap: isMobile && 10,
 				}}
 			>
 				{showConfetti && (

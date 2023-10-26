@@ -30,12 +30,12 @@ export default function UserInfo({
 		isActive: false,
 		isArchived: true,
 	}
-	const acceptedCount = followers.filter(
-		follower => follower.follower.isConfirmed
+	const acceptedCount = followers?.filter(
+		follower => follower?.follower?.isConfirmed
 	).length
 
 	useEffect(() => {
-		if (followers.length === 6 && acceptedCount === 6) {
+		if (followers?.length === 6 && acceptedCount === 6) {
 			router.push('/cells')
 		}
 	}, [acceptedCount])

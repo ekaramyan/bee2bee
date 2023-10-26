@@ -186,7 +186,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								display: 'flex',
 								flexDirection: isMobile ? 'column' : 'row',
 								justifyContent: 'center',
-								alignItems: 'center',
+								alignItems: isMobile ? 'flex-start' : 'center',
 								gap: 2,
 								width: '100%',
 							}}
@@ -195,9 +195,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									alignItems: isMobile ? 'center' : 'flex-end',
+									alignItems: isMobile ? 'flex-start' : 'flex-end',
 									gap: 1,
-									width: '50%',
+									width: isMobile ? '100%' : '50%',
 									paddingRight: 2,
 								}}
 							>
@@ -214,7 +214,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									<Typography variant='user_item'>{data?.phone}</Typography>
 								</Typography>
 								<Typography variant='user_key' display='flex'>
-									Telegram Username:
+									Telegram:
 									<Typography variant='user_item'>{data?.telegram}</Typography>
 								</Typography>
 							</Box>
@@ -222,9 +222,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									alignItems: isMobile ? 'center' : 'start',
+									alignItems: isMobile ? 'flex-start' : 'start',
 									gap: 0.5,
-									width: '50%',
+									width: isMobile ? '100%' : '50%',
 								}}
 							>
 								<Typography variant='user_key' display='flex'>
@@ -244,7 +244,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										fontWeight: 400,
 									}}
 								>
-									Additional Email:
+									Add. Email:
 									<input
 										type='text'
 										value={formData?.additionalEmail}
@@ -314,7 +314,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										fontWeight: 400,
 									}}
 								>
-									Telegram Additional Username:
+									Add. Telegram:
 									<input
 										type='text'
 										value={formData?.additionalTelegram}
@@ -336,57 +336,65 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						</Box>
 
 						<Box
-							sx={{
-								display: 'flex',
-								flexDirection: isMobile ? 'column' : 'row',
-								justifyContent: 'center',
-								alignItems: 'center',
-								gap: isMobile ? 2 : 5,
-								width: isMobile ? 'none' : '100%',
-							}}
-						>
-							<AuthButton
-								variant='contained'
-								onClick={onChangeClick}
-								style={{
-									background: '#119A48',
-									width: isMobile ? '100%' : '50%',
-								}}
-							>
-								Change your password
-							</AuthButton>
-							<AuthButton
-								variant='contained'
-								onClick={onResetClick}
-								style={{
-									background: '#FF6B00',
-									width: isMobile ? '100%' : '50%',
-								}}
-							>
-								Reset your password
-							</AuthButton>
-						</Box>
-						<Box
 							style={{
-								marginTop: 4,
+								width: isMobile ? '80%' : '100%',
 								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								maxWidth: isMobile ? 270 : 'none',
-								width: '100%',
+								flexDirection: 'column',
+								gap: 8,
 							}}
 						>
-							<AuthButton
-								variant='contained'
-								onClick={onSaveClick}
-								type='submit'
-								style={{
-									background: '#A5560F',
-									width: isMobile ? '100%' : '50%',
+							<Box
+								sx={{
+									display: 'flex',
+									flexDirection: isMobile ? 'column' : 'row',
+									justifyContent: 'center',
+									alignItems: 'center',
+									gap: isMobile ? 1 : 5,
+									width: isMobile ? 'none' : '100%',
 								}}
 							>
-								Save changes
-							</AuthButton>
+								<AuthButton
+									variant='contained'
+									onClick={onChangeClick}
+									style={{
+										background: '#119A48',
+										width: isMobile ? '100%' : '50%',
+									}}
+								>
+									Change your password
+								</AuthButton>
+								<AuthButton
+									variant='contained'
+									onClick={onResetClick}
+									style={{
+										background: '#FF6B00',
+										width: isMobile ? '100%' : '50%',
+									}}
+								>
+									Reset your password
+								</AuthButton>
+							</Box>
+							<Box
+								style={{
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									gap: isMobile ? 2 : 5,
+									width: isMobile ? 'none' : '100%',
+								}}
+							>
+								<AuthButton
+									variant='contained'
+									onClick={onSaveClick}
+									type='submit'
+									style={{
+										background: '#A5560F',
+										width: isMobile ? '100%' : '50%',
+									}}
+								>
+									Save changes
+								</AuthButton>
+							</Box>
 						</Box>
 					</Box>
 				</form>

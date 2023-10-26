@@ -49,7 +49,7 @@ export default function Contacts() {
 				height: '100%',
 			}}
 		>
-			<Wrapper header={'Contact us'}>
+			<Wrapper header={'Contact us'} notLoggedIn={true}>
 				<Typography>Lorem ipsum...</Typography>
 				<Grid
 					sx={{

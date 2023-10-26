@@ -8,6 +8,7 @@ export default function CellBox({ isActive, data }) {
 		<Box
 			style={{
 				width: isMobile ? '100%' : '40%',
+				minWidth: 275,
 				marginTop: 15,
 			}}
 		>

@@ -1,15 +1,16 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 
 const Wrapper = ({ children, ...props }) => {
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Box
 			style={{
 				width: '100%',
-				height: '75%',
+				height: props.notLoggedIn ? '75%' : '100%',
 				background: '#EAEEE8CC',
 				borderRadius: 20,
 				overflow: 'hidden',
-				padding: '25px 10px 20px 20px',
+				padding: isMobile ? '10px 10px 20px' : '25px 10px 20px 20px',
 				display: 'flex',
 				flexDirection: 'column',
 				gap: 30,
@@ -20,11 +21,16 @@ const Wrapper = ({ children, ...props }) => {
 				variant='block_header'
 				sx={{
 					padding: '10px',
-					borderBottom: '1px solid #E06B00',
 					alignSelf: 'start',
 				}}
 			>
 				{props.header}
+				<div
+					style={{
+						borderBottom: '1px solid #E06B00',
+						width: 100,
+					}}
+				/>
 			</Typography>
 			{children}
 		</Box>

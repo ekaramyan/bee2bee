@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, TextField } from '@mui/material'
+import { Box, Grid, Typography, TextField, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
@@ -10,6 +10,7 @@ export default function ChangePassForm({
 	success,
 	invalid,
 }) {
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
 			<Box
@@ -34,7 +35,15 @@ export default function ChangePassForm({
 						gap: 20,
 					}}
 				>
-					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
+					<Box
+						item
+						xs={12}
+						style={{
+							display: 'flex',
+							flexDirection: isMobile ? 'column' : 'row',
+							gap: 20,
+						}}
+					>
 						<TextField
 							label='New Password'
 							variant='standard'
@@ -56,8 +65,8 @@ export default function ChangePassForm({
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							width: '50%',
-							alignSelf: 'end',
+							width: isMobile ? '100%' : '50%',
+							alignSelf: isMobile ? 'center' : 'end',
 						}}
 					>
 						<AuthButton type='submit'>Change Password</AuthButton>
@@ -69,16 +78,15 @@ export default function ChangePassForm({
 							xs={12}
 							style={{
 								display: 'flex',
+								flexDirection: isMobile ? 'column' : 'row',
 								justifyContent: 'center',
 								alignSelf: 'end',
 							}}
 						>
-							<Typography variant='forgot'>
-								Forgot Your Password?
-								<Link href='/auth/reset' style={{ color: '#E06B00' }}>
-									Reset It Here
-								</Link>
-							</Typography>
+							<Typography variant='forgot'>Forgot Your Password?</Typography>
+							<Link href='/auth/reset' style={{ color: '#E06B00' }}>
+								Reset It Here
+							</Link>
 						</Grid>
 					)}
 				</form>

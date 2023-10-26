@@ -90,14 +90,14 @@ export default function CellInfo({ data }) {
 		}
 	}, [])
 
-	const acceptedCount = followers.filter(
-		follower => follower.follower.isConfirmed
+	const acceptedCount = followers?.filter(
+		follower => follower?.follower?.isConfirmed
 	).length
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
-			{followers.length === 6 && acceptedCount === 6 && (
+			{followers?.length === 6 && acceptedCount === 6 && (
 				<Typography variant='body1'> Cell is closed</Typography>
 			)}
 			<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
