@@ -29,7 +29,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 					gutterBottom
 					onClick={toggleOpen}
 					style={{
-						transform: 'rotate(90deg) translateY(-80%) translateX(100%)',
+						transform: 'rotate(90deg) translateY(-88%) translateX(100%)',
 						top: '-350%',
 						left: '0%',
 						alignSelf: 'end',

@@ -27,6 +27,7 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 					style={{
 						top: '8%',
 						color: isLoginOpen ? '#E06B00' : '#1B170F',
+						transform: 'rotate(-90deg) translateY(49%) translateX(25%)',
 						textShadow: isLoginOpen
 							? '1px 1px 2px #1B170F'
 							: '1px 1px 2px #E06B00',
