@@ -36,7 +36,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
 					height: isMobile ? '100%' : '100dvh',
-					minHeight: isMobile ? '100dvh' : '1000px',
+					minHeight: isMobile ? '100dvh' : '910px',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',

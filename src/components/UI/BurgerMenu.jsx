@@ -1,6 +1,8 @@
 import React from 'react'
 import { Drawer, List, Typography, ButtonBase } from '@mui/material'
 import Link from 'next/link'
+import Image from 'next/image'
+import close from '@/assets/img/close_burger.svg'
 
 export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 	const mobileTabsLoggedIn = {
@@ -9,9 +11,9 @@ export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 		'account-settings': 'Account Settings',
 		'my-cells': 'my cells',
 		'real-cells': 'Real cells',
-		rules: 'FAQ',
+		faq: 'FAQ',
 		about: 'about us',
-		rules: 'FAQ',
+		rules: 'rules',
 		'privacy-policy': 'Privacy policy',
 		help: 'help',
 		contacts: 'contact us',
@@ -19,7 +21,7 @@ export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 
 	const mobileTabsNotLoggedIn = {
 		about: 'about us',
-		rules: 'FAQ',
+		rules: 'rules',
 		'privacy-policy': 'Privacy policy',
 		help: 'help',
 		contacts: 'contact us',
@@ -34,15 +36,11 @@ export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 				style={{
 					cursor: 'pointer',
 					alignSelf: 'end',
-					border: '2px solid #E06B00',
-					borderRadius: '50%',
 					color: '#E06B00',
-					width: 40,
-					height: 40,
 					margin: '30px 30px 0 0',
 				}}
 			>
-				<p style={{ fontSize: 20, fontWeight: 200 }}>X</p>
+				<Image src={close.src} width={40} height={40} />
 			</ButtonBase>
 			<List
 				style={{

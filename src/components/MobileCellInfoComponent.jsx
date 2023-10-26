@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { Box, Typography, Button } from '@mui/material'
-import dynamic from 'next/dynamic'
-import refresh from '@/assets/img/refresh_dark.svg'
 const CellComponent = dynamic(() => import('@/components/CellComponent'))
 const Consultant = dynamic(() => import('@/components/UI/Consultant'))
 const UserInfo = dynamic(() => import('@/components/UserInfo'))
+import dynamic from 'next/dynamic'
+import refresh from '@/assets/img/refresh_dark.svg'
+import close from '@/assets/img/close_dark.svg'
 
 export default function MobileCellInfoComponent({
 	cellId,
@@ -70,7 +71,7 @@ export default function MobileCellInfoComponent({
 						textTransform: 'uppercase',
 					}}
 				>
-					X
+					<Image src={close.src} width={35} height={35} />
 				</Button>
 			</Box>
 			{user ? (

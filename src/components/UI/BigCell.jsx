@@ -1,8 +1,9 @@
 import React from 'react'
-import background from '../../assets/img/join_cell_bg_large.svg'
 import Image from 'next/image'
 import { Button, Box } from '@mui/material'
+import background from '../../assets/img/join_cell_bg_large.svg'
 import refresh from '@/assets/img/refresh.svg'
+import close from '@/assets/img/close.svg'
 
 export default function BigCell({ children, ...props }) {
 	const defaultStyle = {
@@ -12,10 +13,10 @@ export default function BigCell({ children, ...props }) {
 		justifyContent: 'space-between',
 		width: '100%',
 		height: '100%',
-		minHeight: '60vh',
+		minHeight: '65vh',
 		background: `url(${background.src}) center / contain no-repeat`,
 		gap: 20,
-		padding: '2% 1%',
+		padding: '3% 1%',
 	}
 	const combinedStyle = { ...defaultStyle, ...props.style }
 
@@ -40,7 +41,7 @@ export default function BigCell({ children, ...props }) {
 					textTransform: 'uppercase',
 				}}
 			>
-				X
+				<Image src={close.src} width={25} height={25} />
 			</Button>
 		</Box>
 	)

@@ -20,12 +20,12 @@ const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
 
-const tabs = ['cells', 'account', 'account-settings', 'rules']
+const tabs = ['cells', 'account', 'account-settings', 'faq']
 const tabNames = {
 	cells: 'Dashboard',
 	account: 'My Account',
 	'account-settings': 'Account Settings',
-	rules: 'FAQ',
+	faq: 'FAQ',
 }
 
 export default function UserMenu() {

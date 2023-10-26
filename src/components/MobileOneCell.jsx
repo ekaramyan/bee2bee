@@ -2,9 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Grid, Box } from '@mui/material'
 import { useRouter } from 'next/router'
+const DataBox = dynamic(() => import('@/components/UI/DataBox'))
 import dynamic from 'next/dynamic'
 import refresh from '@/assets/img/refresh_dark.svg'
-const DataBox = dynamic(() => import('@/components/UI/DataBox'))
+import close from '@/assets/img/close_dark.svg'
 
 export default function MobileOneCell({
 	data,
@@ -36,7 +37,7 @@ export default function MobileOneCell({
 					style={{
 						cursor: cellId ? 'pointer' : 'not-allowed',
 						width: '15%',
-						minWidth: 80,
+						minWidth: 100,
 						color: cellId ? '#23201C' : 'rgb(123 123 122)',
 						textAlign: 'center',
 						textShadow: '1px 1px 1px #FFF',
@@ -66,7 +67,7 @@ export default function MobileOneCell({
 						textTransform: 'uppercase',
 					}}
 				>
-					X
+					<Image src={close.src} width={35} height={35} />
 				</Button>
 			</Box>
 			<Grid

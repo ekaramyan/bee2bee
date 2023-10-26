@@ -1,5 +1,5 @@
 import React from 'react'
-import background from '../../assets/img/join_cell_bg.webp'
+import background from '../../assets/img/join_cell_bg.svg'
 import Image from 'next/image'
 import { Button, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'

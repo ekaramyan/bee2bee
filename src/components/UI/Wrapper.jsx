@@ -10,7 +10,7 @@ const Wrapper = ({ children, ...props }) => {
 				background: '#EAEEE8CC',
 				borderRadius: 20,
 				overflow: 'hidden',
-				padding: isMobile ? '10px 10px 20px' : '25px 10px 20px 20px',
+				padding: isMobile ? '10px 30px 20px' : '25px 10px 20px 30px',
 				display: 'flex',
 				flexDirection: 'column',
 				gap: 30,
@@ -27,6 +27,7 @@ const Wrapper = ({ children, ...props }) => {
 				{props.header}
 				<div
 					style={{
+						transform:'translateX(-20px)',
 						borderBottom: '1px solid #E06B00',
 						width: 100,
 					}}
