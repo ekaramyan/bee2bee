@@ -78,7 +78,7 @@ export default function CellInfo({ data }) {
 	}
 	useEffect(() => {
 		refreshFetch()
-	}, [cellId])
+	}, [cellId, activeUser])
 
 	useEffect(() => {
 		if (userId === leader?.id) {

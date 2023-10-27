@@ -16,6 +16,7 @@ export default function UserInfo({
 	isAccepted,
 	cellUserId,
 	followers,
+	setActiveUser,
 }) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
@@ -50,16 +51,18 @@ export default function UserInfo({
 	}, [acceptedCount])
 	const onAcceptClick = async () => {
 		try {
-			await patchFollower(cellUserId, acceptData)
-			if (acceptedCount === 6) {
+			const result = await patchFollower(cellUserId, acceptData)
+			if (acceptedCount === 5 && result) {
 				await closeCell(cellId, closeData)
 			}
+			setActiveUser(null)
 		} catch (error) {
 			console.error('Error:', error.message)
 		}
 	}
 	const onDeleteClick = () => {
 		deleteFollower(cellUserId)
+		setActiveUser(null)
 	}
 	const onLeaveClick = () => {
 		deleteFollower(cellUserId)

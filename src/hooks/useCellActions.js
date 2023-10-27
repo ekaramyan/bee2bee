@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 export default function useCellActions() {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
-	const [success, setSuccess] = useState(false)
+	const [success, setSuccess] = useState(null)
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
 	const baseCellUrl = `${apiUrl}/cells`
@@ -65,7 +65,7 @@ export default function useCellActions() {
 				}
 			)
 			setSuccess(true)
-			return response.data
+			return response.data.isSuccess
 		} catch (err) {
 			setError(err.message || 'Error occurred while patching the follower.')
 			throw err
