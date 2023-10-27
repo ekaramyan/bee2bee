@@ -86,6 +86,7 @@ export default function MobileCellInfoComponent({
 			) : (
 				<>
 					<CellComponent
+						data={cellData}
 						leader={leader}
 						followers={followers}
 						onUserClick={handleUserClick}

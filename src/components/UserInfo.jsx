@@ -66,6 +66,7 @@ export default function UserInfo({
 	}
 	const onLeaveClick = () => {
 		deleteFollower(cellUserId)
+		router.push('/cells')
 	}
 	const formatTelegramUrl = telegramHandle => {
 		return telegramHandle.replace('@', '').replace(/\s+/g, '')

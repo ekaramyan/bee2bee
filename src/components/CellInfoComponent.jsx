@@ -43,6 +43,7 @@ export default function CellInfoComponent({
 					<>
 						<Typography variant='cell_id'>№{cellId}</Typography>
 						<CellComponent
+							data={cellData}
 							leader={leader}
 							followers={followers}
 							onUserClick={handleUserClick}

@@ -50,14 +50,19 @@ const Fw = styled(Follower)`
 	}
 `
 
-export default function CellComponent({ leader, followers, onUserClick }) {
+export default function CellComponent({
+	data,
+	leader,
+	followers,
+	onUserClick,
+}) {
 	const trimmedFollowers = followers.slice(0, 6)
 	const paddedFollowers = [
 		...trimmedFollowers.slice(0, 6),
 		...Array(6 - trimmedFollowers.length).fill({}),
 	]
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-
+	const isAllReturnPaid = data?.isAllReturnPaid
 	return (
 		<>
 			<div
@@ -83,12 +88,14 @@ export default function CellComponent({ leader, followers, onUserClick }) {
 						}
 						avatar={follower?.follower?.avatarUrl || ''}
 						user={follower.follower}
+						isReturn={follower.isReturn}
 					/>
 				))}
 				<Leader
 					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
 					onClick={() => onUserClick(leader)}
 					avatar={leader.avatarUrl || ''}
+					isAllReturnPaid={!isAllReturnPaid}
 				/>
 			</div>
 		</>
