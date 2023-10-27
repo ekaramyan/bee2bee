@@ -63,8 +63,8 @@ const IndexWrapper = ({ children, ...props }) => {
 								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center',
-								gap: 30,
-								width: '90%',
+								gap: 15,
+								width: '100%',
 							}}
 						>
 							<AuthButton

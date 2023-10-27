@@ -56,7 +56,7 @@ export default function MobileOneCell({
 					JOIN
 				</Button>
 				<Button
-					onClick={() => router.back()}
+					onClick={() => router.push('/cells')}
 					style={{
 						cursor: 'pointer',
 						color: '#1B170F',
@@ -94,14 +94,14 @@ export default function MobileOneCell({
 					style={{ gridArea: 'follower' }}
 				/>
 				<DataBox
-					title='leader'
-					data={leaderActiveData}
-					style={{ gridArea: 'leader' }}
-				/>
-				<DataBox
 					title='waiting'
 					data={waitingData}
 					style={{ gridArea: 'waiting' }}
+				/>
+				<DataBox
+					title='leader'
+					data={leaderActiveData}
+					style={{ gridArea: 'leader' }}
 				/>
 			</Grid>
 		</>

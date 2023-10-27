@@ -50,7 +50,7 @@ export default function Contacts() {
 			}}
 		>
 			<Wrapper header={'Contact us'} notLoggedIn={true}>
-				<Typography>Lorem ipsum...</Typography>
+				<Typography>If you have any questions fill this form</Typography>
 				<Grid
 					sx={{
 						display: isMobile ? 'flex' : 'grid',

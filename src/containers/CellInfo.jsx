@@ -98,7 +98,9 @@ export default function CellInfo({ data }) {
 	return (
 		<>
 			{followers?.length === 6 && acceptedCount === 6 && (
-				<Typography variant='body1'> Cell is closed</Typography>
+				<>
+					<Typography variant='body1'> Cell is closed</Typography>
+				</>
 			)}
 			<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
 				{id && cellData ? (
@@ -118,7 +120,7 @@ export default function CellInfo({ data }) {
 							refreshFetch={refreshFetch}
 							setActiveUser={setActiveUser}
 							handleCloseClick={() =>
-								activeUser ? setActiveUser(null) : router.push('/cells')
+								activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 							}
 						/>
 					) : (
@@ -137,7 +139,7 @@ export default function CellInfo({ data }) {
 							refreshFetch={refreshFetch}
 							setActiveUser={setActiveUser}
 							handleCloseClick={() =>
-								activeUser ? setActiveUser(null) : router.push('/cells')
+								activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 							}
 						/>
 					)

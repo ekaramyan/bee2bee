@@ -21,7 +21,7 @@ export default function DesktopOneCell({
 	const router = useRouter()
 	return (
 		<BigCell
-			onCloseClick={() => router.back()}
+			onCloseClick={() => router.push('/cells')}
 			style={{ gap: 10, justifyContent: 'center' }}
 		>
 			<Image src={cells[id - 1].bee} alt='cell' width={38} height={60} />

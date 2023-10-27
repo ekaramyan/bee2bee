@@ -27,7 +27,7 @@ const Wrapper = ({ children, ...props }) => {
 				{props.header}
 				<div
 					style={{
-						transform:'translateX(-20px)',
+						transform: 'translateX(-20px)',
 						borderBottom: '1px solid #E06B00',
 						width: 100,
 					}}
