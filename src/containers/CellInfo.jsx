@@ -90,9 +90,10 @@ export default function CellInfo({ data }) {
 		}
 	}, [])
 
-	const acceptedCount = followers?.filter(
-		follower => follower?.follower?.isConfirmed
-	).length
+	const acceptedCount =
+		followers?.filter(
+			follower => follower?.isPayed && follower.isAccepted === true
+		).length ?? 0
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (

@@ -1,11 +1,15 @@
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 const UserAvatar = dynamic(() => import('./UI/UserAvatar'))
 import avatarBg from '@/assets/img/user_avatar_big.svg'
 
 export default function Account({ onEditClick, data }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+	const formatTelegramUrl = telegramHandle => {
+		return telegramHandle.replace('@', '').replace(/\s+/g, '')
+	}
 	return (
 		<>
 			<div
@@ -47,7 +51,7 @@ export default function Account({ onEditClick, data }) {
 			<Grid
 				style={{
 					display: 'flex',
-					alignItems:  'center',
+					alignItems: 'center',
 					justifyContent: 'center',
 					flexDirection: isMobile ? 'column' : 'row',
 					gap: isMobile ? 0 : 60,
@@ -88,7 +92,11 @@ export default function Account({ onEditClick, data }) {
 					</Typography>
 					<Typography variant='user_key' display='flex'>
 						Telegram:{' '}
-						<Typography variant='user_item'>{data?.telegram}</Typography>
+						<Link
+							href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}
+						>
+							<Typography variant='user_item'>{data?.telegram}</Typography>
+						</Link>
 					</Typography>
 				</Box>
 			</Grid>

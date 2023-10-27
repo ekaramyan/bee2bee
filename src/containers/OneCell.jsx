@@ -59,11 +59,10 @@ export default function OneCell({ data, joinList, level }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
-	const canJoin = data[0].cellLevel.canJoin
+	const canJoin = data[0]?.cellLevel?.canJoin
 
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
-		console.log(users)
 		if (
 			!leaderActiveData ||
 			(userId !== users?.data?.leader?.id && users.data.cellUsers.length < 6)
@@ -76,7 +75,7 @@ export default function OneCell({ data, joinList, level }) {
 		<Wrapper
 			header={
 				isMobile
-					? `${data[0]?.cellLevel.level} ${data[0]?.cellLevel.price}$`
+					? `${data[0]?.cellLevel?.level} ${data[0]?.cellLevel?.price}$`
 					: 'Join the cell'
 			}
 		>

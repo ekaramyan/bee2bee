@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import ImageCompression from 'browser-image-compression'
 import { useDispatch } from 'react-redux'
+import Link from 'next/link'
 import countryList from '@/countryList'
 import useUploadPhoto from '@/hooks/useUploadPhoto'
 import useUpdateUser from '@/hooks/useUpdateUser'
@@ -73,7 +74,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 			[e.target.name]: e.target.value,
 		})
 	}
-
+	const formatTelegramUrl = telegramHandle => {
+		return telegramHandle.replace('@', '').replace(/\s+/g, '')
+	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	return (
@@ -215,7 +218,15 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								</Typography>
 								<Typography variant='user_key' display='flex'>
 									Telegram:
-									<Typography variant='user_item'>{data?.telegram}</Typography>
+									<Link
+										href={`https://t.me/${formatTelegramUrl(
+											data?.telegram || ''
+										)}`}
+									>
+										<Typography variant='user_item'>
+											{data?.telegram}
+										</Typography>
+									</Link>
 								</Typography>
 							</Box>
 							<Box

@@ -1,8 +1,12 @@
 import { Box, Typography } from '@mui/material'
+import Link from 'next/link'
 import UserAvatar from './UserAvatar'
 import avatarBg from '@/assets/img/consultant_avatar.svg'
 
 export default function Consultant({ data }) {
+	const formatTelegramUrl = telegramHandle => {
+		return telegramHandle.replace('@', '').replace(/\s+/g, '')
+	}
 	return (
 		<Box style={{ display: 'flex', justifyContent: 'center', gap: 20 }}>
 			<Box
@@ -43,7 +47,11 @@ export default function Consultant({ data }) {
 				</Typography>
 				<Typography variant='consultant_label'>
 					Telegram:{' '}
-					<Typography variant='consultant_data'>{data.nickname}</Typography>
+					<Link
+						href={`https://t.me/${formatTelegramUrl(data?.nickname || '')}`}
+					>
+						<Typography variant='consultant_data'>{data.nickname}</Typography>
+					</Link>
 				</Typography>
 			</Box>
 		</Box>

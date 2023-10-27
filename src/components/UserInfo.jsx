@@ -7,6 +7,7 @@ const CellUserAvatar = dynamic(() => import('./UI/UserAvatar'))
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import avatarBg from '@/assets/img/leader_avatar.svg'
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 export default function UserInfo({
 	user,
@@ -30,22 +31,27 @@ export default function UserInfo({
 		isActive: false,
 		isArchived: true,
 	}
-	const acceptedCount = followers?.filter(
-		follower => follower?.follower?.isConfirmed
-	).length
-
-	useEffect(() => {
-		if (followers?.length === 6 && acceptedCount === 6) {
-			router.push('/cells')
-		}
-	}, [acceptedCount])
+	const openData = {
+		isActive: true,
+		isArchived: false,
+	}
+	const acceptedCount =
+		followers?.filter(
+			follower => follower?.isPayed && follower.isAccepted === true
+		).length ?? 0
 
 	const { loading, error, success, deleteFollower, patchFollower, closeCell } =
 		useCellActions()
+
+	useEffect(() => {
+		if (followers?.length === 6 && acceptedCount === 6) {
+			// router.push('/cells')
+		}
+	}, [acceptedCount])
 	const onAcceptClick = async () => {
 		try {
 			await patchFollower(cellUserId, acceptData)
-			if (role === 'leader' && followers.length === 6 && acceptedCount === 6) {
+			if (role === 'leader' && acceptedCount === 6) {
 				await closeCell(cellId, closeData)
 			}
 		} catch (error) {
@@ -57,6 +63,9 @@ export default function UserInfo({
 	}
 	const onLeaveClick = () => {
 		deleteFollower(cellUserId)
+	}
+	const formatTelegramUrl = telegramHandle => {
+		return telegramHandle.replace('@', '').replace(/\s+/g, '')
 	}
 	return (
 		<Grid style={{ padding: '2% 0%', width: '100%' }}>
@@ -110,7 +119,11 @@ export default function UserInfo({
 
 					<Typography variant='cell_user_key' display='flex'>
 						Telegram:{' '}
-						<Typography variant='cell_user_item'>{user?.telegram}</Typography>
+						<Link
+							href={`https://t.me/${formatTelegramUrl(user?.telegram || '')}`}
+						>
+							<Typography variant='cell_user_item'>{user?.telegram}</Typography>
+						</Link>
 					</Typography>
 					{/* <Typography variant='cell_user_item'>Expired</Typography> */}
 				</Box>

@@ -2,7 +2,6 @@ import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 
 export default function CellBox({ isActive, data }) {
-	console.log(data)
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Box
