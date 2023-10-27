@@ -59,7 +59,8 @@ export default function OneCell({ data, joinList, level }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
-	console.log(joinList)
+	const canJoin = data[0].cellLevel.canJoin
+
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
 		console.log(users)
@@ -71,7 +72,6 @@ export default function OneCell({ data, joinList, level }) {
 		}
 		router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
 	}
-
 	return (
 		<Wrapper
 			header={
@@ -84,7 +84,7 @@ export default function OneCell({ data, joinList, level }) {
 				isMobile ? (
 					<MobileOneCell
 						data={level}
-						cellId={toJoin}
+						disabled={!toJoin || canJoin === false}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
 						waitingData={waitingData}
@@ -95,7 +95,7 @@ export default function OneCell({ data, joinList, level }) {
 				) : (
 					<DesktopOneCell
 						data={level}
-						cellId={toJoin}
+						disabled={!toJoin || canJoin === false}
 						leaderActiveData={leaderActiveData}
 						followerActiveData={followerActiveData}
 						waitingData={waitingData}

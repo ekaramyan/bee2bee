@@ -9,7 +9,7 @@ import close from '@/assets/img/close_dark.svg'
 
 export default function MobileOneCell({
 	data,
-	cellId,
+	disabled,
 	leaderActiveData,
 	followerActiveData,
 	waitingData,
@@ -33,12 +33,12 @@ export default function MobileOneCell({
 				</Button>{' '}
 				<Button
 					variant='outlined'
-					disabled={!cellId}
+					disabled={disabled}
 					style={{
-						cursor: cellId ? 'pointer' : 'not-allowed',
+						cursor: !disabled ? 'pointer' : 'not-allowed',
 						width: '15%',
 						minWidth: 100,
-						color: cellId ? '#23201C' : 'rgb(123 123 122)',
+						color: !disabled ? '#23201C' : 'rgb(123 123 122)',
 						textAlign: 'center',
 						textShadow: '1px 1px 1px #FFF',
 						fontFamily: 'Noto Sans',
@@ -46,8 +46,10 @@ export default function MobileOneCell({
 						fontWeight: 900,
 						textTransform: 'uppercase',
 						borderRadius: 5,
-						border: cellId ? '1px solid #1B170F' : '2px solid rgb(123 123 122)',
-						background: cellId
+						border: !disabled
+							? '1px solid #1B170F'
+							: '2px solid rgb(123 123 122)',
+						background: !disabled
 							? 'rgba(217, 217, 217, 0.00)'
 							: 'rgba(217, 217, 217, 0.2)',
 					}}

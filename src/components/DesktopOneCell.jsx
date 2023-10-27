@@ -9,7 +9,7 @@ const DataBox = dynamic(() => import('@/components/UI/DataBox'))
 
 export default function DesktopOneCell({
 	data,
-	cellId,
+	disabled,
 	leaderActiveData,
 	followerActiveData,
 	waitingData,
@@ -28,11 +28,11 @@ export default function DesktopOneCell({
 
 			<Button
 				variant='outlined'
-				disabled={!cellId}
+				disabled={disabled}
 				style={{
-					cursor: cellId ? 'pointer' : 'not-allowed',
+					cursor: !disabled ? 'pointer' : 'not-allowed',
 					width: '10%',
-					color: cellId ? '#23201C' : 'rgb(123 123 122)',
+					color: !disabled ? '#23201C' : 'rgb(123 123 122)',
 					textAlign: 'center',
 					textShadow: '1px 1px 1px #FFF',
 					fontFamily: 'Noto Sans',
@@ -40,10 +40,10 @@ export default function DesktopOneCell({
 					fontWeight: 900,
 					textTransform: 'uppercase',
 					borderRadius: 5,
-					border: cellId
+					border: !disabled
 						? '1px solid #1B170F'
 						: '1px solid rgba(217, 217, 217, 0.2)',
-					background: cellId
+					background: !disabled
 						? 'rgba(217, 217, 217, 0.00)'
 						: 'rgba(217, 217, 217, 0.2)',
 				}}
