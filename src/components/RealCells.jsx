@@ -34,7 +34,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				justifyContent: 'space-between',
 			}}
 		>
-			<Box>
+			<Box style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
 				{data.map((item, index) => (
 					<RealCell key={index} data={item} />
 				))}

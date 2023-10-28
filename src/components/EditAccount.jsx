@@ -204,19 +204,19 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									paddingRight: 2,
 								}}
 							>
-								<Typography variant='user_key' display='flex'>
+								<Typography variant='user_key' display='flex' gap={1}>
 									User #:
 									<Typography variant='user_item'>{data?.id}</Typography>
 								</Typography>
-								<Typography variant='user_key' display='flex'>
+								<Typography variant='user_key' display='flex' gap={1}>
 									Email:
 									<Typography variant='user_item'>{data?.email}</Typography>
 								</Typography>
-								<Typography variant='user_key' display='flex'>
+								<Typography variant='user_key' display='flex' gap={1}>
 									Phone:
 									<Typography variant='user_item'>{data?.phone}</Typography>
 								</Typography>
-								<Typography variant='user_key' display='flex'>
+								<Typography variant='user_key' display='flex' gap={1}>
 									Telegram:
 									<Link
 										href={`https://t.me/${formatTelegramUrl(
@@ -238,7 +238,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									width: isMobile ? '100%' : '50%',
 								}}
 							>
-								<Typography variant='user_key' display='flex'>
+								<Typography variant='user_key' display='flex' gap={1}>
 									Nickname:
 									<Typography variant='user_item'>{data?.nickname}</Typography>
 								</Typography>

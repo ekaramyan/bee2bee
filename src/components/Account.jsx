@@ -65,13 +65,13 @@ export default function Account({ onEditClick, data }) {
 						alignItems: isMobile ? 'flex-start' : 'flex-end',
 					}}
 				>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						User #: <Typography variant='user_item'>{data?.id}</Typography>
 					</Typography>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						Email: <Typography variant='user_item'>{data?.email}</Typography>
 					</Typography>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						Country:{' '}
 						<Typography variant='user_item'>{data?.country}</Typography>
 					</Typography>
@@ -83,14 +83,14 @@ export default function Account({ onEditClick, data }) {
 						alignItems: isMobile ? 'flex-start' : 'flex-start',
 					}}
 				>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						Nickname:{' '}
 						<Typography variant='user_item'>{data?.nickname}</Typography>
 					</Typography>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						Phone: <Typography variant='user_item'>{data?.phone}</Typography>
 					</Typography>
-					<Typography variant='user_key' display='flex'>
+					<Typography variant='user_key' display='flex' gap={1}>
 						Telegram:{' '}
 						<Link
 							href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}

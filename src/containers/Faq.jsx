@@ -16,15 +16,10 @@ const Faq = () => {
 		setExpanded(isExpanded ? panel : false)
 	}
 
-	// Массив объектов с вопросами и ответами
 	const faqData = [
 		{
 			question: 'Вопрос 1',
-			answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices mauris faucibus enim imperdiet euismod. Etiam vitae mauris turpis. Nunc pellentesque gravida porta. Nulla tincidunt eu erat pellentesque hendrerit. Praesent condimentum diam sed est aliquam, sagittis dictum nisl efficitur. Cras eleifend placerat magna, in ornare tellus maximus eget. Vivamus ultrices, ante ut cursus rhoncus, metus est hendrerit lectus, feugiat placerat dui tortor vitae est. Pellentesque tortor purus, volutpat et massa vel, eleifend dignissim mi. Aliquam in rhoncus ipsum, in lobortis nibh. In dignissim ligula quis felis fermentum volutpat. Aliquam erat volutpat. Nam hendrerit purus neque, vel aliquam nibh luctus tempor. Aliquam porttitor magna id ante dignissim auctor a at turpis.
-
-Vivamus bibendum lorem eu auctor egestas. Duis ac ultricies lacus. Cras vitae sagittis nibh. Curabitur urna augue, facilisis sed ullamcorper eget, gravida eu odio. Vivamus id rutrum est. Vestibulum sit amet est aliquet, feugiat nunc at, viverra quam. Fusce et nibh ut neque accumsan sagittis quis in augue. Maecenas orci dui, imperdiet eget iaculis quis, rhoncus non est. Phasellus congue, lacus viverra venenatis lacinia, orci urna hendrerit leo, nec finibus diam ante ac dui. In consequat elementum malesuada. Mauris vulputate magna in libero blandit, ac tempus dolor vulputate. Vestibulum mauris nisi, consectetur vitae turpis vitae, tincidunt suscipit purus.
-
-`,
+			answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices mauris faucibus enim imperdiet euismod. Etiam vitae mauris turpis. Nunc pellentesque gravida porta. Nulla tincidunt eu erat pellentesque hendrerit. Praesent condimentum diam sed est aliquam, sagittis dictum nisl efficitur. Cras eleifend placerat magna, in ornare tellus maximus eget. Vivamus ultrices, ante ut cursus rhoncus, metus est hendrerit lectus, feugiat placerat dui tortor vitae est. Pellentesque tortor purus, volutpat et massa vel, eleifend dignissim mi. Aliquam in rhoncus ipsum, in lobortis nibh. In dignissim ligula quis felis fermentum volutpat. Aliquam erat volutpat. Nam hendrerit purus neque, vel aliquam nibh luctus tempor. Aliquam porttitor magna id ante dignissim auctor a at turpis.`,
 		},
 		{
 			question: 'Вопрос 2',
@@ -56,6 +51,7 @@ Vivamus bibendum lorem eu auctor egestas. Duis ac ultricies lacus. Cras vitae sa
 				justifyContent: 'center',
 				height: '100%',
 				width: '100%',
+				overflow: 'auto',
 			}}
 		>
 			<Wrapper header={'FAQ'} notLoggedIn={false}>
@@ -99,9 +95,9 @@ Vivamus bibendum lorem eu auctor egestas. Duis ac ultricies lacus. Cras vitae sa
 							<AccordionDetails
 								style={{
 									border: '#A5560F solid 4px',
-									borderRadius:15,
+									borderRadius: 15,
 									background: '#E06B00',
-                  transform:'translateY(5px)'
+									transform: 'translateY(5px)',
 								}}
 							>
 								<Typography variant='cell_user_subtext'>

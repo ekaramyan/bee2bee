@@ -24,7 +24,13 @@ export default function DesktopOneCell({
 			onCloseClick={() => router.push('/cells')}
 			style={{ gap: 10, justifyContent: 'center' }}
 		>
-			<Image src={cells[id - 1].bee} alt='cell' width={38} height={60} />
+			<Image
+				src={cells[id - 1].bee}
+				alt='cell'
+				width={42}
+				height={60}
+				style={{ layout: 'fill' }}
+			/>
 
 			<Button
 				variant='outlined'

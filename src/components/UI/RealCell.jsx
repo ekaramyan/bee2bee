@@ -14,7 +14,7 @@ export default function RealCell({ data }) {
 				}}
 			>
 				{data && data[0] && (
-					<Typography variant='level_dark'>
+					<Typography variant='level_dark' style={{ minWidth: 190 }}>
 						{data[0]?.cellLevel.level} {data[0]?.cellLevel.price}$
 					</Typography>
 				)}
