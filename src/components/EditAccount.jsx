@@ -300,9 +300,15 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 											border: 'none',
 											borderBottom: '0 !important',
 											outline: 'none',
-											color: '#119A48',
-											fontSize: 20,
-											fontWeight: 700,
+											'#mui-component-select-country': {
+												display: 'flex',
+												alignItems: 'center',
+												justifyContent: 'flex-start',
+												width: '100%',
+												color: '#119A48',
+												fontSize: 20,
+												fontWeight: 700,
+											},
 											paddingLeft: 2,
 										}}
 									>

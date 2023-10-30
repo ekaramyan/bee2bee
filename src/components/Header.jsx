@@ -17,7 +17,7 @@ export default function Header({ loggedIn }) {
 		<header
 			style={{
 				width: '100%',
-				background: '#EAEEE8CC',
+				background: '#EAEEE8',
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'space-between',

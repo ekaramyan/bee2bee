@@ -30,7 +30,7 @@ export default function Footer({}) {
 		<footer
 			style={{
 				width: '100%',
-				background: '#EAEEE8CC',
+				background: '#EAEEE8',
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: isMobile ? 'center' : 'space-between',

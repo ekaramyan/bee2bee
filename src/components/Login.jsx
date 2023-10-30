@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 import LoginComponent from './LoginComponent'
 
+
 export default function Login({ toggleOpen, isLoginOpen }) {
 	return (
 		<div

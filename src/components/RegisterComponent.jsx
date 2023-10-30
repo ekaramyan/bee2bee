@@ -5,9 +5,15 @@ import {
 	TextField,
 	Select,
 	Typography,
+	FormControl,
+	InputLabel,
 	MenuItem,
 	useMediaQuery,
+	InputAdornment,
+	IconButton,
 } from '@mui/material'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -99,6 +105,16 @@ export default function RegisterComponent() {
 
 		register(formData)
 	}
+	const [showPassword, setShowPassword] = useState(false)
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+	const handlePasswordToggle = () => {
+		setShowPassword(prevShow => !prevShow)
+	}
+
+	const handleConfirmPasswordToggle = () => {
+		setShowConfirmPassword(prevShow => !prevShow)
+	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<Box
@@ -189,19 +205,16 @@ export default function RegisterComponent() {
 						type='tel'
 						name='phone'
 					/>
-					<Select
-						label='Your Country'
-						variant='standard'
-						fullWidth
-						type='select'
-						name='country'
-					>
-						{countryList.map(country => (
-							<MenuItem key={country.code} value={country.name}>
-								{country.name}
-							</MenuItem>
-						))}
-					</Select>
+					<FormControl fullWidth variant='standard'>
+						<InputLabel htmlFor='country-select'>Your Country</InputLabel>
+						<Select label='Your Country' id='country-select' name='country'>
+							{countryList.map(country => (
+								<MenuItem key={country.code} value={country.name}>
+									{country.name}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
 				</Box>
 				<Box
 					item
@@ -247,15 +260,33 @@ export default function RegisterComponent() {
 						label='Password'
 						variant='standard'
 						fullWidth
-						type='password'
+						type={showPassword ? 'text' : 'password'}
 						name='password'
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton onClick={handlePasswordToggle}>
+										{showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+							),
+						}}
 					/>
 					<TextField
 						label='Confirm Password'
 						variant='standard'
 						fullWidth
-						type='password'
+						type={showConfirmPassword ? 'text' : 'password'}
 						name='confirm_password'
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton onClick={handleConfirmPasswordToggle}>
+										{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+							),
+						}}
 					/>
 				</Box>
 				<Box

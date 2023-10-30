@@ -1,4 +1,15 @@
-import { Box, Grid, Typography, TextField, useMediaQuery } from '@mui/material'
+import {
+	Box,
+	Grid,
+	Typography,
+	TextField,
+	useMediaQuery,
+	InputAdornment,
+	IconButton,
+} from '@mui/material'
+import { useState } from 'react'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
@@ -10,6 +21,16 @@ export default function ChangePassForm({
 	success,
 	invalid,
 }) {
+	const [showPassword, setShowPassword] = useState(false)
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+	const handlePasswordToggle = () => {
+		setShowPassword(prevShow => !prevShow)
+	}
+
+	const handleConfirmPasswordToggle = () => {
+		setShowConfirmPassword(prevShow => !prevShow)
+	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
@@ -45,18 +66,36 @@ export default function ChangePassForm({
 						}}
 					>
 						<TextField
-							label='New Password'
+							label='Password'
 							variant='standard'
 							fullWidth
-							type='password'
+							type={showPassword ? 'text' : 'password'}
 							name='password'
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position='end'>
+										<IconButton onClick={handlePasswordToggle}>
+											{showPassword ? <VisibilityOff /> : <Visibility />}
+										</IconButton>
+									</InputAdornment>
+								),
+							}}
 						/>
 						<TextField
 							label='Confirm Password'
 							variant='standard'
 							fullWidth
-							type='password'
+							type={showConfirmPassword ? 'text' : 'password'}
 							name='passwordConfirmation'
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position='end'>
+										<IconButton onClick={handleConfirmPasswordToggle}>
+											{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+										</IconButton>
+									</InputAdornment>
+								),
+							}}
 						/>
 					</Box>
 

@@ -7,7 +7,7 @@ const Wrapper = ({ children, ...props }) => {
 			style={{
 				width: '100%',
 				height: props.notLoggedIn ? '75%' : '100%',
-				background: '#EAEEE8CC',
+				background: '#EAEEE8',
 				borderRadius: 20,
 				overflow: 'hidden',
 				padding: isMobile ? '10px 30px 20px' : '25px 10px 20px 30px',

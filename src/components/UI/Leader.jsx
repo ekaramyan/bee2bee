@@ -23,13 +23,20 @@ export default function Leader({ style, onClick, avatar, isAllReturnPaid }) {
 				isLeader={true}
 				style={{}}
 			/>
-			{isAllReturnPaid&&(
-				<Image
+			{isAllReturnPaid && (
+				<div
 					src={exclamation.src}
-					width={45}
-					height={40}
-					style={{ position: 'absolute', top: 0, right: 0 }}
-				/>
+					style={{
+						position: 'absolute',
+						top: -15,
+						right: 20,
+						fontSize: 45,
+						fontWeight: 700,
+						color: '#FA0000',
+					}}
+				>
+					!
+				</div>
 			)}
 		</div>
 	)

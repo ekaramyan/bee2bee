@@ -4,10 +4,16 @@ import {
 	FormControlLabel,
 	Grid,
 	TextField,
+	InputAdornment,
+	IconButton,
 	Typography,
 	useMediaQuery,
 } from '@mui/material'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import useLogin from '@/hooks/useLogin'
 import ReCAPTCHA from 'react-google-recaptcha'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
@@ -33,7 +39,7 @@ import Link from 'next/link'
 
 export default function LoginComponent() {
 	const { login, loading, error, success } = useLogin()
-
+	const router = useRouter()
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const formData = {
@@ -46,6 +52,14 @@ export default function LoginComponent() {
 		}
 
 		login(formData)
+		if (success) {
+			router.push('/cells')
+		}
+	}
+	const [showPassword, setShowPassword] = useState(false)
+
+	const handlePasswordToggle = () => {
+		setShowPassword(prevShow => !prevShow)
 	}
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
@@ -91,8 +105,17 @@ export default function LoginComponent() {
 						label='Password'
 						variant='standard'
 						fullWidth
-						type='password'
+						type={showPassword ? 'text' : 'password'}
 						name='password'
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton onClick={handlePasswordToggle}>
+										{showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+								</InputAdornment>
+							),
+						}}
 					/>
 				</Box>
 

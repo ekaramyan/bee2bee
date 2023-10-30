@@ -10,13 +10,17 @@ const theme = createTheme({
 		MuiCheckbox: {
 			styleOverrides: {
 				root: {
+					color: '#e06b00',
 					'&:hover': {
 						backgroundColor: 'transparent',
+					},
+					'&.Mui-checked': {
+						color: '#e06b00',
 					},
 				},
 			},
 			defaultProps: {
-				color: 'primary',
+				color: 'default',
 			},
 		},
 		MuiSvgIcon: {
@@ -28,12 +32,47 @@ const theme = createTheme({
 				},
 			},
 		},
+		MuiInputLabel: {
+			styleOverrides: {
+				root: {
+					color: 'rgba(0, 0, 0, 0.7)',
+					'&.Mui-focused': {
+						color: '#e06b00',
+					},
+				},
+			},
+		},
+		MuiInputBase: {
+			styleOverrides: {
+				input: {
+					fontFamily: 'Noto Sans',
+					fontSize: 16,
+					fontWeight: 500,
+					color: '#1B170F',
+				},
+			},
+		},
+		MuiInput: {
+			styleOverrides: {
+				underline: {
+					'&:before': {
+						borderBottom: '2px solid #c0c0c0c',
+					},
+					'&:hover:not(.Mui-disabled):before': {
+						borderBottom: '2px solid #A5560F',
+					},
+					'&:after': {
+						borderBottom: '2px solid #e06b00',
+					},
+				},
+			},
+		},
 	},
 
 	palette: {
 		primary: {
-			main: '#FF5733', // основной цвет
-			contrastText: '#FFF', // цвет текста
+			main: '#FF5733',
+			contrastText: '#FFF',
 		},
 		secondary: {
 			main: '#FFFFFFB2',

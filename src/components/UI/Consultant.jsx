@@ -8,7 +8,14 @@ export default function Consultant({ data }) {
 		return telegramHandle.replace('@', '').replace(/\s+/g, '')
 	}
 	return (
-		<Box style={{ display: 'flex', justifyContent: 'center', gap: 20 }}>
+		<Box
+			style={{
+				display: 'flex',
+				justifyContent: 'center',
+				gap: 20,
+				flexWrap: 'wrap',
+			}}
+		>
 			<Box
 				style={{
 					background: `url(${avatarBg.src}) no-repeat center / cover`,

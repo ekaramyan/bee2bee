@@ -43,7 +43,7 @@ export default function Follower({
 					src={return_img.src}
 					width={49}
 					height={49}
-					style={{ position: 'absolute' }}
+					style={{ position: 'absolute', opacity: '.7' }}
 				/>
 			)}
 		</Box>

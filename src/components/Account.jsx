@@ -80,7 +80,7 @@ export default function Account({ onEditClick, data }) {
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: isMobile ? 'flex-start' : 'flex-start',
+						alignItems: 'flex-start',
 					}}
 				>
 					<Typography variant='user_key' display='flex' gap={1}>

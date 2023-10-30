@@ -12,7 +12,7 @@ export default function Socials({ width, height }) {
 	const socials = [
 		{ img: facebook, url: 'https://www.facebook.com/bee2bee.site' },
 		{ img: telegram, url: 'https://t.me/+DUrXAGnWJp85ZDk6' },
-		{ img: instagram, url: 'https://www.instagram.com/bee2bee.online/' },
+		{ img: instagram, url: 'https://www.instagram.com/bee2bee.site/' },
 		{ img: vk, url: 'https://vk.com/bee2bee.site' },
 		{ img: tiktok, url: 'https://www.tiktok.com/@bee2bee.site' },
 		{
@@ -32,7 +32,7 @@ export default function Socials({ width, height }) {
 				}}
 			>
 				{socials.map((item, index) => (
-					<Link key={index} href={item.url}>
+					<Link key={index} href={item.url} target='_blank'>
 						<Image src={item.img.src} width={width} height={height} />
 					</Link>
 				))}
