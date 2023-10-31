@@ -45,13 +45,12 @@ const useLogin = () => {
 			setLoading(false)
 		}
 	}
-	const refresh_token = Cookies.get('refresh_token')
-	const refreshToken = async () => {
+	const refreshToken = async re_token => {
 		console.log('refresh')
-		console.log(refresh_token)
+		console.log(re_token)
 		try {
 			const response = await axios.post(`${apiUrl}/auth/refresh`, {
-				refresh_token: refresh_token,
+				refresh_token: re_token,
 			})
 
 			if (response.data && response.data.data) {
@@ -70,7 +69,7 @@ const useLogin = () => {
 			console.error(err)
 			setError('Failed to refresh token')
 
-			if (!refresh_token && err.response && err.response.status === 401) {
+			if (!re_token && err.response && err.response.status === 401) {
 				dispatch({ type: 'LOG_OUT' })
 				router.push('/')
 			}

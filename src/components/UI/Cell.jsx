@@ -1,7 +1,7 @@
 import React from 'react'
 import background from '../../assets/img/join_cell_bg.svg'
 import Image from 'next/image'
-import { Button, Typography, useMediaQuery } from '@mui/material'
+import { Button, Typography, Box, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 
 export default function Cell({
@@ -21,7 +21,7 @@ export default function Cell({
 				flexDirection: 'column',
 				alignItems: 'center',
 				justifyContent: 'start',
-				gap: 20,
+				gap: 10,
 				minWidth: isMobile ? '100%' : '33.3%',
 				minHeight: '33vh',
 				height: 300,
@@ -30,7 +30,19 @@ export default function Cell({
 				// cursor: canJoin ? 'pointer' : 'default',
 			}}
 		>
-			<Image src={bee} alt='cell' width={65} height={90} />
+			<Box
+				style={{
+					width: isMobile ? '75px' : 'fit-content',
+					height: isMobile ? '90px' : '120px',
+					transform: isMobile ? `translateY(-2%)` : `translateY(-25%)`,
+				}}
+			>
+				<Image
+					src={bee}
+					alt='cell'
+					style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+				/>
+			</Box>
 			{canJoin ? (
 				<Button
 					variant='outlined'

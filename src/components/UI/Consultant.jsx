@@ -55,6 +55,7 @@ export default function Consultant({ data }) {
 				<Typography variant='consultant_label'>
 					Telegram:{' '}
 					<Link
+						target='_blank'
 						href={`https://t.me/${formatTelegramUrl(data?.nickname || '')}`}
 					>
 						<Typography variant='consultant_data'>{data.nickname}</Typography>
