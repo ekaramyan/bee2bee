@@ -17,6 +17,7 @@ export default function UserInfo({
 	cellUserId,
 	followers,
 	setActiveUser,
+	isActive,
 }) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
@@ -165,7 +166,8 @@ export default function UserInfo({
 				{userId === myId &&
 					!isAutoCreated &&
 					role !== 'leader' &&
-					acceptedCount !== 6 && (
+					acceptedCount !== 6 &&
+					isActive && (
 						<AuthButton
 							variant='contained'
 							onClick={onLeaveClick}

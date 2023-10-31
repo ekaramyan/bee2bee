@@ -21,6 +21,7 @@ export default function MobileCellInfoComponent({
 	handleUserClick,
 	refreshFetch,
 	handleCloseClick,
+	isActive,
 }) {
 	return (
 		<Box
@@ -82,6 +83,7 @@ export default function MobileCellInfoComponent({
 					isAutoCreated={isAutoCreated}
 					isAccepted={isAccepted}
 					followers={followers}
+					isActive={isActive}
 				/>
 			) : (
 				<>

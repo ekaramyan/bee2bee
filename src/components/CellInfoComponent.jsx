@@ -20,6 +20,7 @@ export default function CellInfoComponent({
 	refreshFetch,
 	handleCloseClick,
 	setActiveUser,
+	isActive,
 }) {
 	return (
 		<Box style={{ display: 'flex', gap: 25 }}>
@@ -38,6 +39,7 @@ export default function CellInfoComponent({
 						cellUserId={cellUserId}
 						followers={followers}
 						setActiveUser={setActiveUser}
+						isActive={isActive}
 					/>
 				) : (
 					<>

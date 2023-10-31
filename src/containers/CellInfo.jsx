@@ -131,6 +131,7 @@ export default function CellInfo({ data }) {
 								handleCloseClick={() =>
 									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 								}
+								isActive={isActive}
 							/>
 						) : (
 							<CellInfoComponent
@@ -150,6 +151,7 @@ export default function CellInfo({ data }) {
 								handleCloseClick={() =>
 									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 								}
+								isActive={isActive}
 							/>
 						)
 					) : (
