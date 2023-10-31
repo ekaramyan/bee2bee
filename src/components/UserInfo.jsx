@@ -162,19 +162,22 @@ export default function UserInfo({
 						</Typography>
 					</>
 				)}
-				{userId === myId && !isAutoCreated && role !== 'leader' && (
-					<AuthButton
-						variant='contained'
-						onClick={onLeaveClick}
-						type='submit'
-						style={{
-							background: '#A5560F',
-							width: '30%',
-						}}
-					>
-						Leave
-					</AuthButton>
-				)}
+				{userId === myId &&
+					!isAutoCreated &&
+					role !== 'leader' &&
+					acceptedCount !== 6 && (
+						<AuthButton
+							variant='contained'
+							onClick={onLeaveClick}
+							type='submit'
+							style={{
+								background: '#A5560F',
+								width: '30%',
+							}}
+						>
+							Leave
+						</AuthButton>
+					)}
 			</Grid>
 		</Grid>
 	)
