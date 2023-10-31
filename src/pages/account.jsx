@@ -1,9 +1,7 @@
 import MyAccount from '@/containers/MyAccount'
 import { universalServerSideProps } from '@/api/ssr'
-import useAuthentication from '@/hooks/useAuthentication'
 
 export default function AccountPage({ accountData }) {
-	useAuthentication()
 	return <MyAccount data={accountData} />
 }
 

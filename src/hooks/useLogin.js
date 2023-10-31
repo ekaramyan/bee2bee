@@ -54,13 +54,10 @@ const useLogin = () => {
 			})
 
 			if (response.data && response.data.data) {
-				const { access_token, refresh_token, expires_in } = response.data.data
-				const expirationDate = new Date(
-					new Date().getTime() + expires_in * 1000
-				)
+				const { access_token, refresh_token } = response.data.data
 				console.log(expires_in, 'expires_in')
-				document.cookie = `access_token=${access_token}; path=/; expires=${expirationDate.toUTCString()}`
-				document.cookie = `refresh_token=${refresh_token}; path=/; expires=${expirationDate.toUTCString()}`
+				document.cookie = `access_token=${access_token}; path=/;`
+				document.cookie = `refresh_token=${refresh_token}; path=/;`
 				return access_token
 			}
 
@@ -68,6 +65,7 @@ const useLogin = () => {
 		} catch (err) {
 			console.error(err)
 			setError('Failed to refresh token')
+			Cookies.remove('refresh_token')
 
 			if (!re_token && err.response && err.response.status === 401) {
 				dispatch({ type: 'LOG_OUT' })

@@ -1,9 +1,7 @@
 import { universalServerSideProps } from '@/api/ssr'
 import AccountSettings from '@/containers/AccountSettings'
-import useAuthentication from '@/hooks/useAuthentication'
 
 export default function AccountSettingsPage({ accountData }) {
-	useAuthentication()
 	return <AccountSettings data={accountData} />
 }
 

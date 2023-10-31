@@ -14,6 +14,8 @@ export default function useAuthentication() {
 			const token = Cookies.get('access_token')
 			const refresh_token = Cookies.get('refresh_token')
 
+			
+
 			if (token && refresh_token) {
 				dispatch({ type: 'LOG_IN' })
 			} else if (!token && refresh_token) {

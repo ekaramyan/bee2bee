@@ -1,10 +1,7 @@
 import CellInfo from '@/containers/CellInfo'
 import { universalServerSideProps } from '@/api/ssr'
-import useAuthentication from '@/hooks/useAuthentication'
 
 export default function Cell({ cellData }) {
-	useAuthentication()
-	console.log(cellData)
 	return <CellInfo data={cellData.data} />
 }
 

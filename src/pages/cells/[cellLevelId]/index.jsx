@@ -1,10 +1,7 @@
 import OneCell from '@/containers/OneCell'
 import { universalServerSideProps } from '@/api/ssr'
-import useAuthentication from '@/hooks/useAuthentication'
 
 export default function Cell({ cellData, joinListData, levelData }) {
-	useAuthentication()
-	console.log(levelData)
 	return (
 		<OneCell
 			data={cellData.data}
