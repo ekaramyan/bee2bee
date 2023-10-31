@@ -1,5 +1,6 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
+import CellBoxElement from './CellBoxElement'
 
 export default function CellBox({ isActive, data }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
@@ -30,12 +31,7 @@ export default function CellBox({ isActive, data }) {
 							key={index}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<Typography variant={isActive ? 'active_cells' : 'closed_cells'}>
-								<b>
-									{cell.cellLevel.level.slice(0, 1)}-#{cell.id}
-								</b>{' '}
-								{cell.createdAt} <br />
-							</Typography>
+							<CellBoxElement data={cell} isActive={isActive} />
 						</Link>
 					))}
 			</Box>

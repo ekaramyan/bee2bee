@@ -1,5 +1,6 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
+import CellBoxElement from './CellBoxElement'
 
 export default function DataBox({ title, data, style }) {
 	console.log(data, 'my data')
@@ -31,12 +32,7 @@ export default function DataBox({ title, data, style }) {
 							key={cell.id}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<Typography variant='join_cells'>
-								<b>
-									{index + 1}. {cell.cellLevel.level.slice(0, 1)}-#{cell.id}
-								</b>{' '}
-								{cell.createdAt} <br />
-							</Typography>
+							<CellBoxElement data={cell} isActive={null} isWhite={true} />
 						</Link>
 					))}
 			</Box>

@@ -49,7 +49,7 @@ export default function OneCell({ data, joinList, level }) {
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
-		getWaitingCells('waiting', { level: id })
+		getWaitingCells('waiting', { level: id, user: userId })
 	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
 
 	useEffect(() => {

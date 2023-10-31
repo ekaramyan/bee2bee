@@ -34,7 +34,7 @@ export default function Cell({
 				style={{
 					width: isMobile ? '75px' : 'fit-content',
 					height: isMobile ? '90px' : '120px',
-					transform: isMobile ? `translateY(-2%)` : `translateY(-25%)`,
+					transform: isMobile ? `translateY(-2%)` : `translateY(-15%)`,
 				}}
 			>
 				<Image

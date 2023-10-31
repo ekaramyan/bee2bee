@@ -42,7 +42,7 @@ export default function useCells() {
 				url += `me/leader/list?level_id=${additionalParams.level}`
 				break
 			case 'waiting':
-				url += `queue?level_id=${additionalParams.level}`
+				url += `queue?level_id=${additionalParams.level}&leader_id=${additionalParams.user}`
 				break
 			case 'all':
 				url += `cells/all/list`

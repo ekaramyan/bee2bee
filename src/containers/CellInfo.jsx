@@ -57,7 +57,7 @@ export default function CellInfo({ data }) {
 	const [cellUserId, setCellUserId] = useState(null)
 	const [isBoxVisible, setIsBoxVisible] = useState(true)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
-	const isActive = cellData.isActive
+	const isActive = cellData?.isActive
 
 	const userId = parseInt(Cookies.get('userId'))
 	const checkRole = useIsLeader()
@@ -84,6 +84,9 @@ export default function CellInfo({ data }) {
 	}, [cellId, activeUser])
 
 	useEffect(() => {
+		if(!cellData){
+			router.push('/')
+		}
 		if (userId === leader?.id) {
 			setShowErrorDialog(true)
 			const timer = setTimeout(() => {
@@ -107,10 +110,9 @@ export default function CellInfo({ data }) {
 					width: '100%',
 				}}
 			>
-				{isBoxVisible &&
-					followers?.length === 6 &&
-					acceptedCount === 6 &&
-					isActive && <BoxComponent onClose={() => setIsBoxVisible(false)} />}
+				{isBoxVisible && acceptedCount === 6 && isActive && (
+					<BoxComponent onClose={() => setIsBoxVisible(false)} />
+				)}
 				<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
 					{id && cellData ? (
 						isMobile ? (
