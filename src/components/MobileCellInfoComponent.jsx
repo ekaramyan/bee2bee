@@ -22,6 +22,7 @@ export default function MobileCellInfoComponent({
 	refreshFetch,
 	handleCloseClick,
 	isActive,
+	setActiveUser,
 }) {
 	return (
 		<Box
@@ -84,6 +85,7 @@ export default function MobileCellInfoComponent({
 					isAccepted={isAccepted}
 					followers={followers}
 					isActive={isActive}
+					setActiveUser={setActiveUser}
 				/>
 			) : (
 				<>

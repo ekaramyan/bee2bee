@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import { useDispatch } from 'react-redux'
 
 export default function useCellActions() {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [success, setSuccess] = useState(null)
+	const dispatch = useDispatch()
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
 	const baseCellUrl = `${apiUrl}/cells`
@@ -44,8 +46,14 @@ export default function useCellActions() {
 					headers: { Authorization: `Bearer ${token}` },
 				}
 			)
-			setSuccess(true)
-			return response.data
+			if (response.data.isSuccess) {
+				setSuccess(true)
+				return response.data
+			} else {
+				throw new Error(
+					'Failed to post the follower. API returned false for isSuccess.'
+				)
+			}
 		} catch (err) {
 			setError(err.message || 'Error occurred while posting the follower.')
 			throw err
@@ -64,8 +72,14 @@ export default function useCellActions() {
 					headers: headers,
 				}
 			)
-			setSuccess(true)
-			return response.data.isSuccess
+			if (response.data.isSuccess) {
+				setSuccess(true)
+				return response.data.isSuccess
+			} else {
+				throw new Error(
+					'Failed to patch the follower. API returned false for isSuccess.'
+				)
+			}
 		} catch (err) {
 			setError(err.message || 'Error occurred while patching the follower.')
 			throw err
@@ -75,13 +89,20 @@ export default function useCellActions() {
 	}
 
 	const closeCell = async (cellId, data) => {
+		dispatch({ type: 'START_CELL_CLOSE' })
 		setLoading(true)
 		try {
 			const response = await axios.patch(`${baseCellUrl}/${cellId}`, data, {
 				headers: headers,
 			})
-			setSuccess(true)
-			return response.data
+			if (response.data.isSuccess) {
+				setSuccess(true)
+				return response.data
+			} else {
+				throw new Error(
+					'Failed to post the follower. API returned false for isSuccess.'
+				)
+			}
 		} catch (err) {
 			setError(err.message || 'Error occurred while closing the cell.')
 			throw err

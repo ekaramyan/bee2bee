@@ -5,6 +5,7 @@ const initialState = {
 	loggedIn: false,
 	userId: null,
 	avatarUrl: null,
+	cellClosing: false,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -12,13 +13,18 @@ const userReducer = (state = initialState, action) => {
 		case 'LOG_IN':
 			return { ...state, loggedIn: true }
 		case 'LOG_OUT':
-			localStorage.removeItem('userId')
+			Cookies.remove('userId')
 			Cookies.remove('access_token')
+			Cookies.remove('refresh_token')
 			return { ...state, loggedIn: false, userId: null }
 		case 'SET_USER_ID':
 			return { ...state, userId: action.payload }
 		case 'SET_AVATAR_URL':
 			return { ...state, avatarUrl: action.payload }
+		case 'START_CELL_CLOSE':
+			return { ...state, cellClosing: true }
+		case 'STOP_CELL_CLOSE':
+			return { ...state, cellClosing: false }
 		default:
 			return state
 	}

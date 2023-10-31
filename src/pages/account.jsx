@@ -1,7 +1,14 @@
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
 import MyAccount from '@/containers/MyAccount'
 import { universalServerSideProps } from '@/api/ssr'
 
 export default function AccountPage({ accountData }) {
+	const dispatch = useDispatch()
+	const token = Cookies.get('access_token')
+	if (token) {
+		dispatch({ type: 'LOG_IN' })
+	}
 	return <MyAccount data={accountData} />
 }
 

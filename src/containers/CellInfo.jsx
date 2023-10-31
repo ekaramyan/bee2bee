@@ -11,6 +11,8 @@ import {
 	styled,
 	Box,
 } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import useIsLeader from '@/hooks/useIsLeader'
 import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
@@ -58,9 +60,10 @@ export default function CellInfo({ data }) {
 	const [isBoxVisible, setIsBoxVisible] = useState(true)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
 	const isActive = cellData?.isActive
-
+	const { cellClosing } = useSelector(state => state.user)
 	const userId = parseInt(Cookies.get('userId'))
 	const checkRole = useIsLeader()
+	const dispatch = useDispatch()
 
 	const handleUserClick = (user, autoCreate, accept, id) => {
 		setActiveUser(user)
@@ -72,7 +75,7 @@ export default function CellInfo({ data }) {
 	}
 
 	const refreshFetch = async () => {
-		const token = Cookies.access_token
+		const token = Cookies.get('access_token')
 		const apiUrl = process.env.API_URL
 		const url = `${apiUrl}/cells/${cellId}`
 		const res = await fetchData(url, token)
@@ -84,7 +87,7 @@ export default function CellInfo({ data }) {
 	}, [cellId, activeUser])
 
 	useEffect(() => {
-		if(!cellData){
+		if (!cellData) {
 			router.push('/')
 		}
 		if (userId === leader?.id) {
@@ -102,6 +105,7 @@ export default function CellInfo({ data }) {
 		).length ?? 0
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+	console.log(isBoxVisible, acceptedCount, cellClosing)
 	return (
 		<>
 			<Box
@@ -110,9 +114,16 @@ export default function CellInfo({ data }) {
 					width: '100%',
 				}}
 			>
-				{isBoxVisible && acceptedCount === 6 && isActive && (
-					<BoxComponent onClose={() => setIsBoxVisible(false)} />
-				)}
+				{isBoxVisible &&
+					(acceptedCount === 5 || acceptedCount === 6) &&
+					cellClosing && (
+						<BoxComponent
+							onClose={() => {
+								setIsBoxVisible(false)
+								dispatch({ type: 'STOP_CELL_CLOSE' })
+							}}
+						/>
+					)}
 				<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
 					{id && cellData ? (
 						isMobile ? (

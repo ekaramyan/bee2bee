@@ -26,15 +26,19 @@ export default function UserAvatar({
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
-				const url = `${apiUrl}${avatarUrl}`
+				if (avatarUrl) {
+					{
+						const url = `${apiUrl}${avatarUrl}`
 
-				const avatarResponse = await axios.get(url, {
-					headers: { Authorization: `Bearer ${token}` },
-					responseType: 'blob',
-				})
+						const avatarResponse = await axios.get(url, {
+							headers: { Authorization: `Bearer ${token}` },
+							responseType: 'blob',
+						})
 
-				const objectUrl = URL.createObjectURL(avatarResponse.data)
-				setAvatar(objectUrl)
+						const objectUrl = URL.createObjectURL(avatarResponse.data)
+						setAvatar(objectUrl)
+					}
+				}
 				return () => URL.revokeObjectURL(objectUrl)
 			} catch (error) {
 				if (!error.response || error.response.status !== 404) {

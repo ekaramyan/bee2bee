@@ -1,7 +1,14 @@
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
 import CellInfo from '@/containers/CellInfo'
 import { universalServerSideProps } from '@/api/ssr'
 
 export default function Cell({ cellData }) {
+	const dispatch = useDispatch()
+	const token = Cookies.get('access_token')
+	if (token) {
+		dispatch({ type: 'LOG_IN' })
+	}
 	return <CellInfo data={cellData.data} />
 }
 
