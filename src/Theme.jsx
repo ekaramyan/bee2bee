@@ -399,6 +399,18 @@ const theme = createTheme({
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},
+		closed_congrats: {
+			background: 'linear-gradient(#ffa700, #ffeb25)',
+			'-webkit-background-clip': 'text',
+			'-moz-background-clip': 'text',
+			backgroundClip: 'text',
+			color: 'transparent',
+			textShadow: '-3px -2px 1px #A5560F',
+			fontFamily: 'Noto Sans',
+			fontSize: 26,
+			fontWeight: 700,
+			textTransform: 'uppercase',
+		},
 	},
 })
 

@@ -9,10 +9,12 @@ import {
 	DialogContent,
 	Slide,
 	styled,
+	Box,
 } from '@mui/material'
 import useIsLeader from '@/hooks/useIsLeader'
 import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
+import BoxComponent from '@/components/UI/BoxComponent'
 const CellInfoComponent = dynamic(() =>
 	import('@/components/CellInfoComponent')
 )
@@ -53,7 +55,7 @@ export default function CellInfo({ data }) {
 	const [isAutoCreated, setIsAutoCreated] = useState(null)
 	const [isAccepted, setIsAccepted] = useState(null)
 	const [cellUserId, setCellUserId] = useState(null)
-
+	const [isBoxVisible, setIsBoxVisible] = useState(true)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
 
 	const userId = parseInt(Cookies.get('userId'))
@@ -98,70 +100,75 @@ export default function CellInfo({ data }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
 		<>
-			{followers?.length === 6 && acceptedCount === 6 && (
-				<>
-					<Typography variant='body1'> Cell is closed</Typography>
-				</>
-			)}
-			<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
-				{id && cellData ? (
-					isMobile ? (
-						<MobileCellInfoComponent
-							cellId={cellId}
-							cellData={cellData}
-							user={activeUser}
-							role={role}
-							leader={leader}
-							followers={followers}
-							consultant={consultant}
-							isAutoCreated={isAutoCreated}
-							isAccepted={isAccepted}
-							cellUserId={cellUserId}
-							handleUserClick={handleUserClick}
-							refreshFetch={refreshFetch}
-							setActiveUser={setActiveUser}
-							handleCloseClick={() =>
-								activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
-							}
-						/>
+			<Box
+				style={{
+					position: 'relative',
+					width: '100%',
+				}}
+			>
+				{isBoxVisible && followers?.length === 6 && acceptedCount === 6 && (
+					<BoxComponent onClose={() => setIsBoxVisible(false)} />
+				)}
+				<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
+					{id && cellData ? (
+						isMobile ? (
+							<MobileCellInfoComponent
+								cellId={cellId}
+								cellData={cellData}
+								user={activeUser}
+								role={role}
+								leader={leader}
+								followers={followers}
+								consultant={consultant}
+								isAutoCreated={isAutoCreated}
+								isAccepted={isAccepted}
+								cellUserId={cellUserId}
+								handleUserClick={handleUserClick}
+								refreshFetch={refreshFetch}
+								setActiveUser={setActiveUser}
+								handleCloseClick={() =>
+									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
+								}
+							/>
+						) : (
+							<CellInfoComponent
+								cellId={cellId}
+								cellData={cellData}
+								user={activeUser}
+								role={role}
+								leader={leader}
+								followers={followers}
+								consultant={consultant}
+								isAutoCreated={isAutoCreated}
+								isAccepted={isAccepted}
+								cellUserId={cellUserId}
+								handleUserClick={handleUserClick}
+								refreshFetch={refreshFetch}
+								setActiveUser={setActiveUser}
+								handleCloseClick={() =>
+									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
+								}
+							/>
+						)
 					) : (
-						<CellInfoComponent
-							cellId={cellId}
-							cellData={cellData}
-							user={activeUser}
-							role={role}
-							leader={leader}
-							followers={followers}
-							consultant={consultant}
-							isAutoCreated={isAutoCreated}
-							isAccepted={isAccepted}
-							cellUserId={cellUserId}
-							handleUserClick={handleUserClick}
-							refreshFetch={refreshFetch}
-							setActiveUser={setActiveUser}
-							handleCloseClick={() =>
-								activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
-							}
-						/>
-					)
-				) : (
-					<>Loading...</>
-				)}
+						<>Loading...</>
+					)}
 
-				{showErrorDialog && (
-					<StyledDialog
-						open={showErrorDialog}
-						TransitionComponent={Transition}
-						onClick={() => setShowErrorDialog(false)}
-					>
-						<DialogContent>
-							<Typography variant='body1'>
-								You are leader in this cell, you cannot join it as follower
-							</Typography>
-						</DialogContent>
-					</StyledDialog>
-				)}
-			</Wrapper>
+					{showErrorDialog && (
+						<StyledDialog
+							open={showErrorDialog}
+							TransitionComponent={Transition}
+							onClick={() => setShowErrorDialog(false)}
+						>
+							<DialogContent>
+								<Typography variant='body1'>
+									You are leader in this cell, you cannot join it as follower
+								</Typography>
+							</DialogContent>
+						</StyledDialog>
+					)}
+				</Wrapper>
+			</Box>
 		</>
 	)
 }
