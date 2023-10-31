@@ -199,7 +199,7 @@ const theme = createTheme({
 			color: '#FFF',
 			textAlign: 'center',
 			fontFamily: 'Noto Sans',
-			fontSize: 32,
+			fontSize: 30,
 			fontWeight: 700,
 			textTransform: 'uppercase',
 			padding: '0 10%',
