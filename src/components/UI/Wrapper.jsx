@@ -1,7 +1,40 @@
-import { Box, Typography, useMediaQuery } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { Box, Typography, CircularProgress, useMediaQuery } from '@mui/material'
 
 const Wrapper = ({ children, ...props }) => {
+	const [loading, setLoading] = useState(true)
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+	const router = useRouter()
+
+	useEffect(() => {
+		const handleRouteChangeStart = () => {
+			console.log('Route change started')
+			setLoading(true)
+		}
+		const handleRouteChangeComplete = () => {
+			console.log('Route change complete')
+			setLoading(false)
+		}
+
+		router.events.on('routeChangeStart', handleRouteChangeStart)
+		router.events.on('routeChangeComplete', handleRouteChangeComplete)
+		router.events.on('routeChangeError', error => {
+			console.error('Route change error:', error)
+			setLoading(false)
+		})
+
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChangeStart)
+			router.events.off('routeChangeComplete', handleRouteChangeComplete)
+			router.events.off('routeChangeError', handleRouteChangeComplete)
+		}
+	}, [router.events])
+
+	useEffect(() => {
+		setLoading(false)
+	}, [])
+
 	return (
 		<Box
 			style={{
@@ -17,14 +50,25 @@ const Wrapper = ({ children, ...props }) => {
 			}}
 			{...props}
 		>
-			<Typography
-				variant='block_header'
-				sx={{
-					padding: '10px',
-					alignSelf: 'start',
-				}}
-			>
-				{props.header}
+			<Box>
+				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'center',
+						gap: 2,
+					}}
+				>
+					<Typography
+						variant='block_header'
+						sx={{
+							padding: '10px',
+							alignSelf: 'start',
+						}}
+					>
+						{props.header}
+					</Typography>
+					{loading && <CircularProgress size={24} />}
+				</Box>
 				<div
 					style={{
 						transform: 'translateX(-20px)',
@@ -32,7 +76,7 @@ const Wrapper = ({ children, ...props }) => {
 						width: 100,
 					}}
 				/>
-			</Typography>
+			</Box>
 			{children}
 		</Box>
 	)

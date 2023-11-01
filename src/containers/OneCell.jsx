@@ -55,7 +55,12 @@ export default function OneCell({ data, joinList, level }) {
 	useEffect(() => {
 		onRefreshClick()
 	}, [])
-	const toJoin = joinList?.data[0]?.id
+	const [toJoin, setToJoin] = useState(null)
+	useEffect(() => {
+		if (joinList.data) {
+			setToJoin(joinList?.data[0]?.id)
+		}
+	}, [])
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL

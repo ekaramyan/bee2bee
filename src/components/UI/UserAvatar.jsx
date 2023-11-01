@@ -1,11 +1,10 @@
 import Image from 'next/image'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import Cookies from 'js-cookie'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import useAvatar from '@/hooks/useAvatar'
 import defaultAvatar from '../../assets/img/default.jpg'
+import { CircularProgress } from '@mui/material'
 
 export default function UserAvatar({
 	previewImage,
@@ -15,57 +14,59 @@ export default function UserAvatar({
 	isLeader = false,
 	isClickable = false,
 	clickUrl = '/account',
+	style,
 }) {
-	const [avatar, setAvatar] = useState(null)
-	const apiUrl = process.env.API_URL
-	const token = Cookies.get('access_token')
-	const router = useRouter()
-	const { cellId } = router.query
-	const avatarReload = useSelector(state => state.user.avatarUrl)
+	const avatarReloadFlag = useSelector(state => state.user.avatarUrl)
+	const {
+		avatar: cachedAvatar,
+		isError,
+		isLoading,
+		mutate,
+	} = useAvatar(avatarUrl, avatarReloadFlag)
 
 	useEffect(() => {
-		const fetchDataAsync = async () => {
-			try {
-				if (avatarUrl) {
-					{
-						const url = `${apiUrl}${avatarUrl}`
-
-						const avatarResponse = await axios.get(url, {
-							headers: { Authorization: `Bearer ${token}` },
-							responseType: 'blob',
-						})
-
-						const objectUrl = URL.createObjectURL(avatarResponse.data)
-						setAvatar(objectUrl)
-					}
-				}
-				return () => URL.revokeObjectURL(objectUrl)
-			} catch (error) {
-				if (!error.response || error.response.status !== 404) {
-					console.error('Error fetching data: ', error)
-				}
-			}
+		if (avatarReloadFlag) {
+			mutate()
 		}
+	}, [avatarReloadFlag])
 
-		fetchDataAsync()
-	}, [cellId, avatarUrl, avatarReload])
+	const avatarSrc = previewImage || cachedAvatar || defaultAvatar
+
+	const imageStyles = {
+		position: 'relative',
+		overflow: 'hidden',
+		clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+		transform: isLeader
+			? 'translateY(8px) translateX(10px)'
+			: 'translateY(-1px)',
+		objectFit: 'cover',
+		...style,
+	}
 
 	const avatarImage = (
-		<Image
-			src={previewImage || avatar || defaultAvatar}
-			width={isClickable ? width : width - 5}
-			height={isClickable ? height : height - 5}
-			style={{
-				position: 'relative',
-				overflow: 'hidden',
-				clipPath:
-					'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-				transform: isLeader
-					? 'translateY(8px) translateX(10px)'
-					: 'translateY(-1px)',
-				objectFit: 'cover',
-			}}
-		/>
+		<>
+			{isLoading ? (
+				cachedAvatar ? (
+					<CircularProgress />
+				) : (
+					<Image
+						src={defaultAvatar}
+						width={isClickable ? width : width - 5}
+						height={isClickable ? height : height - 5}
+						style={imageStyles}
+						alt='User Avatar'
+					/>
+				)
+			) : (
+				<Image
+					src={avatarSrc}
+					width={isClickable ? width : width - 5}
+					height={isClickable ? height : height - 5}
+					style={imageStyles}
+					alt='User Avatar'
+				/>
+			)}
+		</>
 	)
 
 	if (isClickable) {

@@ -10,13 +10,14 @@ import {
 	Slide,
 	styled,
 	Box,
+	CircularProgress,
 } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import useIsLeader from '@/hooks/useIsLeader'
 import dynamic from 'next/dynamic'
 import Wrapper from '../components/UI/Wrapper'
-import BoxComponent from '@/components/UI/BoxComponent'
+const BoxComponent = dynamic(() => import('@/components/UI/BoxComponent'))
 const CellInfoComponent = dynamic(() =>
 	import('@/components/CellInfoComponent')
 )
@@ -48,7 +49,7 @@ export default function CellInfo({ data }) {
 	const { cellLevelId: id } = router.query
 	const { cellId } = router.query
 	const [cellData, setCellData] = useState(data)
-
+	const cellQueueId = cellData?.cellQueueId || ' -'
 	const consultant = cellData?.consultant
 	const leader = cellData?.leader
 	const followers = cellData?.cellUsers
@@ -75,12 +76,16 @@ export default function CellInfo({ data }) {
 	}
 
 	const refreshFetch = async () => {
-		const token = Cookies.get('access_token')
-		const apiUrl = process.env.API_URL
-		const url = `${apiUrl}/cells/${cellId}`
-		const res = await fetchData(url, token)
-		const newData = res.data
-		setCellData(newData)
+		try {
+			const token = Cookies.get('access_token')
+			const apiUrl = process.env.API_URL
+			const url = `${apiUrl}/cells/${cellId}`
+			const res = await fetchData(url, token)
+			const newData = res.data
+			setCellData(newData)
+		} catch (error) {
+			console.error('Ошибка при загрузке данных:', error)
+		}
 	}
 	useEffect(() => {
 		refreshFetch()
@@ -98,14 +103,16 @@ export default function CellInfo({ data }) {
 			return () => clearTimeout(timer)
 		}
 	}, [])
-
-	const acceptedCount =
-		followers?.filter(
-			follower => follower?.isPayed && follower.isAccepted === true
-		).length ?? 0
+	const [acceptedCount, setAcceptedCount] = useState(0)
+	useEffect(() => {
+		setAcceptedCount(
+			followers?.filter(
+				follower => follower?.isPayed && follower.isAccepted === true
+			).length ?? 0
+		)
+	}, [cellId, activeUser])
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	console.log(isBoxVisible, acceptedCount, cellClosing)
 	return (
 		<>
 			<Box
@@ -128,7 +135,7 @@ export default function CellInfo({ data }) {
 					{id && cellData ? (
 						isMobile ? (
 							<MobileCellInfoComponent
-								cellId={cellId}
+								cellId={cellQueueId}
 								cellData={cellData}
 								user={activeUser}
 								role={role}
@@ -148,7 +155,7 @@ export default function CellInfo({ data }) {
 							/>
 						) : (
 							<CellInfoComponent
-								cellId={cellId}
+								cellId={cellQueueId}
 								cellData={cellData}
 								user={activeUser}
 								role={role}
@@ -168,7 +175,7 @@ export default function CellInfo({ data }) {
 							/>
 						)
 					) : (
-						<>Loading...</>
+						<CircularProgress />
 					)}
 
 					{showErrorDialog && (

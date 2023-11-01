@@ -74,9 +74,9 @@ export default function CellComponent({
 					maxWidth: isMobile && 420,
 				}}
 			>
-				{paddedFollowers.map((follower, idx) => (
+				{paddedFollowers.map(follower => (
 					<Fw
-						key={idx}
+						key={follower.id}
 						isAccepted={follower?.isAccepted}
 						onClick={() =>
 							onUserClick(

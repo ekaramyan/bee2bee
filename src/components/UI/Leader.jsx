@@ -20,8 +20,8 @@ export default function Leader({ style, onClick, avatar, isAllReturnPaid }) {
 		>
 			<UserAvatar
 				avatarUrl={avatar}
-				width={isMobile ? 90 : 123}
-				height={isMobile ? 104 : 140}
+				width={isMobile ? 90 : 126}
+				height={isMobile ? 104 : 143}
 				isLeader={true}
 				style={{}}
 			/>

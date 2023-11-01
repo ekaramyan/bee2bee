@@ -1,6 +1,6 @@
 import { Box, useMediaQuery } from '@mui/material'
 import Image from 'next/image'
-import CellUserAvatar from './UserAvatar'
+import UserAvatar from './UserAvatar'
 import green from '@/assets/img/follower_avatar_green.svg'
 import yellow from '@/assets/img/follower_avatar_yellow.svg'
 import return_img from '@/assets/img/return.svg'
@@ -33,11 +33,11 @@ export default function Follower({
 				cursor: user ? 'pointer' : 'default',
 			}}
 		>
-			<CellUserAvatar
+			<UserAvatar
 				avatarUrl={avatar}
-				width={isMobile ? 60 : 80}
-				height={isMobile ? 65 : 92}
-				style={{ position: 'relative' }}
+				width={isMobile ? 60 : 83}
+				height={isMobile ? 65 : 93}
+				style={{ position: 'relative', transform: 'translateY(0%)' }}
 			/>
 			{isReturn && (
 				<Image

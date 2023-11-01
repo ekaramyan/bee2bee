@@ -137,6 +137,7 @@ export default function UserMenu() {
 							height={52}
 							isClickable={true}
 							avatarUrl='/users/me/photo'
+							style={{ transform: 'translateY(2%)' }}
 						/>
 					</div>
 					{!isMobile && <p>{data?.nickname}</p>}
