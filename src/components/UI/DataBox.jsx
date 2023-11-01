@@ -2,7 +2,7 @@ import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import CellBoxElement from './CellBoxElement'
 
-export default function DataBox({ title, data, style }) {
+export default function DataBox({ title, data, style, isNotClickable }) {
 	console.log(data, 'my data')
 	const defaultStyle = {
 		width: '100%',
@@ -27,19 +27,28 @@ export default function DataBox({ title, data, style }) {
 				}}
 			>
 				{data?.data &&
-					data.data.map((cell, index) => (
-						<Link
-							key={cell.id}
-							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
-						>
+					data.data.map((cell, index) =>
+						isNotClickable ? (
 							<CellBoxElement
 								data={cell}
 								isActive={null}
 								isWhite={true}
 								index={index}
 							/>
-						</Link>
-					))}
+						) : (
+							<Link
+								key={cell.id}
+								href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
+							>
+								<CellBoxElement
+									data={cell}
+									isActive={null}
+									isWhite={true}
+									index={index}
+								/>
+							</Link>
+						)
+					)}
 			</Box>
 		</Box>
 	)

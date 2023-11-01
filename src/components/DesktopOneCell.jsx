@@ -89,6 +89,7 @@ export default function DesktopOneCell({
 					title='waiting'
 					data={waitingData}
 					style={{ gridArea: 'waiting' }}
+					isNotClickable={true}
 				/>
 			</Grid>
 			<Typography variant='level_big'>

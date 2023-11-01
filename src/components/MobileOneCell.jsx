@@ -99,6 +99,7 @@ export default function MobileOneCell({
 					title='waiting'
 					data={waitingData}
 					style={{ gridArea: 'waiting' }}
+					isNotClickable={true}
 				/>
 				<DataBox
 					title='leader'
