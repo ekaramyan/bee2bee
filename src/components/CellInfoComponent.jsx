@@ -22,6 +22,7 @@ export default function CellInfoComponent({
 	setActiveUser,
 	isActive,
 	isReturn,
+	isAllPayed,
 }) {
 	return (
 		<Box style={{ display: 'flex', gap: 25 }}>
@@ -42,6 +43,7 @@ export default function CellInfoComponent({
 						setActiveUser={setActiveUser}
 						isActive={isActive}
 						isReturn={isReturn}
+						isAllPayed={isAllPayed}
 					/>
 				) : (
 					<>

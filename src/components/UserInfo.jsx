@@ -19,6 +19,7 @@ export default function UserInfo({
 	setActiveUser,
 	isActive,
 	isReturn,
+	isAllPayed,
 }) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
@@ -134,7 +135,7 @@ export default function UserInfo({
 					</Typography>
 					{/* <Typography variant='cell_user_item'>Expired</Typography> */}
 				</Box>
-				{role === 'leader' && userId !== myId && !isAccepted && (
+				{role === 'leader' && userId !== myId && !isAccepted && isAllPayed && (
 					<>
 						<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
 							<AuthButton

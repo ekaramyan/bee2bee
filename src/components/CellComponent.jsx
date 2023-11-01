@@ -84,7 +84,8 @@ export default function CellComponent({
 								follower.isAutoCreated,
 								follower.isAccepted,
 								follower.id,
-								follower.isReturn
+								follower.isReturn,
+								isAllReturnPaid
 							)
 						}
 						avatar={follower?.follower?.avatarUrl || ''}

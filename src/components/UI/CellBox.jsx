@@ -1,6 +1,7 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
-import CellBoxElement from './CellBoxElement'
+import dynamic from 'next/dynamic'
+const CellBoxElement = dynamic(() => import('./CellBoxElement'))
 
 export default function CellBox({ isActive, data }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
@@ -31,7 +32,7 @@ export default function CellBox({ isActive, data }) {
 							key={index}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<CellBoxElement data={cell} isActive={isActive} index={index}/>
+							<CellBoxElement data={cell} isActive={isActive} index={index} />
 						</Link>
 					))}
 			</Box>

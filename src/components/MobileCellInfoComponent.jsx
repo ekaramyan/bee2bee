@@ -24,6 +24,7 @@ export default function MobileCellInfoComponent({
 	isActive,
 	setActiveUser,
 	isReturn,
+	isAllPayed,
 }) {
 	return (
 		<Box
@@ -88,6 +89,7 @@ export default function MobileCellInfoComponent({
 					isActive={isActive}
 					setActiveUser={setActiveUser}
 					isReturn={isReturn}
+					isAllPayed={isAllPayed}
 				/>
 			) : (
 				<>

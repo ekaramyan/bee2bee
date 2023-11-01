@@ -61,13 +61,14 @@ export default function CellInfo({ data }) {
 	const [isBoxVisible, setIsBoxVisible] = useState(true)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
 	const [isReturn, setIsReturn] = useState(false)
+	const [isAllPayed, setIsAllPayed] = useState(false)
 	const isActive = cellData?.isActive
 	const { cellClosing } = useSelector(state => state.user)
 	const userId = parseInt(Cookies.get('userId'))
 	const checkRole = useIsLeader()
 	const dispatch = useDispatch()
 
-	const handleUserClick = (user, autoCreate, accept, id, isRet) => {
+	const handleUserClick = (user, autoCreate, accept, id, isRet, isPayed) => {
 		setActiveUser(user)
 		const userRole = checkRole(leader?.id, userId)
 		setRole(userRole)
@@ -75,6 +76,7 @@ export default function CellInfo({ data }) {
 		setIsAccepted(accept)
 		setCellUserId(id)
 		setIsReturn(isRet)
+		setIsAllPayed(isPayed)
 	}
 
 	const refreshFetch = async () => {
@@ -155,6 +157,7 @@ export default function CellInfo({ data }) {
 								}
 								isActive={isActive}
 								isReturn={isReturn}
+								isAllPayed={isAllPayed}
 							/>
 						) : (
 							<CellInfoComponent
@@ -176,6 +179,7 @@ export default function CellInfo({ data }) {
 								}
 								isActive={isActive}
 								isReturn={isReturn}
+								isAllPayed={isAllPayed}
 							/>
 						)
 					) : (
