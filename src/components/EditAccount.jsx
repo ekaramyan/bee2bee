@@ -6,6 +6,7 @@ import {
 	MenuItem,
 	useMediaQuery,
 	LinearProgress,
+	CircularProgress,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
@@ -85,6 +86,8 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		return telegramHandle.replace('@', '').replace(/\s+/g, '')
 	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
+	console.log(load || loading)
 
 	return (
 		<>
@@ -422,7 +425,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						</Box>
 					</Box>
 				</form>
-				{(load || loading) && <LinearProgress />}
+				<Box sx={{ width: '80%', marginTop: 2 }}>
+					{(load || loading) && <LinearProgress />}
+				</Box>
 			</Box>
 		</>
 	)
