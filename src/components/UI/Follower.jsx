@@ -36,7 +36,7 @@ export default function Follower({
 			<UserAvatar
 				avatarUrl={avatar}
 				width={isMobile ? 60 : 83}
-				height={isMobile ? 65 : 93}
+				height={isMobile ? 65 : 94}
 				style={{ position: 'relative', transform: 'translateY(0%)' }}
 			/>
 			{isReturn && (
