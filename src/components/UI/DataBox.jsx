@@ -30,6 +30,7 @@ export default function DataBox({ title, data, style, isNotClickable }) {
 					data.data.map((cell, index) =>
 						isNotClickable ? (
 							<CellBoxElement
+								key={cell.id}
 								data={cell}
 								isActive={null}
 								isWhite={true}
