@@ -18,6 +18,7 @@ export default function UserInfo({
 	followers,
 	setActiveUser,
 	isActive,
+	isReturn,
 }) {
 	const myId = parseInt(Cookies.get('userId'))
 	const router = useRouter()
@@ -126,6 +127,7 @@ export default function UserInfo({
 						Telegram:{' '}
 						<Link
 							href={`https://t.me/${formatTelegramUrl(user?.telegram || '')}`}
+							target='_blank'
 						>
 							<Typography variant='cell_user_item'>{user?.telegram}</Typography>
 						</Link>
@@ -167,7 +169,8 @@ export default function UserInfo({
 					!isAutoCreated &&
 					role !== 'leader' &&
 					acceptedCount !== 6 &&
-					isActive && (
+					isActive &&
+					!isReturn && (
 						<AuthButton
 							variant='contained'
 							onClick={onLeaveClick}

@@ -14,6 +14,7 @@ import Cookies from 'js-cookie'
 import { useEffect, useState, useCallback } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import Image from 'next/image'
+import { useSWRConfig } from 'swr'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
@@ -36,6 +37,7 @@ export default function UserMenu() {
 	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
 	const [data, setData] = useState(null)
 	const [burgerOpen, setBurgerOpen] = useState(false)
+	const { mutate } = useSWRConfig()
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
 	const fetchDataAsync = useCallback(async () => {
@@ -62,6 +64,8 @@ export default function UserMenu() {
 	const onExitClick = () => {
 		Cookies.remove('access_token')
 		Cookies.remove('refresh_token')
+		mutate('/users/me/photo')
+		mutate(`@"${apiUrl}/users/me/photo",`, null, false)
 		dispatch({ type: 'LOG_OUT' })
 		router.push('/')
 	}

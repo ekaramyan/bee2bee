@@ -60,19 +60,21 @@ export default function CellInfo({ data }) {
 	const [cellUserId, setCellUserId] = useState(null)
 	const [isBoxVisible, setIsBoxVisible] = useState(true)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
+	const [isReturn, setIsReturn] = useState(false)
 	const isActive = cellData?.isActive
 	const { cellClosing } = useSelector(state => state.user)
 	const userId = parseInt(Cookies.get('userId'))
 	const checkRole = useIsLeader()
 	const dispatch = useDispatch()
 
-	const handleUserClick = (user, autoCreate, accept, id) => {
+	const handleUserClick = (user, autoCreate, accept, id, isRet) => {
 		setActiveUser(user)
 		const userRole = checkRole(leader?.id, userId)
 		setRole(userRole)
 		setIsAutoCreated(autoCreate)
 		setIsAccepted(accept)
 		setCellUserId(id)
+		setIsReturn(isRet)
 	}
 
 	const refreshFetch = async () => {
@@ -152,6 +154,7 @@ export default function CellInfo({ data }) {
 									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 								}
 								isActive={isActive}
+								isReturn={isReturn}
 							/>
 						) : (
 							<CellInfoComponent
@@ -172,6 +175,7 @@ export default function CellInfo({ data }) {
 									activeUser ? setActiveUser(null) : router.push(`/cells/${id}`)
 								}
 								isActive={isActive}
+								isReturn={isReturn}
 							/>
 						)
 					) : (

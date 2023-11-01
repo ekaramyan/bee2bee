@@ -1,5 +1,12 @@
 import { useRouter } from 'next/router'
-import { Box, Typography, Select, MenuItem, useMediaQuery } from '@mui/material'
+import {
+	Box,
+	Typography,
+	Select,
+	MenuItem,
+	useMediaQuery,
+	LinearProgress,
+} from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import ImageCompression from 'browser-image-compression'
@@ -415,8 +422,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						</Box>
 					</Box>
 				</form>
-				{(suc && <Typography>successfully updated account</Typography>) ||
-					(success && <Typography>successfully updated avatar</Typography>)}
+				{(load || loading) && <LinearProgress />}
 			</Box>
 		</>
 	)
