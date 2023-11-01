@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { useMediaQuery } from '@mui/material'
+import { CircularProgress, useMediaQuery } from '@mui/material'
 import dynamic from 'next/dynamic'
 import useCells from '@/hooks/useCells'
 import starter from '@/assets/img/bees/starter.webp'
@@ -110,7 +110,7 @@ export default function OneCell({ data, joinList, level }) {
 					/>
 				)
 			) : data ? (
-				'Loading...'
+				<CircularProgress />
 			) : (
 				'Sorry, there is no data'
 			)}
