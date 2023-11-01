@@ -31,7 +31,7 @@ export default function CellBox({ isActive, data }) {
 							key={index}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<CellBoxElement data={cell} isActive={isActive} />
+							<CellBoxElement data={cell} isActive={isActive} index={index}/>
 						</Link>
 					))}
 			</Box>

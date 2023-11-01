@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import moment from 'moment-timezone'
 
-export default function CellBoxElement({ data, isActive, isWhite }) {
+export default function CellBoxElement({ data, isActive, isWhite, index }) {
 	const dateFromAPI = new Date(data.createdAt)
 	const offsetMinutes = dateFromAPI.getTimezoneOffset()
 	const adjustedDate = moment(dateFromAPI).add(-offsetMinutes, 'minutes')
@@ -15,7 +15,7 @@ export default function CellBoxElement({ data, isActive, isWhite }) {
 				}
 			>
 				<b>
-					{data.cellLevel.level.slice(0, 1)}-#{data.id}
+					{index + 1}. {data.cellLevel.level.slice(0, 1)}-#{data.id}
 				</b>{' '}
 				{cellDate} <br />
 			</Typography>

@@ -32,7 +32,12 @@ export default function DataBox({ title, data, style }) {
 							key={cell.id}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<CellBoxElement data={cell} isActive={null} isWhite={true} />
+							<CellBoxElement
+								data={cell}
+								isActive={null}
+								isWhite={true}
+								index={index}
+							/>
 						</Link>
 					))}
 			</Box>
