@@ -154,7 +154,7 @@ export default function LoginComponent() {
 					}}
 				>
 					<Grid item>
-						{/* <ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' /> */}
+						<ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' />
 					</Grid>
 
 					<Grid
