@@ -458,7 +458,7 @@ export default function RegisterComponent() {
 				>
 					<Grid item>
 						<Typography variant='body2'>
-							<ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' />
+							{/* <ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' /> */}
 						</Typography>
 					</Grid>
 
