@@ -7,12 +7,14 @@ import IndexWrapper from '@/components/UI/index_wrapper'
 import store from '@/store'
 
 function MyApp({ Component, pageProps }) {
+	const captchaKey = process.env.CAPTCHA_KEY
 	return (
 		<>
 			<Head>
 				<title>Bee2Bee</title>
 				<script
 					src='https://www.google.com/recaptcha/api.js'
+					data-sitekey={captchaKey}
 					async
 					defer
 				></script>

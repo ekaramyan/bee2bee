@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 require('dotenv').config()
 
-console.log(process.env.API_URL.slice(0, -4))
+console.log(process.env.CAPTCHA_KEY)
 
 const nextConfig = {
 	output: 'standalone',

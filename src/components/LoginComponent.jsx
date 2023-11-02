@@ -21,24 +21,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import Link from 'next/link'
 
-// const recaptchaRef = React.createRef();
-// ...
-// onSubmit = () => {
-//   const recaptchaValue = recaptchaRef.current.getValue();
-//   this.props.onSubmit(recaptchaValue);
-// }
-// render() {
-//   return (
-//     <form onSubmit={this.onSubmit} >
-//       <ReCAPTCHA
-//         ref={recaptchaRef}
-//         sitekey="Your client site key"
-//         onChange={onChange}
-//       />
-//     </form>
-//   )
-// }
-
 export default function LoginComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
 	const { login, loading, error, success } = useLogin()
