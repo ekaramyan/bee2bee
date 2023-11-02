@@ -139,7 +139,14 @@ export default function CellInfo({ data }) {
 							}}
 						/>
 					)}
-				<Wrapper header={activeUser ? 'user info' : 'Cell Info'}>
+				<Wrapper
+					header={activeUser ? 'user info' : 'Cell Info'}
+					style={{
+						minHeight: 800,
+						maxHeight: isMobile ? '100%' : '80vh',
+						gap: isMobile ? 35 : 5,
+					}}
+				>
 					{id && cellData ? (
 						isMobile ? (
 							<MobileCellInfoComponent

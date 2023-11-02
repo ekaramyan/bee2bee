@@ -22,7 +22,7 @@ export default function Header({ loggedIn }) {
 				alignItems: 'center',
 				justifyContent: 'space-between',
 				gap: 30,
-				height: '80px',
+				minHeight: 80,
 				borderRadius: '0 0 20px 20px',
 			}}
 		>

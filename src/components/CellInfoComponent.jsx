@@ -25,12 +25,26 @@ export default function CellInfoComponent({
 	isAllPayed,
 }) {
 	return (
-		<Box style={{ display: 'flex', gap: 25 }}>
+		<Box
+			style={{
+				width: '100%',
+				minWidth: 550,
+				minHeight: '65vh',
+				maxHeight: '100%',
+				display: 'flex',
+			}}
+		>
 			<BigCell
 				onCloseClick={handleCloseClick}
 				onRefreshClick={refreshFetch}
 				activeUser={user}
-				style={{ width: '50%', gap: 8 }}
+				style={{
+					width: '50%',
+					gap: 8,
+					justifyContent: 'center',
+					backgroundSize: 'contain',
+					minWidth: 550,
+				}}
 			>
 				{user ? (
 					<UserInfo

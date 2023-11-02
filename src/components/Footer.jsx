@@ -35,7 +35,7 @@ export default function Footer({}) {
 				alignItems: 'center',
 				justifyContent: isMobile ? 'center' : 'space-between',
 				alignSelf: 'end',
-				height: '80px',
+				minHeight: 80,
 				borderRadius: '20px 20px 0px 0px',
 				padding: '0 20px',
 				justifySelf: 'end',

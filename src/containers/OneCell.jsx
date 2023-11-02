@@ -135,6 +135,7 @@ export default function OneCell({ data, joinList, level }) {
 						? `${data[0]?.cellLevel?.level} ${data[0]?.cellLevel?.price}$`
 						: 'Join the cell'
 				}
+				style={{ minHeight: 800, gap: 10 }}
 			>
 				{id && joinList ? (
 					isMobile ? (

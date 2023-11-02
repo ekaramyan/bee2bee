@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Typography, CircularProgress, useMediaQuery } from '@mui/material'
 
-const Wrapper = ({ children, ...props }) => {
+const Wrapper = ({ children, style, ...props }) => {
 	const [loading, setLoading] = useState(true)
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const router = useRouter()
@@ -34,22 +34,20 @@ const Wrapper = ({ children, ...props }) => {
 	useEffect(() => {
 		setLoading(false)
 	}, [])
-
+	const styles = {
+		width: '100%',
+		height: props.notLoggedIn ? '75%' : '100%',
+		background: '#EAEEE8',
+		borderRadius: 20,
+		overflow: 'hidden',
+		padding: isMobile ? '10px 30px 20px' : '25px 10px 20px 30px',
+		display: 'flex',
+		flexDirection: 'column',
+		gap: 30,
+		...style,
+	}
 	return (
-		<Box
-			style={{
-				width: '100%',
-				height: props.notLoggedIn ? '75%' : '100%',
-				background: '#EAEEE8',
-				borderRadius: 20,
-				overflow: 'hidden',
-				padding: isMobile ? '10px 30px 20px' : '25px 10px 20px 30px',
-				display: 'flex',
-				flexDirection: 'column',
-				gap: 30,
-			}}
-			{...props}
-		>
+		<Box style={styles} {...props}>
 			<Box>
 				<Box
 					sx={{

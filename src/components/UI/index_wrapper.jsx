@@ -41,6 +41,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 					alignItems: 'center',
+					overflowY: 'auto',
 				}}
 			>
 				<Container

@@ -15,7 +15,7 @@ export default function BigCell({ children, ...props }) {
 		justifyContent: isHigh ? 'center' : 'space-between',
 		width: '100%',
 		height: '100%',
-		minHeight: isHigh ? '700px' : '65vh',
+		minHeight: isHigh ? '700px' : '680px',
 		background: `url(${background.src}) center / contain no-repeat`,
 		gap: 20,
 		padding: '3% 1%',
