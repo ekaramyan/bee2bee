@@ -1,9 +1,9 @@
 FROM node:18-alpine as builder
 WORKDIR /app
-ENV CAPTCHA_KEY=$CAPTCHA_KEY
 
 ARG API_URL
 ARG API_TOKEN
+ARG CAPTCHA_KEY
 
 COPY package.json package-lock.json ./
 RUN npm ci
