@@ -49,7 +49,6 @@ export default function CellInfo({ data }) {
 	const { cellLevelId: id } = router.query
 	const { cellId } = router.query
 	const [cellData, setCellData] = useState(data)
-	const cellQueueId = cellData?.cellQueueId || ' -'
 	const consultant = cellData?.consultant
 	const leader = cellData?.leader
 	const followers = cellData?.cellUsers
@@ -78,7 +77,7 @@ export default function CellInfo({ data }) {
 		setIsReturn(isRet)
 		setIsAllPayed(isPayed)
 	}
-
+	const [cellQueueId, setCellQueueId] = useState('-')
 	const refreshFetch = async () => {
 		try {
 			const token = Cookies.get('access_token')
@@ -86,6 +85,10 @@ export default function CellInfo({ data }) {
 			const url = `${apiUrl}/cells/${cellId}`
 			const res = await fetchData(url, token)
 			const newData = res.data
+			const cellQueueUrl = `${apiUrl}/cells/join/queue?level_id=${id}&cell_id=${cellId}`
+			const fetchQueue = await fetchData(cellQueueUrl, token)
+			const queueData = fetchQueue.data
+			setCellQueueId(queueData + 1)
 			setCellData(newData)
 		} catch (error) {
 			console.error('Ошибка при загрузке данных:', error)

@@ -14,12 +14,15 @@ import Cookies from 'js-cookie'
 import { useEffect, useState, useCallback } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import Image from 'next/image'
-import { useSWRConfig } from 'swr'
 import { fetchData } from '@/api/fetchData'
 import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
+import DashboardIcon from '@/assets/img/menu/dashboard.jsx'
+import AccountIcon from '@/assets/img/menu/my_account.jsx'
+import SettingsIcon from '@/assets/img/menu/settings.jsx'
+import FaqIcon from '@/assets/img/menu/faq.jsx'
 
 const tabs = ['cells', 'account', 'account-settings', 'faq']
 const tabNames = {
@@ -37,7 +40,6 @@ export default function UserMenu() {
 	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
 	const [data, setData] = useState(null)
 	const [burgerOpen, setBurgerOpen] = useState(false)
-	const { mutate } = useSWRConfig()
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
 	const fetchDataAsync = useCallback(async () => {
@@ -64,8 +66,6 @@ export default function UserMenu() {
 	const onExitClick = () => {
 		Cookies.remove('access_token')
 		Cookies.remove('refresh_token')
-		mutate('/users/me/photo')
-		mutate(`@"${apiUrl}/users/me/photo",`, null, false)
 		dispatch({ type: 'LOG_OUT' })
 		router.push('/')
 	}
@@ -90,12 +90,34 @@ export default function UserMenu() {
 						<Link key={index} href={`/${tab}`}>
 							<Typography
 								variant='header_buttons'
-								style={
-									activeTab === tab
-										? { color: '#E06B00', textDecoration: 'underline' }
-										: {}
-								}
+								style={{
+									display: 'flex',
+									gap: 5,
+									alignItems: 'center',
+									...(activeTab === tab && {
+										color: '#E06B00',
+										textDecoration: 'underline',
+									}),
+								}}
 							>
+								{tab === 'cells' && (
+									<DashboardIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'account' && (
+									<AccountIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'account-settings' && (
+									<SettingsIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'faq' && (
+									<FaqIcon fill={activeTab === tab ? '#E06B00' : '#1B170F'} />
+								)}
 								{tabNames[tab]}
 							</Typography>
 						</Link>

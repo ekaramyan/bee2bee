@@ -58,7 +58,7 @@ export default function UserAvatar({
 		overflow: 'hidden',
 		clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
 		transform: isLeader
-			? 'translateY(8px) translateX(10px)'
+			? 'translateY(9px) translateX(10px)'
 			: 'translateY(-1px)',
 		objectFit: 'cover',
 		...style,

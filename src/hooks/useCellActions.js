@@ -50,13 +50,20 @@ export default function useCellActions() {
 				setSuccess(true)
 				return response.data
 			} else {
-				throw new Error(
-					'Failed to post the follower. API returned false for isSuccess.'
-				)
+				console.log('Unsuccessful operation')
 			}
 		} catch (err) {
-			setError(err.message || 'Error occurred while posting the follower.')
-			throw err
+			if (err.response && err.response.status === 403) {
+				setError(
+					'You cannot join this cell cause you have ran out your join limit'
+				)
+			} else {
+				if (process.env.NODE_ENV === 'development') {
+					console.error('Axios error:', err)
+				}
+				setError('An error occurred while posting the follower.')
+			}
+			// Do not rethrow the error here
 		} finally {
 			setLoading(false)
 		}

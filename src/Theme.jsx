@@ -315,14 +315,14 @@ const theme = createTheme({
 		active_cells: {
 			color: '#119A48',
 			fontFamily: 'Noto Sans',
-			fontSize: 16,
+			fontSize: 14,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},
 		closed_cells: {
 			color: '#1B170F',
 			fontFamily: 'Noto Sans',
-			fontSize: 16,
+			fontSize: 14,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},
@@ -395,7 +395,7 @@ const theme = createTheme({
 		join_cells: {
 			color: '#EAEEE8',
 			fontFamily: 'Noto Sans',
-			fontSize: 16,
+			fontSize: 14,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},
