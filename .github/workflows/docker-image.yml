@@ -23,7 +23,7 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           CAPTCHA_KEY: ${{secrets.CAPTCHA_KEY}}
         run: |
-          docker build --build-arg API_TOKEN=${{ secrets.API_TOKEN }} --build-arg API_URL=${{ secrets.API_URL }} --build-arg CAPTCHA_KEY=${{ secrets.CAPTCHA_KEY }}. --tag ghcr.io/ekaramyan/bee2bee:latest
+          docker build --build-arg API_TOKEN=${{ secrets.API_TOKEN }} --build-arg API_URL=${{ secrets.API_URL }} --build-arg CAPTCHA_KEY=${{ secrets.CAPTCHA_KEY }} . --tag ghcr.io/ekaramyan/bee2bee:latest
           docker push ghcr.io/ekaramyan/bee2bee:latest
       - name: Debug CAPTCHA_KEY
         run: echo ${{ secrets.CAPTCHA_KEY }}
