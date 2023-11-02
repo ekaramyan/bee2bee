@@ -3,6 +3,7 @@ WORKDIR /app
 
 ARG API_URL
 ARG API_TOKEN
+ARG CAPTCHA_KEY
 
 COPY package.json package-lock.json ./
 RUN npm ci
