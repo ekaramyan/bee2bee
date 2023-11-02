@@ -1,5 +1,6 @@
 FROM node:18-alpine as builder
 WORKDIR /app
+ENV CAPTCHA_KEY=$CAPTCHA_KEY
 
 ARG API_URL
 ARG API_TOKEN
