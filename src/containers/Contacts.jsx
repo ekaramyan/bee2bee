@@ -82,7 +82,11 @@ export default function Contacts() {
 				height: '100%',
 			}}
 		>
-			<Wrapper header={'Contact us'} notLoggedIn={true}>
+			<Wrapper
+				header={'Contact us'}
+				notLoggedIn={true}
+				style={{ minHeight: '80vh' }}
+			>
 				<Typography>If you have any questions fill this form</Typography>
 				<Grid
 					sx={{

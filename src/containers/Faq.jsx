@@ -54,7 +54,7 @@ const Faq = () => {
 				overflow: 'auto',
 			}}
 		>
-			<Wrapper header={'FAQ'} notLoggedIn={false}>
+			<Wrapper header={'FAQ'} notLoggedIn={false} style={{ minHeight: '80vh' }}>
 				<Box
 					style={{
 						display: 'grid',

@@ -32,16 +32,14 @@ const IndexWrapper = ({ children, ...props }) => {
 		<>
 			<div
 				style={{
-					overflow: 'hidden',
+					overflow: 'hidden auto',
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
-					height: isMobile ? '100%' : '100dvh',
-					minHeight: isMobile ? '100dvh' : '910px',
+					height: '100%',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 					alignItems: 'center',
-					overflowY: 'auto',
 				}}
 			>
 				<Container
@@ -51,7 +49,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						alignItems: 'center',
 						gap: 20,
 						height: '100%',
-						minHeight: '100dvh',
+						minHeight: '100svh',
 						width: '100%',
 						justifyContent: 'space-between',
 					}}

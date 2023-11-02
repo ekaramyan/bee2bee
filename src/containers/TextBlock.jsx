@@ -12,10 +12,10 @@ export default function Rules({ header, text }) {
 				width: '100%',
 			}}
 		>
-			<Wrapper header={header} notLoggedIn={true}>
+			<Wrapper header={header} notLoggedIn={true} style={{ minHeight: '80vh' }}>
 				<Box
 					style={{
-						maxHeight: '50vh',
+						maxHeight: '100%',
 						overflowY: 'auto',
 						padding: '10px',
 						'&::-webkit-scrollbar': {

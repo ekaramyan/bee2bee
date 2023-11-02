@@ -12,7 +12,7 @@ export default function AccountSettings({ data }) {
 		router.push('/auth/reset')
 	}
 	return (
-		<Wrapper header={'Account Settings'}>
+		<Wrapper header={'Account Settings'} style={{ minHeight: '80vh' }}>
 			<EditAccount
 				onChangeClick={onChangeClick}
 				onResetClick={onResetClick}

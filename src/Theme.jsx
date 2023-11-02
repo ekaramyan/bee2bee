@@ -315,7 +315,7 @@ const theme = createTheme({
 		active_cells: {
 			color: '#119A48',
 			fontFamily: 'Noto Sans',
-			fontSize: 12,
+			fontSize: 14,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},
@@ -380,7 +380,7 @@ const theme = createTheme({
 		join_cells_titles: {
 			color: '#fff',
 			fontFamily: 'Noto Sans',
-			fontSize: 16,
+			fontSize: 17,
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
@@ -395,7 +395,7 @@ const theme = createTheme({
 		join_cells: {
 			color: '#EAEEE8',
 			fontFamily: 'Noto Sans',
-			fontSize: 14,
+			fontSize: 13.5,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},

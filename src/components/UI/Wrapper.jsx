@@ -37,6 +37,7 @@ const Wrapper = ({ children, style, ...props }) => {
 	const styles = {
 		width: '100%',
 		height: props.notLoggedIn ? '75%' : '100%',
+		maxHeight: isMobile ? '100%' : '80vh',
 		background: '#EAEEE8',
 		borderRadius: 20,
 		overflow: 'hidden',

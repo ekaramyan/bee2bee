@@ -9,7 +9,7 @@ export default function MyAccount({ data }) {
 		router.push('account-settings')
 	}
 	return (
-		<Wrapper header={'My Account'}>
+		<Wrapper header={'My Account'} style={{ minHeight: '80vh' }}>
 			<Box
 				style={{
 					display: 'flex',
@@ -17,6 +17,7 @@ export default function MyAccount({ data }) {
 					justifyContent: 'center',
 					alignItems: 'center',
 					gap: 30,
+					height: '100%',
 				}}
 			>
 				<Account onEditClick={handleEditClick} data={data.data} />
