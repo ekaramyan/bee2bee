@@ -28,6 +28,7 @@ const FlexBox = styled(Box)`
 `
 
 export default function Contacts() {
+	const captchaKey = process.env.CAPTCHA_KEY
 	const { sendContactForm, loading, error, success } = useContact()
 	const [iconColors, setIconColors] = useState({
 		name: '#8C7F77',
@@ -255,7 +256,11 @@ export default function Contacts() {
 							>
 								<Grid item style={{ display: 'flex', width: '50%' }}>
 									<Typography variant='body2'>
-										{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
+										<ReCAPTCHA
+											sitekey={captchaKey}
+											theme='light'
+											size='compact'
+										/>
 									</Typography>
 								</Grid>
 								<Grid

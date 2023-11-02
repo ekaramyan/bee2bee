@@ -26,14 +26,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import useRegister from '@/hooks/useRegister'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import countryList from '@/countryList'
 
 export default function RegisterComponent() {
-	const router = useRouter()
+	const captchaKey = process.env.CAPTCHA_KEY
 	const { register, loading, error, success } = useRegister()
 	const [validationErrors, setValidationErrors] = useState({})
 	const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] =
@@ -459,7 +458,7 @@ export default function RegisterComponent() {
 				>
 					<Grid item>
 						<Typography variant='body2'>
-							{/* <ReCAPTCHA sitekey='*' theme='light' size='compact' /> */}
+							<ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' />
 						</Typography>
 					</Grid>
 

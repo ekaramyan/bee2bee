@@ -50,7 +50,7 @@ export default function ChangePassForm() {
 									}}
 								>
 									<EmailOutlinedIcon sx={{ color: iconColors }} />
-									Password
+									Email
 								</Box>
 							}
 							variant='standard'
