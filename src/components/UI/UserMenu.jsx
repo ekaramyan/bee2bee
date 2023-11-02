@@ -5,8 +5,8 @@ import {
 	Button,
 	Box,
 	useMediaQuery,
-	Tooltip,
-	ClickAwayListener,
+	// Tooltip,
+	// ClickAwayListener,
 } from '@mui/material'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -45,17 +45,17 @@ export default function UserMenu() {
 	const [open, setOpen] = useState(false)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
-	const handleTooltipClose = () => {
-		setOpen(false)
-	}
+	// const handleTooltipClose = () => {
+	// 	setOpen(false)
+	// }
 
-	const handleTooltipOpen = () => {
-		setOpen(true)
-		console.log('open!')
-	}
-	const handleTooltipToggle = () => {
-		setOpen(!open)
-	}
+	// const handleTooltipOpen = () => {
+	// 	setOpen(true)
+	// 	console.log('open!')
+	// }
+	// const handleTooltipToggle = () => {
+	// 	setOpen(!open)
+	// }
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -146,7 +146,7 @@ export default function UserMenu() {
 					gap: isMobile ? 20 : 15,
 				}}
 			>
-				<ClickAwayListener onClickAway={handleTooltipClose}>
+				{/* <ClickAwayListener onClickAway={handleTooltipClose}>
 					<Tooltip
 						title='Join Limit'
 						PopperProps={{ disablePortal: true }}
@@ -170,7 +170,7 @@ export default function UserMenu() {
 							{data?.joinLimit}
 						</Typography>
 					</Tooltip>
-				</ClickAwayListener>
+				</ClickAwayListener> */}
 				{isMobile && (
 					<>
 						<MenuIcon onClick={toggleBurgerMenu} />
