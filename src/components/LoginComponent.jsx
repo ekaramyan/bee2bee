@@ -23,6 +23,7 @@ import Link from 'next/link'
 
 export default function LoginComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
+	console.log(captchaKey)
 	const { login, loading, error, success } = useLogin()
 	const router = useRouter()
 	const handleSubmit = async event => {
@@ -153,7 +154,7 @@ export default function LoginComponent() {
 					}}
 				>
 					<Grid item>
-						<ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' />
+						{/* <ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' /> */}
 					</Grid>
 
 					<Grid
