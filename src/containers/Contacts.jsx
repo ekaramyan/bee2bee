@@ -255,8 +255,8 @@ export default function Contacts() {
 								}}
 							>
 								<Grid item style={{ display: 'flex', width: '50%' }}>
-									{/* <Typography variant='body2'>
-										<ReCAPTCHA
+									<Typography variant='body2'>
+										{/* <ReCAPTCHA
 											sitekey={captchaKey}
 											theme='light'
 											size='compact'
