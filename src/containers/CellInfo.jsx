@@ -88,7 +88,7 @@ export default function CellInfo({ data }) {
 			const cellQueueUrl = `${apiUrl}/cells/join/queue?level_id=${id}&cell_id=${cellId}`
 			const fetchQueue = await fetchData(cellQueueUrl, token)
 			const queueData = fetchQueue.data
-			setCellQueueId(queueData + 1)
+			setCellQueueId(queueData)
 			setCellData(newData)
 		} catch (error) {
 			console.error('Ошибка при загрузке данных:', error)
