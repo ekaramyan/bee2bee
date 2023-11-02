@@ -15,6 +15,8 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import useLogin from '@/hooks/useLogin'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import ReCAPTCHA from 'react-google-recaptcha'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import Link from 'next/link'
@@ -62,6 +64,19 @@ export default function LoginComponent() {
 		setShowPassword(prevShow => !prevShow)
 	}
 
+	const [iconColors, setIconColors] = useState({
+		email: '#8C7F77',
+		password: '#8C7F77',
+	})
+
+	const handleIconFocus = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
+	}
+
+	const handleIconBlur = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: '#8C7F77' }))
+	}
+
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	return (
@@ -95,14 +110,38 @@ export default function LoginComponent() {
 					}}
 				>
 					<TextField
-						label='Email'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<EmailOutlinedIcon sx={{ color: iconColors.email }} />
+								Email
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='email'
 						name='email'
+						onFocus={() => handleIconFocus('email')}
+						onBlur={() => handleIconBlur('email')}
 					/>
 					<TextField
-						label='Password'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<LockOutlinedIcon sx={{ color: iconColors.password }} />
+								Password
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type={showPassword ? 'text' : 'password'}
@@ -116,6 +155,8 @@ export default function LoginComponent() {
 								</InputAdornment>
 							),
 						}}
+						onFocus={() => handleIconFocus('password')}
+						onBlur={() => handleIconBlur('password')}
 					/>
 				</Box>
 

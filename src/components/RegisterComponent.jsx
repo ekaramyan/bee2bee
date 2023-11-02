@@ -12,6 +12,15 @@ import {
 	InputAdornment,
 	IconButton,
 } from '@mui/material'
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
+import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
+import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined'
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined'
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined'
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { useState } from 'react'
@@ -29,6 +38,26 @@ export default function RegisterComponent() {
 	const [validationErrors, setValidationErrors] = useState({})
 	const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] =
 		useState(false)
+	const [iconColors, setIconColors] = useState({
+		name: '#8C7F77',
+		lastName: '#8C7F77',
+		nickname: '#8C7F77',
+		email: '#8C7F77',
+		phone: '#8C7F77',
+		country: '#8C7F77',
+		date: '#8C7F77',
+		telegram: '#8C7F77',
+		password: '#8C7F77',
+		confirmPassword: '#8C7F77',
+	})
+
+	const handleIconFocus = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
+	}
+
+	const handleIconBlur = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: '#8C7F77' }))
+	}
 
 	const validateDateOfBirth = date => {
 		const birthDate = new Date(date)
@@ -148,18 +177,44 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Name'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<PermIdentityOutlinedIcon sx={{ color: iconColors.name }} />
+								Name
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='text'
 						name='name'
+						onFocus={() => handleIconFocus('name')}
+						onBlur={() => handleIconBlur('name')}
 					/>
 					<TextField
-						label='Last Name'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<PersonAddOutlinedIcon sx={{ color: iconColors.lastName }} />
+								Last Name
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='text'
 						name='lastName'
+						onFocus={() => handleIconFocus('lastName')}
+						onBlur={() => handleIconBlur('lastName')}
 					/>
 				</Box>
 				<Box
@@ -174,18 +229,46 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Nickname'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<PermContactCalendarOutlinedIcon
+									sx={{ color: iconColors.nickname }}
+								/>
+								Nickname
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='nickname'
 						name='nickname'
+						onFocus={() => handleIconFocus('nickname')}
+						onBlur={() => handleIconBlur('nickname')}
 					/>
 					<TextField
-						label='Email'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<EmailOutlinedIcon sx={{ color: iconColors.email }} />
+								Email
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='email'
 						name='email'
+						onFocus={() => handleIconFocus('email')}
+						onBlur={() => handleIconBlur('email')}
 					/>
 				</Box>
 				<Box
@@ -199,14 +282,38 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Your Phone'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<PhoneOutlinedIcon sx={{ color: iconColors.phone }} />
+								Phone
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='tel'
 						name='phone'
+						onFocus={() => handleIconFocus('phone')}
+						onBlur={() => handleIconBlur('phone')}
 					/>
 					<FormControl fullWidth variant='standard'>
-						<InputLabel htmlFor='country-select'>Your Country</InputLabel>
+						<InputLabel htmlFor='country-select'>
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<LanguageOutlinedIcon sx={{ color: iconColors.country }} />
+								Your Country
+							</Box>
+						</InputLabel>
 						<Select label='Your Country' id='country-select' name='country'>
 							{countryList.map(country => (
 								<MenuItem key={country.code} value={country.name}>
@@ -229,20 +336,46 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Date of Birth'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<CalendarMonthOutlinedIcon sx={{ color: iconColors.birth }} />
+								Date of birth
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='date'
 						name='date'
 						InputLabelProps={{ shrink: true }}
+						onFocus={() => handleIconFocus('birth')}
+						onBlur={() => handleIconBlur('birth')}
 					/>
 
 					<TextField
-						label='Telegram'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<SendOutlinedIcon sx={{ color: iconColors.telegram }} />
+								Telegram
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type='text'
 						name='telegram'
+						onFocus={() => handleIconFocus('telegram')}
+						onBlur={() => handleIconBlur('telegram')}
 					/>
 				</Box>
 				<Box
@@ -257,7 +390,18 @@ export default function RegisterComponent() {
 					}}
 				>
 					<TextField
-						label='Password'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<LockOutlinedIcon sx={{ color: iconColors.password }} />
+								Password
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type={showPassword ? 'text' : 'password'}
@@ -271,9 +415,22 @@ export default function RegisterComponent() {
 								</InputAdornment>
 							),
 						}}
+						onFocus={() => handleIconFocus('password')}
+						onBlur={() => handleIconBlur('password')}
 					/>
 					<TextField
-						label='Confirm Password'
+						label={
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								<LockOutlinedIcon sx={{ color: iconColors.confirmPassword }} />
+								Confirm Password
+							</Box>
+						}
 						variant='standard'
 						fullWidth
 						type={showConfirmPassword ? 'text' : 'password'}
@@ -287,6 +444,8 @@ export default function RegisterComponent() {
 								</InputAdornment>
 							),
 						}}
+						onFocus={() => handleIconFocus('confirmPassword')}
+						onBlur={() => handleIconBlur('confirmPassword')}
 					/>
 				</Box>
 				<Box

@@ -7,6 +7,7 @@ import {
 	InputAdornment,
 	IconButton,
 } from '@mui/material'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -23,6 +24,18 @@ export default function ChangePassForm({
 }) {
 	const [showPassword, setShowPassword] = useState(false)
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+	const [iconColors, setIconColors] = useState({
+		password: '#8C7F77',
+		confirmPassword: '#8C7F77',
+	})
+
+	const handleIconFocus = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
+	}
+
+	const handleIconBlur = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: '#8C7F77' }))
+	}
 
 	const handlePasswordToggle = () => {
 		setShowPassword(prevShow => !prevShow)
@@ -66,7 +79,18 @@ export default function ChangePassForm({
 						}}
 					>
 						<TextField
-							label='Password'
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<LockOutlinedIcon sx={{ color: iconColors.password }} />
+									Password
+								</Box>
+							}
 							variant='standard'
 							fullWidth
 							type={showPassword ? 'text' : 'password'}
@@ -80,9 +104,24 @@ export default function ChangePassForm({
 									</InputAdornment>
 								),
 							}}
+							onFocus={() => handleIconFocus('password')}
+							onBlur={() => handleIconBlur('password')}
 						/>
 						<TextField
-							label='Confirm Password'
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<LockOutlinedIcon
+										sx={{ color: iconColors.confirmPassword }}
+									/>
+									Confirm Password
+								</Box>
+							}
 							variant='standard'
 							fullWidth
 							type={showConfirmPassword ? 'text' : 'password'}
@@ -96,6 +135,8 @@ export default function ChangePassForm({
 									</InputAdornment>
 								),
 							}}
+							onFocus={() => handleIconFocus('confirmPassword')}
+							onBlur={() => handleIconBlur('confirmPassword')}
 						/>
 					</Box>
 

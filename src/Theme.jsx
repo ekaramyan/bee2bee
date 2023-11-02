@@ -315,7 +315,7 @@ const theme = createTheme({
 		active_cells: {
 			color: '#119A48',
 			fontFamily: 'Noto Sans',
-			fontSize: 14,
+			fontSize: 12,
 			fontWeight: 400,
 			textTransform: 'uppercase',
 		},

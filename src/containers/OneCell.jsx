@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function OneCell({ data, joinList, level }) {
 	const router = useRouter()
-	const { postFollower, success, loading, error } = useCellActions()
+	const { postFollower, loading, error } = useCellActions()
 	const userId = parseInt(Cookies.get('userId'))
 	const { cellLevelId: id } = router.query
 	const cells = [
@@ -71,7 +71,6 @@ export default function OneCell({ data, joinList, level }) {
 		error: waitingError,
 		getCells: getWaitingCells,
 	} = useCells()
-
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
@@ -83,6 +82,8 @@ export default function OneCell({ data, joinList, level }) {
 	}, [])
 	const [toJoin, setToJoin] = useState(null)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
+	const [success, setSuccess] = useState(null)
+	const [err, setErr] = useState(null)
 
 	useEffect(() => {
 		if (joinList.data) {
@@ -97,14 +98,22 @@ export default function OneCell({ data, joinList, level }) {
 
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
+		console.log(users)
 		if (
 			!leaderActiveData ||
-			(userId !== users?.data?.leader?.id && users.data.cellUsers.length < 6)
+			(userId !== users?.data?.leader?.id && users.data.cellUsers.length <= 6)
 		) {
-			postFollower(toJoin, userId)
+			const res = await postFollower(toJoin, userId)
+			console.log(res)
+			setSuccess(res.isSuccess)
+			res.isSuccess &&
+				router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
 		}
-		success && router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
 		if (error || !success) setShowErrorDialog(true)
+		if (users.data.cellUsers.length >= 6) {
+			setErr('sorry, cell is overflowed')
+			setShowErrorDialog(true)
+		}
 	}
 	console.log(error, success)
 	return (
@@ -116,7 +125,7 @@ export default function OneCell({ data, joinList, level }) {
 					onClick={() => setShowErrorDialog(false)}
 				>
 					<DialogContent>
-						<Typography variant='body1'>{error}</Typography>
+						<Typography variant='body1'>{error || err}</Typography>
 					</DialogContent>
 				</StyledDialog>
 			)}

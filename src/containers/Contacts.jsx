@@ -8,6 +8,12 @@ import {
 	useMediaQuery,
 } from '@mui/material'
 import { styled } from '@mui/material'
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
+import SubjectOutlinedIcon from '@mui/icons-material/SubjectOutlined'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import ReCAPTCHA from 'react-google-recaptcha'
 import Wrapper from '@/components/UI/Wrapper'
@@ -23,6 +29,22 @@ const FlexBox = styled(Box)`
 
 export default function Contacts() {
 	const { sendContactForm, loading, error, success } = useContact()
+	const [iconColors, setIconColors] = useState({
+		name: '#8C7F77',
+		lastName: '#8C7F77',
+		email: '#8C7F77',
+		subject: '#8C7F77',
+		message: '#8C7F77',
+	})
+	const [validationError, setValidationError] = useState(null)
+
+	const handleIconFocus = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
+	}
+
+	const handleIconBlur = iconName => {
+		setIconColors(prevColors => ({ ...prevColors, [iconName]: '#8C7F77' }))
+	}
 	const handleSubmit = async event => {
 		event.preventDefault()
 
@@ -34,6 +56,17 @@ export default function Contacts() {
 			subject: formData.get('subject'),
 			text: formData.get('message'),
 			isConfirmationSent: formData.get('send_me') === 'on',
+		}
+
+		if (
+			!data.email ||
+			!data.firstName ||
+			!data.lastName ||
+			!data.subject ||
+			!data.text
+		) {
+			setValidationError('Please fill all fields')
+			return
 		}
 
 		await sendContactForm(data)
@@ -65,6 +98,8 @@ export default function Contacts() {
 						onSubmit={handleSubmit}
 						style={{
 							display: 'flex',
+							alignItems: 'center',
+							gap: 15,
 							flex: 1,
 							flexDirection: 'column',
 							width: '100%',
@@ -82,18 +117,48 @@ export default function Contacts() {
 								}}
 							>
 								<TextField
-									label='First Name'
+									label={
+										<Box
+											style={{
+												display: 'flex',
+												alignItems: 'center',
+												gap: 5,
+											}}
+										>
+											<PermIdentityOutlinedIcon
+												sx={{ color: iconColors.name }}
+											/>
+											Name
+										</Box>
+									}
 									variant='standard'
 									fullWidth
 									type='name'
 									name='name'
+									onFocus={() => handleIconFocus('name')}
+									onBlur={() => handleIconBlur('name')}
 								/>
 								<TextField
-									label='Last Name'
+									label={
+										<Box
+											style={{
+												display: 'flex',
+												alignItems: 'center',
+												gap: 5,
+											}}
+										>
+											<PersonAddOutlinedIcon
+												sx={{ color: iconColors.lastName }}
+											/>
+											Last name
+										</Box>
+									}
 									variant='standard'
 									fullWidth
 									type='last name'
 									name='last name'
+									onFocus={() => handleIconFocus('lastName')}
+									onBlur={() => handleIconBlur('lastName')}
 								/>
 							</Box>
 							<Box
@@ -107,23 +172,62 @@ export default function Contacts() {
 								}}
 							>
 								<TextField
-									label='Email'
+									label={
+										<Box
+											style={{
+												display: 'flex',
+												alignItems: 'center',
+												gap: 5,
+											}}
+										>
+											<EmailOutlinedIcon sx={{ color: iconColors.email }} />
+											Email
+										</Box>
+									}
 									variant='standard'
 									fullWidth
 									type='email'
 									name='email'
+									onFocus={() => handleIconFocus('email')}
+									onBlur={() => handleIconBlur('email')}
 								/>
 								<TextField
-									label='Subject'
+									label={
+										<Box
+											style={{
+												display: 'flex',
+												alignItems: 'center',
+												gap: 5,
+											}}
+										>
+											<SubjectOutlinedIcon sx={{ color: iconColors.subject }} />
+											Subject
+										</Box>
+									}
 									variant='standard'
 									fullWidth
 									type='text'
 									name='Subject'
+									onFocus={() => handleIconFocus('subject')}
+									onBlur={() => handleIconBlur('subject')}
 								/>
 							</Box>
 							<FlexBox item xs={12}>
 								<TextField
-									label='Your Message Text'
+									label={
+										<Box
+											style={{
+												display: 'flex',
+												alignItems: 'center',
+												gap: 5,
+											}}
+										>
+											<DriveFileRenameOutlineOutlinedIcon
+												sx={{ color: iconColors.message }}
+											/>
+											Your message text
+										</Box>
+									}
 									name='message'
 									fullWidth
 									variant='standard'
@@ -131,6 +235,8 @@ export default function Contacts() {
 									multiline
 									rows={3}
 									required
+									onFocus={() => handleIconFocus('message')}
+									onBlur={() => handleIconBlur('message')}
 								></TextField>
 							</FlexBox>
 							<Box
@@ -166,6 +272,9 @@ export default function Contacts() {
 								</Grid>
 							</Box>
 						</Grid>
+						{validationError && (
+							<Typography variant='body1'>{validationError}</Typography>
+						)}
 					</form>
 					{!isMobile && (
 						<Box

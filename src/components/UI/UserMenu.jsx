@@ -5,6 +5,8 @@ import {
 	Button,
 	Box,
 	useMediaQuery,
+	Tooltip,
+	ClickAwayListener,
 } from '@mui/material'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -40,7 +42,20 @@ export default function UserMenu() {
 	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
 	const [data, setData] = useState(null)
 	const [burgerOpen, setBurgerOpen] = useState(false)
+	const [open, setOpen] = useState(false)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
+
+	const handleTooltipClose = () => {
+		setOpen(false)
+	}
+
+	const handleTooltipOpen = () => {
+		setOpen(true)
+		console.log('open!')
+	}
+	const handleTooltipToggle = () => {
+		setOpen(!open)
+	}
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -73,7 +88,7 @@ export default function UserMenu() {
 	const toggleBurgerMenu = () => {
 		setBurgerOpen(!burgerOpen)
 	}
-
+	console.log(data)
 	return (
 		<>
 			{!isMobile && (
@@ -128,9 +143,34 @@ export default function UserMenu() {
 				style={{
 					display: 'flex',
 					alignItems: 'center',
-					gap: isMobile ? 20 : 5,
+					gap: isMobile ? 20 : 15,
 				}}
 			>
+				<ClickAwayListener onClickAway={handleTooltipClose}>
+					<Tooltip
+						title='Join Limit'
+						PopperProps={{ disablePortal: true }}
+						onClose={handleTooltipClose}
+						open={isMobile ? open : undefined}
+						disableHoverListener={isMobile}
+						disableTouchListener={!isMobile}
+						disableFocusListener
+						enterTouchDelay={0}
+						leaveTouchDelay={5000}
+					>
+						<Typography
+							variant='user_item'
+							aria-owns={open ? 'mouse-over-popover' : undefined}
+							aria-haspopup='true'
+							onMouseOver={!isMobile ? handleTooltipOpen : undefined}
+							onMouseOut={!isMobile ? handleTooltipClose : undefined}
+							onClick={isMobile ? handleTooltipToggle : undefined}
+							style={{ cursor: 'pointer' }}
+						>
+							{data?.joinLimit}
+						</Typography>
+					</Tooltip>
+				</ClickAwayListener>
 				{isMobile && (
 					<>
 						<MenuIcon onClick={toggleBurgerMenu} />

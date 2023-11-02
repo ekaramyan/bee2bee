@@ -144,12 +144,12 @@ export default function UserInfo({
 								type='submit'
 								style={{
 									background: '#119A48',
-									width: '50%',
+									width: '100%', // set 50%, when uncooment section behind
 								}}
 							>
 								accept
 							</AuthButton>
-							<AuthButton
+							{/* <AuthButton
 								variant='contained'
 								onClick={onDeleteClick}
 								type='submit'
@@ -159,11 +159,11 @@ export default function UserInfo({
 								}}
 							>
 								delete
-							</AuthButton>
+							</AuthButton> */}
 						</Box>
-						<Typography variant='cell_user_subtext'>
+						{/* <Typography variant='cell_user_subtext'>
 							votes to remove: 0/5
-						</Typography>
+						</Typography> */}
 					</>
 				)}
 				{userId === myId &&

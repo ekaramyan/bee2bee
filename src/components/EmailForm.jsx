@@ -1,17 +1,13 @@
-import {
-	Box,
-	Grid,
-	Typography,
-	TextField,
-	FormControlLabel,
-	Checkbox,
-} from '@mui/material'
+import { Box, Grid, TextField } from '@mui/material'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 import useReset from '@/hooks/useReset'
 
 export default function ChangePassForm() {
 	const { loading, error, success, getEmail, sendNewPass } = useReset()
+	const [iconColors, setIconColors] = useState('#8C7F77')
 
 	const handleSubmit = async event => {
 		event.preventDefault()
@@ -45,11 +41,24 @@ export default function ChangePassForm() {
 				>
 					<Box item xs={12} style={{ display: 'flex', gap: 20 }}>
 						<TextField
-							label='Email'
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<EmailOutlinedIcon sx={{ color: iconColors }} />
+									Password
+								</Box>
+							}
 							variant='standard'
 							fullWidth
 							type='email'
 							name='email'
+							onFocus={() => setIconColors('action')}
+							onBlur={() => setIconColors('#8C7F77')}
 						/>
 					</Box>
 
