@@ -8,8 +8,13 @@ export default function SideModal({ children, ...props }) {
 				position: 'absolute',
 				zIndex: 10,
 				top: 0,
-				right: props.isRight ? '' : props.isLoginOpen ? 0 : '-40%',
-				left: props.isRight ? (props.isRegisterOpen ? 0 : '-40%') : '',
+				left: props.isRight
+					? props.isRegisterOpen
+						? 0
+						: '-40%'
+					: props.isLoginOpen
+					? '55%'
+					: '95%',
 				width: '45%',
 				height: '100%',
 				background: props.isRight

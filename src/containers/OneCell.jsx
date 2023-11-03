@@ -115,7 +115,7 @@ export default function OneCell({ data, joinList, level }) {
 			setShowErrorDialog(true)
 		}
 	}
-	console.log(error, success)
+	console.log(data)
 	return (
 		<>
 			{error && showErrorDialog && (

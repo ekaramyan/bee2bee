@@ -10,7 +10,7 @@ export default function Custom404() {
 					alignItems: 'center',
 					justifyContent: 'center',
 					width: '100%',
-					height: '100dvh',
+					height: '100%',
 				}}
 			>
 				<Typography variant='block_header'>Page Does Not Exists</Typography>
