@@ -250,16 +250,26 @@ export default function Contacts() {
 									flexDirection: isMobile ? 'column' : 'row',
 									alignItems: 'center',
 									justifyContent: 'space-between',
+									alignItems: 'center',
 									width: '100%',
 									flex: 1,
 								}}
 							>
-								<Grid item style={{ display: 'flex', width: '50%' }}>
-									<ReCAPTCHA
-										sitekey={captchaKey}
-										theme='light'
-										size='compact'
-									/>
+								<Grid
+									item
+									style={{
+										width: '50%',
+										display: 'flex',
+										justifyContent: 'center',
+									}}
+								>
+									<div style={{ transform: 'scale(0.8)' }}>
+										<ReCAPTCHA
+											sitekey={captchaKey}
+											theme='light'
+											size='normal'
+										/>
+									</div>
 								</Grid>
 								<Grid
 									item

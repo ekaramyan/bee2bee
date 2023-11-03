@@ -67,9 +67,9 @@ export default function UserAvatar({
 	const avatarImage = (
 		<>
 			{isLoading ? (
-				!avatar ? (
+				!avatar || previewImage ? (
 					<Image
-						src={defaultAvatar}
+						src={previewImage || defaultAvatar}
 						width={isClickable ? width : width - 5}
 						height={isClickable ? height : height - 5}
 						loading='lazy'

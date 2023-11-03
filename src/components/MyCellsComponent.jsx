@@ -1,11 +1,12 @@
 import useCells from '@/hooks/useCells'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 const CellBox = dynamic(() => import('@/components/UI/CellBox'))
 
 export default function MyCellsComponent({ isOpen }) {
 	const [isFollower, setIsFollower] = useState(true)
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	const {
 		data: followerActiveData,
@@ -39,7 +40,7 @@ export default function MyCellsComponent({ isOpen }) {
 		getLeaderInactiveCells('me_leader_inactive')
 	}, [isOpen])
 	return (
-		<Box style={{ width: '75%' }}>
+		<Box style={{ width: isMobile ? '100%' : '75%' }}>
 			<Box
 				style={{
 					display: 'flex',

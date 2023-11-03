@@ -147,13 +147,23 @@ export default function LoginComponent() {
 					style={{
 						display: 'flex',
 						justifyContent: 'space-between',
+						alignItems: 'center',
 						flexDirection: isMobile ? 'column' : 'row',
 						width: '100%',
 						flex: 1,
 					}}
 				>
-					<Grid item>
-						<ReCAPTCHA sitekey={captchaKey} theme='light' size='compact' />
+					<Grid
+						item
+						style={{
+							width: '50%',
+							display: 'flex',
+							justifyContent: 'center',
+						}}
+					>
+						<div style={{ transform: 'scale(0.8)' }}>
+							<ReCAPTCHA sitekey={captchaKey} theme='light' size='normal' />
+						</div>
 					</Grid>
 
 					<Grid

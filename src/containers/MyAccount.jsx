@@ -9,7 +9,7 @@ export default function MyAccount({ data }) {
 		router.push('account-settings')
 	}
 	return (
-		<Wrapper header={'My Account'} style={{ minHeight: '80vh' }}>
+		<Wrapper header={'My Account'} style={{ minHeight: 700 }}>
 			<Box
 				style={{
 					display: 'flex',

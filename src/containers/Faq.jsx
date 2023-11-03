@@ -6,12 +6,13 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
+	useMediaQuery,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const Faq = () => {
 	const [expanded, setExpanded] = useState(false)
-
+	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const handleChange = panel => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false)
 	}
@@ -58,7 +59,7 @@ const Faq = () => {
 				<Box
 					style={{
 						display: 'grid',
-						gridTemplateColumns: 'repeat(2, 1fr)',
+						gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
 						justifyContent: 'center',
 						alignItems: 'start',
 						gap: '20px',

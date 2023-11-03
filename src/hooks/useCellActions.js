@@ -63,7 +63,6 @@ export default function useCellActions() {
 				}
 				setError('Error while joining the cell.')
 			}
-			// Do not rethrow the error here
 		} finally {
 			setLoading(false)
 		}
