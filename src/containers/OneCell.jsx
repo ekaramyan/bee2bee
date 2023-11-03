@@ -105,8 +105,8 @@ export default function OneCell({ data, joinList, level }) {
 		) {
 			const res = await postFollower(toJoin, userId)
 			console.log(res)
-			setSuccess(res.isSuccess)
-			res.isSuccess &&
+			setSuccess(res?.isSuccess)
+			res?.isSuccess &&
 				router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
 		}
 		if (error || !success) setShowErrorDialog(true)

@@ -45,7 +45,7 @@ const Wrapper = ({ children, style, ...props }) => {
 		display: 'flex',
 		flexDirection: 'column',
 		gap: 30,
-		minHeight: 830,
+		minHeight: 800,
 		...style,
 	}
 	return (
