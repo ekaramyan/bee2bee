@@ -61,7 +61,7 @@ export default function useCellActions() {
 				if (process.env.NODE_ENV === 'development') {
 					console.error('Axios error:', err)
 				}
-				setError('An error occurred while posting the follower.')
+				setError('Error while joining the cell.')
 			}
 			// Do not rethrow the error here
 		} finally {

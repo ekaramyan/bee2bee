@@ -111,7 +111,7 @@ export default function OneCell({ data, joinList, level }) {
 		}
 		if (error || !success) setShowErrorDialog(true)
 		if (users.data.cellUsers.length >= 6) {
-			setErr('sorry, cell is overflowed')
+			setErr('Sorry, cell is overcrowded')
 			setShowErrorDialog(true)
 		}
 	}
