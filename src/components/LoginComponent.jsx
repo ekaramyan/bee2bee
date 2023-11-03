@@ -23,7 +23,6 @@ import Link from 'next/link'
 
 export default function LoginComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
-	console.log(captchaKey)
 	const { login, loading, error, success } = useLogin()
 	const router = useRouter()
 	const handleSubmit = async event => {
