@@ -46,6 +46,11 @@ export default function Contacts() {
 	const handleIconBlur = iconName => {
 		setIconColors(prevColors => ({ ...prevColors, [iconName]: '#8C7F77' }))
 	}
+	const [captchaValue, setCaptchaValue] = useState(null)
+
+	const handleCaptchaChange = value => {
+		setCaptchaValue(value)
+	}
 	const handleSubmit = async event => {
 		event.preventDefault()
 
@@ -67,6 +72,10 @@ export default function Contacts() {
 			!data.text
 		) {
 			setValidationError('Please fill all fields')
+			return
+		}
+		if (!captchaValue) {
+			setValidationError('Please pass captcha')
 			return
 		}
 
@@ -268,6 +277,7 @@ export default function Contacts() {
 											sitekey={captchaKey}
 											theme='light'
 											size='normal'
+											onChange={handleCaptchaChange}
 										/>
 									</div>
 								</Grid>

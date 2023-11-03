@@ -49,7 +49,11 @@ export default function RegisterComponent() {
 		password: '#8C7F77',
 		confirmPassword: '#8C7F77',
 	})
+	const [captchaValue, setCaptchaValue] = useState(null)
 
+	const handleCaptchaChange = value => {
+		setCaptchaValue(value)
+	}
 	const handleIconFocus = iconName => {
 		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
 	}
@@ -130,7 +134,10 @@ export default function RegisterComponent() {
 			setValidationErrors(errors)
 			return
 		}
-
+		if (!captchaValue) {
+			setValidationErrors('Please pass captcha')
+			return
+		}
 		register(formData)
 	}
 	const [showPassword, setShowPassword] = useState(false)
@@ -466,7 +473,12 @@ export default function RegisterComponent() {
 						}}
 					>
 						<div style={{ transform: 'scale(0.8)' }}>
-							<ReCAPTCHA sitekey={captchaKey} theme='light' size='normal' />
+							<ReCAPTCHA
+								sitekey={captchaKey}
+								theme='light'
+								size='normal'
+								onChange={handleCaptchaChange}
+							/>
 						</div>
 					</Grid>
 
