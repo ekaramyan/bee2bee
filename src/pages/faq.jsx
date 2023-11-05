@@ -3,6 +3,6 @@ import TextBlock from '@/containers/TextBlock'
 import useAuthentication from '@/hooks/useAuthentication'
 
 export default function RulesPage() {
-	useAuthentication()
+	useAuthentication(false)
 	return <Faq />
 }

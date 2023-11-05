@@ -11,13 +11,20 @@ export default function useReset() {
 	const baseUrl = `${apiUrl}/users`
 
 	const getEmail = async email => {
+		setError(null)
+		setSuccess(null)
 		setLoading(true)
 		try {
 			const response = await axios.get(`${baseUrl}/reset?email=${email}`)
 			setSuccess(true)
-			return null
+			return response.data
 		} catch (err) {
-			setError(err.message || 'Error while requesting password reset')
+			if (process.env.NODE_ENV === 'development') {
+				console.error('Axios error:', err.message)
+			}
+			const message =
+				err.response?.data?.message || 'Error while requesting password reset'
+			setError(message)
 			throw err
 		} finally {
 			setLoading(false)
@@ -37,7 +44,7 @@ export default function useReset() {
 			setSuccess(true)
 			return response.data
 		} catch (err) {
-			setError(err.message || 'Error occurred while posting the follower.')
+			setError(err.message || 'Error occurred while reseting password.')
 			throw err
 		} finally {
 			setLoading(false)

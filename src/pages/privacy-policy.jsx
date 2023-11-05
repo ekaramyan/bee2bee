@@ -2,6 +2,7 @@ import TextBlock from '@/containers/TextBlock'
 import useAuthentication from '@/hooks/useAuthentication'
 
 export default function AboutPage() {
+	useAuthentication(false)
 	return (
 		<TextBlock
 			header={'Privacy Policy'}

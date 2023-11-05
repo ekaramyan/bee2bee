@@ -25,7 +25,7 @@ export default function LoginComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
 	const { login, loading, error, success } = useLogin()
 	const [captchaValue, setCaptchaValue] = useState(null)
-
+	const [err, setError] = useState(null)
 	const handleCaptchaChange = value => {
 		setCaptchaValue(value)
 	}
@@ -41,6 +41,7 @@ export default function LoginComponent() {
 			client_secret: '',
 		}
 		if (!captchaValue) {
+			setError('Please pass captcha first')
 			return
 		}
 		login(formData)
@@ -207,7 +208,7 @@ export default function LoginComponent() {
 					</Typography>
 				</Grid>
 			</form>
-			{error && <div>{error}</div>}
+			{(error || err) && <div>{error || err}</div>}
 			{success && <div>Successfully signed in!</div>}
 		</Box>
 	)
