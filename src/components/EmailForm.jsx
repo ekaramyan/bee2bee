@@ -17,7 +17,8 @@ export default function ChangePassForm() {
 
 	const handleSubmit = async event => {
 		event.preventDefault()
-		getEmail(event.target.email.value)
+		const email = event.target.email.value.toLowerCase()
+		getEmail(email)
 	}
 
 	return (

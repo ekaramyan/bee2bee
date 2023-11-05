@@ -34,7 +34,7 @@ export default function LoginComponent() {
 		event.preventDefault()
 		const formData = {
 			grant_type: '',
-			username: event.target.email.value,
+			username: event.target.email.value.toLowerCase(),
 			password: event.target.password.value,
 			scope: '',
 			client_id: '',

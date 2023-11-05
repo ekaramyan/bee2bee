@@ -91,7 +91,7 @@ export default function RegisterComponent() {
 			phone: String(event.target.phone.value),
 			telegram: event.target.telegram.value,
 			birth: event.target.date.value,
-			email: event.target.email.value,
+			email: event.target.email.value.toLowerCase(),
 			password: event.target.password.value,
 			passwordConfirmation: event.target.confirm_password.value,
 		}
