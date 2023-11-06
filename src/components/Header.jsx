@@ -24,6 +24,7 @@ export default function Header({ loggedIn }) {
 				gap: 30,
 				minHeight: 80,
 				borderRadius: '0 0 20px 20px',
+				userSelect: 'none',
 			}}
 		>
 			<div

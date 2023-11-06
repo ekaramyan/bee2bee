@@ -11,6 +11,7 @@ import {
 	useMediaQuery,
 	InputAdornment,
 	IconButton,
+	CircularProgress,
 } from '@mui/material'
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
@@ -508,7 +509,22 @@ export default function RegisterComponent() {
 								</Link>
 							</Typography>
 						</Box>
-						<AuthButton type='submit'>Register</AuthButton>
+						<Box
+							style={{
+								display: 'flex',
+								width: '100%',
+								alignItems: 'center',
+								justifyContent: 'center',
+							}}
+						>
+							{loading ? (
+								<CircularProgress />
+							) : (
+								<AuthButton type='submit' style={{ width: '100%' }}>
+									Register
+								</AuthButton>
+							)}
+						</Box>
 					</Grid>
 				</Box>
 			</form>

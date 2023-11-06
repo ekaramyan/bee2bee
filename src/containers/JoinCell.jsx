@@ -76,6 +76,7 @@ export default function JoinCell() {
 					justifyContent: 'center',
 					alignContent: 'center',
 					gap: isMobile && 10,
+					userSelect: 'none',
 				}}
 			>
 				{showConfetti && (

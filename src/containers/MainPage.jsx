@@ -16,6 +16,7 @@ export default function MainPage() {
 				alignItems: 'center',
 				width: '100%',
 				height: '100%',
+				userSelect: 'none',
 			}}
 		>
 			<div

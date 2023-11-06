@@ -8,6 +8,7 @@ import {
 	IconButton,
 	Typography,
 	useMediaQuery,
+	CircularProgress,
 } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -191,7 +192,22 @@ export default function LoginComponent() {
 							control={<Checkbox name='remember' color='primary' />}
 							label='Remember me'
 						/>
-						<AuthButton type='submit'>Login</AuthButton>
+						<Box
+							style={{
+								display: 'flex',
+								width: '100%',
+								alignItems: 'center',
+								justifyContent: 'center',
+							}}
+						>
+							{loading ? (
+								<CircularProgress />
+							) : (
+								<AuthButton type='submit' style={{ width: '100%' }}>
+									Login
+								</AuthButton>
+							)}
+						</Box>
 					</Grid>
 				</Box>
 

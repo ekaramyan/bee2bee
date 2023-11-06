@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Wrapper from '@/components/UI/Wrapper'
 import {
 	Box,
+	Grid,
 	Typography,
 	Accordion,
 	AccordionDetails,
@@ -19,34 +20,34 @@ const Faq = () => {
 
 	const faqData = [
 		{
-			question: 'Вопрос 1',
+			question: 'Question 1',
 			answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices mauris faucibus enim imperdiet euismod. Etiam vitae mauris turpis. Nunc pellentesque gravida porta. Nulla tincidunt eu erat pellentesque hendrerit. Praesent condimentum diam sed est aliquam, sagittis dictum nisl efficitur. Cras eleifend placerat magna, in ornare tellus maximus eget. Vivamus ultrices, ante ut cursus rhoncus, metus est hendrerit lectus, feugiat placerat dui tortor vitae est. Pellentesque tortor purus, volutpat et massa vel, eleifend dignissim mi. Aliquam in rhoncus ipsum, in lobortis nibh. In dignissim ligula quis felis fermentum volutpat. Aliquam erat volutpat. Nam hendrerit purus neque, vel aliquam nibh luctus tempor. Aliquam porttitor magna id ante dignissim auctor a at turpis.`,
 		},
 		{
-			question: 'Вопрос 2',
-			answer: 'Ответ на вопрос 2.',
+			question: 'Question 2',
+			answer: 'Answer on question 2',
 		},
 		{
-			question: 'Вопрос 3',
-			answer: 'Ответ на вопрос 3.',
+			question: 'Question 3',
+			answer: 'Answer on question 3',
 		},
 		{
-			question: 'Вопрос 4',
-			answer: 'Ответ на вопрос 4.',
+			question: 'Question 4',
+			answer: 'Answer on question 4',
 		},
 		{
-			question: 'Вопрос 5',
-			answer: 'Ответ на вопрос 5.',
+			question: 'Question 5',
+			answer: 'Answer on question 5',
 		},
 		{
-			question: 'Вопрос 6',
-			answer: 'Ответ на вопрос 6.',
+			question: 'Question 6',
+			answer: 'Answer on question 6',
 		},
 	]
 
 	return (
 		<Box
-			style={{
+			sx={{
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
@@ -55,59 +56,60 @@ const Faq = () => {
 				overflow: 'auto',
 			}}
 		>
-			<Wrapper header={'FAQ'} notLoggedIn={false} style={{ minHeight: '80vh' }}>
-				<Box
-					style={{
-						display: 'grid',
-						gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-						justifyContent: 'center',
-						alignItems: 'start',
-						gap: '20px',
-						overflow: 'auto',
-					}}
-				>
+			<Wrapper
+				header={'FAQ'}
+				notLoggedIn={false}
+				style={{ minHeight: '80vh', overflow: 'auto' }}
+			>
+				<Grid container spacing={2} justifyContent='center' alignItems='start'>
 					{faqData.map((item, index) => (
-						<Accordion
-							key={index}
-							expanded={expanded === `panel${index}`}
-							onChange={handleChange(`panel${index}`)}
-							sx={{
-								background: 'transparent',
-								borderRadius: 15,
-								border: 'none',
-								boxShadow: 'none',
-								'&.MuiAccordion-root::before': {
-									content: 'none',
-								},
-							}}
-						>
-							<AccordionSummary
-								style={{
-									borderRadius: 15,
-									background:
-										expanded === `panel${index}` ? '#A5560F' : '#E06B00',
-								}}
-								expandIcon={<ExpandMoreIcon style={{ color: '#fff' }} />}
-							>
-								<Typography variant='real_cells_queue'>
-									{item.question}
-								</Typography>
-							</AccordionSummary>
-							<AccordionDetails
-								style={{
-									border: '#A5560F solid 4px',
-									borderRadius: 15,
-									background: '#E06B00',
-									transform: 'translateY(5px)',
+						<Grid item xs={12} md={6} key={index}>
+							<Accordion
+								expanded={expanded === `panel${index}`}
+								onChange={handleChange(`panel${index}`)}
+								elevation={0}
+								square
+								sx={{
+									backgroundColor: 'transparent',
+									'&:before': { display: 'none' },
+									mb: 2,
 								}}
 							>
-								<Typography variant='cell_user_subtext'>
-									{item.answer}
-								</Typography>
-							</AccordionDetails>
-						</Accordion>
+								<AccordionSummary
+									sx={{
+										borderRadius: 3,
+										backgroundColor:
+											expanded === `panel${index}` ? '#A5560F' : '#E06B00',
+										color: 'common.white',
+										':hover': {
+											backgroundColor: '#A5560F',
+										},
+									}}
+									expandIcon={<ExpandMoreIcon sx={{ color: 'common.white' }} />}
+								>
+									<Typography variant='real_cells_queue'>
+										{item.question}
+									</Typography>
+								</AccordionSummary>
+								<AccordionDetails
+									sx={{
+										border: 'solid',
+										borderColor: '#A5560F',
+										borderWidth: '4px',
+										borderRadius: 3,
+										backgroundColor: '#E06B00',
+										transform: 'translateY(5px)',
+										p: 2,
+									}}
+								>
+									<Typography variant='cell_user_subtext'>
+										{item.answer}
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+						</Grid>
 					))}
-				</Box>
+				</Grid>
 			</Wrapper>
 		</Box>
 	)

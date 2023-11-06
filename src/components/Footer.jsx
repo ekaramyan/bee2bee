@@ -39,6 +39,7 @@ export default function Footer({}) {
 				borderRadius: '20px 20px 0px 0px',
 				padding: '0 20px',
 				justifySelf: 'end',
+				userSelect: 'none',
 			}}
 		>
 			{!isMobile && (
