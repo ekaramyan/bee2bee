@@ -66,14 +66,14 @@ export default function Account({ onEditClick, data }) {
 					}}
 				>
 					<Typography variant='user_key' display='flex' gap={1}>
-						User #: <Typography variant='user_item'>{data?.id}</Typography>
+						User #: <Typography variant='account_item'>{data?.id}</Typography>
 					</Typography>
 					<Typography variant='user_key' display='flex' gap={1}>
-						Email: <Typography variant='user_item'>{data?.email}</Typography>
+						Email: <Typography variant='account_item'>{data?.email}</Typography>
 					</Typography>
 					<Typography variant='user_key' display='flex' gap={1}>
 						Country:{' '}
-						<Typography variant='user_item'>{data?.country}</Typography>
+						<Typography variant='account_item'>{data?.country}</Typography>
 					</Typography>
 				</Box>
 				<Box
@@ -85,17 +85,17 @@ export default function Account({ onEditClick, data }) {
 				>
 					<Typography variant='user_key' display='flex' gap={1}>
 						Nickname:{' '}
-						<Typography variant='user_item'>{data?.nickname}</Typography>
+						<Typography variant='account_item'>{data?.nickname}</Typography>
 					</Typography>
 					<Typography variant='user_key' display='flex' gap={1}>
-						Phone: <Typography variant='user_item'>{data?.phone}</Typography>
+						Phone: <Typography variant='account_item'>{data?.phone}</Typography>
 					</Typography>
 					<Typography variant='user_key' display='flex' gap={1}>
 						Telegram:{' '}
 						<Link
 							href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}
 						>
-							<Typography variant='user_item'>{data?.telegram}</Typography>
+							<Typography variant='account_item'>{data?.telegram}</Typography>
 						</Link>
 					</Typography>
 				</Box>

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import defaultAvatar from '../../assets/img/default.jpg'
 import nullUser from '../../assets/img/square.webp'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Box } from '@mui/material'
 
 export default function UserAvatar({
 	previewImage,
@@ -69,7 +69,9 @@ export default function UserAvatar({
 	const avatarImage = (
 		<>
 			{isLoading ? (
-				<CircularProgress />
+				<Box>
+					<CircularProgress />
+				</Box>
 			) : (
 				<Image
 					src={

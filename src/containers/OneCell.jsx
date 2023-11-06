@@ -9,6 +9,8 @@ import {
 	styled,
 	Typography,
 	Slide,
+	Box,
+	LinearProgress,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
 import useCells from '@/hooks/useCells'
@@ -167,6 +169,11 @@ export default function OneCell({ data, joinList, level }) {
 				) : (
 					'Sorry, there is no data'
 				)}
+				<Box>
+					{(followerActiveLoading || leaderActiveLoading || waitingLoading) && (
+						<LinearProgress />
+					)}
+				</Box>
 			</Wrapper>
 		</>
 	)

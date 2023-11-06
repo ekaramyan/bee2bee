@@ -1,13 +1,18 @@
-import { Box, Typography, Grid } from '@mui/material'
+import { Box, Typography, Grid, useMediaQuery } from '@mui/material'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Cookies from 'js-cookie'
 import useCellActions from '@/hooks/useCellActions'
 const CellUserAvatar = dynamic(() => import('./UI/UserAvatar'))
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
+const ConfirmationModal = dynamic(() => import('./UI/ConfirmationModal'))
 import avatarBg from '@/assets/img/leader_avatar.svg'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import acceptImage from '@/assets/img/confirm.svg'
+import deleteImage from '@/assets/img/delete.svg'
+import leaveImage from '@/assets/img/leave.svg'
 
 export default function UserInfo({
 	user,
@@ -25,6 +30,7 @@ export default function UserInfo({
 	const router = useRouter()
 	const { cellId } = router.query
 	const userId = user.id
+	const isMobile = useMediaQuery('@media(max-width: 425px)')
 	const acceptData = {
 		isAccepted: true,
 		acceptedAt: Date.now(),
@@ -47,11 +53,62 @@ export default function UserInfo({
 	const { loading, error, success, deleteFollower, patchFollower, closeCell } =
 		useCellActions()
 
+	const [modalOpen, setModalOpen] = useState(false)
+	const [actionToConfirm, setActionToConfirm] = useState(null)
+	const [modalContent, setModalContent] = useState({
+		text: '',
+		imageSrc: null,
+	})
+
+	const handleOpenModal = (action, actionType) => {
+		setActionToConfirm(() => action)
+		updateModalContent(actionType)
+		setModalOpen(true)
+	}
+
 	useEffect(() => {
 		if (followers?.length === 6 && acceptedCount === 6) {
 			// router.push('/cells')
 		}
 	}, [acceptedCount])
+
+	const handleConfirmAction = () => {
+		if (actionToConfirm) {
+			actionToConfirm()
+		}
+		setModalOpen(false)
+	}
+
+	const handleCloseModal = () => {
+		setModalOpen(false)
+	}
+
+	const updateModalContent = action => {
+		let content = {}
+		switch (action) {
+			case 'accept':
+				content = {
+					title: 'Are you sure you want to accept this user?',
+					imageSrc: acceptImage.src,
+				}
+				break
+			case 'delete':
+				content = {
+					text: 'Are you sure you want to delete this user?',
+					imageSrc: deleteImage.src,
+				}
+				break
+			case 'leave':
+				content = {
+					title: 'Are you sure you want to leave?',
+					imageSrc: leaveImage.src,
+				}
+				break
+			default:
+				content = { text: '', imageSrc: null }
+		}
+		setModalContent(content)
+	}
 	const onAcceptClick = async () => {
 		try {
 			const result = await patchFollower(cellUserId, acceptData)
@@ -140,7 +197,7 @@ export default function UserInfo({
 						<Box style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
 							<AuthButton
 								variant='contained'
-								onClick={onAcceptClick}
+								onClick={() => handleOpenModal(onAcceptClick, 'accept')}
 								type='submit'
 								style={{
 									background: '#119A48',
@@ -151,7 +208,7 @@ export default function UserInfo({
 							</AuthButton>
 							{/* <AuthButton
 								variant='contained'
-								onClick={onDeleteClick}
+								onClick={() => handleOpenModal(onDeleteClick, 'delete')}
 								type='submit'
 								style={{
 									background: '#FF0000',
@@ -174,7 +231,7 @@ export default function UserInfo({
 					!isReturn && (
 						<AuthButton
 							variant='contained'
-							onClick={onLeaveClick}
+							onClick={() => handleOpenModal(onLeaveClick, 'leave')}
 							type='submit'
 							style={{
 								background: '#A5560F',
@@ -184,6 +241,18 @@ export default function UserInfo({
 							Leave
 						</AuthButton>
 					)}
+				<ConfirmationModal
+					open={modalOpen}
+					handleClose={handleCloseModal}
+					handleConfirm={handleConfirmAction}
+					title={modalContent.title}
+				>
+					<Image
+						src={modalContent.imageSrc}
+						width={isMobile ? 110 : 250}
+						height={isMobile ? 110 : 250}
+					/>
+				</ConfirmationModal>
 			</Grid>
 		</Grid>
 	)

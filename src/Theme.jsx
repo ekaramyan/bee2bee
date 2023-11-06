@@ -257,6 +257,12 @@ const theme = createTheme({
 			fontSize: 20,
 			fontWeight: 700,
 		},
+		account_item: {
+			color: '#E06B00',
+			fontFamily: 'Noto Sans',
+			fontSize: 20,
+			fontWeight: 700,
+		},
 		cell_user_key: {
 			color: '#fff',
 			fontFamily: 'Noto Sans',

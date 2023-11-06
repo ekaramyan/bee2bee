@@ -3,9 +3,37 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { Typography, Button, Grid, Box } from '@mui/material'
+import { Typography, Button, Grid, Box, styled } from '@mui/material'
 import BigCell from '@/components/UI/BigCell'
 const DataBox = dynamic(() => import('@/components/UI/DataBox'))
+
+const JoinButton = styled(Button)({
+	width: '100%',
+	maxWidth: '150px',
+	color: '#23201C',
+	textAlign: 'center',
+	textShadow: '1px 1px 1px #fff',
+	fontFamily: 'Noto Sans',
+	fontSize: '24px',
+	fontWeight: 900,
+	textTransform: 'uppercase',
+	borderRadius: '5px',
+	border: '1px solid #1b170f',
+	background: 'rgba(217, 217, 217, 0)',
+	cursor: 'pointer',
+	transition: '.3s',
+	'&:hover': {
+		border: '1px solid #1a170f80',
+		transform: 'scale(1.1) perspective(1000px)',
+		background: 'rgba(217, 217, 217, .05)',
+	},
+	'&:disabled': {
+		cursor: 'not-allowed',
+		color: 'rgb(123, 123, 122)',
+		border: '1px solid rgba(217, 217, 217, 0.2)',
+		background: 'rgba(217, 217, 217, 0.2)',
+	},
+})
 
 export default function DesktopOneCell({
 	data,
@@ -33,6 +61,7 @@ export default function DesktopOneCell({
 		>
 			<BigCell
 				onCloseClick={() => router.push('/cells')}
+				onRefreshClick={onRefreshClick}
 				style={{
 					gap: 10,
 					justifyContent: 'center',
@@ -48,31 +77,13 @@ export default function DesktopOneCell({
 					style={{ layout: 'fill' }}
 				/>
 
-				<Button
+				<JoinButton
 					variant='outlined'
 					disabled={disabled}
-					style={{
-						cursor: !disabled ? 'pointer' : 'not-allowed',
-						width: '10%',
-						color: !disabled ? '#23201C' : 'rgb(123 123 122)',
-						textAlign: 'center',
-						textShadow: '1px 1px 1px #FFF',
-						fontFamily: 'Noto Sans',
-						fontSize: 24,
-						fontWeight: 900,
-						textTransform: 'uppercase',
-						borderRadius: 5,
-						border: !disabled
-							? '1px solid #1B170F'
-							: '1px solid rgba(217, 217, 217, 0.2)',
-						background: !disabled
-							? 'rgba(217, 217, 217, 0.00)'
-							: 'rgba(217, 217, 217, 0.2)',
-					}}
 					onClick={onJoinClick}
 				>
 					JOIN
-				</Button>
+				</JoinButton>
 
 				<Grid
 					style={{
