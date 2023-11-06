@@ -6,11 +6,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import defaultAvatar from '../../assets/img/default.jpg'
+import nullUser from '../../assets/img/square.webp'
 import { CircularProgress } from '@mui/material'
 
 export default function UserAvatar({
 	previewImage,
-	avatarUrl,
+	avatarUrl = null,
 	width = 157,
 	height = 181,
 	isLeader = false,
@@ -25,7 +26,6 @@ export default function UserAvatar({
 	const router = useRouter()
 	const { cellId } = router.query
 	const avatarReload = useSelector(state => state.user.avatarUrl)
-
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
@@ -48,6 +48,8 @@ export default function UserAvatar({
 				if (!error.response || error.response.status !== 404) {
 					console.error('Error fetching data: ', error)
 				}
+			} finally {
+				setIsLoading(false)
 			}
 		}
 
@@ -67,20 +69,12 @@ export default function UserAvatar({
 	const avatarImage = (
 		<>
 			{isLoading ? (
-				!avatar || previewImage ? (
-					<Image
-						src={previewImage || defaultAvatar}
-						width={isClickable ? width : width - 5}
-						height={isClickable ? height : height - 5}
-						loading='lazy'
-						style={avatarStyle}
-					/>
-				) : (
-					<CircularProgress />
-				)
+				<CircularProgress />
 			) : (
 				<Image
-					src={previewImage || avatar || defaultAvatar}
+					src={
+						previewImage || avatar || (avatarUrl && defaultAvatar) || nullUser
+					}
 					width={isClickable ? width : width - 5}
 					height={isClickable ? height : height - 5}
 					loading='lazy'

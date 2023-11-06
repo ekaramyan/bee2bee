@@ -32,6 +32,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'space-between',
+				userSelect: 'none',
 			}}
 		>
 			<Box style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>

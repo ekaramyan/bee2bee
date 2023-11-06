@@ -59,7 +59,7 @@ const Faq = () => {
 			<Wrapper
 				header={'FAQ'}
 				notLoggedIn={false}
-				style={{ minHeight: '80vh', overflow: 'auto' }}
+				style={{ minHeight: 700, maxHeight: '75dvh', overflow: 'auto' }}
 			>
 				<Grid container spacing={2} justifyContent='center' alignItems='start'>
 					{faqData.map((item, index) => (

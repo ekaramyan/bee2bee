@@ -65,7 +65,14 @@ export default function JoinCell() {
 	]
 
 	return (
-		<Wrapper header={'Join the cell'}>
+		<Wrapper
+			header={'Join the cell'}
+			style={{
+				minHeight: 780,
+				maxHeight: isMobile ? '80dvh' : 'none',
+				overflow: 'auto',
+			}}
+		>
 			<Grid
 				style={{
 					width: '100%',
@@ -75,7 +82,7 @@ export default function JoinCell() {
 					flexWrap: 'wrap',
 					justifyContent: 'center',
 					alignContent: 'center',
-					gap: isMobile && 10,
+					gap: isMobile ? 10 : 0,
 					userSelect: 'none',
 				}}
 			>

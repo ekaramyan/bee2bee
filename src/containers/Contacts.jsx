@@ -90,12 +90,13 @@ export default function Contacts() {
 				alignItems: 'center',
 				justifyContent: 'center',
 				height: '100%',
+				minHeight: 700,
 			}}
 		>
 			<Wrapper
 				header={'Contact us'}
 				notLoggedIn={true}
-				style={{ minHeight: '80vh' }}
+				style={{ minHeight: 700 }}
 			>
 				<Typography>If you have any questions fill this form</Typography>
 				<Grid
@@ -221,7 +222,7 @@ export default function Contacts() {
 									variant='standard'
 									fullWidth
 									type='text'
-									name='Subject'
+									name='subject'
 									onFocus={() => handleIconFocus('subject')}
 									onBlur={() => handleIconBlur('subject')}
 								/>

@@ -12,7 +12,11 @@ export default function Rules({ header, text }) {
 				width: '100%',
 			}}
 		>
-			<Wrapper header={header} notLoggedIn={true} style={{ minHeight: '80vh' }}>
+			<Wrapper
+				header={header}
+				notLoggedIn={true}
+				style={{ minHeight: 700, maxHeight: '75dvh' }}
+			>
 				<Box
 					style={{
 						maxHeight: '100%',
