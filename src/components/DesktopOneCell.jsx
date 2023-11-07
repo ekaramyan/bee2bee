@@ -93,13 +93,14 @@ export default function DesktopOneCell({
 						gridTemplateRows: '1fr',
 						gridTemplateAreas: `
 			'follower leader'
-			'waiting waiting'
-		`,
+			`,
+						// 'waiting waiting'
 						columnGap: 10,
 						rowGap: 5,
 						alignItems: 'center',
 						justifyContent: 'center',
 						width: '48%',
+						height: '100%',
 					}}
 				>
 					<DataBox
@@ -112,12 +113,12 @@ export default function DesktopOneCell({
 						data={leaderActiveData}
 						style={{ gridArea: 'leader' }}
 					/>
-					<DataBox
+					{/* <DataBox
 						title='waiting'
 						data={waitingData}
 						style={{ gridArea: 'waiting' }}
 						isNotClickable={true}
-					/>
+					/> */}
 				</Grid>
 				<Typography variant='level_big'>
 					{data?.level} {data?.price}$

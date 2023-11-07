@@ -67,17 +67,17 @@ export default function OneCell({ data, joinList, level }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
-	const {
-		data: waitingData,
-		loading: waitingLoading,
-		error: waitingError,
-		getCells: getWaitingCells,
-	} = useCells()
+	// const {
+	// 	data: waitingData,
+	// 	loading: waitingLoading,
+	// 	error: waitingError,
+	// 	getCells: getWaitingCells,
+	// } = useCells()
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
-		getWaitingCells('waiting', { level: id, user: userId })
-	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
+		// getWaitingCells('waiting', { level: id, user: userId })
+	}, [getFollowerActiveCells, getLeaderActiveCells, id])
 
 	useEffect(() => {
 		onRefreshClick()
@@ -146,7 +146,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							waitingData={waitingData}
+							// waitingData={waitingData}
 							onJoinClick={onJoinClick}
 							onRefreshClick={onRefreshClick}
 							id={id}
@@ -157,7 +157,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							waitingData={waitingData}
+							// waitingData={waitingData}
 							onJoinClick={onJoinClick}
 							onRefreshClick={onRefreshClick}
 							cells={cells}
@@ -170,7 +170,7 @@ export default function OneCell({ data, joinList, level }) {
 					'Sorry, there is no data'
 				)}
 				<Box>
-					{(followerActiveLoading || leaderActiveLoading || waitingLoading) && (
+					{(followerActiveLoading || leaderActiveLoading) && (
 						<LinearProgress />
 					)}
 				</Box>

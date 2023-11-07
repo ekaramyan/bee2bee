@@ -19,7 +19,8 @@ export default function DataBox({ title, data, style, isNotClickable }) {
 			<Box
 				style={{
 					background: isMobile ? '#E06B00' : '#FFFFFF1A',
-					height: '100px',
+					minHeight: 250,
+					height: '100%',
 					width: '100%',
 					overflowY: 'auto',
 					borderRadius: 5,
