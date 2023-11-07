@@ -36,8 +36,8 @@ const Wrapper = ({ children, style, ...props }) => {
 	}, [])
 	const styles = {
 		width: '100%',
-		height: props.notLoggedIn ? '75%' : '100%',
-		maxHeight: isMobile ? '100%' : '80vh',
+		height: '80dvh',
+		maxHeight: isMobile ? '100%' : '85vh',
 		background: '#EAEEE8',
 		borderRadius: 20,
 		overflow: 'hidden',
@@ -45,7 +45,7 @@ const Wrapper = ({ children, style, ...props }) => {
 		display: 'flex',
 		flexDirection: 'column',
 		gap: 30,
-		minHeight: 800,
+		minHeight: 600,
 		...style,
 	}
 	return (

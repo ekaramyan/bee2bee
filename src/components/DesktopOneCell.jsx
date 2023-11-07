@@ -101,6 +101,7 @@ export default function DesktopOneCell({
 						justifyContent: 'center',
 						width: '48%',
 						height: '100%',
+						maxHeight: 300,
 					}}
 				>
 					<DataBox

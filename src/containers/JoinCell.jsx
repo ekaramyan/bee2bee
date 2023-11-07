@@ -68,9 +68,9 @@ export default function JoinCell() {
 		<Wrapper
 			header={'Join the cell'}
 			style={{
-				minHeight: 780,
+				minHeight: 740,
 				maxHeight: isMobile ? '80dvh' : 'none',
-				overflow: 'auto',
+				overflow: isMobile ? 'auto' : 'hidden',
 			}}
 		>
 			<Grid

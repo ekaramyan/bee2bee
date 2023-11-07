@@ -77,14 +77,8 @@ export default function MobileOneCell({
 					display: 'flex',
 					flexDirection: 'column',
 					width: '100%',
-					gridTemplateColumns: '1fr 1fr',
-					gridTemplateRows: '1fr',
-					gridTemplateAreas: `
-			'follower leader'
-			'waiting waiting'
-		`,
 					columnGap: 10,
-					rowGap: 5,
+					rowGap: 25,
 					alignItems: 'center',
 					justifyContent: 'center',
 					width: '100%',

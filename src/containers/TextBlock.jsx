@@ -15,7 +15,7 @@ export default function Rules({ header, text }) {
 			<Wrapper
 				header={header}
 				notLoggedIn={true}
-				style={{ minHeight: 700, maxHeight: '75dvh' }}
+				style={{ minHeight: 700 }}
 			>
 				<Box
 					style={{
