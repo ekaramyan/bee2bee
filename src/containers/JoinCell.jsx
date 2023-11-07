@@ -76,7 +76,7 @@ export default function JoinCell() {
 			<Grid
 				style={{
 					width: '100%',
-					height: '100%',
+					height: isMobile ? 'auto' : '100%',
 					display: 'flex',
 					alignItems: 'center',
 					flexWrap: 'wrap',
