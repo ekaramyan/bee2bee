@@ -14,7 +14,7 @@ export default function AccountSettings({ data }) {
 	return (
 		<Wrapper
 			header={'Account Settings'}
-			style={{ minHeight: 750, maxHeight: '75dvh' }}
+			style={{ minHeight: 750, maxHeight: '85dvh' }}
 		>
 			<EditAccount
 				onChangeClick={onChangeClick}
