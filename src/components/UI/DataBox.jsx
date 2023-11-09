@@ -8,6 +8,7 @@ export default function DataBox({ title, data, style, isNotClickable }) {
 	}
 	const combinedStyle = { ...defaultStyle, ...style }
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
 	return (
 		<Box style={combinedStyle}>
 			<Typography
@@ -16,6 +17,7 @@ export default function DataBox({ title, data, style, isNotClickable }) {
 				{title} - {data?.data?.length}
 			</Typography>
 			<Box
+				className='ScrollbarWhite'
 				style={{
 					background: isMobile ? '#E06B00' : '#FFFFFF1A',
 					minHeight: 120,

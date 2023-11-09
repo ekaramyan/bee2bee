@@ -5,6 +5,7 @@ const CellBoxElement = dynamic(() => import('./CellBoxElement'))
 
 export default function CellBox({ isActive, data }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
+
 	return (
 		<Box
 			style={{
@@ -17,6 +18,7 @@ export default function CellBox({ isActive, data }) {
 				{isActive ? 'Active' : 'Closed'} cells
 			</Typography>
 			<Box
+				className='ScrollbarOrange'
 				style={{
 					background: '#fff',
 					height: '150px',

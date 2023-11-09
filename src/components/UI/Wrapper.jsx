@@ -49,7 +49,7 @@ const Wrapper = ({ children, style, ...props }) => {
 		...style,
 	}
 	return (
-		<Box style={styles} {...props}>
+		<Box style={styles} {...props} className='ScrollbarDefault'>
 			<Box>
 				<Box
 					sx={{

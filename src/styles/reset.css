@@ -50,9 +50,43 @@ span {
 	/* isolation: isolate; */
 }
 
-* {
-	-ms-overflow-style: none;
-}
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
 	display: none;
+}
+
+body {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.ScrollbarWhite::-webkit-scrollbar {
+	width: 5px;
+}
+
+.ScrollbarWhite::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.ScrollbarWhite::-webkit-scrollbar-thumb {
+	background-color: #ffffff;
+}
+
+.ScrollbarWhite {
+	scrollbar-color: #ffffff rgba(255, 255, 255, 0.5);
+}
+
+.ScrollbarOrange::-webkit-scrollbar {
+	width: 5px;
+}
+
+.ScrollbarOrange::-webkit-scrollbar-track {
+	background: #e06b00;
+}
+
+.ScrollbarOrange::-webkit-scrollbar-thumb {
+	background-color: #1b170f;
+}
+
+.ScrollbarOrange {
+	scrollbar-color: #1b170f #e06b00;
 }

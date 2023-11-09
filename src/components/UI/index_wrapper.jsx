@@ -41,8 +41,10 @@ const IndexWrapper = ({ children, ...props }) => {
 					justifyContent: 'space-between',
 					alignItems: 'center',
 				}}
+				className='ScrollbarDefault'
 			>
 				<Container
+					className='ScrollbarDefault'
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
