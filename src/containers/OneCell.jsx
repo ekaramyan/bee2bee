@@ -67,17 +67,17 @@ export default function OneCell({ data, joinList, level }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
-	// const {
-	// 	data: waitingData,
-	// 	loading: waitingLoading,
-	// 	error: waitingError,
-	// 	getCells: getWaitingCells,
-	// } = useCells()
+	const {
+		data: waitingData,
+		loading: waitingLoading,
+		error: waitingError,
+		getCells: getWaitingCells,
+	} = useCells()
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
-		// getWaitingCells('waiting', { level: id, user: userId })
-	}, [getFollowerActiveCells, getLeaderActiveCells, id])
+		getWaitingCells('waiting', { level: id, user: userId })
+	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
 
 	useEffect(() => {
 		onRefreshClick()
@@ -92,7 +92,6 @@ export default function OneCell({ data, joinList, level }) {
 			setToJoin(joinList?.data[0]?.id)
 		}
 	}, [])
-
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
@@ -100,13 +99,11 @@ export default function OneCell({ data, joinList, level }) {
 
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
-		console.log(users)
 		if (
 			!leaderActiveData ||
 			(userId !== users?.data?.leader?.id && users.data.cellUsers.length <= 6)
 		) {
 			const res = await postFollower(toJoin, userId)
-			console.log(res)
 			setSuccess(res?.isSuccess)
 			res?.isSuccess &&
 				router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
@@ -117,7 +114,6 @@ export default function OneCell({ data, joinList, level }) {
 			setShowErrorDialog(true)
 		}
 	}
-	console.log(data)
 	return (
 		<>
 			{error && showErrorDialog && (
@@ -146,7 +142,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							// waitingData={waitingData}
+							waitingData={waitingData}
 							onJoinClick={onJoinClick}
 							onRefreshClick={onRefreshClick}
 							id={id}
@@ -157,7 +153,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							// waitingData={waitingData}
+							waitingData={waitingData}
 							onJoinClick={onJoinClick}
 							onRefreshClick={onRefreshClick}
 							cells={cells}
@@ -170,7 +166,7 @@ export default function OneCell({ data, joinList, level }) {
 					'Sorry, there is no data'
 				)}
 				<Box>
-					{(followerActiveLoading || leaderActiveLoading) && (
+					{(followerActiveLoading || leaderActiveLoading || waitingLoading) && (
 						<LinearProgress />
 					)}
 				</Box>
