@@ -87,8 +87,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
-	console.log(load || loading)
-
 	return (
 		<>
 			<Box

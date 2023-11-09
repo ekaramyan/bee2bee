@@ -29,7 +29,6 @@ export default function JoinCell() {
 				setData(response.data)
 				const user = await fetchData(`${url}/users/me`, token)
 				setBirthday(user.data.birth)
-				console.log(user)
 			} catch (err) {
 				console.error(err)
 			}

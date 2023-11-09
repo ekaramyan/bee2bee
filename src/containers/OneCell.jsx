@@ -78,7 +78,6 @@ export default function OneCell({ data, joinList, level }) {
 		getLeaderActiveCells('me_leader_level', { level: id })
 		getWaitingCells('waiting', { level: id, user: userId })
 	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
-
 	useEffect(() => {
 		onRefreshClick()
 	}, [])

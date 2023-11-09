@@ -15,7 +15,8 @@ export default function CellBoxElement({ data, isActive, isWhite, index }) {
 				}
 			>
 				<b>
-					{index + 1}. {data.cellLevel.level.slice(0, 1)}-#{data.id}
+					{index + 1}. {data?.cellQueueId && `№ ${data?.cellQueueId}`}{' '}
+					{data.cellLevel.level.slice(0, 1)}-#{data.id}
 				</b>{' '}
 				{cellDate} <br />
 			</Typography>

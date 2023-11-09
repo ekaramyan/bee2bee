@@ -88,7 +88,6 @@ export default function UserMenu() {
 	const toggleBurgerMenu = () => {
 		setBurgerOpen(!burgerOpen)
 	}
-	console.log(data)
 	return (
 		<>
 			{!isMobile && (

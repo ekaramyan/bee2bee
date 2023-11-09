@@ -3,7 +3,6 @@ import Link from 'next/link'
 import CellBoxElement from './CellBoxElement'
 
 export default function DataBox({ title, data, style, isNotClickable }) {
-	console.log(data, 'my data')
 	const defaultStyle = {
 		width: '100%',
 	}
