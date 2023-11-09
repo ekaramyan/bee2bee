@@ -49,3 +49,10 @@ span {
 #__next {
 	/* isolation: isolate; */
 }
+
+* {
+	-ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+	display: none;
+}
