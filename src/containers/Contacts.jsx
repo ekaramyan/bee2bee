@@ -148,8 +148,12 @@ export default function Contacts() {
 									}
 									variant='standard'
 									fullWidth
-									type='name'
+									type='text'
 									name='name'
+									required
+									InputLabelProps={{
+										required: false,
+									}}
 									onFocus={() => handleIconFocus('name')}
 									onBlur={() => handleIconBlur('name')}
 								/>
@@ -170,8 +174,12 @@ export default function Contacts() {
 									}
 									variant='standard'
 									fullWidth
-									type='last name'
+									type='text'
 									name='last name'
+									required
+									InputLabelProps={{
+										required: false,
+									}}
 									onFocus={() => handleIconFocus('lastName')}
 									onBlur={() => handleIconBlur('lastName')}
 								/>
@@ -203,6 +211,10 @@ export default function Contacts() {
 									fullWidth
 									type='email'
 									name='email'
+									required
+									InputLabelProps={{
+										required: false,
+									}}
 									onFocus={() => handleIconFocus('email')}
 									onBlur={() => handleIconBlur('email')}
 								/>
@@ -223,6 +235,10 @@ export default function Contacts() {
 									fullWidth
 									type='text'
 									name='subject'
+									required
+									InputLabelProps={{
+										required: false,
+									}}
 									onFocus={() => handleIconFocus('subject')}
 									onBlur={() => handleIconBlur('subject')}
 								/>
@@ -250,6 +266,9 @@ export default function Contacts() {
 									multiline
 									rows={3}
 									required
+									InputLabelProps={{
+										required: false,
+									}}
 									onFocus={() => handleIconFocus('message')}
 									onBlur={() => handleIconBlur('message')}
 								></TextField>
