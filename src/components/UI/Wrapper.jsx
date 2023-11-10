@@ -34,10 +34,11 @@ const Wrapper = ({ children, style, ...props }) => {
 	useEffect(() => {
 		setLoading(false)
 	}, [])
+
 	const styles = {
 		width: '100%',
-		height: '80dvh',
-		maxHeight: isMobile ? '100%' : '85vh',
+		height: isMobile ? '100%' : '80dvh',
+		maxHeight: isMobile ? 'unset' : '85vh',
 		background: '#EAEEE8',
 		borderRadius: 20,
 		overflow: 'hidden',
