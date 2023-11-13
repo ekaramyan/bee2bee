@@ -214,36 +214,10 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									User #:
 									<Typography variant='user_item'>{data?.id}</Typography>
 								</Typography>
-								<label
-									style={{
-										display: 'flex',
-										width: '100%',
-										alignItems: 'center',
-										whiteSpace: isMobile ? 'wrap' : 'nowrap',
-										color: '#1B170F',
-										fontFamily: 'Noto Sans',
-										fontSize: 20,
-										fontWeight: 400,
-									}}
-								>
+								<Typography variant='user_key' display='flex' gap={1}>
 									Email:
-									<input
-										type='text'
-										value={formData?.email}
-										onChange={handleInputChange}
-										name='email'
-										style={{
-											width: '100%',
-											background: 'none',
-											border: 'none',
-											borderBottom: '1px solid transparent',
-											outline: 'none',
-											color: '#119A48',
-											fontSize: 20,
-											fontWeight: 700,
-										}}
-									/>
-								</label>
+									<Typography variant='user_item'>{data?.email}</Typography>
+								</Typography>
 								<label
 									style={{
 										display: 'flex',
