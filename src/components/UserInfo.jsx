@@ -201,7 +201,7 @@ export default function UserInfo({
 								type='submit'
 								style={{
 									background: '#119A48',
-									width: '100%', // set 50%, when uncooment section behind
+									width: '100%', // set 50%, when uncomment section behind
 								}}
 							>
 								accept

@@ -82,9 +82,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 			[e.target.name]: e.target.value,
 		})
 	}
-	const formatTelegramUrl = telegramHandle => {
-		return telegramHandle.replace('@', '').replace(/\s+/g, '')
-	}
+
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	return (
@@ -206,7 +204,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									alignItems: isMobile ? 'flex-start' : 'flex-end',
+									// alignItems: isMobile ? 'flex-start' : 'flex-end',
 									gap: 1,
 									width: isMobile ? '100%' : '50%',
 									paddingRight: 2,
@@ -216,26 +214,96 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									User #:
 									<Typography variant='user_item'>{data?.id}</Typography>
 								</Typography>
-								<Typography variant='user_key' display='flex' gap={1}>
+								<label
+									style={{
+										display: 'flex',
+										width: '100%',
+										alignItems: 'center',
+										whiteSpace: isMobile ? 'wrap' : 'nowrap',
+										color: '#1B170F',
+										fontFamily: 'Noto Sans',
+										fontSize: 20,
+										fontWeight: 400,
+									}}
+								>
 									Email:
-									<Typography variant='user_item'>{data?.email}</Typography>
-								</Typography>
-								<Typography variant='user_key' display='flex' gap={1}>
+									<input
+										type='text'
+										value={formData?.email}
+										onChange={handleInputChange}
+										name='email'
+										style={{
+											width: '100%',
+											background: 'none',
+											border: 'none',
+											borderBottom: '1px solid transparent',
+											outline: 'none',
+											color: '#119A48',
+											fontSize: 20,
+											fontWeight: 700,
+										}}
+									/>
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										width: '100%',
+										alignItems: 'center',
+										whiteSpace: isMobile ? 'wrap' : 'nowrap',
+										color: '#1B170F',
+										fontFamily: 'Noto Sans',
+										fontSize: 20,
+										fontWeight: 400,
+									}}
+								>
 									Phone:
-									<Typography variant='user_item'>{data?.phone}</Typography>
-								</Typography>
-								<Typography variant='user_key' display='flex' gap={1}>
+									<input
+										type='text'
+										value={formData?.phone}
+										onChange={handleInputChange}
+										name='phone'
+										style={{
+											width: '100%',
+											background: 'none',
+											border: 'none',
+											borderBottom: '1px solid transparent',
+											outline: 'none',
+											color: '#119A48',
+											fontSize: 20,
+											fontWeight: 700,
+										}}
+									/>
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										width: '100%',
+										alignItems: 'center',
+										whiteSpace: isMobile ? 'wrap' : 'nowrap',
+										color: '#1B170F',
+										fontFamily: 'Noto Sans',
+										fontSize: 20,
+										fontWeight: 400,
+									}}
+								>
 									Telegram:
-									<Link
-										href={`https://t.me/${formatTelegramUrl(
-											data?.telegram || ''
-										)}`}
-									>
-										<Typography variant='user_item'>
-											{data?.telegram}
-										</Typography>
-									</Link>
-								</Typography>
+									<input
+										type='text'
+										value={formData?.telegram}
+										onChange={handleInputChange}
+										name='telegram'
+										style={{
+											width: '100%',
+											background: 'none',
+											border: 'none',
+											borderBottom: '1px solid transparent',
+											outline: 'none',
+											color: '#119A48',
+											fontSize: 20,
+											fontWeight: 700,
+										}}
+									/>
+								</label>
 							</Box>
 							<Box
 								sx={{
@@ -246,10 +314,36 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									width: isMobile ? '100%' : '50%',
 								}}
 							>
-								<Typography variant='user_key' display='flex' gap={1}>
+								<label
+									style={{
+										display: 'flex',
+										width: '100%',
+										alignItems: 'center',
+										whiteSpace: isMobile ? 'wrap' : 'nowrap',
+										color: '#1B170F',
+										fontFamily: 'Noto Sans',
+										fontSize: 20,
+										fontWeight: 400,
+									}}
+								>
 									Nickname:
-									<Typography variant='user_item'>{data?.nickname}</Typography>
-								</Typography>
+									<input
+										type='text'
+										value={formData?.nickname}
+										onChange={handleInputChange}
+										name='nickname'
+										style={{
+											width: '100%',
+											background: 'none',
+											border: 'none',
+											borderBottom: '1px solid transparent',
+											outline: 'none',
+											color: '#119A48',
+											fontSize: 20,
+											fontWeight: 700,
+										}}
+									/>
+								</label>
 
 								<label
 									style={{
