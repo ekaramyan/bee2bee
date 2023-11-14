@@ -34,7 +34,10 @@ export default function UserAvatar({
 						const url = `${apiUrl}${avatarUrl}`
 
 						const avatarResponse = await axios.get(url, {
-							headers: { Authorization: `Bearer ${token}` },
+							headers: {
+								Authorization: `Bearer ${token}`,
+								'Cache-Control': 'no-cache, no-store, must-revalidate',
+							},
 							responseType: 'blob',
 						})
 
