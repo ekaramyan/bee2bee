@@ -13,6 +13,7 @@ import {
 	LinearProgress,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
+import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import useCells from '@/hooks/useCells'
 import starter from '@/assets/img/bees/starter.webp'
 import beginner from '@/assets/img/bees/beginner.webp'
@@ -22,8 +23,12 @@ import expert from '@/assets/img/bees/expert.webp'
 import useCellActions from '@/hooks/useCellActions'
 import { fetchData } from '@/api/fetchData'
 import Wrapper from '../components/UI/Wrapper'
+
 const DesktopOneCell = dynamic(() => import('@/components/DesktopOneCell'))
 const MobileOneCell = dynamic(() => import('@/components/MobileOneCell'))
+const ConfirmationModal = dynamic(() =>
+	import('@/components/UI/ConfirmationModal')
+)
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -96,6 +101,44 @@ export default function OneCell({ data, joinList, level }) {
 	const apiUrl = process.env.API_URL
 	const canJoin = data[0]?.cellLevel?.canJoin
 
+	const [modalOpen, setModalOpen] = useState(false)
+	const [actionToConfirm, setActionToConfirm] = useState(null)
+	const [modalContent, setModalContent] = useState({
+		text: '',
+		imageSrc: null,
+	})
+
+	const handleOpenModal = (action, actionType) => {
+		setActionToConfirm(() => action)
+		updateModalContent(actionType)
+		setModalOpen(true)
+	}
+
+	const handleConfirmAction = () => {
+		if (actionToConfirm) {
+			actionToConfirm()
+		}
+		setModalOpen(false)
+	}
+
+	const handleCloseModal = () => {
+		setModalOpen(false)
+	}
+
+	const updateModalContent = action => {
+		let content = {}
+		switch (action) {
+			case 'join':
+				content = {
+					title: 'Are you sure you want to join this cell?',
+				}
+				break
+			default:
+				content = { text: '', imageSrc: null }
+		}
+		setModalContent(content)
+	}
+
 	const onJoinClick = async () => {
 		const users = await fetchData(`${apiUrl}/cells/${toJoin}`, token)
 		if (
@@ -113,6 +156,7 @@ export default function OneCell({ data, joinList, level }) {
 			setShowErrorDialog(true)
 		}
 	}
+
 	return (
 		<>
 			{error && showErrorDialog && (
@@ -153,7 +197,7 @@ export default function OneCell({ data, joinList, level }) {
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
 							waitingData={waitingData}
-							onJoinClick={onJoinClick}
+							onJoinClick={() => handleOpenModal(onJoinClick, 'join')}
 							onRefreshClick={onRefreshClick}
 							cells={cells}
 							id={id}
@@ -169,6 +213,20 @@ export default function OneCell({ data, joinList, level }) {
 						<LinearProgress />
 					)}
 				</Box>
+				<ConfirmationModal
+					open={modalOpen}
+					handleClose={handleCloseModal}
+					handleConfirm={handleConfirmAction}
+					title={modalContent.title}
+				>
+					<GroupAddIcon
+						style={{
+							width: isMobile ? 110 : 250,
+							height: isMobile ? 110 : 250,
+							color: '#fff',
+						}}
+					/>
+				</ConfirmationModal>
 			</Wrapper>
 		</>
 	)
