@@ -74,25 +74,27 @@ export default function CellComponent({
 					maxWidth: isMobile && 420,
 				}}
 			>
-				{paddedFollowers.map(follower => (
-					<Fw
-						key={follower.id}
-						isAccepted={follower?.isAccepted}
-						onClick={() =>
-							onUserClick(
-								follower.follower,
-								follower.isAutoCreated,
-								follower.isAccepted,
-								follower.id,
-								follower.isReturn,
-								isAllReturnPaid
-							)
-						}
-						avatar={follower?.follower?.avatarUrl || ''}
-						user={follower.follower}
-						isReturn={follower.isReturn}
-					/>
-				))}
+				{paddedFollowers
+					.sort((a, b) => a.id - b.id)
+					.map(follower => (
+						<Fw
+							key={follower.id}
+							isAccepted={follower?.isAccepted}
+							onClick={() =>
+								onUserClick(
+									follower.follower,
+									follower.isAutoCreated,
+									follower.isAccepted,
+									follower.id,
+									follower.isReturn,
+									isAllReturnPaid
+								)
+							}
+							avatar={follower?.follower?.avatarUrl || ''}
+							user={follower.follower}
+							isReturn={follower.isReturn}
+						/>
+					))}
 				<Leader
 					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
 					onClick={() => onUserClick(leader)}
