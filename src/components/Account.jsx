@@ -94,6 +94,7 @@ export default function Account({ onEditClick, data }) {
 						Telegram:{' '}
 						<Link
 							href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}
+							target='_blank'
 						>
 							<Typography variant='account_item'>{data?.telegram}</Typography>
 						</Link>
