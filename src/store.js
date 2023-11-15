@@ -6,6 +6,7 @@ const initialState = {
 	userId: null,
 	avatarUrl: null,
 	cellClosing: false,
+	isFirstLoad: true,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -16,7 +17,7 @@ const userReducer = (state = initialState, action) => {
 			Cookies.remove('userId')
 			Cookies.remove('access_token')
 			Cookies.remove('refresh_token')
-			return { ...state, loggedIn: false, userId: null }
+			return { ...state, loggedIn: false, userId: null, isFirstLoad: true }
 		case 'SET_USER_ID':
 			return { ...state, userId: action.payload }
 		case 'SET_AVATAR_URL':
@@ -25,6 +26,8 @@ const userReducer = (state = initialState, action) => {
 			return { ...state, cellClosing: true }
 		case 'STOP_CELL_CLOSE':
 			return { ...state, cellClosing: false }
+		case 'LOADED':
+			return { ...state, isFirstLoad: false }
 		default:
 			return state
 	}

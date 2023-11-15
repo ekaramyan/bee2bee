@@ -6,13 +6,11 @@ import {
 	MenuItem,
 	useMediaQuery,
 	LinearProgress,
-	CircularProgress,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import ImageCompression from 'browser-image-compression'
 import { useDispatch } from 'react-redux'
-import Link from 'next/link'
 import countryList from '@/countryList'
 import useUploadPhoto from '@/hooks/useUploadPhoto'
 import useUpdateUser from '@/hooks/useUpdateUser'
@@ -38,15 +36,14 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		additionalEmail: data?.additionalEmail || '',
 		additionalTelegram: data?.additionalTelegram || '',
 	})
-	const router = useRouter()
 	const dispatch = useDispatch()
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		if (file) {
 			try {
 				const options = {
-					maxSizeMB: 1,
-					maxWidthOrHeight: 1920,
+					maxSizeMB: 0.1,
+					maxWidthOrHeight: 900,
 					useWebWorker: true,
 				}
 

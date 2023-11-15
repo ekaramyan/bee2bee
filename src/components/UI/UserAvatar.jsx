@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import defaultAvatar from '../../assets/img/default.jpg'
 import nullUser from '../../assets/img/square.webp'
 import { CircularProgress, Box } from '@mui/material'
@@ -25,26 +25,32 @@ export default function UserAvatar({
 	const token = Cookies.get('access_token')
 	const router = useRouter()
 	const { cellId } = router.query
+	const dispatch = useDispatch()
 	const avatarReload = useSelector(state => state.user.avatarUrl)
+	const isLoggedIn = useSelector(state => state.user.loggedIn)
+	const isFirstLoad = useSelector(state => state.user.isFirstLoad)
 	useEffect(() => {
 		const fetchDataAsync = async () => {
 			try {
 				if (avatarUrl) {
-					{
-						const url = `${apiUrl}${avatarUrl}`
+					const url = `${apiUrl}${avatarUrl}`
 
-						const avatarResponse = await axios.get(url, {
-							headers: {
-								Authorization: `Bearer ${token}`,
-								'Cache-Control': 'no-cache, no-store, must-revalidate',
-							},
-							responseType: 'blob',
-						})
-
-						const objectUrl = URL.createObjectURL(avatarResponse.data)
-						setIsLoading(false)
-						setAvatar(objectUrl)
+					const headers = {
+						Authorization: `Bearer ${token}`,
+						'Cache-Control': isFirstLoad
+							? 'no-cache, no-store, must-revalidate'
+							: 'cache, store, must-revalidate',
 					}
+
+					const avatarResponse = await axios.get(url, {
+						headers: headers,
+						responseType: 'blob',
+					})
+
+					const objectUrl = URL.createObjectURL(avatarResponse.data)
+					setIsLoading(false)
+					setAvatar(objectUrl)
+					dispatch({ type: 'LOADED' })
 				}
 				return () => URL.revokeObjectURL(objectUrl)
 			} catch (error) {
@@ -56,8 +62,10 @@ export default function UserAvatar({
 			}
 		}
 
-		fetchDataAsync()
-	}, [cellId, avatarUrl, avatarReload])
+		if (isLoggedIn) {
+			fetchDataAsync()
+		}
+	}, [cellId, avatarUrl, avatarReload, isLoggedIn, isFirstLoad])
 	const avatarStyle = {
 		position: 'relative',
 		overflow: 'hidden',
@@ -72,7 +80,14 @@ export default function UserAvatar({
 	const avatarImage = (
 		<>
 			{isLoading ? (
-				<Box>
+				<Box
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						height: '100%',
+					}}
+				>
 					<CircularProgress />
 				</Box>
 			) : (

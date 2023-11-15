@@ -36,16 +36,18 @@ const IndexWrapper = ({ children, ...props }) => {
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
 					height: '100%',
+					minHeight: 880,
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 					alignItems: 'center',
 				}}
-				className='ScrollbarDefault'
+				className='ScrollbarWhite'
 			>
 				<Container
 					className='ScrollbarDefault'
 					style={{
+						overflow: 'auto',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',

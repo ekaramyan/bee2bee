@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { fetchData } from '@/api/fetchData'
@@ -78,7 +78,7 @@ export default function CellInfo({ data }) {
 		setIsAllPayed(isPayed)
 	}
 	const [cellQueueId, setCellQueueId] = useState('-')
-	const refreshFetch = async () => {
+	const refreshFetch = useCallback(async () => {
 		try {
 			const token = Cookies.get('access_token')
 			const apiUrl = process.env.API_URL
@@ -93,9 +93,14 @@ export default function CellInfo({ data }) {
 		} catch (error) {
 			console.error('Ошибка при загрузке данных:', error)
 		}
-	}
+	}, [cellId, activeUser])
+
 	useEffect(() => {
-		refreshFetch()
+		setAcceptedCount(
+			followers?.filter(
+				follower => follower?.isPayed && follower.isAccepted === true
+			).length ?? 0
+		)
 	}, [cellId, activeUser])
 
 	useEffect(() => {
@@ -111,13 +116,6 @@ export default function CellInfo({ data }) {
 		}
 	}, [])
 	const [acceptedCount, setAcceptedCount] = useState(0)
-	useEffect(() => {
-		setAcceptedCount(
-			followers?.filter(
-				follower => follower?.isPayed && follower.isAccepted === true
-			).length ?? 0
-		)
-	}, [cellId, activeUser])
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	console.log(cellClosing, 'closing')
