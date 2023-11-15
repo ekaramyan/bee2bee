@@ -31,7 +31,7 @@ export default function MobileOneCell({
 				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={35} height={35} />
 				</Button>{' '}
-				<Button
+				{/* <Button
 					variant='outlined'
 					disabled={disabled}
 					style={{
@@ -56,7 +56,7 @@ export default function MobileOneCell({
 					onClick={onJoinClick}
 				>
 					JOIN
-				</Button>
+				</Button> */}
 				<Button
 					onClick={() => router.push('/cells')}
 					style={{
