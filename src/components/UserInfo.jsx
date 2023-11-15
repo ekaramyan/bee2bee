@@ -112,7 +112,7 @@ export default function UserInfo({
 	const onAcceptClick = async () => {
 		try {
 			const result = await patchFollower(cellUserId, acceptData)
-			if (acceptedCount === 5 && result) {
+			if (acceptedCount <= 5 && result) {
 				await closeCell(cellId, closeData)
 			}
 			setActiveUser(null)
