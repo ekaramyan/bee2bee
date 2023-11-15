@@ -96,6 +96,7 @@ export default function CellInfo({ data }) {
 	}, [cellId, activeUser])
 
 	useEffect(() => {
+		refreshFetch()
 		setAcceptedCount(
 			followers?.filter(
 				follower => follower?.isPayed && follower.isAccepted === true
