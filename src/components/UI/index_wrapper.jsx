@@ -47,7 +47,7 @@ const IndexWrapper = ({ children, ...props }) => {
 				<Container
 					className='ScrollbarDefault'
 					style={{
-						overflow: 'auto',
+						overflow: 'hidden',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',

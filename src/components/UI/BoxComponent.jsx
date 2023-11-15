@@ -201,7 +201,7 @@ function BoxComponent({ onClose }) {
 				justifyContent='center'
 				alignItems='center'
 				flexDirection='column'
-				height='100vh'
+				height='100%'
 				gap={5}
 			>
 				<BoxWrapper>
