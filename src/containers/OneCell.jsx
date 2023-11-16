@@ -218,6 +218,7 @@ export default function OneCell({ data, joinList, level }) {
 					handleClose={handleCloseModal}
 					handleConfirm={handleConfirmAction}
 					title={modalContent.title}
+					isLoading={loading}
 				>
 					<GroupAddIcon
 						style={{

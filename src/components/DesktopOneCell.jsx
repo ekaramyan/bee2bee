@@ -76,14 +76,14 @@ export default function DesktopOneCell({
 					height={60}
 					style={{ layout: 'fill' }}
 				/>
-{/* 
+
 				<JoinButton
 					variant='outlined'
 					disabled={disabled}
 					onClick={onJoinClick}
 				>
 					JOIN
-				</JoinButton> */}
+				</JoinButton>
 
 				<Grid
 					style={{

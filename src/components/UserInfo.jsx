@@ -246,6 +246,7 @@ export default function UserInfo({
 					handleClose={handleCloseModal}
 					handleConfirm={handleConfirmAction}
 					title={modalContent.title}
+					isLoading={loading}
 				>
 					<Image
 						src={modalContent.imageSrc}

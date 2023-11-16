@@ -1,6 +1,7 @@
 import React from 'react'
 import {
 	Box,
+	CircularProgress,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -15,6 +16,7 @@ const ConfirmationModal = ({
 	handleClose,
 	handleConfirm,
 	title,
+	isLoading,
 	children,
 }) => {
 	return (
@@ -66,25 +68,39 @@ const ConfirmationModal = ({
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<AuthButton
-					onClick={handleClose}
-					style={{
-						background: '#FF0000',
-						width: '100%',
-					}}
-				>
-					Cancel
-				</AuthButton>
-				<AuthButton
-					onClick={handleConfirm}
-					style={{
-						background: '#119A48',
-						width: '100%',
-					}}
-					autoFocus
-				>
-					Confirm
-				</AuthButton>
+				<Box style={{ display: 'flex', gap: 10 }}>
+					<AuthButton
+						onClick={handleClose}
+						style={{
+							background: '#FF0000',
+							width: '100%',
+						}}
+					>
+						Cancel
+					</AuthButton>
+					<Box
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
+						{isLoading ? (
+							<CircularProgress />
+						) : (
+							<AuthButton
+								onClick={handleConfirm}
+								style={{
+									background: '#119A48',
+									width: '100%',
+								}}
+								autoFocus
+							>
+								Confirm
+							</AuthButton>
+						)}
+					</Box>
+				</Box>
 			</DialogActions>
 		</Dialog>
 	)
