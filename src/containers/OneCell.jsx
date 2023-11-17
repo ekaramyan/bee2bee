@@ -186,7 +186,7 @@ export default function OneCell({ data, joinList, level }) {
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
 							waitingData={waitingData}
-							onJoinClick={onJoinClick}
+							onJoinClick={() => handleOpenModal(onJoinClick, 'join')}
 							onRefreshClick={onRefreshClick}
 							id={id}
 						/>
@@ -222,8 +222,8 @@ export default function OneCell({ data, joinList, level }) {
 				>
 					<GroupAddIcon
 						style={{
-							width: isMobile ? 110 : 250,
-							height: isMobile ? 110 : 250,
+							width: isMobile ? 80 : 250,
+							height: isMobile ? 80 : 250,
 							color: '#fff',
 						}}
 					/>

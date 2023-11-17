@@ -66,11 +66,11 @@ export default function UserInfo({
 		setModalOpen(true)
 	}
 
-	useEffect(() => {
-		if (followers?.length === 6 && acceptedCount === 6) {
-			// router.push('/cells')
-		}
-	}, [acceptedCount])
+	// useEffect(() => {
+	// 	if (followers?.length === 6 && acceptedCount === 6) {
+	// 		// router.push('/cells')
+	// 	}
+	// }, [acceptedCount])
 
 	const handleConfirmAction = () => {
 		if (actionToConfirm) {
