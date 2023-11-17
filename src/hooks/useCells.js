@@ -50,6 +50,9 @@ export default function useCells() {
 			case 'queue':
 				url += `queue?level_id=${additionalParams.level}&limit=3`
 				break
+			case 'real_cells':
+				url += `join/list?level_id=${additionalParams.levelId}&limit=3`
+				break
 			case 'by_id':
 				url += additionalParams.id
 				break

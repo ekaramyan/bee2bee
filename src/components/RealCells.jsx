@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material'
+import { Box, LinearProgress, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useCells from '@/hooks/useCells'
 import dynamic from 'next/dynamic'
 const RealCell = dynamic(() => import('@/components/UI/RealCell'))
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
-	const { getCells } = useCells()
+	const { getCells, loading } = useCells()
 	const [data, setData] = useState([])
 
 	useEffect(() => {
@@ -14,7 +14,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 
 		const fetchData = async () => {
 			for (let i = 1; i <= numberOfLevels; i++) {
-				const dataForLevel = await getCells('queue', { level: i })
+				const dataForLevel = await getCells('real_cells', { levelId: i })
 				tempData.push(dataForLevel?.data || [])
 			}
 			setData(tempData)
@@ -22,7 +22,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 
 		fetchData()
 	}, [])
-
+	console.log(data)
 	return (
 		<div
 			style={{
@@ -35,10 +35,24 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 				userSelect: 'none',
 			}}
 		>
-			<Box style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-				{data.map((item, index) => (
-					<RealCell key={index} data={item} />
-				))}
+			<Box
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					gap: 10,
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
+				{loading ? (
+					<LinearProgress />
+				) : (
+					<>
+						{data.map((item, index) => (
+							<RealCell key={index} data={item} />
+						))}
+					</>
+				)}
 			</Box>
 			<div
 				style={{

@@ -228,7 +228,8 @@ export default function UserInfo({
 					role !== 'leader' &&
 					acceptedCount !== 6 &&
 					isActive &&
-					!isReturn && (
+					!isReturn &&
+					!isAccepted && (
 						<AuthButton
 							variant='contained'
 							onClick={() => handleOpenModal(onLeaveClick, 'leave')}

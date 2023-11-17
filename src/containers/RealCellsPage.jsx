@@ -15,7 +15,7 @@ export default function RealCells() {
 
 		const fetchData = async () => {
 			for (let i = 1; i <= numberOfLevels; i++) {
-				const dataForLevel = await getCells('queue', { level: i })
+				const dataForLevel = await getCells('real_cells', { levelId: i })
 				tempData.push(dataForLevel?.data || [])
 			}
 			setData(tempData)
@@ -31,11 +31,19 @@ export default function RealCells() {
 					flexDirection: 'column',
 					justifyContent: 'center',
 					alignItems: 'center',
-					gap: 30,
-					height: '60vh',
+					gap: 35,
+					height: '100%',
 				}}
 			>
-				<Box>
+				<Box
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: 10,
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
 					{data.map((item, index) => (
 						<RealCell key={index} data={item} />
 					))}

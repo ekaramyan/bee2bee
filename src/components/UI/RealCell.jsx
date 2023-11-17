@@ -1,8 +1,9 @@
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import cell from '@/assets/img/join_cell_bg.svg'
 
 export default function RealCell({ data }) {
+	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	return (
 		<Box style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 			<Grid
@@ -10,11 +11,11 @@ export default function RealCell({ data }) {
 					display: 'flex',
 					flexWrap: 'wrap',
 					alignItems: 'center',
-					gap: 20,
+					rowGap: 20,
 				}}
 			>
 				{data && data[0] && (
-					<Typography variant='level_dark' style={{ minWidth: 190 }}>
+					<Typography variant='level_dark' style={{ minWidth: 195 }}>
 						{data[0]?.cellLevel.level} {data[0]?.cellLevel.price}$
 					</Typography>
 				)}
@@ -22,7 +23,7 @@ export default function RealCell({ data }) {
 					style={{
 						display: 'grid',
 						gridTemplateColumns: 'repeat(3, 0.7fr)',
-						gap: 20,
+						gap: 10,
 					}}
 				>
 					{data.map((item, index) => (
@@ -33,8 +34,8 @@ export default function RealCell({ data }) {
 							<div
 								style={{
 									background: `url(${cell.src}) no-repeat center / contain`,
-									width: 100,
-									height: 100,
+									width: isMobile ? 90 : 115,
+									height: isMobile ? 90 : 115,
 									padding: '20%',
 									display: 'flex',
 									alignItems: 'center',

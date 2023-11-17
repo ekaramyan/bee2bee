@@ -21,6 +21,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	const router = useRouter()
 	const loggedIn = useSelector(state => state.user.loggedIn)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
+	const isLow = useMediaQuery('@media(min-height: 880px)')
 
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
@@ -36,7 +37,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					position: 'relative',
 					background: `url(${background.src}) no-repeat center / cover`,
 					height: '100%',
-					minHeight: 880,
+					minHeight: isLow ? 880 : '100%',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
