@@ -488,9 +488,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						</Box>
 					</Box>
 				</form>
-				<Box sx={{ width: '80%', marginTop: 2 }}>
+				{/* <Box sx={{ width: '80%', marginTop: 2 }}>
 					{(load || loading) && <LinearProgress />}
-				</Box>
+				</Box> */}
 			</Box>
 		</>
 	)
