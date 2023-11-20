@@ -67,7 +67,12 @@ export default function RegisterComponent() {
 		const birthDate = new Date(date)
 		const today = new Date()
 		const year1900 = new Date('1900-01-01')
-		return birthDate >= year1900 && birthDate <= today
+		const sixteenYearsAgo = new Date(
+			today.getFullYear() - 16,
+			today.getMonth(),
+			today.getDate()
+		)
+		return birthDate >= year1900 && birthDate <= sixteenYearsAgo
 	}
 
 	const validateName = name =>
@@ -100,7 +105,7 @@ export default function RegisterComponent() {
 
 		if (!validateDateOfBirth(formData.birth)) {
 			errors.birth =
-				'Invalid date of birth. It should be between 1900 and today.'
+				'Invalid date of birth. It should be between 1900 and 16 years ago.'
 		}
 
 		if (!validateName(formData.firstName)) {

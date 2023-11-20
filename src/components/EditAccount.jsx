@@ -37,6 +37,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		additionalEmail: data?.additionalEmail || '',
 		additionalTelegram: data?.additionalTelegram || '',
 	})
+	const [validationError, setValidationError] = useState(null)
 	const dispatch = useDispatch()
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
@@ -66,10 +67,27 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 		}
 	}
 
+	const validateDateOfBirth = date => {
+		const birthDate = new Date(date)
+		const today = new Date()
+		const year1900 = new Date('1900-01-01')
+		const sixteenYearsAgo = new Date(
+			today.getFullYear() - 16,
+			today.getMonth(),
+			today.getDate()
+		)
+		return birthDate >= year1900 && birthDate <= sixteenYearsAgo
+	}
+
 	const onSaveClick = async e => {
 		e.preventDefault()
 		handleConfirmPhoto()
-		update(formData)
+		if (!validateDateOfBirth(formData.birth)) {
+			setValidationError('You must be older than 16 years')
+		} else {
+			update(formData)
+		}
+
 		const newAvatarUrl = String(Math.random())
 		dispatch({ type: 'SET_AVATAR_URL', payload: newAvatarUrl })
 	}
@@ -453,6 +471,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								</label>
 							</Box>
 						</Box>
+						{validationError && (
+							<Typography variant=''>{validationError}</Typography>
+						)}
 
 						<Box
 							style={{
