@@ -6,6 +6,7 @@ import {
 	MenuItem,
 	useMediaQuery,
 	LinearProgress,
+	TextField,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
@@ -26,7 +27,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 	const [formData, setFormData] = useState({
 		firstName: data?.firstName || '',
 		lastName: data?.lastName || '',
-		birth: data?.birth || '',
+		birth: data?.birth || Date(''),
 		id: data?.id || '',
 		email: data?.email || '',
 		country: data?.country || '',
@@ -175,7 +176,35 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 					<Typography variant='h6'>
 						{data?.firstName} {data?.lastName}
 					</Typography>
-					<Typography variant='date'>Date of Birth: {data?.birth}</Typography>
+					<Box
+						style={{
+							display: 'flex',
+							width: '100%',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
+						<Typography variant='date'>Date of Birth:</Typography>
+						<TextField
+							variant='standard'
+							fullWidth
+							type='date'
+							name='birth'
+							value={formData?.birth}
+							onChange={handleInputChange}
+							InputLabelProps={{ shrink: true }}
+							sx={{
+								width: '50%',
+								background: 'none',
+								border: 'none',
+								borderBottom: '0 !important',
+								outline: 'none',
+								paddingLeft: 2,
+							}}
+						>
+							{data?.birth}
+						</TextField>
+					</Box>
 				</Box>
 				<form style={{ width: isMobile ? '100%' : '60%', marginTop: 5 }}>
 					<Box
@@ -201,7 +230,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								sx={{
 									display: 'flex',
 									flexDirection: 'column',
-									// alignItems: isMobile ? 'flex-start' : 'flex-end',
+									alignItems: isMobile ? 'flex-start' : 'flex-end',
 									gap: 1,
 									width: isMobile ? '100%' : '50%',
 									paddingRight: 2,
@@ -229,7 +258,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								>
 									Phone:
 									<input
-										type='text'
+										type='tel'
 										value={formData?.phone}
 										onChange={handleInputChange}
 										name='phone'
@@ -488,9 +517,9 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						</Box>
 					</Box>
 				</form>
-				{/* <Box sx={{ width: '80%', marginTop: 2 }}>
+				<Box sx={{ width: '80%', marginTop: 2 }}>
 					{(load || loading) && <LinearProgress />}
-				</Box> */}
+				</Box>
 			</Box>
 		</>
 	)

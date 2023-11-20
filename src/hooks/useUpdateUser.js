@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 const useUpdateUser = () => {
 	const [load, setLoading] = useState(false)
@@ -8,6 +9,7 @@ const useUpdateUser = () => {
 	const [suc, setSuccess] = useState(false)
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
+	const router = useRouter()
 
 	const update = async formData => {
 		setLoading(true)
@@ -19,6 +21,7 @@ const useUpdateUser = () => {
 				},
 			})
 			if (response.status === 200 || response.status === 201) {
+				router.push('/account')
 				setSuccess(true)
 			} else {
 				setError(response.data.message || 'An error occurred.')
