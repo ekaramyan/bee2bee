@@ -97,6 +97,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 			...formData,
 			[e.target.name]: e.target.value,
 		})
+		e.target.size = e.target.value.length || 1
 	}
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
@@ -191,9 +192,54 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						alignItems: 'center',
 					}}
 				>
-					<Typography variant='h6'>
-						{data?.firstName} {data?.lastName}
-					</Typography>
+					<Box
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
+						<input
+							type='text'
+							value={formData?.firstName}
+							onChange={handleInputChange}
+							name='firstName'
+							size={formData?.firstName?.length || 1}
+							style={{
+								textAlign: 'end',
+								display: 'flex',
+								width: '100%',
+								background: 'none',
+								border: 'none',
+								borderBottom: '1px solid transparent',
+								outline: 'none',
+								color: '#119A48',
+								fontSize: 36,
+								fontWeight: 700,
+								textTransform: 'uppercase',
+							}}
+						/>
+						<input
+							type='text'
+							value={formData?.lastName}
+							onChange={handleInputChange}
+							name='lastName'
+							size={formData?.lastName?.length || 1}
+							style={{
+								textAlign: 'start',
+								display: 'flex',
+								width: '100%',
+								background: 'none',
+								border: 'none',
+								borderBottom: '1px solid transparent',
+								outline: 'none',
+								color: '#119A48',
+								fontSize: 36,
+								fontWeight: 700,
+								textTransform: 'uppercase',
+							}}
+						/>
+					</Box>
 					<Box
 						style={{
 							display: 'flex',
@@ -280,6 +326,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										value={formData?.phone}
 										onChange={handleInputChange}
 										name='phone'
+										size={formData?.phone?.length || 1}
 										style={{
 											width: '100%',
 											background: 'none',
@@ -310,6 +357,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										value={formData?.telegram}
 										onChange={handleInputChange}
 										name='telegram'
+										size={formData?.telegram?.length || 1}
 										style={{
 											width: '100%',
 											background: 'none',
@@ -350,6 +398,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										value={formData?.nickname}
 										onChange={handleInputChange}
 										name='nickname'
+										size={formData?.nickname?.length || 1}
 										style={{
 											width: '100%',
 											background: 'none',
@@ -381,6 +430,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										value={formData?.additionalEmail}
 										onChange={handleInputChange}
 										name='additionalEmail'
+										size={formData?.additionalEmail?.length || 1}
 										style={{
 											width: '100%',
 											background: 'transparent',
@@ -414,6 +464,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										fullWidth
 										type='select'
 										name='country'
+										size={formData?.country?.length || 1}
 										sx={{
 											width: '100%',
 											background: 'none',
@@ -457,6 +508,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										value={formData?.additionalTelegram}
 										onChange={handleInputChange}
 										name='additionalTelegram'
+										size={formData?.additionalTelegram?.length || 1}
 										style={{
 											width: '100%',
 											background: 'none',

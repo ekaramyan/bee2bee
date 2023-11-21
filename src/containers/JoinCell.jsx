@@ -49,7 +49,7 @@ export default function JoinCell() {
 
 			const timeout = setTimeout(() => {
 				setShowConfetti(false)
-			}, 2900)
+			}, 9000)
 
 			return () => clearTimeout(timeout)
 		}
