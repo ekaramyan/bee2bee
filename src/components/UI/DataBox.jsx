@@ -2,7 +2,13 @@ import { Box, Typography, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import CellBoxElement from './CellBoxElement'
 
-export default function DataBox({ title, data, style, isNotClickable }) {
+export default function DataBox({
+	title,
+	data,
+	style,
+	isNotClickable,
+	showQueue,
+}) {
 	const defaultStyle = {
 		width: '100%',
 	}
@@ -48,6 +54,7 @@ export default function DataBox({ title, data, style, isNotClickable }) {
 									isActive={null}
 									isWhite={true}
 									index={index}
+									showQueue={showQueue}
 								/>
 							</Link>
 						)

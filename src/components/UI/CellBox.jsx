@@ -3,7 +3,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 const CellBoxElement = dynamic(() => import('./CellBoxElement'))
 
-export default function CellBox({ isActive, data }) {
+export default function CellBox({ isActive, data, showQueue = false }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 
 	return (
@@ -34,7 +34,12 @@ export default function CellBox({ isActive, data }) {
 							key={index}
 							href={`/cells/${cell.cellLevel.id}/info/${cell.id}`}
 						>
-							<CellBoxElement data={cell} isActive={isActive} index={index} />
+							<CellBoxElement
+								data={cell}
+								isActive={isActive}
+								index={index}
+								showQueue={showQueue}
+							/>
 						</Link>
 					))}
 			</Box>
