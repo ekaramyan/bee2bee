@@ -192,11 +192,15 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						alignItems: 'center',
 					}}
 				>
+					{/* <Typography variant='h6'>
+						{data.firstName} {data.lastName}
+					</Typography> */}
 					<Box
 						style={{
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'center',
+							gap: 10,
 						}}
 					>
 						<input
