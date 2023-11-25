@@ -68,6 +68,11 @@ export default function CellInfo({ data }) {
 	const checkRole = useIsLeader()
 	const dispatch = useDispatch()
 
+	const closeData = {
+		isActive: false,
+		isArchived: true,
+	}
+
 	const handleUserClick = (user, autoCreate, accept, id, isRet, isPayed) => {
 		setActiveUser(user)
 		const userRole = checkRole(leader?.id, userId)
@@ -120,7 +125,7 @@ export default function CellInfo({ data }) {
 			return () => clearTimeout(timer)
 		}
 
-		if (acceptedCount === 6) {
+		if (acceptedCount === 6 && !isActive) {
 			closeCell(cellId, closeData)
 			setIsBoxVisible(true)
 		}
