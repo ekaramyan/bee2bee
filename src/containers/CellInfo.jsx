@@ -24,6 +24,7 @@ const CellInfoComponent = dynamic(() =>
 const MobileCellInfoComponent = dynamic(() =>
 	import('@/components/MobileCellInfoComponent')
 )
+import useCellActions from '@/hooks/useCellActions'
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -95,6 +96,9 @@ export default function CellInfo({ data }) {
 		}
 	}, [cellId, activeUser])
 
+	const [acceptedCount, setAcceptedCount] = useState(0)
+	const { loading, error, success, closeCell } = useCellActions()
+
 	useEffect(() => {
 		refreshFetch()
 		setAcceptedCount(
@@ -115,8 +119,12 @@ export default function CellInfo({ data }) {
 			}, 5000)
 			return () => clearTimeout(timer)
 		}
+
+		if (acceptedCount === 6) {
+			closeCell(cellId, closeData)
+			setIsBoxVisible(true)
+		}
 	}, [])
-	const [acceptedCount, setAcceptedCount] = useState(0)
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	console.log(cellClosing, 'closing')
@@ -129,7 +137,7 @@ export default function CellInfo({ data }) {
 				}}
 			>
 				{isBoxVisible &&
-					(acceptedCount === 5 || acceptedCount === 6) &&
+					(acceptedCount >= 5 || acceptedCount === 6) &&
 					cellClosing && (
 						<BoxComponent
 							onClose={() => {
