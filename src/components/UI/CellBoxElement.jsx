@@ -12,6 +12,7 @@ export default function CellBoxElement({
 	const offsetMinutes = dateFromAPI.getTimezoneOffset()
 	const adjustedDate = moment(dateFromAPI).add(-offsetMinutes, 'minutes')
 	const cellDate = adjustedDate.format('YYYY-MM-DD | HH:mm:ss')
+	console.log(showQueue, data.queuePosition)
 	return (
 		<>
 			{' '}
@@ -21,7 +22,8 @@ export default function CellBoxElement({
 				}
 			>
 				<b>
-					{index + 1}. {showQueue && data?.queuePosition && data?.queuePosition}{' '}
+					{index + 1}.{' '}
+					{showQueue && data?.queuePosition && `№${data?.queuePosition}`}{' '}
 					{data.cellLevel.level.slice(0, 1)}-#{data.id}
 				</b>{' '}
 				{cellDate} <br />

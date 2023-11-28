@@ -43,6 +43,7 @@ export default function DataBox({
 								isActive={null}
 								isWhite={true}
 								index={index}
+								showQueue={showQueue}
 							/>
 						) : (
 							<Link
