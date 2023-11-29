@@ -31,7 +31,7 @@ export default function MobileOneCell({
 				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={35} height={35} />
 				</Button>{' '}
-				<Button 
+				<Button
 					variant='outlined'
 					disabled={disabled}
 					style={{
@@ -94,11 +94,13 @@ export default function MobileOneCell({
 					data={waitingData}
 					style={{ gridArea: 'waiting' }}
 					isNotClickable={true}
+					showQueue={true}
 				/>
 				<DataBox
 					title='leader'
 					data={leaderActiveData}
 					style={{ gridArea: 'leader' }}
+					showQueue={true}
 				/>
 			</Grid>
 		</>

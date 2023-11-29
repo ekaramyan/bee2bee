@@ -113,6 +113,7 @@ export default function DesktopOneCell({
 						title='leader'
 						data={leaderActiveData}
 						style={{ gridArea: 'leader' }}
+						showQueue={true}
 					/>
 					<DataBox
 						title='waiting'
