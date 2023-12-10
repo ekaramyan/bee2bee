@@ -205,7 +205,12 @@ export default function UserMenu() {
 							style={{ transform: 'translateY(2%)' }}
 						/>
 					</div>
-					{!isMobile && <p>{data?.nickname}</p>}
+					{!isMobile && (
+						<p>
+							{data?.nickname.slice(0, 10)}
+							{data?.nickname.length > 10 && '...'}
+						</p>
+					)}
 				</Box>
 				<>
 					{isMobile ? (

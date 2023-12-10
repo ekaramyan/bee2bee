@@ -118,7 +118,7 @@ export default function RegisterComponent() {
 				'Invalid last name. Only alphabets and spaces are allowed.'
 		}
 
-		if (!validateName(formData.nickname)) {
+		if (formData.nickname.length < 25) {
 			errors.nickname =
 				'Invalid nickname. Only alphabets and spaces are allowed.'
 		}
