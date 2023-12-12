@@ -118,10 +118,9 @@ export default function RegisterComponent() {
 				'Invalid last name. Only alphabets and spaces are allowed.'
 		}
 
-		// if (formData.nickname.length < 25) {
-		// 	errors.nickname =
-		// 		'Invalid nickname. Only alphabets and spaces are allowed.'
-		// }
+		if (formData.nickname.length < 25) {
+			errors.nickname = 'Invalid nickname. It must be shorter than 25 symbols.'
+		}
 
 		if (!validatePassword(formData.password)) {
 			errors.password =

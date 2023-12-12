@@ -23,7 +23,7 @@ export default function CellBoxElement({
 			>
 				<b>
 					{index + 1}.{' '}
-					{showQueue && data?.queuePosition && `№${data?.queuePosition}`}{' '}
+					{showQueue && data?.queuePosition && `№${data?.queuePosition+1}`}{' '}
 					{data.cellLevel.level.slice(0, 1)}-#{data.id}
 				</b>{' '}
 				{cellDate} <br />
