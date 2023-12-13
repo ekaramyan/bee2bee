@@ -117,11 +117,13 @@ export default function RegisterComponent() {
 			errors.lastName =
 				'Invalid last name. Only alphabets and spaces are allowed.'
 		}
-
-		if (formData.nickname.length < 25) {
+		if (formData.nickname.length > 25) {
 			errors.nickname = 'Invalid nickname. It must be shorter than 25 symbols.'
 		}
-
+		console.log(formData.phone === '')
+		if (!formData.phone || formData.phone === '') {
+			errors.phone = 'Please enter your phone number.'
+		}
 		if (!validatePassword(formData.password)) {
 			errors.password =
 				'Password must be at least 8 characters long, with at least one digit and one letter.'
@@ -135,14 +137,14 @@ export default function RegisterComponent() {
 			errors.checkbox = 'You must agree to the privacy policy.'
 		}
 
+		if (!captchaValue) {
+			errors.captcha = 'Please pass captcha'
+		}
 		if (Object.keys(errors).length > 0) {
 			setValidationErrors(errors)
 			return
 		}
-		if (!captchaValue) {
-			setValidationErrors('Please pass captcha')
-			return
-		}
+		console.log(validationErrors)
 		register(formData)
 	}
 	const [showPassword, setShowPassword] = useState(false)
@@ -532,7 +534,9 @@ export default function RegisterComponent() {
 					</Grid>
 				</Box>
 			</form>
+			{validationErrors.captcha && <div>{validationErrors.captcha}</div>}
 			{validationErrors.birth && <div>{validationErrors.birth}</div>}
+			{validationErrors.phone && <div>{validationErrors.phone}</div>}
 			{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
 			{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
 			{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
