@@ -192,10 +192,10 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 						alignItems: 'center',
 					}}
 				>
-					{/* <Typography variant='h6'>
+					<Typography variant='h6'>
 						{data.firstName} {data.lastName}
-					</Typography> */}
-					<Box
+					</Typography>
+					{/* <Box
 						style={{
 							display: 'flex',
 							alignItems: 'center',
@@ -243,7 +243,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 								textTransform: 'uppercase',
 							}}
 						/>
-					</Box>
+					</Box> */}
 					<Box
 						style={{
 							display: 'flex',
@@ -252,8 +252,8 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 							justifyContent: 'center',
 						}}
 					>
-						<Typography variant='date'>Date of Birth:</Typography>
-						<TextField
+						<Typography variant='date'>Date of Birth: {data?.birth}</Typography>
+						{/* <TextField
 							variant='standard'
 							fullWidth
 							type='date'
@@ -271,7 +271,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 							}}
 						>
 							{data?.birth}
-						</TextField>
+						</TextField> */}
 					</Box>
 				</Box>
 				<form style={{ width: isMobile ? '100%' : '60%', marginTop: 5 }}>
@@ -312,7 +312,16 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									Email:
 									<Typography variant='user_item'>{data?.email}</Typography>
 								</Typography>
-								<label
+								<Typography variant='user_key' display='flex' gap={1}>
+									Phone:
+									<Typography variant='user_item'>{data?.phone}</Typography>
+								</Typography>
+								<Typography variant='user_key' display='flex' gap={1}>
+									Telegram:
+									<Typography variant='user_item'>{data?.telegram}</Typography>
+								</Typography>
+
+								{/* <label
 									style={{
 										display: 'flex',
 										width: '100%',
@@ -342,8 +351,8 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 											fontWeight: 700,
 										}}
 									/>
-								</label>
-								<label
+								</label> */}
+								{/* <label
 									style={{
 										display: 'flex',
 										width: '100%',
@@ -373,7 +382,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 											fontWeight: 700,
 										}}
 									/>
-								</label>
+								</label> */}
 							</Box>
 							<Box
 								sx={{
@@ -384,7 +393,11 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									width: isMobile ? '100%' : '50%',
 								}}
 							>
-								<label
+								<Typography variant='user_key' display='flex' gap={1}>
+									Nickname:
+									<Typography variant='user_item'>{data?.nickname}</Typography>
+								</Typography>
+								{/* <label
 									style={{
 										display: 'flex',
 										width: '100%',
@@ -414,7 +427,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 											fontWeight: 700,
 										}}
 									/>
-								</label>
+								</label> */}
 
 								<label
 									style={{
@@ -447,7 +460,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										}}
 									/>
 								</label>
-								<label
+								{/* <label
 									style={{
 										display: 'flex',
 										alignItems: 'center',
@@ -493,7 +506,11 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 											</MenuItem>
 										))}
 									</Select>
-								</label>
+								</label> */}
+								<Typography variant='user_key' display='flex' gap={1}>
+									Country:
+									<Typography variant='user_item'>{data?.country}</Typography>
+								</Typography>
 								<label
 									style={{
 										display: 'flex',
