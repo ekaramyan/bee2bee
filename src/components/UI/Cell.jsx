@@ -44,27 +44,28 @@ export default function Cell({
 				/>
 			</Box>
 			{canJoin ? (
-				<Button
-					variant='outlined'
-					onClick={onJoinClick}
-					style={{
-						width: '100%',
-						maxWidth: 150,
-						color: '#23201C',
-						textAlign: 'center',
-						textShadow: '1px 1px 1px #FFF',
-						fontFamily: 'Noto Sans',
-						fontSize: 24,
-						fontWeight: 900,
-						textTransform: 'uppercase',
-						borderRadius: 5,
-						border: '1px solid #1B170F',
-						background: 'rgba(217, 217, 217, 0.00)',
-						cursor: 'pointer',
-					}}
-				>
-					JOIN
-				</Button>
+				// <Button
+				// 	variant='outlined'
+				// 	onClick={onJoinClick}
+				// 	style={{
+				// 		width: '100%',
+				// 		maxWidth: 150,
+				// 		color: '#23201C',
+				// 		textAlign: 'center',
+				// 		textShadow: '1px 1px 1px #FFF',
+				// 		fontFamily: 'Noto Sans',
+				// 		fontSize: 24,
+				// 		fontWeight: 900,
+				// 		textTransform: 'uppercase',
+				// 		borderRadius: 5,
+				// 		border: '1px solid #1B170F',
+				// 		background: 'rgba(217, 217, 217, 0.00)',
+				// 		cursor: 'pointer',
+				// 	}}
+				// >
+				// 	JOIN
+				// </Button>
+				<div></div>
 			) : (
 				<div style={{ height: 50 }} />
 			)}
