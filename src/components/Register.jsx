@@ -13,7 +13,7 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 				justifyContent: 'space-between',
 			}}
 		>
-			{/* <RegisterComponent /> */}
+			<RegisterComponent />
 			<div
 				style={{
 					display: 'flex',
