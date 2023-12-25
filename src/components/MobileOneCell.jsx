@@ -29,7 +29,7 @@ export default function MobileOneCell({
 				}}
 			>
 				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
-					<Image src={refresh.src} width={35} height={35} />
+					<Image src={refresh.src} width={35} height={35} alt='refresh' />
 				</Button>{' '}
 				<Button
 					variant='outlined'
@@ -69,7 +69,7 @@ export default function MobileOneCell({
 						textTransform: 'uppercase',
 					}}
 				>
-					<Image src={close.src} width={35} height={35} />
+					<Image src={close.src} width={35} height={35} alt='close' />
 				</Button>
 			</Box>
 			<Grid
