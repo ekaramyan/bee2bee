@@ -115,13 +115,13 @@ export default function DesktopOneCell({
 						style={{ gridArea: 'leader' }}
 						showQueue={true}
 					/>
-					{/* <DataBox
+					<DataBox
 						title='waiting'
 						data={waitingData}
 						style={{ gridArea: 'waiting' }}
 						isNotClickable={true}
 						showQueue={true}
-					/> */}
+					/>
 				</Grid>
 				<Typography variant='level_big'>
 					{data?.level} {data?.price}$
