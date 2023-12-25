@@ -22,7 +22,7 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 
 		fetchData()
 	}, [])
-	console.log(data)
+	
 	return (
 		<div
 			style={{

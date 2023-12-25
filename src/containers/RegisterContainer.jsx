@@ -19,7 +19,7 @@ export default function RegisterContainer() {
 					overflow: 'auto',
 				}}
 			>
-				{/* <RegisterComponent /> */}
+				<RegisterComponent />
 			</Box>
 		</Wrapper>
 	)
