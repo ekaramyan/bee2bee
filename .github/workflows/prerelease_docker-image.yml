@@ -19,11 +19,11 @@ jobs:
           password: ${{ secrets.B2B_GITHUB_TOKEN }}
       - name: Build the hello-docker Docker image
         env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
-          API_URL: ${{ secrets.API_URL }}
-          CAPTCHA_KEY: ${{secrets.CAPTCHA_KEY}}
+          API_TOKEN: ${{ secrets.PRERELEASE_API_TOKEN }}
+          API_URL: ${{ secrets.PRERELEASE_API_URL }}
+          CAPTCHA_KEY: ${{secrets.PRERELEASE_CAPTCHA_KEY}}
         run: |
-          docker build --build-arg API_TOKEN=${{ secrets.TEST_API_TOKEN }} --build-arg API_URL=${{ secrets.TEST_API_URL }} --build-arg CAPTCHA_KEY=${{ secrets.TEST_CAPTCHA_KEY }} . --tag ghcr.io/ekaramyan/bee2bee:latest
+          docker build --build-arg API_TOKEN=${{ secrets.PRERELEASE_API_TOKEN }} --build-arg API_URL=${{ secrets.PRERELEASE_API_URL }} --build-arg CAPTCHA_KEY=${{ secrets.PRERELEASE_CAPTCHA_KEY }} . --tag ghcr.io/ekaramyan/bee2bee:latest
           docker push ghcr.io/ekaramyan/bee2bee:latest
       - uses: appleboy/ssh-action@master
         with:
