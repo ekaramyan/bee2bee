@@ -28,7 +28,7 @@ const NewYearPage = ({ style }) => {
 								index + 1
 							}`}
 						>
-							{createBalls(9, index * 9, true)}
+							{createBalls(8, index * 8, true)}
 							{createBalls(6, index, false)}
 						</i>
 					))}
