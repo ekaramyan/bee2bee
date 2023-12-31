@@ -17,7 +17,7 @@ import bBallI6 from '../../../styles/balls/b-ball_i6.webp'
 
 const Ball = ({ number, note, bounce, backgroundImage }) => {
 	const ballStyle = {
-		backgroundImage: `url(${backgroundImage})`,
+		backgroundImage: `url(${backgroundImage.src})`,
 		backgroundRepeat: 'no-repeat',
 	}
 
