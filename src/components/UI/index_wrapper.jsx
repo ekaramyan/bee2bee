@@ -18,6 +18,7 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 import background from '../../assets/img/background.webp'
+import NewYearPage from './Garland/Garland'
 
 const SnowfallContainer = styled('div')`
 	position: fixed;
@@ -114,6 +115,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					{...props}
 				>
 					<Header loggedIn={loggedIn} />
+					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
 					{isMobile && !loggedIn && (
 						<Box
 							style={{
