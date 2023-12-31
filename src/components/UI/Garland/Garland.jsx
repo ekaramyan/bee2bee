@@ -9,8 +9,21 @@ const Ball = ({ number, note, bounce }) => {
 		</div>
 	)
 }
+import b_decor from '../../../styles/balls/b-head-decor_newyear.webp'
 
 const NewYearPage = ({ style }) => {
+	const decorBg = {
+		backgroundImage: `url(${b_decor.src})`,
+		backgroundRepeat: 'repeat-x',
+		backgroundPosition: '0 0',
+		position: 'absolute',
+		left: '0',
+		top: 0,
+		margin: '0 auto',
+		width: '100%',
+		display: 'block',
+		zIndex: 0,
+	}
 	const createBalls = (count, startNote, bounce) => {
 		return Array.from({ length: count }, (_, i) => (
 			<Ball key={i} number={i + 1} note={startNote + i} bounce={bounce} />
@@ -19,7 +32,7 @@ const NewYearPage = ({ style }) => {
 
 	return (
 		<div style={{ ...style }}>
-			<div className='b-page_newyear'>
+			<div className='b-page_newyear' style={{ ...decorBg }}>
 				<div className='b-page__content'>
 					{[...Array(4)].map((_, index) => (
 						<i

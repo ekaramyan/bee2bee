@@ -101,14 +101,14 @@ body {
 	display: none;
 }
 .b-page_newyear .b-head-decor {
-	/* position: absolute; */
+	position: absolute;
 	top: 80px;
 	left: 0;
 	display: block;
 	height: 115px;
 	width: 100%;
 	overflow: hidden;
-	/* background: url(balls/b-head-decor_newyear.png) repeat-x 0 0; */
+	background: url(balls/b-head-decor_newyear.webp) repeat-x 0 0;
 }
 .b-page_newyear .b-head-decor__inner {
 	position: absolute;
@@ -209,49 +209,49 @@ body {
 	height: 66px;
 }
 .b-ball_n1 .b-ball__i {
-	background: url(balls/b-ball_n1.png) no-repeat;
+	background: url(balls/b-ball_n1.webp) no-repeat;
 }
 .b-ball_n2 .b-ball__i {
-	background: url(balls/b-ball_n2.png) no-repeat;
+	background: url(balls/b-ball_n2.webp) no-repeat;
 }
 .b-ball_n3 .b-ball__i {
-	background: url(balls/b-ball_n3.png) no-repeat;
+	background: url(balls/b-ball_n3.webp) no-repeat;
 }
 .b-ball_n4 .b-ball__i {
-	background: url(balls/b-ball_n4.png) no-repeat;
+	background: url(balls/b-ball_n4.webp) no-repeat;
 }
 .b-ball_n5 .b-ball__i {
-	background: url(balls/b-ball_n5.png) no-repeat;
+	background: url(balls/b-ball_n5.webp) no-repeat;
 }
 .b-ball_n6 .b-ball__i {
-	background: url(balls/b-ball_n6.png) no-repeat;
+	background: url(balls/b-ball_n6.webp) no-repeat;
 }
 .b-ball_n7 .b-ball__i {
-	background: url(balls/b-ball_n7.png) no-repeat;
+	background: url(balls/b-ball_n7.webp) no-repeat;
 }
 .b-ball_n8 .b-ball__i {
-	background: url(balls/b-ball_n8.png) no-repeat;
+	background: url(balls/b-ball_n8.webp) no-repeat;
 }
 .b-ball_n9 .b-ball__i {
-	background: url(balls/b-ball_n9.png) no-repeat;
+	background: url(balls/b-ball_n9.webp) no-repeat;
 }
 .b-ball_i1 .b-ball__i {
-	background: url(balls/b-ball_i1.png) no-repeat;
+	background: url(balls/b-ball_i1.webp) no-repeat;
 }
 .b-ball_i2 .b-ball__i {
-	background: url(balls/b-ball_i2.png) no-repeat;
+	background: url(balls/b-ball_i2.webp) no-repeat;
 }
 .b-ball_i3 .b-ball__i {
-	background: url(balls/b-ball_i3.png) no-repeat;
+	background: url(balls/b-ball_i3.webp) no-repeat;
 }
 .b-ball_i4 .b-ball__i {
-	background: url(balls/b-ball_i4.png) no-repeat;
+	background: url(balls/b-ball_i4.webp) no-repeat;
 }
 .b-ball_i5 .b-ball__i {
-	background: url(balls/b-ball_i5.png) no-repeat;
+	background: url(balls/b-ball_i5.webp) no-repeat;
 }
 .b-ball_i6 .b-ball__i {
-	background: url(balls/b-ball_i6.png) no-repeat;
+	background: url(balls/b-ball_i6.webp) no-repeat;
 }
 .b-ball_i1 {
 	top: 0;

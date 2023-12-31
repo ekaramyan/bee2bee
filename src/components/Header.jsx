@@ -25,7 +25,7 @@ export default function Header({ loggedIn }) {
 				minHeight: 80,
 				borderRadius: '0 0 20px 20px',
 				userSelect: 'none',
-				// zIndex: 1,
+				zIndex: 1,
 			}}
 		>
 			<div
