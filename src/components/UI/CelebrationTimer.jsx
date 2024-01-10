@@ -8,7 +8,7 @@ const CelebrationTimer = () => {
 	const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining())
 
 	function calculateTimeRemaining() {
-		const targetDate = new Date('2024-01-15T00:00:00')
+		const targetDate = new Date('2024-01-12T00:00:00')
 		const now = new Date()
 
 		let timeDiff = targetDate - now

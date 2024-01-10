@@ -46,7 +46,9 @@ export default function Header({ loggedIn }) {
 					<UserMenu />
 				) : (
 					<div>
-						<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
+						{!isMobile && (
+							<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
+						)}
 					</div>
 				)}
 				{!loggedIn && isMobile && (
