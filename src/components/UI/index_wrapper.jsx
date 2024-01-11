@@ -140,7 +140,26 @@ const IndexWrapper = ({ children, ...props }) => {
 					{isConfettiVisible && (
 						<>
 							<Confetti />
-							<Fireworks />
+							<Fireworks
+								options={{
+									speed: 2,
+									acceleration: 1.05,
+									friction: 0.97,
+									gravity: 1.5,
+									particles: 200,
+									trace: 3,
+									explosion: 5,
+									intensity: 60,
+								}}
+								style={{
+									top: 0,
+									left: 0,
+									width: '100%',
+									height: '100%',
+									position: 'fixed',
+									background: 'transparent',
+								}}
+							/>
 						</>
 					)}
 					{/* end */}
