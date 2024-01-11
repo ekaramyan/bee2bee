@@ -88,6 +88,7 @@ const theme = createTheme({
 			fontWeight: 300,
 			color: '#241f55',
 			lineHeight: 1.55,
+			zIndex: 2,
 		},
 		auth: {},
 	},

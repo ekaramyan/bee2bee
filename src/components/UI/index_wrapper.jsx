@@ -139,7 +139,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
 					{isConfettiVisible && (
 						<>
-							<Confetti />
+							<Confetti style={{  }} />
 							<Fireworks
 								options={{
 									speed: 2,
@@ -157,7 +157,7 @@ const IndexWrapper = ({ children, ...props }) => {
 									width: '100%',
 									height: '100%',
 									position: 'fixed',
-									background: 'transparent',
+									background: 'transparent',zIndex: 0
 								}}
 							/>
 						</>
