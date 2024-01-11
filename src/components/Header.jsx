@@ -40,16 +40,13 @@ export default function Header({ loggedIn }) {
 			>
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
 					<Logo />
-					<CelebrationTimer />
+					{/* <CelebrationTimer /> */}
 				</Box>
 				{loggedIn ? (
 					<UserMenu />
 				) : (
-					// delete isMobile after holydays
 					<div>
-						{!isMobile && (
-							<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
-						)}
+						<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
 					</div>
 				)}
 				{!loggedIn && isMobile && (
