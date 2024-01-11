@@ -8,6 +8,8 @@ import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
 import Snowfall from 'react-snowfall'
 import Confetti from 'react-confetti'
+import Fireworks from '@fireworks-js/react'
+
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
@@ -70,10 +72,10 @@ const IndexWrapper = ({ children, ...props }) => {
 
 	useEffect(() => {
 		const now = new Date()
-		const targetDate = new Date('2024-01-12T00:00:00+04:00')
+		const targetDate = new Date('2024-01-11T21:00:00+04:00')
 
 		const timerInterval = setInterval(() => {
-			if (now >= targetDate && now < new Date('2024-01-12T00:00:30+04:00')) {
+			if (now >= targetDate && now < new Date('2024-01-13T00:00:00+04:00')) {
 				setIsConfettiVisible(true)
 			} else {
 				setIsConfettiVisible(false)
@@ -135,7 +137,12 @@ const IndexWrapper = ({ children, ...props }) => {
 					<Header loggedIn={loggedIn} />
 					{/* start */}
 					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
-					{isConfettiVisible && <Confetti />}
+					{isConfettiVisible && (
+						<>
+							<Confetti />
+							<Fireworks />
+						</>
+					)}
 					{/* end */}
 					{isMobile && !loggedIn && (
 						<Box
