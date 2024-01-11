@@ -45,6 +45,7 @@ export default function Header({ loggedIn }) {
 				{loggedIn ? (
 					<UserMenu />
 				) : (
+					// delete isMobile after holydays
 					<div>
 						{!isMobile && (
 							<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />

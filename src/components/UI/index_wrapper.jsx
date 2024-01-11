@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
 import Snowfall from 'react-snowfall'
-
+import Confetti from 'react-confetti'
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
@@ -40,8 +40,9 @@ const IndexWrapper = ({ children, ...props }) => {
 	const loggedIn = useSelector(state => state.user.loggedIn)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	const isLow = useMediaQuery('@media(min-height: 880px)')
-
+	//only for holydays
 	const [snowflakeImages, setSnowflakeImages] = useState([])
+	const [isConfettiVisible, setIsConfettiVisible] = useState(false)
 
 	useEffect(() => {
 		const loadSnowflakeImages = async () => {
@@ -67,6 +68,21 @@ const IndexWrapper = ({ children, ...props }) => {
 		loadSnowflakeImages()
 	}, [])
 
+	useEffect(() => {
+		const now = new Date()
+		const targetDate = new Date('2024-01-12T00:00:00')
+
+		const timerInterval = setInterval(() => {
+			if (now >= targetDate && now < new Date('2024-01-12T00:00:30')) {
+				setIsConfettiVisible(true)
+			} else {
+				setIsConfettiVisible(false)
+			}
+		}, 1000)
+
+		return () => clearInterval(timerInterval)
+	}, [])
+	// end
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
 	}
@@ -90,6 +106,7 @@ const IndexWrapper = ({ children, ...props }) => {
 				}}
 				className='ScrollbarWhite'
 			>
+				{/* holydays  */}
 				<SnowfallContainer>
 					<Snowfall
 						snowflakeCount={400}
@@ -97,6 +114,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						images={snowflakeImages}
 					/>
 				</SnowfallContainer>
+				{/* end */}
 
 				<Container
 					className='ScrollbarDefault'
@@ -115,7 +133,10 @@ const IndexWrapper = ({ children, ...props }) => {
 					{...props}
 				>
 					<Header loggedIn={loggedIn} />
+					{/* start */}
 					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
+					{isConfettiVisible && <Confetti />}
+					{/* end */}
 					{isMobile && !loggedIn && (
 						<Box
 							style={{
