@@ -70,10 +70,10 @@ const IndexWrapper = ({ children, ...props }) => {
 
 	useEffect(() => {
 		const now = new Date()
-		const targetDate = new Date('2024-01-12T00:00:00')
+		const targetDate = new Date('2024-01-12T00:00:00+04:00')
 
 		const timerInterval = setInterval(() => {
-			if (now >= targetDate && now < new Date('2024-01-12T00:00:30')) {
+			if (now >= targetDate && now < new Date('2024-01-12T00:00:30+04:00')) {
 				setIsConfettiVisible(true)
 			} else {
 				setIsConfettiVisible(false)
