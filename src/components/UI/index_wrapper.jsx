@@ -115,31 +115,9 @@ const IndexWrapper = ({ children, ...props }) => {
 						radius={[5.5, 20.0]}
 						images={snowflakeImages}
 					/>
-				</SnowfallContainer>
-				{/* end */}
-
-				<Container
-					className='ScrollbarDefault'
-					style={{
-						overflow: 'hidden',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						gap: 20,
-						height: '100%',
-						minHeight: '100svh',
-						width: '100%',
-						justifyContent: 'space-between',
-						zIndex: 1,
-					}}
-					{...props}
-				>
-					<Header loggedIn={loggedIn} />
-					{/* start */}
-					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
 					{isConfettiVisible && (
 						<>
-							{/* <Confetti style={{ zIndex: 0 }} /> */}
+							<Confetti style={{ zIndex: 0 }} />
 							<Fireworks
 								options={{
 									speed: 2,
@@ -162,6 +140,28 @@ const IndexWrapper = ({ children, ...props }) => {
 							/>
 						</>
 					)}
+				</SnowfallContainer>
+				{/* end */}
+
+				<Container
+					className='ScrollbarDefault'
+					style={{
+						overflow: 'hidden',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						gap: 20,
+						height: '100%',
+						minHeight: '100svh',
+						width: '100%',
+						justifyContent: 'space-between',
+						zIndex: 1,
+					}}
+					{...props}
+				>
+					<Header loggedIn={loggedIn} />
+					{/* start */}
+					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
 					{/* end */}
 					{isMobile && !loggedIn && (
 						<Box
