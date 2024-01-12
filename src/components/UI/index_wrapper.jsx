@@ -44,7 +44,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	const isLow = useMediaQuery('@media(min-height: 880px)')
 	//only for holydays
 	const [snowflakeImages, setSnowflakeImages] = useState([])
-	const [isConfettiVisible, setIsConfettiVisible] = useState(false)
+	// const [isConfettiVisible, setIsConfettiVisible] = useState(false)
 
 	useEffect(() => {
 		const loadSnowflakeImages = async () => {
@@ -70,20 +70,20 @@ const IndexWrapper = ({ children, ...props }) => {
 		loadSnowflakeImages()
 	}, [])
 
-	useEffect(() => {
-		const now = new Date()
-		const targetDate = new Date('2024-01-11T21:00:00+04:00')
+	// useEffect(() => {
+	// 	const now = new Date()
+	// 	const targetDate = new Date('2024-01-11T21:00:00+04:00')
 
-		const timerInterval = setInterval(() => {
-			if (now >= targetDate && now < new Date('2024-01-13T00:00:00+04:00')) {
-				setIsConfettiVisible(true)
-			} else {
-				setIsConfettiVisible(false)
-			}
-		}, 1000)
+	// 	const timerInterval = setInterval(() => {
+	// 		if (now >= targetDate && now < new Date('2024-01-13T00:00:00+04:00')) {
+	// 			setIsConfettiVisible(true)
+	// 		} else {
+	// 			setIsConfettiVisible(false)
+	// 		}
+	// 	}, 1000)
 
-		return () => clearInterval(timerInterval)
-	}, [])
+	// 	return () => clearInterval(timerInterval)
+	// }, [])
 	// end
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
@@ -115,7 +115,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						radius={[5.5, 20.0]}
 						images={snowflakeImages}
 					/>
-					{isConfettiVisible && (
+					{/* {isConfettiVisible && (
 						<>
 							<Confetti style={{ zIndex: 0 }} />
 							<Fireworks
@@ -139,7 +139,7 @@ const IndexWrapper = ({ children, ...props }) => {
 								}}
 							/>
 						</>
-					)}
+					)} */}
 				</SnowfallContainer>
 				{/* end */}
 
