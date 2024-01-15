@@ -7,8 +7,8 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
 import Snowfall from 'react-snowfall'
-import Confetti from 'react-confetti'
-import Fireworks from '@fireworks-js/react'
+// import Confetti from 'react-confetti'
+// import Fireworks from '@fireworks-js/react'
 
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
@@ -20,7 +20,7 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 import background from '../../assets/img/background.webp'
-import NewYearPage from './Garland/Garland'
+// import NewYearPage from './Garland/Garland'
 
 const SnowfallContainer = styled('div')`
 	position: fixed;
@@ -91,7 +91,6 @@ const IndexWrapper = ({ children, ...props }) => {
 	const toggleRegister = () => {
 		setIsRegisterOpen(!isRegisterOpen)
 	}
-	console.log(snowflakeImages, 'snow')
 	return (
 		<>
 			<div
@@ -161,7 +160,7 @@ const IndexWrapper = ({ children, ...props }) => {
 				>
 					<Header loggedIn={loggedIn} />
 					{/* start */}
-					<NewYearPage style={{ height: 0, margin: '0 auto' }} />
+					{/* <NewYearPage style={{ height: 0, margin: '0 auto' }} /> */}
 					{/* end */}
 					{isMobile && !loggedIn && (
 						<Box
