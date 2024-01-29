@@ -132,7 +132,7 @@ export default function CellInfo({ data }) {
 	}, [])
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	console.log(cellClosing, 'closing')
+	// console.log(cellClosing, 'closing')
 	return (
 		<>
 			<Box
