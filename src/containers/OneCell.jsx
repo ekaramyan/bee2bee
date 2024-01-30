@@ -72,17 +72,19 @@ export default function OneCell({ data, joinList, level }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
-	// const {
-	// 	data: waitingData,
-	// 	loading: waitingLoading,
-	// 	error: waitingError,
-	// 	getCells: getWaitingCells,
-	// } = useCells()
+	//delete waitings
+	const {
+		data: waitingData,
+		loading: waitingLoading,
+		error: waitingError,
+		getCells: getWaitingCells,
+	} = useCells()
+
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
-		// getWaitingCells('waiting', { level: id, user: userId })
-	}, [getFollowerActiveCells, getLeaderActiveCells, id])
+		getWaitingCells('waiting', { level: id, user: userId })
+	}, [getFollowerActiveCells, getLeaderActiveCells, getWaitingCells, id])
 	useEffect(() => {
 		onRefreshClick()
 	}, [])
@@ -99,7 +101,8 @@ export default function OneCell({ data, joinList, level }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
-	const canJoin = data[0]?.cellLevel?.canJoin
+	console.log(data)
+	const canJoin = data ? data[0]?.cellLevel?.canJoin : false
 
 	const [modalOpen, setModalOpen] = useState(false)
 	const [actionToConfirm, setActionToConfirm] = useState(null)
@@ -185,7 +188,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							// waitingData={waitingData}
+							waitingData={waitingData}
 							onJoinClick={() => handleOpenModal(onJoinClick, 'join')}
 							onRefreshClick={onRefreshClick}
 							id={id}
@@ -196,7 +199,7 @@ export default function OneCell({ data, joinList, level }) {
 							disabled={!toJoin || canJoin === false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
-							// waitingData={waitingData}
+							waitingData={waitingData}
 							onJoinClick={() => handleOpenModal(onJoinClick, 'join')}
 							onRefreshClick={onRefreshClick}
 							cells={cells}
@@ -209,7 +212,7 @@ export default function OneCell({ data, joinList, level }) {
 					'Sorry, there is no data'
 				)}
 				<Box>
-					{(followerActiveLoading || leaderActiveLoading) && (
+					{(followerActiveLoading || leaderActiveLoading || waitingLoading) && (
 						<LinearProgress />
 					)}
 				</Box>
