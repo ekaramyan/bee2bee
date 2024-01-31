@@ -6,34 +6,13 @@ import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
-import Snowfall from 'react-snowfall'
-// import Confetti from 'react-confetti'
-// import Fireworks from '@fireworks-js/react'
 
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
 const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
-import snowflake1 from '../../assets/img/snowflake1.png'
-import snowflake2 from '../../assets/img/snowflake2.png'
-import snowflake3 from '../../assets/img/snowflake3.png'
-import snowflake4 from '../../assets/img/snowflake4.png'
 import background from '../../assets/img/background.webp'
-// import NewYearPage from './Garland/Garland'
-
-const SnowfallContainer = styled('div')`
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	z-index: 0;
-	overflow: hidden;
-	background: #00000040;
-	width: 100%;
-	height: 100vh;
-`
 
 const IndexWrapper = ({ children, ...props }) => {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
@@ -42,49 +21,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	const loggedIn = useSelector(state => state.user.loggedIn)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	const isLow = useMediaQuery('@media(min-height: 880px)')
-	//only for holydays
-	const [snowflakeImages, setSnowflakeImages] = useState([])
-	// const [isConfettiVisible, setIsConfettiVisible] = useState(false)
 
-	useEffect(() => {
-		const loadSnowflakeImages = async () => {
-			const loadImage = async src => {
-				const image = new Image()
-				image.src = src
-				await new Promise(resolve => {
-					image.onload = resolve
-				})
-				return image
-			}
-
-			const images = await Promise.all([
-				loadImage(snowflake1.src),
-				loadImage(snowflake2.src),
-				loadImage(snowflake3.src),
-				loadImage(snowflake4.src),
-			])
-
-			setSnowflakeImages(images)
-		}
-
-		loadSnowflakeImages()
-	}, [])
-
-	// useEffect(() => {
-	// 	const now = new Date()
-	// 	const targetDate = new Date('2024-01-11T21:00:00+04:00')
-
-	// 	const timerInterval = setInterval(() => {
-	// 		if (now >= targetDate && now < new Date('2024-01-13T00:00:00+04:00')) {
-	// 			setIsConfettiVisible(true)
-	// 		} else {
-	// 			setIsConfettiVisible(false)
-	// 		}
-	// 	}, 1000)
-
-	// 	return () => clearInterval(timerInterval)
-	// }, [])
-	// end
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
 	}
@@ -107,41 +44,6 @@ const IndexWrapper = ({ children, ...props }) => {
 				}}
 				className='ScrollbarWhite'
 			>
-				{/* holydays  */}
-				<SnowfallContainer>
-					<Snowfall
-						snowflakeCount={400}
-						radius={[5.5, 20.0]}
-						images={snowflakeImages}
-					/>
-					{/* {isConfettiVisible && (
-						<>
-							<Confetti style={{ zIndex: 0 }} />
-							<Fireworks
-								options={{
-									speed: 2,
-									acceleration: 1.05,
-									friction: 0.97,
-									gravity: 1.5,
-									particles: 200,
-									trace: 3,
-									explosion: 5,
-									intensity: 60,
-								}}
-								style={{
-									top: 0,
-									left: 0,
-									width: '100%',
-									height: '100%',
-									position: 'fixed',
-									background: 'transparent',
-								}}
-							/>
-						</>
-					)} */}
-				</SnowfallContainer>
-				{/* end */}
-
 				<Container
 					className='ScrollbarDefault'
 					style={{
@@ -159,9 +61,7 @@ const IndexWrapper = ({ children, ...props }) => {
 					{...props}
 				>
 					<Header loggedIn={loggedIn} />
-					{/* start */}
-					{/* <NewYearPage style={{ height: 0, margin: '0 auto' }} /> */}
-					{/* end */}
+
 					{isMobile && !loggedIn && (
 						<Box
 							style={{
