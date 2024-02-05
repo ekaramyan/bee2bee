@@ -148,7 +148,7 @@ export default function OneCell({ data, joinList, level }) {
 			const res = await postFollower(toJoin, userId)
 			setSuccess(res?.isSuccess)
 			res?.isSuccess &&
-				router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
+				router.push(toJoin ? `${id}/info/${res.data.id}` : `/cells/${id}`)
 		}
 		if (error || !success) setShowErrorDialog(true)
 		if (users.data.cellUsers.length >= 6) {
@@ -209,9 +209,7 @@ export default function OneCell({ data, joinList, level }) {
 					'Sorry, there is no data'
 				)}
 				<Box>
-					{(followerActiveLoading || leaderActiveLoading) && (
-						<LinearProgress />
-					)}
+					{(followerActiveLoading || leaderActiveLoading) && <LinearProgress />}
 				</Box>
 				<ConfirmationModal
 					open={modalOpen}
