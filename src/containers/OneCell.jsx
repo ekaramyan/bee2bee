@@ -49,7 +49,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 export default function OneCell({ data, joinList }) {
-	console.log(data[0], joinList)
 	const router = useRouter()
 	const [toJoin, setToJoin] = useState(null)
 	const [showErrorDialog, setShowErrorDialog] = useState(false)
