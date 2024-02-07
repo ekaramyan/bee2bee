@@ -95,7 +95,6 @@ export default function DesktopOneCell({
 			'follower leader'
 			'waiting waiting'
 			`,
-						// 'waiting waiting'
 						columnGap: 10,
 						rowGap: 3,
 						alignItems: 'center',

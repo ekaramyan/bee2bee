@@ -3,19 +3,15 @@ import Cookies from 'js-cookie'
 import OneCell from '@/containers/OneCell'
 import { universalServerSideProps } from '@/api/ssr'
 
-export default function Cell({ cellData, joinListData, levelData }) {
+export default function Cell({ cellData, joinListData }) {
 	const dispatch = useDispatch()
 	const token = Cookies.get('access_token')
+
 	if (token) {
 		dispatch({ type: 'LOG_IN' })
 	}
-	return (
-		<OneCell
-			data={cellData.data}
-			joinList={joinListData}
-			level={levelData.data}
-		/>
-	)
+
+	return <OneCell data={cellData.data} joinList={joinListData} />
 }
 
 export async function getServerSideProps(context) {
@@ -24,8 +20,7 @@ export async function getServerSideProps(context) {
 	const token = req.cookies.access_token
 	const apiUrl = process.env.API_URL
 	const url = `${apiUrl}/cells/all/list?level_id=${id}&limit=1`
-	const joinListUrl = `${apiUrl}/cells/join/list?level_id=${id}&limit=1`
-	const levelUrl = `${apiUrl}/cell-levels/${id}`
+	const joinListUrl = `${apiUrl}/cells/join/list?level_id=${id}&limit=2`
 
 	const cellDataProps = await universalServerSideProps(url, token, 'cellData')
 	const joinListDataProps = await universalServerSideProps(
@@ -33,17 +28,11 @@ export async function getServerSideProps(context) {
 		token,
 		'joinListData'
 	)
-	const levelDataProps = await universalServerSideProps(
-		levelUrl,
-		token,
-		'levelData'
-	)
-
+	console.log({ ...cellDataProps.props, ...joinListDataProps.props })
 	return {
 		props: {
 			...cellDataProps.props,
 			...joinListDataProps.props,
-			...levelDataProps.props,
 		},
 	}
 }
