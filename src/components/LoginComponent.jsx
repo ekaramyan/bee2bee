@@ -159,6 +159,7 @@ export default function LoginComponent() {
 						alignItems: 'center',
 						flexDirection: isMobile ? 'column' : 'row',
 						width: '100%',
+						gap: 15,
 						flex: 1,
 					}}
 				>
