@@ -48,8 +48,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction='down' ref={ref} {...props} />
 })
 
-export default function OneCell({ data, joinList, level }) {
+export default function OneCell({ data, joinList }) {
 	const router = useRouter()
+	const [toJoin, setToJoin] = useState(null)
+	const [showErrorDialog, setShowErrorDialog] = useState(false)
+	const [success, setSuccess] = useState(null)
+	const [err, setErr] = useState(null)
+	const [modalOpen, setModalOpen] = useState(false)
+	const [actionToConfirm, setActionToConfirm] = useState(null)
+	const [modalContent, setModalContent] = useState({
+		text: '',
+		imageSrc: null,
+	})
+
 	const { postFollower, loading, error } = useCellActions()
 	const userId = parseInt(Cookies.get('userId'))
 	const { cellLevelId: id } = router.query
@@ -72,7 +83,7 @@ export default function OneCell({ data, joinList, level }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
-	//delete waitings
+
 	const {
 		data: waitingData,
 		loading: waitingLoading,
@@ -88,10 +99,6 @@ export default function OneCell({ data, joinList, level }) {
 	useEffect(() => {
 		onRefreshClick()
 	}, [])
-	const [toJoin, setToJoin] = useState(null)
-	const [showErrorDialog, setShowErrorDialog] = useState(false)
-	const [success, setSuccess] = useState(null)
-	const [err, setErr] = useState(null)
 
 	useEffect(() => {
 		if (joinList.data) {
@@ -101,15 +108,27 @@ export default function OneCell({ data, joinList, level }) {
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const token = Cookies.get('access_token')
 	const apiUrl = process.env.API_URL
-	console.log(data)
-	const canJoin = data ? data[0]?.cellLevel?.canJoin : false
 
-	const [modalOpen, setModalOpen] = useState(false)
-	const [actionToConfirm, setActionToConfirm] = useState(null)
-	const [modalContent, setModalContent] = useState({
-		text: '',
-		imageSrc: null,
-	})
+	// useEffect(() => {
+	// 	const fetchDataAsync = async () => {
+	// 		try {
+	// 			const id = router.query.cellLevelId
+	// 			const apiUrl = process.env.API_URL
+	// 			const data = fetchData(
+	// 				`${apiUrl}/cells/all/list?level_id=${id}&limit=1`,
+	// 				token
+	// 			)
+	// 			console.log(data)
+	// 			if (data && data.length > 0) {
+	// 				setData(data)
+	// 			}
+	// 		} catch (error) {}
+	// 	}
+	// 	fetchDataAsync()
+	// }, [])
+  
+  const canJoin = data ? data[0]?.cellLevel?.canJoin : false
+	const level = data[0]?.cellLevel
 
 	const handleOpenModal = (action, actionType) => {
 		setActionToConfirm(() => action)
@@ -132,12 +151,10 @@ export default function OneCell({ data, joinList, level }) {
 		let content = {}
 		switch (action) {
 			case 'join':
-				content = {
-					title: 'Are you sure you want to join this cell?',
-				}
+				content = { title: 'Are you sure you want to join this cell?' }
 				break
 			default:
-				content = { text: '', imageSrc: null }
+				content = { title: '' }
 		}
 		setModalContent(content)
 	}
@@ -151,7 +168,7 @@ export default function OneCell({ data, joinList, level }) {
 			const res = await postFollower(toJoin, userId)
 			setSuccess(res?.isSuccess)
 			res?.isSuccess &&
-				router.push(toJoin ? `${id}/info/${toJoin}` : `/cells/${id}`)
+				router.push(toJoin ? `${id}/info/${res.data.id}` : `/cells/${id}`)
 		}
 		if (error || !success) setShowErrorDialog(true)
 		if (users.data.cellUsers.length >= 6) {

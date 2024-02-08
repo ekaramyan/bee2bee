@@ -7,6 +7,7 @@ const initialState = {
 	avatarUrl: null,
 	cellClosing: false,
 	isFirstLoad: true,
+	isJoinClicked: false,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -28,6 +29,8 @@ const userReducer = (state = initialState, action) => {
 			return { ...state, cellClosing: false }
 		case 'LOADED':
 			return { ...state, isFirstLoad: false }
+		case 'JOIN':
+			return { ...state, isJoinClicked: true }
 		default:
 			return state
 	}

@@ -8,7 +8,7 @@ export default function CellBoxElement({
 	showQueue,
 	index,
 }) {
-	const dateFromAPI = new Date(data.createdAt)
+	const dateFromAPI = new Date(data.updatedAt)
 	const offsetMinutes = dateFromAPI.getTimezoneOffset()
 	const adjustedDate = moment(dateFromAPI).add(-offsetMinutes, 'minutes')
 	const cellDate = adjustedDate.format('YYYY-MM-DD | HH:mm:ss')

@@ -63,7 +63,7 @@ export default function CellInfo({ data }) {
 	const [isReturn, setIsReturn] = useState(false)
 	const [isAllPayed, setIsAllPayed] = useState(false)
 	const isActive = cellData?.isActive
-	const { cellClosing } = useSelector(state => state.user)
+	const { cellClosing, isJoinClicked } = useSelector(state => state.user)
 	const userId = parseInt(Cookies.get('userId'))
 	const checkRole = useIsLeader()
 	const dispatch = useDispatch()
@@ -210,7 +210,7 @@ export default function CellInfo({ data }) {
 						<CircularProgress />
 					)}
 
-					{showErrorDialog && (
+					{showErrorDialog && isJoinClicked && (
 						<StyledDialog
 							open={showErrorDialog}
 							TransitionComponent={Transition}

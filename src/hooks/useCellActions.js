@@ -64,6 +64,7 @@ export default function useCellActions() {
 				setError('Error while joining the cell.')
 			}
 		} finally {
+			dispatch({ type: 'JOIN' })
 			setLoading(false)
 		}
 	}

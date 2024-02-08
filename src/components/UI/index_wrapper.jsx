@@ -1,17 +1,17 @@
 import { Container, useMediaQuery, Box, styled } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
-
 const Login = dynamic(() => import('../Login'))
 const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
 const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
+
 import background from '../../assets/img/background.webp'
 
 const IndexWrapper = ({ children, ...props }) => {
@@ -27,7 +27,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	}
 	const toggleRegister = () => {
 		setIsRegisterOpen(!isRegisterOpen)
-	}
+
 	return (
 		<>
 			<div
