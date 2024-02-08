@@ -1,7 +1,8 @@
-import { useMediaQuery } from '@mui/material'
+import { useMediaQuery, Box } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import CelebrationTimer from './UI/CelebrationTimer'
 const Logo = dynamic(() => import('./UI/Logo'))
 const Socials = dynamic(() => import('./UI/Socials'))
 const UserMenu = dynamic(() => import('./UI/UserMenu'))
@@ -25,6 +26,7 @@ export default function Header({ loggedIn }) {
 				minHeight: 80,
 				borderRadius: '0 0 20px 20px',
 				userSelect: 'none',
+				zIndex: 1,
 			}}
 		>
 			<div
@@ -36,8 +38,10 @@ export default function Header({ loggedIn }) {
 					width: '100%',
 				}}
 			>
-				<Logo />
-
+				<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
+					<Logo />
+					{/* <CelebrationTimer /> */}
+				</Box>
 				{loggedIn ? (
 					<UserMenu />
 				) : (

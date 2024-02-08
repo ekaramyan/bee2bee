@@ -124,15 +124,16 @@ export default function CellInfo({ data }) {
 			}, 5000)
 			return () => clearTimeout(timer)
 		}
+	}, [])
 
-		if (acceptedCount === 6 && !isActive) {
+	useEffect(() => {
+		if (acceptedCount === 6 && isActive) {
 			closeCell(cellId, closeData)
 			setIsBoxVisible(true)
 		}
-	}, [])
+	}, [acceptedCount])
 
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	// console.log(cellClosing, 'closing')
 	return (
 		<>
 			<Box
