@@ -11,7 +11,6 @@ const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
 const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
-
 import background from '../../assets/img/background.webp'
 
 const IndexWrapper = ({ children, ...props }) => {
@@ -27,6 +26,7 @@ const IndexWrapper = ({ children, ...props }) => {
 	}
 	const toggleRegister = () => {
 		setIsRegisterOpen(!isRegisterOpen)
+	}
 
 	return (
 		<>

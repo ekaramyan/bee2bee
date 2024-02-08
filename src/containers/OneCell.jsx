@@ -126,8 +126,8 @@ export default function OneCell({ data, joinList }) {
 	// 	}
 	// 	fetchDataAsync()
 	// }, [])
-  
-  const canJoin = data ? data[0]?.cellLevel?.canJoin : false
+
+	const canJoin = data ? data[0]?.cellLevel?.canJoin : false
 	const level = data[0]?.cellLevel
 
 	const handleOpenModal = (action, actionType) => {
