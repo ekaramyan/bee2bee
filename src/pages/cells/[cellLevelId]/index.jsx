@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 	const token = req.cookies.access_token
 	const apiUrl = process.env.API_URL
 	const url = `${apiUrl}/cells/all/list?level_id=${id}`
-	const joinListUrl = `${apiUrl}/cells/join/list?level_id=${id}&limit=1`
+	const joinListUrl = `${apiUrl}/cells/join/list?level_id=${id}&limit=5`
 
 	const cellDataProps = await universalServerSideProps(url, token, 'cellData')
 	const joinListDataProps = await universalServerSideProps(
