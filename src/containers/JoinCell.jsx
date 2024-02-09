@@ -37,15 +37,19 @@ export default function JoinCell() {
 		fetchDataAsync()
 	}, [])
 
+	const [confettiShown, setConfettiShown] = useState(false)
+
 	useEffect(() => {
 		const currentDate = new Date()
 		const birthdayDate = new Date(birthday)
 
 		if (
 			currentDate.getDate() === birthdayDate.getDate() &&
-			currentDate.getMonth() === birthdayDate.getMonth()
+			currentDate.getMonth() === birthdayDate.getMonth() &&
+			!confettiShown
 		) {
 			setShowConfetti(true)
+			setConfettiShown(true)
 
 			const timeout = setTimeout(() => {
 				setShowConfetti(false)
@@ -53,7 +57,14 @@ export default function JoinCell() {
 
 			return () => clearTimeout(timeout)
 		}
-	}, [birthday])
+	}, [birthday, confettiShown])
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setConfettiShown(false)
+		}, 24 * 60 * 60 * 1000)
+
+		return () => clearInterval(timer)
+	}, [])
 
 	const cells = [
 		{ bee: starter },
@@ -85,7 +96,7 @@ export default function JoinCell() {
 					userSelect: 'none',
 				}}
 			>
-				{showConfetti && (
+				{showConfetti && !confettiShown && (
 					<div
 						style={{
 							position: 'absolute',

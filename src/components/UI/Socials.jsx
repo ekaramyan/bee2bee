@@ -11,7 +11,7 @@ import Link from 'next/link'
 export default function Socials({ width, height }) {
 	const socials = [
 		{ img: facebook, url: 'https://www.facebook.com/bee2bee.site' },
-		{ img: telegram, url: 'https://t.me/+DUrXAGnWJp85ZDk6' },
+		{ img: telegram, url: 'https://t.me/+VdRruGTyWco1MThk' },
 		{ img: instagram, url: 'https://www.instagram.com/bee2bee.site/' },
 		{ img: vk, url: 'https://vk.com/bee2bee.site' },
 		{ img: tiktok, url: 'https://www.tiktok.com/@bee2bee.site' },

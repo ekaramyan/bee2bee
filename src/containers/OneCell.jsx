@@ -83,12 +83,14 @@ export default function OneCell({ data, joinList }) {
 		error: leaderActiveError,
 		getCells: getLeaderActiveCells,
 	} = useCells()
+
 	const {
 		data: waitingData,
 		loading: waitingLoading,
 		error: waitingError,
 		getCells: getWaitingCells,
 	} = useCells()
+
 	const onRefreshClick = useCallback(async () => {
 		getFollowerActiveCells('me_followers_level', { level: id })
 		getLeaderActiveCells('me_leader_level', { level: id })
@@ -125,7 +127,7 @@ export default function OneCell({ data, joinList }) {
 	// 	fetchDataAsync()
 	// }, [])
 
-	const canJoin = data[0]?.cellLevel?.canJoin
+	const canJoin = data ? data[0]?.cellLevel?.canJoin : false
 	const level = data[0]?.cellLevel
 
 	const handleOpenModal = (action, actionType) => {
