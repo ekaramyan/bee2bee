@@ -160,6 +160,7 @@ export default function LoginComponent() {
 						flexDirection: isMobile ? 'column' : 'row',
 						width: '100%',
 						flex: 1,
+						columnGap: 15,
 					}}
 				>
 					<Grid
