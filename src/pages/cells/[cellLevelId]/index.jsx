@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
 		token,
 		'joinListData'
 	)
-	console.log({ ...cellDataProps.props, ...joinListDataProps.props })
+
 	return {
 		props: {
 			...cellDataProps.props,

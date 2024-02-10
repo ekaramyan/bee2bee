@@ -161,6 +161,7 @@ export default function LoginComponent() {
 						width: '100%',
 						gap: 15,
 						flex: 1,
+						columnGap: 15,
 					}}
 				>
 					<Grid
