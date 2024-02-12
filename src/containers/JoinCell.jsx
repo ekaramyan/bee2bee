@@ -118,6 +118,7 @@ export default function JoinCell() {
 						canJoin={cell.canJoin}
 						level={cell?.level}
 						price={cell?.price}
+						index={index}
 						onJoinClick={() => router.push(cell.id)}
 						style={{
 							flexBasis: '33.33%',

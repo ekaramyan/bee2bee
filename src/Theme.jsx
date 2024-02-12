@@ -190,7 +190,7 @@ const theme = createTheme({
 			},
 		},
 		burger_tabs: {
-			color: '#1B170F',
+			color: '#FFF',
 			fontFamily: 'Noto Sans',
 			fontSize: 22,
 			fontWeight: 700,
