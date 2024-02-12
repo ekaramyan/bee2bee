@@ -14,6 +14,7 @@ export default function Cell({
 	onJoinClick,
 }) {
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
+	const levelIndex = 4
 	return (
 		<Link
 			href={`cells/${join}`}
@@ -36,7 +37,8 @@ export default function Cell({
 					width: isMobile ? '75px' : 'fit-content',
 					height: isMobile ? '90px' : '120px',
 					transform: isMobile ? `translateY(-2%)` : `translateY(-15%)`,
-					transform: index === 5 || 4 ? 'translateY(-5%)' : `translateY(-15%)`,
+					transform:
+						(index === 3 || index === 4 )? 'translateY(0%)' : `translateY(-15%)`,
 				}}
 			>
 				<Image
@@ -68,7 +70,7 @@ export default function Cell({
 					JOIN
 				</Button>
 			) : (
-				<div style={{ height: 50 }} />
+				<div style={{ height: 35 }} />
 			)}
 			<Typography variant='level_small' component={'h6'}>
 				{level} {price}$
