@@ -36,10 +36,7 @@ export default function Cell({
 					width: isMobile ? '75px' : 'fit-content',
 					height: isMobile ? '90px' : '120px',
 					transform: isMobile ? `translateY(-2%)` : `translateY(-15%)`,
-					transform:
-						index === 5 || 4
-							? 'translateY(-25%)'
-							: `translateY(-15%)`,
+					transform: index === 5 || 4 ? 'translateY(-5%)' : `translateY(-15%)`,
 				}}
 			>
 				<Image
