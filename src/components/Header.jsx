@@ -2,11 +2,13 @@ import { useMediaQuery, Box } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import CelebrationTimer from './UI/CelebrationTimer'
+import Image from 'next/image'
 const Logo = dynamic(() => import('./UI/Logo'))
-const Socials = dynamic(() => import('./UI/Socials'))
 const UserMenu = dynamic(() => import('./UI/UserMenu'))
 const BurgerMenu = dynamic(() => import('./UI/BurgerMenu'))
+import en from '@/assets/img/en.png'
+import ge from '@/assets/img/ge.png'
+import ru from '@/assets/img/ru.png'
 
 export default function Header({ loggedIn }) {
 	const [burgerOpen, setBurgerOpen] = useState(false)
@@ -40,13 +42,16 @@ export default function Header({ loggedIn }) {
 			>
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
 					<Logo />
-					{/* <CelebrationTimer /> */}
 				</Box>
 				{loggedIn ? (
 					<UserMenu />
 				) : (
 					<div>
-						<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
+						<Box style={{ display: 'flex', gap: 10 }}>
+							<Image src={en.src} width={32} height={24} />
+							<Image src={ge.src} width={32} height={24} />
+							<Image src={ru.src} width={32} height={24} />
+						</Box>
 					</div>
 				)}
 				{!loggedIn && isMobile && (

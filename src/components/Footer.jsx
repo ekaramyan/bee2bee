@@ -1,12 +1,24 @@
-import { Typography, Box, useMediaQuery } from '@mui/material'
+import { Typography, useMediaQuery, List } from '@mui/material'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import en from '@/assets/img/en.png'
-import ge from '@/assets/img/ge.png'
-import ru from '@/assets/img/ru.png'
+import Link from 'next/link'
 
-export default function Footer({}) {
+import { useState, useEffect } from 'react'
+import Socials from './UI/Socials'
+
+import DashboardIcon from '@/assets/img/menu/dashboard.jsx'
+import AccountIcon from '@/assets/img/menu/my_account.jsx'
+import SettingsIcon from '@/assets/img/menu/settings.jsx'
+import FaqIcon from '@/assets/img/menu/faq.jsx'
+
+const tabs = ['cells', 'account', 'account-settings', 'faq']
+const tabNames = {
+	cells: 'Dashboard',
+	account: 'My Account',
+	'account-settings': 'Account Settings',
+	faq: 'FAQ',
+}
+
+export default function Footer({ loggedIn }) {
 	const router = useRouter()
 	const page = router.asPath.split('/')[1]
 	const [activeTab, setActiveTab] = useState(page)
@@ -42,7 +54,7 @@ export default function Footer({}) {
 				userSelect: 'none',
 			}}
 		>
-			{!isMobile && (
+			{!isMobile && !loggedIn && (
 				<div style={{ display: 'flex', gap: 20 }}>
 					<Typography
 						variant='footer_buttons'
@@ -87,11 +99,57 @@ export default function Footer({}) {
 					</Typography>
 				</div>
 			)}
-			<Box style={{ display: 'flex', gap: 10 }}>
-				<Image src={en.src} width={32} height={24} />
-				<Image src={ge.src} width={32} height={24} />
-				<Image src={ru.src} width={32} height={24} />
-			</Box>
+			{!isMobile && loggedIn && (
+				<List
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						width: '60%',
+						gap: 40,
+					}}
+				>
+					{tabs.map((tab, index) => (
+						<Link key={index} href={`/${tab}`}>
+							<Typography
+								variant='header_buttons'
+								style={{
+									display: 'flex',
+									gap: 5,
+									alignItems: 'center',
+									...(activeTab === tab && {
+										color: '#E06B00',
+										textDecoration: 'underline',
+									}),
+								}}
+							>
+								{tab === 'cells' && (
+									<DashboardIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'account' && (
+									<AccountIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'account-settings' && (
+									<SettingsIcon
+										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+									/>
+								)}
+								{tab === 'faq' && (
+									<FaqIcon fill={activeTab === tab ? '#E06B00' : '#1B170F'} />
+								)}
+								{tabNames[tab]}
+							</Typography>
+						</Link>
+					))}
+				</List>
+			)}
+			<div>
+				<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
+			</div>
 		</footer>
 	)
 }

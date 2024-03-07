@@ -87,7 +87,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						</Box>
 					)}
 					{children}
-					<Footer />
+					<Footer loggedIn={loggedIn} />
 				</Container>
 				{!isMobile && (
 					<>
