@@ -18,8 +18,6 @@ import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
-import DropdownMenu from './DropDownMenu'
-import DropdownLabel from './DropdownLabel'
 import UserMenuDropdown from './UserMenuDropdown'
 
 export default function UserMenu() {
