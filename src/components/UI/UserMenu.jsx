@@ -18,6 +18,9 @@ import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
+import DropdownMenu from './DropDownMenu'
+import DropdownLabel from './DropdownLabel'
+import UserMenuDropdown from './UserMenuDropdown'
 
 export default function UserMenu() {
 	const router = useRouter()
@@ -29,6 +32,14 @@ export default function UserMenu() {
 	const [open, setOpen] = useState(false)
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
+
+	const options = [
+		{ title: 'About US', route: '/about' },
+		{ title: 'rules', route: '/rules' },
+		{ title: 'privacy policy', route: '/privacy-policy' },
+		{ title: 'help', route: '/faq' },
+		{ title: 'contact us', route: '/contacts' },
+	]
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -117,12 +128,15 @@ export default function UserMenu() {
 							<Image src={logout.src} width={18} height={18} />
 						</ButtonBase>
 					) : (
-						<Button
-							onClick={onExitClick}
-							style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
-						>
-							<Image src={logout.src} width={18} height={18} />
-						</Button>
+						<>
+							<UserMenuDropdown options={options} />
+							<Button
+								onClick={onExitClick}
+								style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
+							>
+								<Image src={logout.src} width={18} height={18} />
+							</Button>
+						</>
 					)}
 				</>
 			</Box>
