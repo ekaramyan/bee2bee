@@ -54,13 +54,14 @@ export default function Header({ loggedIn }) {
 				zIndex: 1,
 			}}
 		>
-			<div
+			<Box
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
 					alignItems: 'center',
 					padding: '0 20px',
 					width: '100%',
+					gap: 20,
 				}}
 			>
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
@@ -70,24 +71,22 @@ export default function Header({ loggedIn }) {
 					style={{
 						display: 'flex',
 						alignItems: 'center',
-						justifyContent: 'center',
+						justifyContent: 'space-between',
 						gap: 5,
 						width: '100%',
 					}}
 				>
-					{loading ? <LinearProgress /> : statsBar}
-				</Box>
-				{loggedIn ? (
-					<UserMenu />
-				) : (
-					<div>
-						<Box style={{ display: 'flex', gap: 10 }}>
+					{isMobile ? <div /> : loading ? <LinearProgress /> : statsBar}
+					{loggedIn ? (
+						<UserMenu />
+					) : (
+						<Box style={{ display: 'flex', gap: 10, justifySelf: 'flex-end' }}>
 							<Image src={en.src} width={32} height={24} />
 							<Image src={ge.src} width={32} height={24} />
 							<Image src={ru.src} width={32} height={24} />
 						</Box>
-					</div>
-				)}
+					)}
+				</Box>
 				{!loggedIn && isMobile && (
 					<>
 						<MenuIcon onClick={toggleBurgerMenu} />
@@ -98,7 +97,7 @@ export default function Header({ loggedIn }) {
 						/>
 					</>
 				)}
-			</div>
+			</Box>
 		</header>
 	)
 }

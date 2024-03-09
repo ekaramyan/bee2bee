@@ -2,8 +2,12 @@ import { Button, Typography, styled } from '@mui/material'
 import { South } from '@mui/icons-material'
 export default function DropdownLabel({ name, title }) {
 	const StatButton = styled(Button)({
+		display: 'flex',
+		alignItems: 'center',
+		cursor: 'pointer',
 		width: '100%',
 		maxWidth: 220,
+		minWidth: 200,
 		color: '#23201C',
 		textAlign: 'center',
 		textShadow: '1px 1px 1px #fff',
@@ -13,7 +17,7 @@ export default function DropdownLabel({ name, title }) {
 		textTransform: 'uppercase',
 		borderRadius: '5px',
 		border: '1px solid #F9AA13',
-		background: 'rgba(217, 217, 217, 0)',
+		background: '#EAEEE8',
 		cursor: 'pointer',
 		transition: '.3s',
 		'&:hover': {
@@ -33,10 +37,7 @@ export default function DropdownLabel({ name, title }) {
 	})
 
 	return (
-		<StatButton
-			variant='outline'
-			style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-		>
+		<StatButton variant='outline'>
 			<Typography variant='closed_cells'>{name} - </Typography>
 			<p> {title}</p>
 			<South size={15} />

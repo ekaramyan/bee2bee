@@ -3,7 +3,7 @@ import { Typography, Menu, MenuItem, styled } from '@mui/material'
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
 	'& .MuiList-root': {
-		backgroundColor: '#eaeee8',
+		backgroundColor: 'EAEEE8',
 		border: '1px solid #F9AA13',
 		borderRadius: 5,
 		marginTop: 2,
