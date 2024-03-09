@@ -5,6 +5,7 @@ export default function DropdownLabel({ name, title }) {
 		display: 'flex',
 		alignItems: 'center',
 		cursor: 'pointer',
+		gap: 5,
 		width: '100%',
 		maxWidth: 220,
 		minWidth: 200,
@@ -38,9 +39,11 @@ export default function DropdownLabel({ name, title }) {
 
 	return (
 		<StatButton variant='outline'>
-			<Typography variant='closed_cells'>{name} - </Typography>
+			{name !== null && (
+				<Typography variant='closed_cells'>{name} - </Typography>
+			)}
 			<p> {title}</p>
-			<South size={15} />
+			<South style={{ transform: 'scale(0.7)' }} />
 		</StatButton>
 	)
 }

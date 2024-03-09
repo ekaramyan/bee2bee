@@ -76,11 +76,28 @@ export default function Header({ loggedIn }) {
 						width: '100%',
 					}}
 				>
-					{isMobile ? <div /> : loading ? <LinearProgress /> : statsBar}
+					<Box
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							gap: 24,
+							width: '100%',
+						}}
+					>
+						{isMobile ? <div /> : loading ? <LinearProgress /> : statsBar}
+					</Box>
 					{loggedIn ? (
 						<UserMenu />
 					) : (
-						<Box style={{ display: 'flex', gap: 10, justifySelf: 'flex-end' }}>
+						<Box
+							style={{
+								display: 'flex',
+								gap: 10,
+								justifyContent: 'flex-start',
+								marginRight: 15,
+							}}
+						>
 							<Image src={en.src} width={32} height={24} />
 							<Image src={ge.src} width={32} height={24} />
 							<Image src={ru.src} width={32} height={24} />

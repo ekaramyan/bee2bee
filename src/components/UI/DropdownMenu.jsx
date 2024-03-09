@@ -7,7 +7,8 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
 		border: '1px solid #F9AA13',
 		borderRadius: 5,
 		marginTop: 2,
-		width: '100%',
+		width: '200px',
+		padding: '5px 13px',
 	},
 }))
 
@@ -45,7 +46,11 @@ const DropdownMenu = ({ buttonLabel, options }) => {
 					{options.map((option, index) => (
 						<StyledMenuItem key={index} onClick={handleClose}>
 							<>
-								<Typography variant='closed_cells'>{option.name} - </Typography>
+								{option.name && (
+									<Typography variant='closed_cells'>
+										{option.name} -{' '}
+									</Typography>
+								)}
 								<Typography variant='closed_cells' style={{ color: '#E06B00' }}>
 									{option.count}
 								</Typography>
