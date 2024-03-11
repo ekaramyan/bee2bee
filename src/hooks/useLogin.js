@@ -40,6 +40,7 @@ const useLogin = () => {
 				setError(response.data.message || 'An error occurred.')
 			}
 		} catch (err) {
+			console.log(err)
 			setError(err.response?.data?.message || 'An error occurred.')
 		} finally {
 			setLoading(false)

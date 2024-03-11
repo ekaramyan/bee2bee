@@ -1,8 +1,10 @@
 import { Container, useMediaQuery, Box, styled } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
+import { fetchData } from '@/api/fetchData'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AuthButton from './AuthButton'
@@ -12,11 +14,14 @@ const MyCells = dynamic(() => import('../../components/MyCells'))
 const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
 import background from '../../assets/img/background.webp'
+const token = Cookies.get('access_token')
+const url = process.env.API_URL
 
 const IndexWrapper = ({ children, ...props }) => {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
 	const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 	const router = useRouter()
+	const dispatch = useDispatch()
 	const loggedIn = useSelector(state => state.user.loggedIn)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	const isLow = useMediaQuery('@media(min-height: 880px)')
@@ -27,6 +32,18 @@ const IndexWrapper = ({ children, ...props }) => {
 	const toggleRegister = () => {
 		setIsRegisterOpen(!isRegisterOpen)
 	}
+	useEffect(() => {
+		const fetchDataAsync = async () => {
+			const user = await fetchData(`${url}/users/me`, token)
+			if (user.data.deletedAt || user.data.isBlocked) {
+				Cookies.remove('access_token')
+				Cookies.remove('refresh_token')
+				dispatch({ type: 'LOG_OUT' })
+				router.push('/')
+			}
+		}
+		fetchDataAsync()
+	}, [])
 
 	return (
 		<>
