@@ -18,11 +18,18 @@ export default function StatsBar({ stats }) {
 					buttonLabel={
 						<DropdownLabel
 							name='CELLS'
-							title={loggedIn ? stats.active_cells + stats.closed_cells : '?'}
+							title={
+								loggedIn
+									? stats.active_cells + stats.closed_cells + stats.queue_cells
+									: '?'
+							}
 						/>
 					}
 					options={[
-						{ name: 'ACTIVE ', count: loggedIn ? stats.active_cells : '?' },
+						{
+							name: 'ACTIVE ',
+							count: loggedIn ? stats.active_cells + stats.queue_cells : '?',
+						},
 						{ name: 'CLOSED ', count: loggedIn ? stats.closed_cells : '?' },
 						{
 							name: null,
