@@ -526,10 +526,9 @@ export default function RegisterComponent() {
 							{loading ? (
 								<CircularProgress />
 							) : (
-								// <AuthButton type='submit' style={{ width: '100%' }}>
-								// 	Register
-								// </AuthButton>
-								<>Registration is temporary disabled</>
+								<AuthButton type='submit' style={{ width: '100%' }}>
+									Register
+								</AuthButton>
 							)}
 						</Box>
 					</Grid>
