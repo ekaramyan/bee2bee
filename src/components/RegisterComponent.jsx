@@ -86,6 +86,10 @@ export default function RegisterComponent() {
 		)
 	}
 
+	const validatePhone = phone => {
+		return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+	}
+
 	const handleSubmit = async event => {
 		event.preventDefault()
 
@@ -121,8 +125,15 @@ export default function RegisterComponent() {
 			errors.nickname = 'Invalid nickname. It must be shorter than 25 symbols.'
 		}
 		console.log(formData.phone === '')
-		if (!formData.phone || formData.phone === '') {
+		if (
+			!formData.phone ||
+			formData.phone === '' ||
+			!validatePhone(formData.phone)
+		) {
 			errors.phone = 'Please enter your phone number.'
+		}
+		if (!formData.telegram || formData.telegram === '') {
+			errors.telegram = 'Please enter your telegram.'
 		}
 		if (!validatePassword(formData.password)) {
 			errors.password =
@@ -538,6 +549,7 @@ export default function RegisterComponent() {
 			{validationErrors.birth && <div>{validationErrors.birth}</div>}
 			{validationErrors.phone && <div>{validationErrors.phone}</div>}
 			{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
+			{validationErrors.telegram && <div>{validationErrors.telegram}</div>}
 			{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
 			{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
 			{validationErrors.password && <div>{validationErrors.password}</div>}
@@ -552,4 +564,3 @@ export default function RegisterComponent() {
 		</Box>
 	)
 }
-
