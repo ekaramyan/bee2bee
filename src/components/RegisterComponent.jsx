@@ -52,6 +52,17 @@ export default function RegisterComponent() {
 	})
 	const [captchaValue, setCaptchaValue] = useState(null)
 
+	const [telegram, setTelegram] = useState(null)
+
+	const handleChange = e => {
+		const inputValue = e.target.value
+		if (inputValue.startsWith('@')) {
+			setTelegram(inputValue)
+		} else {
+			setTelegram(null)
+		}
+	}
+
 	const handleCaptchaChange = value => {
 		setCaptchaValue(value)
 	}
@@ -390,7 +401,7 @@ export default function RegisterComponent() {
 									gap: 5,
 								}}
 							>
-								<SendOutlinedIcon sx={{ color: iconColors.telegram }} />
+								<SendOutlinedIcon sx={{ color: 'iconColors.telegram' }} />
 								Telegram
 							</Box>
 						}
@@ -398,8 +409,16 @@ export default function RegisterComponent() {
 						fullWidth
 						type='text'
 						name='telegram'
-						onFocus={() => handleIconFocus('telegram')}
-						onBlur={() => handleIconBlur('telegram')}
+						value={telegram}
+						onChange={handleChange}
+						onFocus={() => {
+							handleIconFocus('telegram')
+							setTelegram('@')
+						}}
+						onBlur={() => {
+							handleIconBlur('telegram')
+							setTelegram('')
+						}}
 					/>
 				</Box>
 				<Box
