@@ -110,7 +110,7 @@ export default function RegisterComponent() {
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
 			phone: String(event.target.phone.value),
-			telegram: event.target.telegram.value,
+			telegram: telegram,
 			birth: event.target.date.value,
 			email: event.target.email.value.toLowerCase(),
 			password: event.target.password.value,
@@ -132,10 +132,11 @@ export default function RegisterComponent() {
 			errors.lastName =
 				'Invalid last name. Only alphabets and spaces are allowed.'
 		}
+
 		if (formData.nickname.length > 25) {
 			errors.nickname = 'Invalid nickname. It must be shorter than 25 symbols.'
 		}
-		console.log(formData.phone === '')
+
 		if (
 			!formData.phone ||
 			formData.phone === '' ||
@@ -143,7 +144,7 @@ export default function RegisterComponent() {
 		) {
 			errors.phone = 'Please enter your phone number.'
 		}
-		if (!formData.telegram || formData.telegram === '') {
+		if (!formData.telegram || formData.telegram === '' || telegram === '@') {
 			errors.telegram = 'Please enter your telegram.'
 		}
 		if (!validatePassword(formData.password)) {
@@ -162,6 +163,7 @@ export default function RegisterComponent() {
 		if (!captchaValue) {
 			errors.captcha = 'Please pass captcha'
 		}
+
 		if (Object.keys(errors).length > 0) {
 			setValidationErrors(errors)
 			return
@@ -417,7 +419,6 @@ export default function RegisterComponent() {
 						}}
 						onBlur={() => {
 							handleIconBlur('telegram')
-							setTelegram('')
 						}}
 					/>
 				</Box>
