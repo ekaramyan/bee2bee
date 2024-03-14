@@ -52,6 +52,17 @@ export default function RegisterComponent() {
 	})
 	const [captchaValue, setCaptchaValue] = useState(null)
 
+	const [telegram, setTelegram] = useState(null)
+
+	const handleChange = e => {
+		const inputValue = e.target.value
+		if (inputValue.startsWith('@')) {
+			setTelegram(inputValue)
+		} else {
+			setTelegram(null)
+		}
+	}
+
 	const handleCaptchaChange = value => {
 		setCaptchaValue(value)
 	}
@@ -86,6 +97,10 @@ export default function RegisterComponent() {
 		)
 	}
 
+	const validatePhone = phone => {
+		return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+	}
+
 	const handleSubmit = async event => {
 		event.preventDefault()
 
@@ -95,7 +110,7 @@ export default function RegisterComponent() {
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
 			phone: String(event.target.phone.value),
-			telegram: event.target.telegram.value,
+			telegram: telegram,
 			birth: event.target.date.value,
 			email: event.target.email.value.toLowerCase(),
 			password: event.target.password.value,
@@ -117,12 +132,20 @@ export default function RegisterComponent() {
 			errors.lastName =
 				'Invalid last name. Only alphabets and spaces are allowed.'
 		}
+
 		if (formData.nickname.length > 25) {
 			errors.nickname = 'Invalid nickname. It must be shorter than 25 symbols.'
 		}
-		console.log(formData.phone === '')
-		if (!formData.phone || formData.phone === '') {
+
+		if (
+			!formData.phone ||
+			formData.phone === '' ||
+			!validatePhone(formData.phone)
+		) {
 			errors.phone = 'Please enter your phone number.'
+		}
+		if (!formData.telegram || formData.telegram === '' || telegram === '@') {
+			errors.telegram = 'Please enter your telegram.'
 		}
 		if (!validatePassword(formData.password)) {
 			errors.password =
@@ -140,6 +163,7 @@ export default function RegisterComponent() {
 		if (!captchaValue) {
 			errors.captcha = 'Please pass captcha'
 		}
+
 		if (Object.keys(errors).length > 0) {
 			setValidationErrors(errors)
 			return
@@ -379,7 +403,7 @@ export default function RegisterComponent() {
 									gap: 5,
 								}}
 							>
-								<SendOutlinedIcon sx={{ color: iconColors.telegram }} />
+								<SendOutlinedIcon sx={{ color: 'iconColors.telegram' }} />
 								Telegram
 							</Box>
 						}
@@ -387,8 +411,15 @@ export default function RegisterComponent() {
 						fullWidth
 						type='text'
 						name='telegram'
-						onFocus={() => handleIconFocus('telegram')}
-						onBlur={() => handleIconBlur('telegram')}
+						value={telegram}
+						onChange={handleChange}
+						onFocus={() => {
+							handleIconFocus('telegram')
+							setTelegram('@')
+						}}
+						onBlur={() => {
+							handleIconBlur('telegram')
+						}}
 					/>
 				</Box>
 				<Box
@@ -538,6 +569,7 @@ export default function RegisterComponent() {
 			{validationErrors.birth && <div>{validationErrors.birth}</div>}
 			{validationErrors.phone && <div>{validationErrors.phone}</div>}
 			{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
+			{validationErrors.telegram && <div>{validationErrors.telegram}</div>}
 			{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
 			{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
 			{validationErrors.password && <div>{validationErrors.password}</div>}

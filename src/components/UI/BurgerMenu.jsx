@@ -1,8 +1,17 @@
-import React from 'react'
-import { Drawer, List, Typography, ButtonBase, Box } from '@mui/material'
+import { useEffect, useMemo, useState } from 'react'
+import {
+	Drawer,
+	List,
+	Typography,
+	ButtonBase,
+	Box,
+	LinearProgress,
+} from '@mui/material'
 import Link from 'next/link'
 import Image from 'next/image'
 import close from '@/assets/img/close_burger.svg'
+import useGetStats from '@/hooks/useGetStats'
+import StatsBar from './StatsBar'
 
 export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 	const mobileTabsLoggedIn = {
@@ -29,6 +38,27 @@ export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 
 	const tabs = loggedIn ? mobileTabsLoggedIn : mobileTabsNotLoggedIn
 
+	const [stats, setStats] = useState({})
+	const { getStats, data, loading, error, success } = useGetStats()
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				await getStats()
+			} catch (err) {
+				console.error('Error fetching stats:', err)
+			}
+		}
+		fetchData()
+	}, [])
+
+	useEffect(() => {
+		if (data !== null && error === null) {
+			setStats(data)
+		}
+	}, [data])
+	const statsBar = useMemo(() => <StatsBar stats={stats} />, [stats])
+
 	return (
 		<Drawer anchor='top' open={burgerOpen} onClose={toggleBurgerMenu}>
 			<Box
@@ -51,24 +81,36 @@ export default function BurgerMenu({ loggedIn, toggleBurgerMenu, burgerOpen }) {
 				>
 					<Image src={close.src} width={40} height={40} />
 				</ButtonBase>
-				<List
+				<Box
 					style={{
-						height: '100vh',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
-						justifyContent: 'center',
-						background: '#E06B00',
+						gap: 15,
+						height: '100dvh',
 					}}
 				>
-					{Object.keys(tabs).map((tab, index) => (
-						<Link key={index} href={`/${tab}`}>
-							<Typography variant='burger_tabs' onClick={toggleBurgerMenu}>
-								{tabs[tab]}
-							</Typography>
-						</Link>
-					))}
-				</List>
+					{loading ? <LinearProgress /> : statsBar}
+
+					<List
+						style={{
+							height: '100%',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							justifyContent: 'flex-start',
+							background: '#E06B00',
+						}}
+					>
+						{Object.keys(tabs).map((tab, index) => (
+							<Link key={index} href={`/${tab}`}>
+								<Typography variant='burger_tabs' onClick={toggleBurgerMenu}>
+									{tabs[tab]}
+								</Typography>
+							</Link>
+						))}
+					</List>
+				</Box>
 			</Box>
 		</Drawer>
 	)

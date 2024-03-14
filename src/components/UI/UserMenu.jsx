@@ -1,6 +1,4 @@
 import {
-	List,
-	Typography,
 	ButtonBase,
 	Button,
 	Box,
@@ -8,7 +6,6 @@ import {
 	// Tooltip,
 	// ClickAwayListener,
 } from '@mui/material'
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
@@ -21,41 +18,26 @@ import account from '@/assets/img/join_cell_bg.svg'
 const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
-import DashboardIcon from '@/assets/img/menu/dashboard.jsx'
-import AccountIcon from '@/assets/img/menu/my_account.jsx'
-import SettingsIcon from '@/assets/img/menu/settings.jsx'
-import FaqIcon from '@/assets/img/menu/faq.jsx'
-
-const tabs = ['cells', 'account', 'account-settings', 'faq']
-const tabNames = {
-	cells: 'Dashboard',
-	account: 'My Account',
-	'account-settings': 'Account Settings',
-	faq: 'FAQ',
-}
+import UserMenuDropdown from './UserMenuDropdown'
 
 export default function UserMenu() {
 	const router = useRouter()
 	const dispatch = useDispatch()
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
-	const [activeTab, setActiveTab] = useState(router.asPath.split('/')[1])
+
 	const [data, setData] = useState(null)
-	const [burgerOpen, setBurgerOpen] = useState(false)
 	const [open, setOpen] = useState(false)
+	const [burgerOpen, setBurgerOpen] = useState(false)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
-	// const handleTooltipClose = () => {
-	// 	setOpen(false)
-	// }
-
-	// const handleTooltipOpen = () => {
-	// 	setOpen(true)
-	// 	console.log('open!')
-	// }
-	// const handleTooltipToggle = () => {
-	// 	setOpen(!open)
-	// }
+	const options = [
+		{ title: 'About US', route: '/about' },
+		{ title: 'rules', route: '/rules' },
+		{ title: 'privacy policy', route: '/privacy-policy' },
+		{ title: 'help', route: '/faq' },
+		{ title: 'contact us', route: '/contacts' },
+	]
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -74,10 +56,6 @@ export default function UserMenu() {
 		fetchDataAsync()
 	}, [fetchDataAsync])
 
-	useEffect(() => {
-		setActiveTab(router.asPath.split('/')[1])
-	}, [router.asPath])
-
 	const onExitClick = () => {
 		Cookies.remove('access_token')
 		Cookies.remove('refresh_token')
@@ -90,54 +68,6 @@ export default function UserMenu() {
 	}
 	return (
 		<>
-			{!isMobile && (
-				<List
-					style={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						width: '60%',
-						gap: 40,
-					}}
-				>
-					{tabs.map((tab, index) => (
-						<Link key={index} href={`/${tab}`}>
-							<Typography
-								variant='header_buttons'
-								style={{
-									display: 'flex',
-									gap: 5,
-									alignItems: 'center',
-									...(activeTab === tab && {
-										color: '#E06B00',
-										textDecoration: 'underline',
-									}),
-								}}
-							>
-								{tab === 'cells' && (
-									<DashboardIcon
-										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
-									/>
-								)}
-								{tab === 'account' && (
-									<AccountIcon
-										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
-									/>
-								)}
-								{tab === 'account-settings' && (
-									<SettingsIcon
-										fill={activeTab === tab ? '#E06B00' : '#1B170F'}
-									/>
-								)}
-								{tab === 'faq' && (
-									<FaqIcon fill={activeTab === tab ? '#E06B00' : '#1B170F'} />
-								)}
-								{tabNames[tab]}
-							</Typography>
-						</Link>
-					))}
-				</List>
-			)}
 			<Box
 				style={{
 					display: 'flex',
@@ -145,31 +75,6 @@ export default function UserMenu() {
 					gap: isMobile ? 20 : 15,
 				}}
 			>
-				{/* <ClickAwayListener onClickAway={handleTooltipClose}>
-					<Tooltip
-						title='Join Limit'
-						PopperProps={{ disablePortal: true }}
-						onClose={handleTooltipClose}
-						open={isMobile ? open : undefined}
-						disableHoverListener={isMobile}
-						disableTouchListener={!isMobile}
-						disableFocusListener
-						enterTouchDelay={0}
-						leaveTouchDelay={5000}
-					>
-						<Typography
-							variant='user_item'
-							aria-owns={open ? 'mouse-over-popover' : undefined}
-							aria-haspopup='true'
-							onMouseOver={!isMobile ? handleTooltipOpen : undefined}
-							onMouseOut={!isMobile ? handleTooltipClose : undefined}
-							onClick={isMobile ? handleTooltipToggle : undefined}
-							style={{ cursor: 'pointer' }}
-						>
-							{data?.joinLimit}
-						</Typography>
-					</Tooltip>
-				</ClickAwayListener> */}
 				{isMobile && (
 					<>
 						<MenuIcon onClick={toggleBurgerMenu} />
@@ -221,12 +126,15 @@ export default function UserMenu() {
 							<Image src={logout.src} width={18} height={18} />
 						</ButtonBase>
 					) : (
-						<Button
-							onClick={onExitClick}
-							style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
-						>
-							<Image src={logout.src} width={18} height={18} />
-						</Button>
+						<>
+							<UserMenuDropdown options={options} />
+							<Button
+								onClick={onExitClick}
+								style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
+							>
+								<Image src={logout.src} width={18} height={18} />
+							</Button>
+						</>
 					)}
 				</>
 			</Box>
