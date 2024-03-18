@@ -25,7 +25,9 @@ export default function UserMenuDropdown({ buttonLabel, options }) {
 	}
 
 	return (
-		<Box>
+		<Box
+			style={{ display: 'flex', justifyContent: 'flex-start', maxWidth: 10 }}
+		>
 			<Button
 				aria-controls='dropdown-menu'
 				aria-haspopup='true'
@@ -35,6 +37,9 @@ export default function UserMenuDropdown({ buttonLabel, options }) {
 					textTransform: 'uppercase',
 					color: 'black',
 					cursor: 'pointer',
+					width: '100%',
+					padding: 0,
+					justifyContent: 'space-between',
 				}}
 			>
 				{buttonLabel}

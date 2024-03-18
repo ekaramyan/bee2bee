@@ -117,11 +117,11 @@ export default function UserMenu() {
 						</p>
 					)}
 				</Box>
-				<>
+				<Box style={{ padding: isMobile ? 20 : 0, display: 'flex', gap: 15 }}>
 					{isMobile ? (
 						<ButtonBase
 							onClick={onExitClick}
-							style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
+							style={{ cursor: 'pointer', minWidth: 20, padding: 0, margin: 0 }}
 						>
 							<Image src={logout.src} width={18} height={18} />
 						</ButtonBase>
@@ -136,7 +136,7 @@ export default function UserMenu() {
 							</Button>
 						</>
 					)}
-				</>
+				</Box>
 			</Box>
 		</>
 	)
