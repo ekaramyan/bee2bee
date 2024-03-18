@@ -418,6 +418,17 @@ const theme = createTheme({
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
+		register_warn: {
+			fontSize: 12,
+			span: {
+				color: '#EC811E',
+				fontWeight: 700,
+			},
+			a: {
+				color: '#EC811E',
+				textDecoration: 'underline',
+			},
+		},
 	},
 })
 

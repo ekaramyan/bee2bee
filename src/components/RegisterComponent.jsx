@@ -193,6 +193,26 @@ export default function RegisterComponent() {
 				gap: 20,
 			}}
 		>
+			<Typography variant='register_warn'>
+				მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ დაემატოთ
+				ჩვენს საპრეზენტაციო სასაუბროს (ჩათს){' '}
+				<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
+					ტელეგრამაში
+				</a>
+				.<br /> <br />
+				<span>ყურადღება!</span> გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე
+				მოქმედება საიტის ადმინისტრატორის თანხლების
+			</Typography>
+			<Typography variant='register_warn'>
+				Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
+				присоединитесь пожалуйста к нашему презентационному чату в{' '}
+				<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
+					телеграмме
+				</a>
+				. <br /> <br />
+				<span>Внимание</span>! Без сопровождения администратора сайта никаких
+				действий на платформе не предпринимать!!!
+			</Typography>
 			<form
 				onSubmit={handleSubmit}
 				style={{
