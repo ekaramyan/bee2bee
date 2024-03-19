@@ -1,28 +1,33 @@
-import { Box, LinearProgress, Typography } from '@mui/material'
+import { Box, CircularProgress, Typography, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useCells from '@/hooks/useCells'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 const RealCell = dynamic(() => import('@/components/UI/RealCell'))
+import refresh from '@/assets/img/refresh_dark.svg'
+
+const numberOfLevels = 5
 
 export default function RealCells({ toggleOpen, isRegisterOpen }) {
 	const { getCells, loading } = useCells()
-	const [data, setData] = useState([])
+	const [data, setData] = useState(null)
 
-	useEffect(() => {
-		const numberOfLevels = 5
+	const fetchData = async () => {
 		const tempData = []
-
-		const fetchData = async () => {
-			for (let i = 1; i <= numberOfLevels; i++) {
-				const dataForLevel = await getCells('real_cells', { levelId: i })
-				tempData.push(dataForLevel?.data || [])
-			}
-			setData(tempData)
+		for (let i = 1; i <= numberOfLevels; i++) {
+			const dataForLevel = await getCells('real_cells', { levelId: i })
+			tempData.push(dataForLevel?.data || [])
 		}
-
+		setData(tempData)
+	}
+	const onRefreshClick = () => {
+		setData(null)
+		fetchData()
+	}
+	useEffect(() => {
 		fetchData()
 	}, [])
-	
+
 	return (
 		<div
 			style={{
@@ -42,18 +47,22 @@ export default function RealCells({ toggleOpen, isRegisterOpen }) {
 					gap: 10,
 					alignItems: 'center',
 					justifyContent: 'center',
+					width: '100%',
 				}}
 			>
 				{loading ? (
-					<LinearProgress />
+					<CircularProgress />
 				) : (
 					<>
-						{data.map((item, index) => (
+						{data?.map((item, index) => (
 							<RealCell key={index} data={item} />
 						))}
 					</>
 				)}
 			</Box>
+			<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
+				<Image src={refresh.src} width={35} height={35} alt='refresh' />
+			</Button>
 			<div
 				style={{
 					display: 'flex',
