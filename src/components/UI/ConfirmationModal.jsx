@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import {
 	Box,
 	CircularProgress,
@@ -7,7 +7,7 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	Paper,
+	useMediaQuery,
 } from '@mui/material'
 import AuthButton from './AuthButton'
 
@@ -19,6 +19,7 @@ const ConfirmationModal = ({
 	isLoading,
 	children,
 }) => {
+	const isMobile = useMediaQuery('@media(max-height:560px)')
 	return (
 		<Dialog
 			open={open}
@@ -35,7 +36,7 @@ const ConfirmationModal = ({
 					border: '10px solid #A5560F',
 					overflow: 'hidden',
 					padding: 15,
-					aspectRatio: '1.1/1',
+					aspectRatio: isMobile ? 'unset' : '1.1/1',
 					minHeight: 400,
 					display: 'flex',
 					flexDirection: 'column',
@@ -52,8 +53,8 @@ const ConfirmationModal = ({
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					justifyContent: 'center',
-					overflow: 'hidden',
+					justifyContent: 'flex-start',
+					overflow: 'auto',
 				}}
 			>
 				<DialogContentText
@@ -61,7 +62,8 @@ const ConfirmationModal = ({
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
-						justifyContent: 'center',
+						justifyContent: isMobile ? 'flex-start' : 'center',
+						width: '100%',
 					}}
 				>
 					{children}

@@ -67,6 +67,13 @@ const IndexWrapper = ({ children, ...props }) => {
 		fetchDataAsync()
 	}, [])
 
+	useEffect(() => {
+		console.log(router.pathname)
+		if (router.pathname === '/register') {
+			handleOpenModal(() => null)
+		}
+	}, [router.pathname])
+
 	return (
 		<>
 			<div
@@ -86,7 +93,7 @@ const IndexWrapper = ({ children, ...props }) => {
 				<Container
 					className='ScrollbarDefault'
 					style={{
-						overflow: 'hidden',
+						overflow: 'hidden auto',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
@@ -220,7 +227,10 @@ const IndexWrapper = ({ children, ...props }) => {
 				)}
 			</div>
 			<ConfirmationModal open={modalOpen} handleConfirm={handleConfirmAction}>
-				<Typography variant='register_warn'>
+				<Typography
+					variant='register_warn'
+					style={{ fontSize: isMobile ? 13 : 17 }}
+				>
 					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
 					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
 					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
@@ -231,8 +241,6 @@ const IndexWrapper = ({ children, ...props }) => {
 					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
 					ადმინისტრატორის თანხლების გარეშე!!!
 					<br /> <br />
-				</Typography>
-				<Typography variant='register_warn'>
 					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
 					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
 					—{' '}
