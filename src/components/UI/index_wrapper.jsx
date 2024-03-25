@@ -1,4 +1,10 @@
-import { Container, useMediaQuery, Box, styled } from '@mui/material'
+import {
+	Container,
+	useMediaQuery,
+	Box,
+	styled,
+	Typography,
+} from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,6 +19,7 @@ const Register = dynamic(() => import('../Register'))
 const MyCells = dynamic(() => import('../../components/MyCells'))
 const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
+const ConfirmationModal = dynamic(() => import('./ConfirmationModal'))
 import background from '../../assets/img/background.webp'
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
@@ -25,6 +32,21 @@ const IndexWrapper = ({ children, ...props }) => {
 	const loggedIn = useSelector(state => state.user.loggedIn)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 	const isLow = useMediaQuery('@media(min-height: 880px)')
+
+	const [modalOpen, setModalOpen] = useState(false)
+	const [actionToConfirm, setActionToConfirm] = useState(null)
+
+	const handleOpenModal = action => {
+		setActionToConfirm(() => action)
+		setModalOpen(true)
+	}
+
+	const handleConfirmAction = () => {
+		if (actionToConfirm) {
+			actionToConfirm()
+		}
+		setModalOpen(false)
+	}
 
 	const toggleLogin = () => {
 		setIsLoginOpen(!isLoginOpen)
@@ -185,7 +207,10 @@ const IndexWrapper = ({ children, ...props }) => {
 									isRight={true}
 								>
 									<Register
-										toggleOpen={toggleRegister}
+										toggleOpen={() => {
+											!isRegisterOpen && handleOpenModal(() => null)
+											toggleRegister()
+										}}
 										isRegisterOpen={isRegisterOpen}
 									/>
 								</SideModal>
@@ -194,6 +219,30 @@ const IndexWrapper = ({ children, ...props }) => {
 					</>
 				)}
 			</div>
+			<ConfirmationModal open={modalOpen} handleConfirm={handleConfirmAction}>
+				<Typography variant='register_warn'>
+					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
+					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
+					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
+						https://t.me/+IJ9ZXZva1RwzNWY0
+					</a>
+					. <br />
+					<br />
+					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
+					ადმინისტრატორის თანხლების გარეშე!!!
+				</Typography>
+				<Typography variant='register_warn'>
+					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
+					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
+					—{' '}
+					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
+						https://t.me/+UEb5EYod-pw4ZmE8
+					</a>
+					. <br />
+					<br /> Внимание! Без сопровождения администратора сайта никаких
+					действий на платформе не предпринимать!!!
+				</Typography>
+			</ConfirmationModal>
 		</>
 	)
 }

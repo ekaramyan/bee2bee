@@ -3,9 +3,10 @@ import {
 	Button,
 	Box,
 	useMediaQuery,
-	// Tooltip,
-	// ClickAwayListener,
+	List,
+	Typography,
 } from '@mui/material'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
@@ -19,15 +20,29 @@ const UserAvatar = dynamic(() => import('./UserAvatar'))
 import BurgerMenu from './BurgerMenu'
 import logout from '@/assets/img/logout.svg'
 import UserMenuDropdown from './UserMenuDropdown'
+import DashboardIcon from '@/assets/img/menu/dashboard.jsx'
+import AccountIcon from '@/assets/img/menu/my_account.jsx'
+import SettingsIcon from '@/assets/img/menu/settings.jsx'
+import FaqIcon from '@/assets/img/menu/faq.jsx'
+
+const tabs = ['cells', 'account', 'account-settings', 'faq']
+const tabNames = {
+	cells: 'Dashboard',
+	account: 'My Account',
+	'account-settings': 'Account Settings',
+	faq: 'FAQ',
+}
 
 export default function UserMenu() {
 	const router = useRouter()
+	const page = router.asPath.split('/')[1]
 	const dispatch = useDispatch()
 	const apiUrl = process.env.API_URL
 	const token = Cookies.get('access_token')
 
 	const [data, setData] = useState(null)
 	const [open, setOpen] = useState(false)
+	const [activeTab, setActiveTab] = useState(page)
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	const isMobile = useMediaQuery('@media(max-width: 1300px)')
 
@@ -38,6 +53,20 @@ export default function UserMenu() {
 		{ title: 'help', route: '/faq' },
 		{ title: 'contact us', route: '/contacts' },
 	]
+
+	useEffect(() => {
+		setActiveTab(page)
+	}, [page])
+
+	const handleTabClick = (tabName, callback) => {
+		setActiveTab(tabName)
+	}
+
+	const getTabStyles = tabName => {
+		return activeTab === tabName
+			? { color: '#E06B00', textDecoration: 'underline' }
+			: {}
+	}
 
 	const fetchDataAsync = useCallback(async () => {
 		try {
@@ -72,10 +101,12 @@ export default function UserMenu() {
 				style={{
 					display: 'flex',
 					alignItems: 'center',
+					justifyContent: 'space-between',
 					gap: isMobile ? 20 : 15,
+					width: '100%',
 				}}
 			>
-				{isMobile && (
+				{isMobile ? (
 					<>
 						<MenuIcon onClick={toggleBurgerMenu} />
 						<BurgerMenu
@@ -84,6 +115,53 @@ export default function UserMenu() {
 							burgerOpen={burgerOpen}
 						/>
 					</>
+				) : (
+					<List
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							width: '100%',
+							gap: 40,
+						}}
+					>
+						{tabs.map((tab, index) => (
+							<Link key={index} href={`/${tab}`}>
+								<Typography
+									variant='header_buttons'
+									style={{
+										display: 'flex',
+										gap: 5,
+										alignItems: 'center',
+										...(activeTab === tab && {
+											color: '#E06B00',
+											textDecoration: 'underline',
+										}),
+									}}
+								>
+									{tab === 'cells' && (
+										<DashboardIcon
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+										/>
+									)}
+									{tab === 'account' && (
+										<AccountIcon
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+										/>
+									)}
+									{tab === 'account-settings' && (
+										<SettingsIcon
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
+										/>
+									)}
+									{tab === 'faq' && (
+										<FaqIcon fill={activeTab === tab ? '#E06B00' : '#1B170F'} />
+									)}
+									{tabNames[tab]}
+								</Typography>
+							</Link>
+						))}
+					</List>
 				)}
 				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 					<div

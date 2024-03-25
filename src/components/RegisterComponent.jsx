@@ -30,29 +30,11 @@ import Link from 'next/link'
 import ReCAPTCHA from 'react-google-recaptcha'
 import useRegister from '@/hooks/useRegister'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
-const ConfirmationModal = dynamic(() => import('./UI/ConfirmationModal'))
+
 import countryList from '@/countryList'
 
 export default function RegisterComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
-	const [modalOpen, setModalOpen] = useState(false)
-	const [actionToConfirm, setActionToConfirm] = useState(null)
-	const [modalContent, setModalContent] = useState({
-		text: '',
-		imageSrc: null,
-	})
-
-	const handleOpenModal = action => {
-		setActionToConfirm(() => action)
-		setModalOpen(true)
-	}
-
-	const handleConfirmAction = () => {
-		if (actionToConfirm) {
-			actionToConfirm()
-		}
-		setModalOpen(false)
-	}
 
 	const { register, loading, error, success } = useRegister()
 	const [validationErrors, setValidationErrors] = useState({})
@@ -189,7 +171,7 @@ export default function RegisterComponent() {
 			return
 		}
 		console.log(validationErrors)
-		handleOpenModal(() => register(formData))
+		register(formData)
 	}
 	const [showPassword, setShowPassword] = useState(false)
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -605,35 +587,6 @@ export default function RegisterComponent() {
 					</div>
 				)}
 			</Box>
-
-			<ConfirmationModal
-				open={modalOpen}
-				handleConfirm={handleConfirmAction}
-				isLoading={loading}
-			>
-				<Typography variant='register_warn'>
-					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
-					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
-					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
-						https://t.me/+IJ9ZXZva1RwzNWY0
-					</a>
-					. <br />
-					<br />
-					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
-					ადმინისტრატორის თანხლების გარეშე!!!
-				</Typography>
-				<Typography variant='register_warn'>
-					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
-					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
-					—{' '}
-					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
-						https://t.me/+UEb5EYod-pw4ZmE8
-					</a>
-					. <br />
-					<br /> Внимание! Без сопровождения администратора сайта никаких
-					действий на платформе не предпринимать!!!
-				</Typography>
-			</ConfirmationModal>
 		</>
 	)
 }
