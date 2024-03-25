@@ -419,7 +419,7 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 		},
 		register_warn: {
-			fontSize: 12,
+			fontSize: 16,
 			span: {
 				color: '#fff',
 				fontWeight: 700,
