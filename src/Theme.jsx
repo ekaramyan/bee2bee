@@ -420,6 +420,7 @@ const theme = createTheme({
 		},
 		register_warn: {
 			fontSize: 16,
+			textTransform: 'none',
 			span: {
 				color: '#fff',
 				fontWeight: 700,

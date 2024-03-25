@@ -206,7 +206,7 @@ export default function RegisterComponent() {
 				<Typography variant='register_warn'>
 					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
 					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
-					<a href='https://t.me/+IJ9ZXZva1RwzNWY0'>
+					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
 						https://t.me/+IJ9ZXZva1RwzNWY0
 					</a>
 					. <br />
@@ -218,7 +218,7 @@ export default function RegisterComponent() {
 					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
 					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
 					—{' '}
-					<a href='https://t.me/+UEb5EYod-pw4ZmE8'>
+					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
 						https://t.me/+UEb5EYod-pw4ZmE8
 					</a>
 					. <br />
