@@ -34,7 +34,6 @@ const JoinButton = styled(Button)({
 		background: 'rgba(217, 217, 217, 0.2)',
 	},
 })
-
 export default function DesktopOneCell({
 	data,
 	disabled,
@@ -77,13 +76,15 @@ export default function DesktopOneCell({
 					style={{ layout: 'fill' }}
 				/>
 
-				<JoinButton
-					variant='outlined'
-					disabled={disabled}
-					onClick={onJoinClick}
-				>
-					JOIN
-				</JoinButton>
+				{Number(router.query.cellLevelId) !== 3 && (
+					<JoinButton
+						variant='outlined'
+						disabled={disabled}
+						onClick={onJoinClick}
+					>
+						JOIN
+					</JoinButton>
+				)}
 
 				<Grid
 					style={{
