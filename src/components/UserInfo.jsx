@@ -120,10 +120,10 @@ export default function UserInfo({
 			console.error('Error:', error.message)
 		}
 	}
-	const onDeleteClick = () => {
-		deleteFollower(cellUserId)
-		setActiveUser(null)
-	}
+	// const onDeleteClick = () => {
+	// 	deleteFollower(cellUserId)
+	// 	setActiveUser(null)
+	// }
 	const onLeaveClick = () => {
 		deleteFollower(cellUserId)
 		router.push('/cells')

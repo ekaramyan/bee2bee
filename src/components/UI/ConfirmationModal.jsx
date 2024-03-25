@@ -69,15 +69,17 @@ const ConfirmationModal = ({
 			</DialogContent>
 			<DialogActions>
 				<Box style={{ display: 'flex', gap: 10 }}>
-					<AuthButton
-						onClick={handleClose}
-						style={{
-							background: '#FF0000',
-							width: '100%',
-						}}
-					>
-						Cancel
-					</AuthButton>
+					{handleClose && (
+						<AuthButton
+							onClick={handleClose}
+							style={{
+								background: '#FF0000',
+								width: '100%',
+							}}
+						>
+							Cancel
+						</AuthButton>
+					)}
 					<Box
 						style={{
 							display: 'flex',

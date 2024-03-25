@@ -421,11 +421,11 @@ const theme = createTheme({
 		register_warn: {
 			fontSize: 12,
 			span: {
-				color: '#EC811E',
+				color: '#fff',
 				fontWeight: 700,
 			},
 			a: {
-				color: '#EC811E',
+				color: '#fff',
 				textDecoration: 'underline',
 			},
 		},
