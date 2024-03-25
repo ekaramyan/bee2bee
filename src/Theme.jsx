@@ -160,7 +160,7 @@ const theme = createTheme({
 			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 16,
-			fontWeight: 400,
+			fontWeight: 500,
 			textTransform: 'uppercase',
 			active: {
 				color: '#E06B00',
@@ -417,6 +417,19 @@ const theme = createTheme({
 			fontSize: 26,
 			fontWeight: 700,
 			textTransform: 'uppercase',
+		},
+		register_warn: {
+			fontSize: 17,
+			textTransform: 'none',
+			color: '#fff',
+			span: {
+				color: '#fff',
+				fontWeight: 700,
+			},
+			a: {
+				color: '#fff',
+				textDecoration: 'underline',
+			},
 		},
 	},
 })

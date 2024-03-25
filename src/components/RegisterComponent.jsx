@@ -30,10 +30,30 @@ import Link from 'next/link'
 import ReCAPTCHA from 'react-google-recaptcha'
 import useRegister from '@/hooks/useRegister'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
+const ConfirmationModal = dynamic(() => import('./UI/ConfirmationModal'))
 import countryList from '@/countryList'
 
 export default function RegisterComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
+	const [modalOpen, setModalOpen] = useState(false)
+	const [actionToConfirm, setActionToConfirm] = useState(null)
+	const [modalContent, setModalContent] = useState({
+		text: '',
+		imageSrc: null,
+	})
+
+	const handleOpenModal = action => {
+		setActionToConfirm(() => action)
+		setModalOpen(true)
+	}
+
+	const handleConfirmAction = () => {
+		if (actionToConfirm) {
+			actionToConfirm()
+		}
+		setModalOpen(false)
+	}
+
 	const { register, loading, error, success } = useRegister()
 	const [validationErrors, setValidationErrors] = useState({})
 	const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] =
@@ -169,7 +189,7 @@ export default function RegisterComponent() {
 			return
 		}
 		console.log(validationErrors)
-		register(formData)
+		handleOpenModal(() => register(formData))
 	}
 	const [showPassword, setShowPassword] = useState(false)
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -183,404 +203,437 @@ export default function RegisterComponent() {
 	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	return (
-		<Box
-			style={{
-				width: '75%',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				justifyContent: 'center',
-				gap: 20,
-			}}
-		>
-			<form
-				onSubmit={handleSubmit}
+		<>
+			<Box
 				style={{
-					width: '100%',
+					width: '75%',
 					display: 'flex',
-					flex: '3',
 					flexDirection: 'column',
-					gap: 5,
+					alignItems: 'center',
+					justifyContent: 'center',
+					gap: 20,
 				}}
 			>
-				<Box
-					item
-					xs={12}
+				<form
+					onSubmit={handleSubmit}
 					style={{
-						display: 'flex',
-						gap: isMobile ? 5 : 20,
 						width: '100%',
-						flexDirection: isMobile ? 'column' : 'row',
+						display: 'flex',
+						flex: '3',
+						flexDirection: 'column',
+						gap: 5,
 					}}
 				>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<PermIdentityOutlinedIcon sx={{ color: iconColors.name }} />
-								Name
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='text'
-						name='name'
-						onFocus={() => handleIconFocus('name')}
-						onBlur={() => handleIconBlur('name')}
-					/>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<PersonAddOutlinedIcon sx={{ color: iconColors.lastName }} />
-								Last Name
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='text'
-						name='lastName'
-						onFocus={() => handleIconFocus('lastName')}
-						onBlur={() => handleIconBlur('lastName')}
-					/>
-				</Box>
-				<Box
-					item
-					xs={12}
-					style={{
-						display: 'flex',
-						gap: isMobile ? 5 : 20,
-
-						width: '100%',
-						flexDirection: isMobile ? 'column' : 'row',
-					}}
-				>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<PermContactCalendarOutlinedIcon
-									sx={{ color: iconColors.nickname }}
-								/>
-								Nickname
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='nickname'
-						name='nickname'
-						onFocus={() => handleIconFocus('nickname')}
-						onBlur={() => handleIconBlur('nickname')}
-					/>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<EmailOutlinedIcon sx={{ color: iconColors.email }} />
-								Email
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='email'
-						name='email'
-						onFocus={() => handleIconFocus('email')}
-						onBlur={() => handleIconBlur('email')}
-					/>
-				</Box>
-				<Box
-					item
-					xs={12}
-					style={{
-						display: 'flex',
-						gap: isMobile ? 15 : 20,
-						width: '100%',
-						flexDirection: isMobile ? 'column' : 'row',
-					}}
-				>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<PhoneOutlinedIcon sx={{ color: iconColors.phone }} />
-								Phone
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='tel'
-						name='phone'
-						onFocus={() => handleIconFocus('phone')}
-						onBlur={() => handleIconBlur('phone')}
-					/>
-					<FormControl fullWidth variant='standard'>
-						<InputLabel htmlFor='country-select'>
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<LanguageOutlinedIcon sx={{ color: iconColors.country }} />
-								Your Country
-							</Box>
-						</InputLabel>
-						<Select label='Your Country' id='country-select' name='country'>
-							{countryList.map(country => (
-								<MenuItem key={country.code} value={country.name}>
-									{country.name}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Box>
-				<Box
-					item
-					xs={12}
-					style={{
-						display: 'flex',
-						gap: isMobile ? 5 : 20,
-						marginTop: isMobile ? 10 : 0,
-						width: '100%',
-						height: '100%',
-						flexDirection: isMobile ? 'column' : 'row',
-					}}
-				>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<CalendarMonthOutlinedIcon sx={{ color: iconColors.birth }} />
-								Date of birth
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='date'
-						name='date'
-						InputLabelProps={{ shrink: true }}
-						onFocus={() => handleIconFocus('birth')}
-						onBlur={() => handleIconBlur('birth')}
-					/>
-
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<SendOutlinedIcon sx={{ color: 'iconColors.telegram' }} />
-								Telegram
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type='text'
-						name='telegram'
-						value={telegram}
-						onChange={handleChange}
-						onFocus={() => {
-							handleIconFocus('telegram')
-							setTelegram('@')
-						}}
-						onBlur={() => {
-							handleIconBlur('telegram')
-						}}
-					/>
-				</Box>
-				<Box
-					item
-					xs={12}
-					style={{
-						display: 'flex',
-						gap: isMobile ? 5 : 20,
-						width: '100%',
-						height: '100%',
-						flexDirection: isMobile ? 'column' : 'row',
-					}}
-				>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<LockOutlinedIcon sx={{ color: iconColors.password }} />
-								Password
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type={showPassword ? 'text' : 'password'}
-						name='password'
-						InputProps={{
-							endAdornment: (
-								<InputAdornment position='end'>
-									<IconButton onClick={handlePasswordToggle}>
-										{showPassword ? <VisibilityOff /> : <Visibility />}
-									</IconButton>
-								</InputAdornment>
-							),
-						}}
-						onFocus={() => handleIconFocus('password')}
-						onBlur={() => handleIconBlur('password')}
-					/>
-					<TextField
-						label={
-							<Box
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 5,
-								}}
-							>
-								<LockOutlinedIcon sx={{ color: iconColors.confirmPassword }} />
-								Confirm Password
-							</Box>
-						}
-						variant='standard'
-						fullWidth
-						type={showConfirmPassword ? 'text' : 'password'}
-						name='confirm_password'
-						InputProps={{
-							endAdornment: (
-								<InputAdornment position='end'>
-									<IconButton onClick={handleConfirmPasswordToggle}>
-										{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-									</IconButton>
-								</InputAdornment>
-							),
-						}}
-						onFocus={() => handleIconFocus('confirmPassword')}
-						onBlur={() => handleIconBlur('confirmPassword')}
-					/>
-				</Box>
-				<Box
-					style={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						width: '100%',
-						flex: 1,
-						flexDirection: isMobile ? 'column' : 'row',
-					}}
-				>
-					<Grid
+					<Box
 						item
-						style={{
-							width: '50%',
-							display: 'flex',
-							justifyContent: 'center',
-						}}
-					>
-						<div style={{ transform: 'scale(0.8)' }}>
-							<ReCAPTCHA
-								sitekey={captchaKey}
-								theme='light'
-								size='normal'
-								onChange={handleCaptchaChange}
-							/>
-						</div>
-					</Grid>
-
-					<Grid
-						item
+						xs={12}
 						style={{
 							display: 'flex',
-							flexDirection: 'column',
-							width: isMobile ? '100%' : '50%',
-							gap: 10,
+							gap: isMobile ? 5 : 20,
+							width: '100%',
+							flexDirection: isMobile ? 'column' : 'row',
 						}}
 					>
-						<Box style={{ display: 'flex', alignItems: 'center' }}>
-							<Checkbox
-								name='confirm'
-								color='primary'
-								checked={hasAgreedToPrivacyPolicy}
-								onChange={e => setHasAgreedToPrivacyPolicy(e.target.checked)}
-							/>
-							<Typography variant='forgot'>
-								Agree with{' '}
-								<Link
-									href='privacy-policy'
-									style={{ color: '#E06B00', textDecoration: 'underline' }}
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
 								>
-									Privacy policy
-								</Link>
-							</Typography>
-						</Box>
-						<Box
+									<PermIdentityOutlinedIcon sx={{ color: iconColors.name }} />
+									Name
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='text'
+							name='name'
+							onFocus={() => handleIconFocus('name')}
+							onBlur={() => handleIconBlur('name')}
+						/>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<PersonAddOutlinedIcon sx={{ color: iconColors.lastName }} />
+									Last Name
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='text'
+							name='lastName'
+							onFocus={() => handleIconFocus('lastName')}
+							onBlur={() => handleIconBlur('lastName')}
+						/>
+					</Box>
+					<Box
+						item
+						xs={12}
+						style={{
+							display: 'flex',
+							gap: isMobile ? 5 : 20,
+
+							width: '100%',
+							flexDirection: isMobile ? 'column' : 'row',
+						}}
+					>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<PermContactCalendarOutlinedIcon
+										sx={{ color: iconColors.nickname }}
+									/>
+									Nickname
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='nickname'
+							name='nickname'
+							onFocus={() => handleIconFocus('nickname')}
+							onBlur={() => handleIconBlur('nickname')}
+						/>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<EmailOutlinedIcon sx={{ color: iconColors.email }} />
+									Email
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='email'
+							name='email'
+							onFocus={() => handleIconFocus('email')}
+							onBlur={() => handleIconBlur('email')}
+						/>
+					</Box>
+					<Box
+						item
+						xs={12}
+						style={{
+							display: 'flex',
+							gap: isMobile ? 15 : 20,
+							width: '100%',
+							flexDirection: isMobile ? 'column' : 'row',
+						}}
+					>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<PhoneOutlinedIcon sx={{ color: iconColors.phone }} />
+									Phone
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='tel'
+							name='phone'
+							onFocus={() => handleIconFocus('phone')}
+							onBlur={() => handleIconBlur('phone')}
+						/>
+						<FormControl fullWidth variant='standard'>
+							<InputLabel htmlFor='country-select'>
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<LanguageOutlinedIcon sx={{ color: iconColors.country }} />
+									Your Country
+								</Box>
+							</InputLabel>
+							<Select label='Your Country' id='country-select' name='country'>
+								{countryList.map(country => (
+									<MenuItem key={country.code} value={country.name}>
+										{country.name}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</Box>
+					<Box
+						item
+						xs={12}
+						style={{
+							display: 'flex',
+							gap: isMobile ? 5 : 20,
+							marginTop: isMobile ? 10 : 0,
+							width: '100%',
+							height: '100%',
+							flexDirection: isMobile ? 'column' : 'row',
+						}}
+					>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<CalendarMonthOutlinedIcon sx={{ color: iconColors.birth }} />
+									Date of birth
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='date'
+							name='date'
+							InputLabelProps={{ shrink: true }}
+							onFocus={() => handleIconFocus('birth')}
+							onBlur={() => handleIconBlur('birth')}
+						/>
+
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<SendOutlinedIcon sx={{ color: 'iconColors.telegram' }} />
+									Telegram
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type='text'
+							name='telegram'
+							value={telegram}
+							onChange={handleChange}
+							onFocus={() => {
+								handleIconFocus('telegram')
+								setTelegram('@')
+							}}
+							onBlur={() => {
+								handleIconBlur('telegram')
+							}}
+						/>
+					</Box>
+					<Box
+						item
+						xs={12}
+						style={{
+							display: 'flex',
+							gap: isMobile ? 5 : 20,
+							width: '100%',
+							height: '100%',
+							flexDirection: isMobile ? 'column' : 'row',
+						}}
+					>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<LockOutlinedIcon sx={{ color: iconColors.password }} />
+									Password
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type={showPassword ? 'text' : 'password'}
+							name='password'
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position='end'>
+										<IconButton onClick={handlePasswordToggle}>
+											{showPassword ? <VisibilityOff /> : <Visibility />}
+										</IconButton>
+									</InputAdornment>
+								),
+							}}
+							onFocus={() => handleIconFocus('password')}
+							onBlur={() => handleIconBlur('password')}
+						/>
+						<TextField
+							label={
+								<Box
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										gap: 5,
+									}}
+								>
+									<LockOutlinedIcon
+										sx={{ color: iconColors.confirmPassword }}
+									/>
+									Confirm Password
+								</Box>
+							}
+							variant='standard'
+							fullWidth
+							type={showConfirmPassword ? 'text' : 'password'}
+							name='confirm_password'
+							InputProps={{
+								endAdornment: (
+									<InputAdornment position='end'>
+										<IconButton onClick={handleConfirmPasswordToggle}>
+											{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+										</IconButton>
+									</InputAdornment>
+								),
+							}}
+							onFocus={() => handleIconFocus('confirmPassword')}
+							onBlur={() => handleIconBlur('confirmPassword')}
+						/>
+					</Box>
+					<Box
+						style={{
+							display: 'flex',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+							width: '100%',
+							flex: 1,
+							flexDirection: isMobile ? 'column' : 'row',
+						}}
+					>
+						<Grid
+							item
 							style={{
+								width: '50%',
 								display: 'flex',
-								width: '100%',
-								alignItems: 'center',
 								justifyContent: 'center',
 							}}
 						>
-							{loading ? (
-								<CircularProgress />
-							) : (
-								<AuthButton type='submit' style={{ width: '100%' }}>
-									Register
-								</AuthButton>
-							)}
-						</Box>
-					</Grid>
-				</Box>
-			</form>
-			{validationErrors.captcha && <div>{validationErrors.captcha}</div>}
-			{validationErrors.birth && <div>{validationErrors.birth}</div>}
-			{validationErrors.phone && <div>{validationErrors.phone}</div>}
-			{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
-			{validationErrors.telegram && <div>{validationErrors.telegram}</div>}
-			{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
-			{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
-			{validationErrors.password && <div>{validationErrors.password}</div>}
-			{validationErrors.checkbox && <div>{validationErrors.checkbox}</div>}
-			{error && <div>{error}</div>}
-			{success && (
-				<div>
-					Successfully registered! Confirm your email address, then you can
-					enter your account
-				</div>
-			)}
-		</Box>
+							<div style={{ transform: 'scale(0.8)' }}>
+								<ReCAPTCHA
+									sitekey={captchaKey}
+									theme='light'
+									size='normal'
+									onChange={handleCaptchaChange}
+								/>
+							</div>
+						</Grid>
+
+						<Grid
+							item
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								width: isMobile ? '100%' : '50%',
+								gap: 10,
+							}}
+						>
+							<Box style={{ display: 'flex', alignItems: 'center' }}>
+								<Checkbox
+									name='confirm'
+									color='primary'
+									checked={hasAgreedToPrivacyPolicy}
+									onChange={e => setHasAgreedToPrivacyPolicy(e.target.checked)}
+								/>
+								<Typography variant='forgot'>
+									Agree with{' '}
+									<Link
+										href='privacy-policy'
+										style={{ color: '#E06B00', textDecoration: 'underline' }}
+									>
+										Privacy policy
+									</Link>
+								</Typography>
+							</Box>
+							<Box
+								style={{
+									display: 'flex',
+									width: '100%',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+							>
+								{loading ? (
+									<CircularProgress />
+								) : (
+									<AuthButton type='submit' style={{ width: '100%' }}>
+										Register
+									</AuthButton>
+								)}
+							</Box>
+						</Grid>
+					</Box>
+				</form>
+				{validationErrors.captcha && <div>{validationErrors.captcha}</div>}
+				{validationErrors.birth && <div>{validationErrors.birth}</div>}
+				{validationErrors.phone && <div>{validationErrors.phone}</div>}
+				{validationErrors.firstName && <div>{validationErrors.firstName}</div>}
+				{validationErrors.telegram && <div>{validationErrors.telegram}</div>}
+				{validationErrors.lastName && <div>{validationErrors.lastName}</div>}
+				{validationErrors.nickname && <div>{validationErrors.nickname}</div>}
+				{validationErrors.password && <div>{validationErrors.password}</div>}
+				{validationErrors.checkbox && <div>{validationErrors.checkbox}</div>}
+				{error && <div>{error}</div>}
+				{success && (
+					<div>
+						Successfully registered! Confirm your email address, then you can
+						enter your account
+					</div>
+				)}
+			</Box>
+
+			<ConfirmationModal
+				open={modalOpen}
+				handleConfirm={handleConfirmAction}
+				isLoading={loading}
+			>
+				<Typography variant='register_warn'>
+					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
+					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
+					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
+						https://t.me/+IJ9ZXZva1RwzNWY0
+					</a>
+					. <br />
+					<br />
+					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
+					ადმინისტრატორის თანხლების გარეშე!!!
+				</Typography>
+				<Typography variant='register_warn'>
+					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
+					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
+					—{' '}
+					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
+						https://t.me/+UEb5EYod-pw4ZmE8
+					</a>
+					. <br />
+					<br /> Внимание! Без сопровождения администратора сайта никаких
+					действий на платформе не предпринимать!!!
+				</Typography>
+			</ConfirmationModal>
+		</>
 	)
 }
