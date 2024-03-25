@@ -32,7 +32,7 @@ export default function DropdownLabel({ name, title }) {
 		},
 		p: {
 			color: '#E06B00',
-			fontSize: 14,
+			fontSize: 16,
 			fontWeight: 700,
 		},
 	})
@@ -40,10 +40,10 @@ export default function DropdownLabel({ name, title }) {
 	return (
 		<StatButton variant='outline'>
 			{name !== null && (
-				<Typography variant='closed_cells'>{name} - </Typography>
+				<Typography variant='footer_buttons'>{name} - </Typography>
 			)}
 			<p> {title}</p>
-			<South style={{ transform: 'scale(0.7)' }} />
+			<South style={{ transform: 'scale(0.8)' }} />
 		</StatButton>
 	)
 }

@@ -42,9 +42,8 @@ export default function RegisterComponent() {
 		imageSrc: null,
 	})
 
-	const handleOpenModal = (action, actionTitle) => {
+	const handleOpenModal = action => {
 		setActionToConfirm(() => action)
-		setModalContent(actionTitle)
 		setModalOpen(true)
 	}
 
@@ -190,43 +189,7 @@ export default function RegisterComponent() {
 			return
 		}
 		console.log(validationErrors)
-		handleOpenModal(
-			() => register(formData),
-			<Box
-				style={{
-					width: '100%',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-					textAlign: 'left',
-					gap: 20,
-				}}
-			>
-				<Typography variant='register_warn'>
-					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
-					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
-					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
-						https://t.me/+IJ9ZXZva1RwzNWY0
-					</a>
-					. <br />
-					<br />
-					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
-					ადმინისტრატორის თანხლების გარეშე!!!
-				</Typography>
-				<Typography variant='register_warn'>
-					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
-					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
-					—{' '}
-					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
-						https://t.me/+UEb5EYod-pw4ZmE8
-					</a>
-					. <br />
-					<br /> Внимание! Без сопровождения администратора сайта никаких
-					действий на платформе не предпринимать!!!
-				</Typography>
-			</Box>
-		)
+		handleOpenModal(() => register(formData))
 	}
 	const [showPassword, setShowPassword] = useState(false)
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -646,9 +609,31 @@ export default function RegisterComponent() {
 			<ConfirmationModal
 				open={modalOpen}
 				handleConfirm={handleConfirmAction}
-				title={modalContent}
 				isLoading={loading}
-			/>
+			>
+				<Typography variant='register_warn'>
+					მოხარული ვართ მოგესალმოთ ჩვენს პროექტში! რეგისტრაციამდე, გთხოვთ
+					დაემატოთ ჩვენს საპრეზენტაციო სასაუბროს (ჩათს) ტელეგრამში —
+					<a href='https://t.me/+IJ9ZXZva1RwzNWY0' target='_blank'>
+						https://t.me/+IJ9ZXZva1RwzNWY0
+					</a>
+					. <br />
+					<br />
+					ყურადღება! გთხოვთ, პლატფორმაზე არ განახორციელოთ რაიმე მოქმედება საიტის
+					ადმინისტრატორის თანხლების გარეშე!!!
+				</Typography>
+				<Typography variant='register_warn'>
+					Мы рады приветствовать Вас в нашем проекте. Перед регистрацией
+					присоединитесь, пожалуйста, к нашему презентационному чату в телеграме
+					—{' '}
+					<a href='https://t.me/+UEb5EYod-pw4ZmE8' target='_blank'>
+						https://t.me/+UEb5EYod-pw4ZmE8
+					</a>
+					. <br />
+					<br /> Внимание! Без сопровождения администратора сайта никаких
+					действий на платформе не предпринимать!!!
+				</Typography>
+			</ConfirmationModal>
 		</>
 	)
 }
