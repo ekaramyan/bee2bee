@@ -48,7 +48,7 @@ span {
 }
 #root,
 #__next {
-	/* isolation: isolate; */
+	/* isolation: isolate; */ 
 }
 
 body::-webkit-scrollbar {
