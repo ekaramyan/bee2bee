@@ -2,14 +2,16 @@ import {
 	Container,
 	useMediaQuery,
 	Box,
-	styled,
 	Typography,
+	styled,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import Fireworks from '@fireworks-js/react'
 import { fetchData } from '@/api/fetchData'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -21,8 +23,22 @@ const RealCells = dynamic(() => import('../../components/RealCells'))
 const SideModal = dynamic(() => import('./SideModal'))
 const ConfirmationModal = dynamic(() => import('./ConfirmationModal'))
 import background from '../../assets/img/background.webp'
+import georgia from '@/assets/img/Georgia.gif'
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
+
+const HolydayContainer = styled('div')`
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 0;
+	overflow: hidden;
+	background: #00000040;
+	width: 100%;
+	height: 100vh;
+`
 
 const IndexWrapper = ({ children, ...props }) => {
 	const [isLoginOpen, setIsLoginOpen] = useState(false)
@@ -90,6 +106,34 @@ const IndexWrapper = ({ children, ...props }) => {
 				}}
 				className='ScrollbarWhite'
 			>
+				<HolydayContainer>
+					<Image
+						src={georgia.src}
+						width={311}
+						height={270}
+						alt='georgia flag'
+					/>
+					<Fireworks
+						options={{
+							speed: 2,
+							acceleration: 1.05,
+							friction: 0.97,
+							gravity: 1.5,
+							particles: 200,
+							trace: 3,
+							explosion: 5,
+							intensity: 60,
+						}}
+						style={{
+							top: 0,
+							left: 0,
+							width: '100%',
+							height: '100%',
+							position: 'fixed',
+							background: 'transparent',
+						}}
+					/>
+				</HolydayContainer>
 				<Container
 					className='ScrollbarDefault'
 					style={{
