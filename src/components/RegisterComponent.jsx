@@ -32,6 +32,7 @@ import useRegister from '@/hooks/useRegister'
 const AuthButton = dynamic(() => import('./UI/AuthButton'))
 
 import countryList from '@/countryList'
+import countryCodes from '@/countryCodes'
 
 export default function RegisterComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
@@ -55,6 +56,7 @@ export default function RegisterComponent() {
 	const [captchaValue, setCaptchaValue] = useState(null)
 
 	const [telegram, setTelegram] = useState(null)
+	const [countryCode, setCountryCode] = useState('+1')
 
 	const handleChange = e => {
 		const inputValue = e.target.value
@@ -68,6 +70,11 @@ export default function RegisterComponent() {
 	const handleCaptchaChange = value => {
 		setCaptchaValue(value)
 	}
+
+	const handleCountryCodeChange = event => {
+		setCountryCode(event.target.value)
+	}
+
 	const handleIconFocus = iconName => {
 		setIconColors(prevColors => ({ ...prevColors, [iconName]: 'action' }))
 	}
@@ -111,7 +118,7 @@ export default function RegisterComponent() {
 			lastName: event.target.lastName.value,
 			nickname: event.target.nickname.value,
 			country: event.target.country.value,
-			phone: String(event.target.phone.value),
+			phone: String(countryCode + event.target.phone.value),
 			telegram: telegram,
 			birth: event.target.date.value,
 			email: event.target.email.value.toLowerCase(),
@@ -119,7 +126,6 @@ export default function RegisterComponent() {
 			passwordConfirmation: event.target.confirm_password.value,
 		}
 		const errors = {}
-
 		if (!validateDateOfBirth(formData.birth)) {
 			errors.birth =
 				'Invalid date of birth. It should be between 1900 and 16 years ago.'
@@ -321,26 +327,53 @@ export default function RegisterComponent() {
 							flexDirection: isMobile ? 'column' : 'row',
 						}}
 					>
-						<TextField
-							label={
-								<Box
-									style={{
-										display: 'flex',
-										alignItems: 'center',
-										gap: 5,
-									}}
+						<Box
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								gap: 5,
+								width: '100%',
+							}}
+						>
+							<FormControl
+								variant='standard'
+								sx={{ minWidth: 95, width: '30%' }}
+							>
+								<InputLabel id='country-code-label'>Code</InputLabel>
+								<Select
+									labelId='country-code-label'
+									value={countryCode}
+									onChange={handleCountryCodeChange}
 								>
-									<PhoneOutlinedIcon sx={{ color: iconColors.phone }} />
-									Phone
-								</Box>
-							}
-							variant='standard'
-							fullWidth
-							type='tel'
-							name='phone'
-							onFocus={() => handleIconFocus('phone')}
-							onBlur={() => handleIconBlur('phone')}
-						/>
+									{countryCodes.map((code, index) => (
+										<MenuItem value={code.dial_code} key={index}>
+											{code.code} {code.dial_code}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+							<TextField
+								label={
+									<Box
+										style={{
+											display: 'flex',
+											alignItems: 'center',
+											gap: 5,
+										}}
+									>
+										<PhoneOutlinedIcon sx={{ color: iconColors.phone }} />
+										Phone
+									</Box>
+								}
+								variant='standard'
+								fullWidth
+								type='tel'
+								name='phone'
+								onFocus={() => handleIconFocus('phone')}
+								onBlur={() => handleIconBlur('phone')}
+							/>
+						</Box>
+
 						<FormControl fullWidth variant='standard'>
 							<InputLabel htmlFor='country-select'>
 								<Box
