@@ -126,16 +126,22 @@ export default function Account({ onEditClick, data, lottery }) {
 			{lottery && (
 				<Box
 					style={{
-						width: '50%',
+						width: isMobile ? '100%' : '50%',
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
 						justifyContent: 'center',
 						gap: 20,
+						overflowY: 'auto',
 					}}
 				>
 					{lottery.map((card, index) => (
-						<Image src={card} width={595} height={268} key={index} />
+						<Image
+							src={card}
+							width={isMobile ? 250 : 595}
+							height={isMobile ? 100 : 268}
+							key={index}
+						/>
 					))}
 				</Box>
 			)}
