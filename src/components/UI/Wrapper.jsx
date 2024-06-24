@@ -38,7 +38,7 @@ const Wrapper = ({ children, style, ...props }) => {
 	const styles = {
 		width: '100%',
 		height: isMobile ? '100%' : '80dvh',
-		maxHeight: isMobile ? 'unset' : '85vh',
+		maxHeight: isMobile ? 'unset' : '100%',
 		background: '#EAEEE8',
 		borderRadius: 20,
 		overflow: 'hidden',

@@ -13,8 +13,14 @@ export default function Account({ onEditClick, data, lottery }) {
 		return telegramHandle.replace('@', '').replace(/\s+/g, '')
 	}
 	return (
-		<Stack display={'flex'} flexDirection={'row'} flexWrap={'wrap'}>
-			<Stack display={'flex'} column alignItems={'center'} gap={2}>
+		<Stack
+			display={'flex'}
+			flexDirection={'row'}
+			flexWrap={'wrap'}
+			width={'100%'}
+			justifyContent={'space-between'}
+		>
+			<Stack display={'flex'} column alignItems={'flex-start'} gap={2}>
 				<div
 					style={{
 						position: 'relative',
@@ -51,7 +57,7 @@ export default function Account({ onEditClick, data, lottery }) {
 					</Typography>
 					<Typography variant='date'> date of birth: {data?.birth}</Typography>
 				</Box>
-				<Grid
+				{/* <Grid
 					style={{
 						display: 'flex',
 						alignItems: 'center',
@@ -60,52 +66,50 @@ export default function Account({ onEditClick, data, lottery }) {
 						gap: isMobile ? 0 : 60,
 						width: isMobile ? '100%' : '50%',
 					}}
-				>
-					<Box
+				> */}
+				{/* <Box
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: isMobile ? 'flex-start' : 'flex-end',
 						}}
-					>
-						<Typography variant='user_key' display='flex' gap={1}>
-							User #: <Typography variant='account_item'>{data?.id}</Typography>
-						</Typography>
-						<Typography variant='user_key' display='flex' gap={1}>
-							Email:{' '}
-							<Typography variant='account_item'>{data?.email}</Typography>
-						</Typography>
-						<Typography variant='user_key' display='flex' gap={1}>
-							Country:{' '}
-							<Typography variant='account_item'>{data?.country}</Typography>
-						</Typography>
-					</Box>
-					<Box
+					> */}
+				<Typography variant='user_key' display='flex' gap={1}>
+					User #: <Typography variant='account_item'>{data?.id}</Typography>
+				</Typography>
+				<Typography variant='user_key' display='flex' gap={1}>
+					Email: <Typography variant='account_item'>{data?.email}</Typography>
+				</Typography>
+				<Typography variant='user_key' display='flex' gap={1}>
+					Country:{' '}
+					<Typography variant='account_item'>{data?.country}</Typography>
+				</Typography>
+				{/* </Box> */}
+				{/* <Box
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 						}}
+					> */}
+				<Typography variant='user_key' display='flex' gap={1}>
+					Nickname:{' '}
+					<Typography variant='account_item'>{data?.nickname}</Typography>
+				</Typography>
+				<Typography variant='user_key' display='flex' gap={1}>
+					Phone: <Typography variant='account_item'>{data?.phone}</Typography>
+				</Typography>
+				<Typography variant='user_key' display='flex' gap={1}>
+					Telegram:{' '}
+					<Link
+						href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}
+						target='_blank'
 					>
-						<Typography variant='user_key' display='flex' gap={1}>
-							Nickname:{' '}
-							<Typography variant='account_item'>{data?.nickname}</Typography>
-						</Typography>
-						<Typography variant='user_key' display='flex' gap={1}>
-							Phone:{' '}
-							<Typography variant='account_item'>{data?.phone}</Typography>
-						</Typography>
-						<Typography variant='user_key' display='flex' gap={1}>
-							Telegram:{' '}
-							<Link
-								href={`https://t.me/${formatTelegramUrl(data?.telegram || '')}`}
-								target='_blank'
-							>
-								<Typography variant='account_item'>{data?.telegram}</Typography>
-							</Link>
-						</Typography>
-					</Box>
-				</Grid>
+						<Typography variant='account_item'>{data?.telegram}</Typography>
+					</Link>
+				</Typography>
+				{/* </Box>
+				</Grid> */}
 				<AuthButton
 					variant='contained'
 					style={{ background: '#A5560F' }}
