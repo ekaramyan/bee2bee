@@ -18,9 +18,14 @@ export default function Account({ onEditClick, data, lottery }) {
 			flexDirection={'row'}
 			flexWrap={'wrap'}
 			width={'100%'}
-			justifyContent={'space-between'}
+			justifyContent={lottery ? 'space-between' : 'center'}
 		>
-			<Stack display={'flex'} column alignItems={'flex-start'} gap={2}>
+			<Stack
+				display={'flex'}
+				column
+				alignItems={lottery ? 'flex-start' : 'center'}
+				gap={2}
+			>
 				<div
 					style={{
 						position: 'relative',
@@ -118,20 +123,22 @@ export default function Account({ onEditClick, data, lottery }) {
 					Edit Account
 				</AuthButton>
 			</Stack>
-			<Box
-				style={{
-					width: '50%',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-					gap: 20,
-				}}
-			>
-				{lottery.map((card, index) => (
-					<Image src={card} width={595} height={268} key={index} />
-				))}
-			</Box>
+			{lottery && (
+				<Box
+					style={{
+						width: '50%',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						gap: 20,
+					}}
+				>
+					{lottery.map((card, index) => (
+						<Image src={card} width={595} height={268} key={index} />
+					))}
+				</Box>
+			)}
 		</Stack>
 	)
 }
