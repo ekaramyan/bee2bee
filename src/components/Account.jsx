@@ -18,9 +18,14 @@ export default function Account({ onEditClick, data, lottery }) {
 			flexDirection={'row'}
 			flexWrap={'wrap'}
 			width={'100%'}
-			justifyContent={'space-between'}
+			justifyContent={lottery ? 'space-between' : 'center'}
 		>
-			<Stack display={'flex'} column alignItems={'flex-start'} gap={2}>
+			<Stack
+				display={'flex'}
+				column
+				alignItems={lottery ? 'flex-start' : 'center'}
+				gap={2}
+			>
 				<div
 					style={{
 						position: 'relative',
