@@ -9,7 +9,7 @@ export default function MyAccount({ data, lottery }) {
 		router.push('account-settings')
 	}
 	return (
-		<Wrapper header={'My Account'} style={{ minHeight: 700 }}>
+		<Wrapper header={'My Account'} style={{ minHeight: 800 }}>
 			<Box
 				style={{
 					display: 'flex',
