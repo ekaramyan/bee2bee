@@ -7,7 +7,10 @@ require('dotenv').config()
 const nextConfig = {
 	output: 'standalone',
 	images: {
-		domains: [process.env.API_URL.slice(0, -4)],
+		domains: [
+			process.env.API_URL.slice(0, -4),
+			process.env.API_URL.slice(8, -4),
+		],
 	},
 	env: {
 		API_URL: process.env.API_URL,
