@@ -118,20 +118,22 @@ export default function Account({ onEditClick, data, lottery }) {
 					Edit Account
 				</AuthButton>
 			</Stack>
-			<Box
-				style={{
-					width: '50%',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-					gap: 20,
-				}}
-			>
-				{lottery.map((card, index) => (
-					<Image src={card} width={595} height={268} key={index} />
-				))}
-			</Box>
+			{lottery && (
+				<Box
+					style={{
+						width: '50%',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						gap: 20,
+					}}
+				>
+					{lottery.map((card, index) => (
+						<Image src={card} width={595} height={268} key={index} />
+					))}
+				</Box>
+			)}
 		</Stack>
 	)
 }
