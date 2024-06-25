@@ -32,7 +32,7 @@ export default function AccountSettings() {
 		}
 	}
 	return (
-		<Wrapper header={'Change Password'}>
+		<Wrapper header={'Change Password'} style={{ minHeight: '80dvh' }}>
 			<ChangePassForm
 				isChange={false}
 				handleSubmit={handleSubmit}
