@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            bash ~/prerelease_client_bootstrap.sh nextjs
+            bash ~/prerelease_bootstrap.sh nextjs
