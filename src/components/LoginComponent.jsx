@@ -42,7 +42,7 @@ export default function LoginComponent() {
 			client_secret: '',
 		}
 		if (!captchaValue) {
-			setError('Please pass captcha first')
+			setError('Please pass captcha')
 			return
 		}
 		login(formData)
