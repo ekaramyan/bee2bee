@@ -127,8 +127,9 @@ export default function OneCell({ data, joinList }) {
 	// 	fetchDataAsync()
 	// }, [])
 
-	const canJoin = data ? data[0]?.cellLevel?.canJoin : false
 	const level = data[0]?.cellLevel
+	const canJoin = data ? data[0]?.cellLevel?.canJoin && level.id !== 1 : false
+	console.log(level)
 
 	const handleOpenModal = (action, actionType) => {
 		setActionToConfirm(() => action)
