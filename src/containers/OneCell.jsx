@@ -128,7 +128,9 @@ export default function OneCell({ data, joinList }) {
 	// }, [])
 
 	const level = data[0]?.cellLevel
-	const canJoin = data ? data[0]?.cellLevel?.canJoin && level.id !== 1 : false
+	const canJoin = data
+		? data[0]?.cellLevel?.canJoin && level.id !== (1 || 2)
+		: false
 	console.log(level)
 
 	const handleOpenModal = (action, actionType) => {

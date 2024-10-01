@@ -238,7 +238,7 @@ const IndexWrapper = ({ children, ...props }) => {
 								>
 									<Register
 										toggleOpen={() => {
-											!isRegisterOpen && handleOpenModal(() => null)
+											// !isRegisterOpen && handleOpenModal(() => null)
 											toggleRegister()
 										}}
 										isRegisterOpen={isRegisterOpen}
