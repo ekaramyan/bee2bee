@@ -8,8 +8,7 @@ const CelebrationTimer = () => {
 	const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining())
 
 	function calculateTimeRemaining() {
-		const targetDate = new Date('2024-01-12T00:00:00+04:00')
-
+		const targetDate = new Date('2025-01-01T00:00:00+04:00')
 		const now = new Date()
 
 		let timeDiff = targetDate - now
@@ -37,6 +36,9 @@ const CelebrationTimer = () => {
 
 	const isMobile = useMediaQuery('@media(max-width:1200px)')
 
+	// Функция для добавления ведущих нулей
+	const padNumber = number => String(number).padStart(2, '0')
+
 	return (
 		<Box
 			style={{
@@ -49,15 +51,19 @@ const CelebrationTimer = () => {
 			<style jsx global>{`
 				@import url('https://fonts.googleapis.com/css2?family=Itim:wght@400&display=swap');
 			`}</style>
-			<Image src={baloons.src} width={60} height={60} />
+
+			<Image src={baloons.src} width={60} height={60} alt='baloons' />
 			<Typography
-				fontFamily={`'Itim', cursive`}
+				fontFamily={`'Roboto', cursive`}
 				style={{
 					color: '#E06B00',
 					fontSize: 20,
+					fontWeight: 500,
 				}}
 			>
-				{`${timeRemaining.days}:${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}`}
+				{`${timeRemaining.days}:${padNumber(timeRemaining.hours)}:${padNumber(
+					timeRemaining.minutes
+				)}:${padNumber(timeRemaining.seconds)}`}
 			</Typography>
 		</Box>
 	)
