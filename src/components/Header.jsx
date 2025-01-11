@@ -6,7 +6,9 @@ import Image from 'next/image'
 const Logo = dynamic(() => import('./UI/Logo'))
 const UserMenu = dynamic(() => import('./UI/UserMenu'))
 const BurgerMenu = dynamic(() => import('./UI/BurgerMenu'))
-import CelebrationTimer from './UI/CelebrationTimer'
+// import CelebrationTimer from './UI/CelebrationTimer'
+import CelebrationMessage from './UI/CelebrationMessage'
+
 import en from '@/assets/img/en.png'
 import ge from '@/assets/img/ge.png'
 import ru from '@/assets/img/ru.png'
@@ -65,8 +67,9 @@ export default function Header({ loggedIn }) {
 							width: '100%',
 						}}
 					>
-						<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
-							<CelebrationTimer />
+						<Box style={{ display: 'flex', alignItems: 'center' }}>
+							<CelebrationMessage/>
+							{/* <CelebrationTimer /> */}
 						</Box>
 						{loggedIn ? (
 							<UserMenu />
@@ -79,9 +82,9 @@ export default function Header({ loggedIn }) {
 									marginRight: 15,
 								}}
 							>
-								<Image src={en.src} width={32} height={24} />
+								{/* <Image src={en.src} width={32} height={24} />
 								<Image src={ge.src} width={32} height={24} />
-								<Image src={ru.src} width={32} height={24} />
+								<Image src={ru.src} width={32} height={24} /> */}
 							</Box>
 						)}
 					</Box>

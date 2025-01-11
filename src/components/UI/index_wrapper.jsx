@@ -29,6 +29,7 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
+import { Fireworks } from '@fireworks-js/react';
 
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
@@ -151,12 +152,17 @@ const IndexWrapper = ({ children, ...props }) => {
 				className='ScrollbarWhite'
 			>
 				<SnowfallContainer>
-					<Snowfall
+					<Fireworks
+						options={{speed: 3, intensity: 30, particles: 400}}
+						style={{width: "100%", height: "100%"}}
+					/>
+					{/* <Snowfall
 						snowflakeCount={400}
 						radius={[5.5, 20.0]}
 						images={snowflakeImages}
-					/>
+					/> */}
 				</SnowfallContainer>
+				
 				<HolydayContainer>
 					<Image
 						src={georgia.src}
