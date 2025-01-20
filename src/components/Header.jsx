@@ -7,7 +7,7 @@ const Logo = dynamic(() => import('./UI/Logo'))
 const UserMenu = dynamic(() => import('./UI/UserMenu'))
 const BurgerMenu = dynamic(() => import('./UI/BurgerMenu'))
 // import CelebrationTimer from './UI/CelebrationTimer'
-import CelebrationMessage from './UI/CelebrationMessage'
+// import CelebrationMessage from './UI/CelebrationMessage'
 
 import en from '@/assets/img/en.png'
 import ge from '@/assets/img/ge.png'
