@@ -152,15 +152,11 @@ const IndexWrapper = ({ children, ...props }) => {
 				className='ScrollbarWhite'
 			>
 				<SnowfallContainer>
-					<Fireworks
-						options={{speed: 3, intensity: 30, particles: 400}}
-						style={{width: "100%", height: "100%"}}
-					/>
-					{/* <Snowfall
+					<Snowfall
 						snowflakeCount={400}
 						radius={[5.5, 20.0]}
 						images={snowflakeImages}
-					/> */}
+					/>
 				</SnowfallContainer>
 				
 				<HolydayContainer>
