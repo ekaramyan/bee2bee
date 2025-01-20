@@ -68,7 +68,7 @@ export default function Header({ loggedIn }) {
 						}}
 					>
 						<Box style={{ display: 'flex', alignItems: 'center' }}>
-							<CelebrationMessage/>
+							{/* <CelebrationMessage/> */}
 							{/* <CelebrationTimer /> */}
 						</Box>
 						{loggedIn ? (
