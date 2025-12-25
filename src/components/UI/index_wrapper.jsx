@@ -29,6 +29,7 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
+import { Fireworks } from '@fireworks-js/react'
 
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
@@ -41,7 +42,7 @@ const HolydayContainer = styled('div')`
 	right: 0;
 	z-index: 0;
 	overflow: hidden;
-	background: #00000040;
+	background: #00000050;
 	width: 100%;
 	height: 100vh;
 `
@@ -54,9 +55,10 @@ const SnowfallContainer = styled('div')`
 	right: 0;
 	z-index: 0;
 	overflow: hidden;
-	background: #00000040;
+	background: #00000050;
 	width: 100%;
 	height: 100vh;
+	filter: blur(500px);
 `
 
 const IndexWrapper = ({ children, ...props }) => {
@@ -147,6 +149,12 @@ const IndexWrapper = ({ children, ...props }) => {
 					flexDirection: 'column',
 					justifyContent: 'space-between',
 					alignItems: 'center',
+					boxShadow: `
+						0 0 50px 50px rgba(0, 0, 0, 0.3)
+						0 0 100px 100px rgba(0, 0, 0, 0.25)
+						0 0 150px 150px rgba(0, 0, 0, 0.2)
+						0 0 200px 200px rgba(0, 0, 0, 0.15)
+					`,
 				}}
 				className='ScrollbarWhite'
 			>
@@ -201,7 +209,7 @@ const IndexWrapper = ({ children, ...props }) => {
 							</AuthButton>
 							<AuthButton
 								onClick={() => router.push('/login')}
-								style={{ background: '#A5560F', width: '50%' }}
+								style={{ background: '#63b6bb', width: '50%' }}
 							>
 								Log in
 							</AuthButton>
