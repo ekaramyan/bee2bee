@@ -23,6 +23,11 @@ const SideModal = dynamic(() => import('./SideModal'))
 const ConfirmationModal = dynamic(() => import('./ConfirmationModal'))
 import background from '../../assets/img/background.webp'
 import georgia from '@/assets/img/Georgia.gif'
+import Snowfall from 'react-snowfall'
+import snowflake1 from '../../assets/img/snowflake1.png'
+import snowflake2 from '../../assets/img/snowflake2.png'
+import snowflake3 from '../../assets/img/snowflake3.png'
+import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
 import { Fireworks } from '@fireworks-js/react';
 
@@ -106,6 +111,31 @@ const IndexWrapper = ({ children, ...props }) => {
 		}
 	}, [router.pathname])
 
+	const [snowflakeImages, setSnowflakeImages] = useState([])
+
+	useEffect(() => {
+		const loadSnowflakeImages = async () => {
+			const loadImage = async src => {
+				const image = new window.Image()
+				image.src = src
+				await new Promise(resolve => {
+					image.onload = resolve
+				})
+				return image
+			}
+
+			const images = await Promise.all([
+				loadImage(snowflake1.src),
+				loadImage(snowflake2.src),
+				loadImage(snowflake3.src),
+				loadImage(snowflake4.src),
+			])
+
+			setSnowflakeImages(images)
+		}
+
+		loadSnowflakeImages()
+	}, [])
 	return (
 		<>
 			<div
@@ -128,7 +158,13 @@ const IndexWrapper = ({ children, ...props }) => {
 				}}
 				className='ScrollbarWhite'
 			>
-				
+				<SnowfallContainer>
+					<Snowfall
+						snowflakeCount={400}
+						radius={[5.5, 20.0]}
+						images={snowflakeImages}
+					/>
+				</SnowfallContainer>
 				<HolydayContainer>
 					<Image
 						src={georgia.src}
