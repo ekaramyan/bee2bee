@@ -34,10 +34,10 @@ export default function Register({ toggleOpen, isRegisterOpen }) {
 						left: '0%',
 						alignSelf: 'end',
 						right: 0,
-						color: isRegisterOpen ? '#E06B00' : '#1B170F',
+						color: isRegisterOpen ? '#80F7FF' : '#1B170F',
 						textShadow: isRegisterOpen
 							? '1px 1px 2px #1B170F'
-							: '1px 1px 2px #E06B00',
+							: '1px 1px 2px #80F7FF',
 					}}
 				>
 					New Members

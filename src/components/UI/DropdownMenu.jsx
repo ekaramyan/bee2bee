@@ -4,7 +4,7 @@ import { Typography, Menu, MenuItem, styled } from '@mui/material'
 const StyledMenu = styled(Menu)(({ theme }) => ({
 	'& .MuiList-root': {
 		backgroundColor: 'EAEEE8',
-		border: '1px solid #F9AA13',
+		border: '1px solid #80f7ff',
 		borderRadius: 5,
 		marginTop: 2,
 		width: '200px',
@@ -51,7 +51,7 @@ const DropdownMenu = ({ buttonLabel, options }) => {
 										{option.name} -{' '}
 									</Typography>
 								)}
-								<Typography variant='closed_cells' style={{ color: '#E06B00' }}>
+								<Typography variant='closed_cells' style={{ color: '#008000' }}>
 									{option.count}
 								</Typography>
 							</>

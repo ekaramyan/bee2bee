@@ -11,6 +11,7 @@ export default function Cell({ cellData, joinListData }) {
 		dispatch({ type: 'LOG_IN' })
 	}
 
+	console.log(cellData, joinListData)
 	return <OneCell data={cellData.data} joinList={joinListData} />
 }
 

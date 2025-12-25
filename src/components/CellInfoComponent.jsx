@@ -44,6 +44,7 @@ export default function CellInfoComponent({
 					justifyContent: 'center',
 					backgroundSize: 'contain',
 					minWidth: 550,
+					paddingBottom: 72,
 				}}
 			>
 				{user ? (
@@ -61,14 +62,14 @@ export default function CellInfoComponent({
 					/>
 				) : (
 					<>
-						<Typography variant='cell_id'>№{cellId}</Typography>
+						<Typography style={{position: "absolute", top: 250, left: 50}} variant='cell_id'>№{cellId}</Typography>
 						<CellComponent
 							data={cellData}
 							leader={leader}
 							followers={followers}
 							onUserClick={handleUserClick}
 						/>
-						<Typography variant='cell_id'>
+						<Typography style={{position: "absolute", top: 280, left: 50}} variant='cell_id'>
 							{cellData.cellLevel.level.slice(0, 1)} - #{cellData.id}
 						</Typography>
 					</>

@@ -31,8 +31,8 @@ export default function Socials({ width, height }) {
 					justifyContent: 'center',
 				}}
 			>
-				{socials.map((item, index) => (
-					<Link key={index} href={item.url} target='_blank'>
+				{socials.map((item) => (
+					<Link key={item.url} href={item.url} target='_blank'>
 						<Image src={item.img.src} width={width} height={height} />
 					</Link>
 				))}

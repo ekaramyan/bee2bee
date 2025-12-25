@@ -12,18 +12,20 @@ export default function Leader({ style, onClick, avatar, isAllReturnPaid }) {
 			style={{
 				...style,
 				background: `url(${avatarBg.src}) no-repeat center / cover`,
-				width: isMobile ? '100px' : '140px',
+				width: isMobile ? '100px' : '148px',
 				height: isMobile ? '116px' : '156px',
 				cursor: 'pointer',
-				position: 'relative',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
 			}}
 		>
 			<UserAvatar
 				avatarUrl={avatar}
-				width={isMobile ? 90 : 126}
-				height={isMobile ? 104 : 143}
+				width={isMobile ? 90 : 132}
+				height={isMobile ? 104 : 139}
 				isLeader={true}
-				style={{}}
+				style={{alignSelf: "center", justifySelf: "center", transform: "translateY(3%)"}}
 			/>
 			{isAllReturnPaid && (
 				<div

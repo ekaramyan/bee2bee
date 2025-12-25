@@ -116,23 +116,24 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 				<div
 					style={{
 						position: 'relative',
-						width: '174px',
-						height: '204px',
+						width: '190px',
+						height: '198px',
 						backgroundImage: `url(${avatarBg.src})`,
 						zIndex: 2,
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
 						display: 'flex',
-						alignItems: 'center',
+						alignItems: 'end',
+						paddingBottom: 7,
 						justifyContent: 'center',
 					}}
 				>
 					<UserAvatar
 						previewImage={previewImage}
 						avatarUrl='/users/me/photo'
-						width={158}
-						height={184}
+						width={164}
+						height={172}
 						isClickable={true}
 						clickUrl=''
 					/>
@@ -193,7 +194,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 					}}
 				>
 					<Typography variant='h6'>
-						{data.firstName} {data.lastName}
+						{data?.firstName} {data?.lastName}
 					</Typography>
 					{/* <Box
 						style={{
@@ -435,7 +436,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										width: '100%',
 										alignItems: 'center',
 										whiteSpace: 'nowrap',
-										color: '#1B170F',
+										color: '#FFFFFF',
 										fontFamily: 'Noto Sans',
 										fontSize: 20,
 										fontWeight: 400,
@@ -517,7 +518,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 										width: '100%',
 										alignItems: 'center',
 										whiteSpace: isMobile ? 'wrap' : 'nowrap',
-										color: '#1B170F',
+										color: '#FFFFFF',
 										fontFamily: 'Noto Sans',
 										fontSize: 20,
 										fontWeight: 400,
@@ -580,7 +581,6 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									variant='contained'
 									onClick={onResetClick}
 									style={{
-										background: '#FF6B00',
 										width: isMobile ? '100%' : '50%',
 									}}
 								>
@@ -601,7 +601,7 @@ export default function EditAccount({ onChangeClick, onResetClick, data }) {
 									onClick={onSaveClick}
 									type='submit'
 									style={{
-										background: '#A5560F',
+										background: '#63b6bb',
 										width: isMobile ? '100%' : '50%',
 									}}
 								>

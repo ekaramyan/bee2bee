@@ -79,10 +79,10 @@ const Faq = () => {
 									sx={{
 										borderRadius: 3,
 										backgroundColor:
-											expanded === `panel${index}` ? '#A5560F' : '#E06B00',
+											expanded === `panel${index}` ? '#63b6bb' : '#80f7ff',
 										color: 'common.white',
 										':hover': {
-											backgroundColor: '#A5560F',
+											backgroundColor: '#63b6bb',
 										},
 									}}
 									expandIcon={<ExpandMoreIcon sx={{ color: 'common.white' }} />}
@@ -94,10 +94,10 @@ const Faq = () => {
 								<AccordionDetails
 									sx={{
 										border: 'solid',
-										borderColor: '#A5560F',
+										borderColor: '#63b6bb',
 										borderWidth: '4px',
 										borderRadius: 3,
-										backgroundColor: '#E06B00',
+										backgroundColor: '#80f7ff',
 										transform: 'translateY(5px)',
 										p: 2,
 									}}

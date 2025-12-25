@@ -29,7 +29,7 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
-import { Fireworks } from '@fireworks-js/react'
+import { Fireworks } from '@fireworks-js/react';
 
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
@@ -154,7 +154,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						0 0 100px 100px rgba(0, 0, 0, 0.25)
 						0 0 150px 150px rgba(0, 0, 0, 0.2)
 						0 0 200px 200px rgba(0, 0, 0, 0.15)
-					`,
+					`
 				}}
 				className='ScrollbarWhite'
 			>

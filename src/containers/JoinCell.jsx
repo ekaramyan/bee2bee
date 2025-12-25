@@ -81,19 +81,20 @@ export default function JoinCell() {
 				minHeight: 760,
 				maxHeight: isMobile ? '80dvh' : 'none',
 				overflow: isMobile ? 'auto' : 'hidden',
+				alignItems: isMobile ? "center" : ""
 			}}
 		>
-			<Grid
+			<div
 				style={{
-					width: '100%',
+					width: isMobile ? '100%' : "134%",
 					height: isMobile ? 'auto' : '100%',
-					display: 'flex',
-					alignItems: 'center',
-					flexWrap: 'wrap',
-					justifyContent: 'center',
-					alignContent: 'center',
 					gap: isMobile ? 10 : 0,
 					userSelect: 'none',
+					display: 'grid',
+					gridTemplateColumns: isMobile ? "" : 'repeat(3, 1fr)',
+					gridTemplateRows: isMobile ? 'repeat(3, 1fr)' : "",
+					gap: 10,
+					maxWidth: isMobile && 420,
 				}}
 			>
 				{showConfetti && !confettiShown && (
@@ -111,6 +112,7 @@ export default function JoinCell() {
 					</div>
 				)}
 				{data?.map((cell, index) => (
+					index >= 3 ? null :
 					<Cell
 						key={cell?.id}
 						bee={cells[index].bee}
@@ -127,7 +129,7 @@ export default function JoinCell() {
 						}}
 					/>
 				))}
-			</Grid>
+			</div>
 		</Wrapper>
 	)
 }

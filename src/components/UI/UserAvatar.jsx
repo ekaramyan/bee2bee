@@ -12,7 +12,7 @@ import { CircularProgress, Box } from '@mui/material'
 export default function UserAvatar({
 	previewImage,
 	avatarUrl = null,
-	width = 157,
+	width = 158,
 	height = 181,
 	isLeader = false,
 	isClickable = false,
@@ -69,10 +69,10 @@ export default function UserAvatar({
 	const avatarStyle = {
 		position: 'relative',
 		overflow: 'hidden',
-		clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-		transform: isLeader
+		clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+		/* transform: isLeader
 			? 'translateY(9px) translateX(10px)'
-			: 'translateY(-1px)',
+			: 'translateY(-1px)', */
 		objectFit: 'cover',
 		...style,
 	}
@@ -83,7 +83,8 @@ export default function UserAvatar({
 				<Box
 					style={{
 						display: 'flex',
-						alignItems: 'center',
+						paddingBottom: 8,
+						alignItems: "bottom",
 						justifyContent: 'center',
 						height: '100%',
 					}}
@@ -99,6 +100,7 @@ export default function UserAvatar({
 					height={isClickable ? height : height - 5}
 					loading='lazy'
 					style={avatarStyle}
+					alt=""
 				/>
 			)}
 		</>
@@ -115,7 +117,7 @@ export default function UserAvatar({
 					height: `${height}px`,
 					overflow: 'hidden',
 					clipPath:
-						'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+						'polygon(50% 0%, 100% 100%, 0% 100%)',
 				}}
 			>
 				{avatarImage}

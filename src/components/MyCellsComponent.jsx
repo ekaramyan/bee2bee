@@ -54,7 +54,7 @@ export default function MyCellsComponent({ isOpen }) {
 					variant='my_cells_button'
 					onClick={() => setIsFollower(true)}
 					style={{
-						color: isFollower && '#E06B00',
+						color: isFollower && '#80f7ff',
 						textDecoration: isFollower && 'underline',
 					}}
 				>
@@ -64,7 +64,7 @@ export default function MyCellsComponent({ isOpen }) {
 					variant='my_cells_button'
 					onClick={() => setIsFollower(false)}
 					style={{
-						color: !isFollower && '#E06B00',
+						color: !isFollower && '#80f7ff',
 						textDecoration: !isFollower && 'underline',
 					}}
 				>

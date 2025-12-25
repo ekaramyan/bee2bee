@@ -100,8 +100,11 @@ export default function OneCell({ data, joinList }) {
 		onRefreshClick()
 	}, [])
 
+	console.log("pizda", joinList);
+
 	useEffect(() => {
-		if (joinList.data) {
+		console.log("pizda", joinList);
+		if (joinList && joinList.data) {
 			setToJoin(joinList?.data[0]?.id)
 		}
 	}, [])
@@ -126,6 +129,7 @@ export default function OneCell({ data, joinList }) {
 	// 	}
 	// 	fetchDataAsync()
 	// }, [])
+
 
 	const level = data[0]?.cellLevel
 	const canJoin = data
@@ -199,13 +203,14 @@ export default function OneCell({ data, joinList }) {
 						? `${data[0]?.cellLevel?.level} ${data[0]?.cellLevel?.price}$`
 						: 'Join the cell'
 				}
-				style={{ minHeight: 800, gap: 10 }}
+				style={{ minHeight: 800, gap: 10, position: 'relative' }}
 			>
 				{id && joinList ? (
 					isMobile ? (
 						<MobileOneCell
 							data={level}
-							disabled={!toJoin || canJoin === false}
+							// disabled={!toJoin || canJoin === false}
+							disabled={false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
 							waitingData={waitingData}
@@ -216,7 +221,8 @@ export default function OneCell({ data, joinList }) {
 					) : (
 						<DesktopOneCell
 							data={level}
-							disabled={!toJoin || canJoin === false}
+							// disabled={!toJoin || canJoin === false}
+							disabled={false}
 							leaderActiveData={leaderActiveData}
 							followerActiveData={followerActiveData}
 							waitingData={waitingData}

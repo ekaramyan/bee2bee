@@ -31,9 +31,9 @@ const ConfirmationModal = ({
 			}}
 			PaperProps={{
 				style: {
-					background: '#ec7f1b',
+					background: `linear-gradient(90deg, #E06B00, #C03AFF, #80F7FF)`,
 					borderRadius: 74,
-					border: '10px solid #A5560F',
+					border: '5px solid #b55bff',
 					overflow: 'hidden',
 					padding: 15,
 					aspectRatio: isMobile ? 'unset' : '1.1/1',

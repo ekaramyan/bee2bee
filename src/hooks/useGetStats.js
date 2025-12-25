@@ -23,7 +23,6 @@ const useGetStats = () => {
 					Authorization: `Bearer ${token}`,
 				},
 			})
-			console.log(response)
 			if (response.status === 200) {
 				setSuccess(response.isSuccess)
 				setData(response.data)

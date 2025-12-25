@@ -6,7 +6,6 @@ import Image from 'next/image'
 const Logo = dynamic(() => import('./UI/Logo'))
 const UserMenu = dynamic(() => import('./UI/UserMenu'))
 const BurgerMenu = dynamic(() => import('./UI/BurgerMenu'))
-import CelebrationTimer from './UI/CelebrationTimer'
 import en from '@/assets/img/en.png'
 import ge from '@/assets/img/ge.png'
 import ru from '@/assets/img/ru.png'
@@ -22,14 +21,17 @@ export default function Header({ loggedIn }) {
 	return (
 		<header
 			style={{
+				marginTop: 12,
 				width: '100%',
-				background: '#EAEEE8',
+				background: 'linear-gradient(90deg, #E06B0050, #C03AFF50, #80F7FF50)', // Градиент фона
+				border: 'solid 2px #b55bff',
+				boxSizing: 'border-box',
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'space-between',
 				gap: 30,
 				minHeight: 80,
-				borderRadius: '0 0 20px 20px',
+				borderRadius: 20,
 				userSelect: 'none',
 				zIndex: 1,
 			}}
@@ -65,9 +67,6 @@ export default function Header({ loggedIn }) {
 							width: '100%',
 						}}
 					>
-						<Box style={{ display: 'flex', alignItems: 'center', gap: 25 }}>
-							<CelebrationTimer />
-						</Box>
 						{loggedIn ? (
 							<UserMenu />
 						) : (
