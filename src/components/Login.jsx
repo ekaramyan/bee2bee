@@ -27,10 +27,10 @@ export default function Login({ toggleOpen, isLoginOpen }) {
 					onClick={toggleOpen}
 					style={{
 						top: '20%',
-						color: isLoginOpen ? '#E06B00' : '#1B170F',
+						color: isLoginOpen ? '#80F7FF' : '#1B170F',
 						textShadow: isLoginOpen
 							? '1px 1px 2px #1B170F'
-							: '1px 1px 2px #E06B00',
+							: '1px 1px 2px #80F7FF',
 					}}
 				>
 					Members Login

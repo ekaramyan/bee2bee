@@ -28,9 +28,9 @@ export default function MobileOneCell({
 					alignItems: 'center',
 				}}
 			>
-				<Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
+				{/* <Button onClick={onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={35} height={35} alt='refresh' />
-				</Button>{' '}
+				</Button>{' '} */}
 				{Number(router.query.cellLevelId) !== 3 && (
 					<Button
 						variant='outlined'

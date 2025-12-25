@@ -25,7 +25,7 @@ export default function DataBox({
 			<Box
 				className='ScrollbarWhite'
 				style={{
-					background: isMobile ? '#E06B00' : '#FFFFFF1A',
+					background: '#FFFFFF1A',
 					minHeight: 120,
 					maxHeight: 120,
 					width: '100%',

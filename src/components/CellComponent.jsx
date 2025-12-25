@@ -8,24 +8,18 @@ const Fw = styled(Follower)`
 	justify-self: center;
 
 	&:nth-of-type(1) {
-		align-self: end;
-		justify-self: end;
-		grid-column: 1 / 2;
-		grid-row: 1 / 2;
-		transform: translateX(50%);
+		grid-area: a;
+		transform: translate(0, -36%);
 	}
 
 	&:nth-of-type(2) {
-		align-self: end;
-		justify-self: start;
-		grid-column: 3 / 4;
-		grid-row: 1 / 2;
-		transform: translateX(-50%);
+		grid-area: b;
+		transform: translate(-16%, -3%);
 	}
 
 	&:nth-of-type(3) {
-		grid-column: 1 / 2;
-		grid-row: 2 / 3;
+		grid-area: c;
+		transform: translate(16%, -3%);
 	}
 
 	&:nth-of-type(4) {
@@ -56,10 +50,10 @@ export default function CellComponent({
 	followers,
 	onUserClick,
 }) {
-	const trimmedFollowers = followers.slice(0, 6)
+	const trimmedFollowers = followers.slice(0, 3)
 	const paddedFollowers = [
-		...trimmedFollowers.slice(0, 6),
-		...Array(6 - trimmedFollowers.length).fill({}),
+		...trimmedFollowers.slice(0, 3),
+		...Array(3 - trimmedFollowers.length).fill({}),
 	]
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
 	const isAllReturnPaid = data?.isAllReturnPaid
@@ -70,13 +64,19 @@ export default function CellComponent({
 					display: 'grid',
 					gridTemplateColumns: 'repeat(3, 1fr)',
 					gridTemplateRows: 'repeat(3, 0.7fr)',
+					gridTemplateAreas: `
+			'. a .'
+			'. L .'
+			'b . c'
+			`,
 					gap: 10,
 					maxWidth: isMobile && 420,
+					transform: "translateY(12%)"
 				}}
 			>
 				{paddedFollowers
 					.sort((a, b) => a.id - b.id)
-					.map(follower => (
+					.map((follower, index) => (
 						<Fw
 							key={follower.id}
 							isAccepted={follower?.isAccepted}
@@ -96,7 +96,7 @@ export default function CellComponent({
 						/>
 					))}
 				<Leader
-					style={{ gridColumn: '2 / 3', gridRow: '2 / 3' }}
+					style={{ gridArea: "L" }}
 					onClick={() => onUserClick(leader)}
 					avatar={leader.avatarUrl || ''}
 					isAllReturnPaid={!isAllReturnPaid}

@@ -17,17 +17,20 @@ export default function Consultant({ data }) {
 			}}
 		>
 			<Box
+				display='flex'
+				justifyContent='center'
+				alignItems='center'
 				style={{
 					background: `url(${avatarBg.src}) no-repeat center / cover`,
-					width: '140px',
+					width: '150px',
 					height: '158px',
-				}}
-			>
+				}}			>
 				<UserAvatar
 					avatarUrl={data?.avatarUrl}
-					width={125}
-					height={145}
+					width={133}
+					height={141}
 					isLeader={true}
+					style={{ transform: 'translateY(3%)' }}
 				/>
 			</Box>
 			<Box style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>

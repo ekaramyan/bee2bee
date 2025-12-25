@@ -26,11 +26,11 @@ export default function MyCells({ toggleOpen, isLoginOpen }) {
 					onClick={toggleOpen}
 					style={{
 						top: '8%',
-						color: isLoginOpen ? '#E06B00' : '#1B170F',
+						color: isLoginOpen ? '#80F7FF' : '#1B170F',
 						transform: 'rotate(-90deg) translateY(49%) translateX(25%)',
 						textShadow: isLoginOpen
 							? '1px 1px 2px #1B170F'
-							: '1px 1px 2px #E06B00',
+							: '1px 1px 2px #80F7FF',
 					}}
 				>
 					My Cells
