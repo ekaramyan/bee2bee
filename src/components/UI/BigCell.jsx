@@ -25,17 +25,16 @@ export default function BigCell({ children, ...props }) {
 	return (
 		<Box style={combinedStyle}>
 			{!props.activeUser && (
-				<Button onClick={props.onRefreshClick} style={{ cursor: 'pointer', position: "absolute", top: 320, left: 50 }}>
+				<Button onClick={props.onRefreshClick} style={{ cursor: 'pointer' }}>
 					<Image src={refresh.src} width={31} height={25} />
 				</Button>
 			)}
+			{children}
 			<Button
 				onClick={props.onCloseClick}
 				style={{
-					top: 200,
-					left: 50,
-					position: "absolute",
 					cursor: 'pointer',
+					width: '40%',
 					color: '#fff',
 					textAlign: 'center',
 					fontFamily: 'Noto Sans',
@@ -43,10 +42,9 @@ export default function BigCell({ children, ...props }) {
 					fontWeight: 400,
 					textTransform: 'uppercase',
 				}}
-				>
-				<Image src={close.src} width={25} height={25} alt=""/>
+			>
+				<Image src={close.src} width={25} height={25} />
 			</Button>
-			{children}
 		</Box>
 	)
 }

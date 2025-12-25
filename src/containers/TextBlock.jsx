@@ -1,7 +1,6 @@
 import Wrapper from '@/components/UI/Wrapper'
 import { Box, Typography } from '@mui/material'
 
-
 export default function Rules({ header, text }) {
 	return (
 		<Box
@@ -27,14 +26,14 @@ export default function Rules({ header, text }) {
 							width: '10px',
 						},
 						'&::-webkit-scrollbar-track': {
-							backgroundColor: '#80f7ff',
+							backgroundColor: '#E06B00',
 							boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
 							webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
 						},
 						'&::-webkit-scrollbar-thumb': {
 							backgroundColor: '#000000',
 						},
-						scrollbarColor: '#000000 #80f7ff',
+						scrollbarColor: '#000000 #E06B00',
 					}}
 				>
 					<Typography style={{ overflow: 'auto' }}>{text}</Typography>

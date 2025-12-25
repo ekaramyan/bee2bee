@@ -63,18 +63,18 @@ export default function DesktopOneCell({
 				onRefreshClick={onRefreshClick}
 				style={{
 					gap: 10,
-					justifyContent: 'end',
+					justifyContent: 'center',
 					backgroundSize: 'contain',
 					minWidth: 550,
 				}}
 			>
-				{/* <Image
+				<Image
 					src={cells[id - 1].bee}
 					alt='cell'
 					width={42}
 					height={60}
 					style={{ layout: 'fill' }}
-				/> */}
+				/>
 
 				{Number(router.query.cellLevelId) !== 3 && (
 					<JoinButton
@@ -90,13 +90,17 @@ export default function DesktopOneCell({
 					style={{
 						display: 'grid',
 						flexDirection: 'column',
-						gridTemplateColumns: '1fr',
-						gridTemplateRows: 'repeat(2, 1fr)',
+						gridTemplateColumns: '1fr 1fr',
+						gridTemplateRows: '1fr',
+						gridTemplateAreas: `
+			'follower leader'
+			'waiting waiting'
+			`,
 						columnGap: 10,
 						rowGap: 3,
 						alignItems: 'center',
 						justifyContent: 'center',
-						width: '22%',
+						width: '46%',
 						height: '100%',
 						maxHeight: 300,
 					}}
@@ -104,19 +108,21 @@ export default function DesktopOneCell({
 					<DataBox
 						title='follower'
 						data={followerActiveData}
+						style={{ gridArea: 'follower' }}
 					/>
 					<DataBox
 						title='leader'
 						data={leaderActiveData}
+						style={{ gridArea: 'leader' }}
 						showQueue={true}
 					/>
-					{/* <DataBox
+					<DataBox
 						title='waiting'
 						data={waitingData}
 						style={{ gridArea: 'waiting' }}
 						isNotClickable={true}
 						showQueue={true}
-					/> */}
+					/>
 				</Grid>
 				<Typography variant='level_big'>
 					{data?.level} {data?.price}$

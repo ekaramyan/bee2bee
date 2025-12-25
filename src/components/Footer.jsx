@@ -1,28 +1,9 @@
-import { useMediaQuery, LinearProgress, styled } from '@mui/material'
+import { useMediaQuery, LinearProgress } from '@mui/material'
 
 import { useState, useEffect, useMemo } from 'react'
 import Socials from './UI/Socials'
 import StatsBar from './UI/StatsBar'
 import useGetStats from '@/hooks/useGetStats'
-
-const FooterEl = styled('footer')(({ isMobile }) => ({
-	width: '100%',
-	minHeight: '80px',
-	marginBottom: '12px',
-	borderRadius: '20px',
-	padding: '16px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: isMobile ? 'center' : 'space-between',
-	alignSelf: 'end',
-	justifySelf: 'end',
-	userSelect: 'none',
-	overflow: 'hidden',
-	position: 'relative',
-	background: 'linear-gradient(90deg, #E06B0050, #C03AFF50, #80F7FF50)', // Градиент фона
-	border: 'solid 2px #b55bff',
-	boxSizing: 'border-box'
-}));
 
 export default function Footer() {
 	const [stats, setStats] = useState({})
@@ -50,11 +31,25 @@ export default function Footer() {
 	const statsBar = useMemo(() => <StatsBar stats={stats} />, [stats])
 
 	return (
-		<FooterEl isMobile={isMobile}>
+		<footer
+			style={{
+				width: '100%',
+				background: '#EAEEE8',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: isMobile ? 'center' : 'space-between',
+				alignSelf: 'end',
+				minHeight: 80,
+				borderRadius: '20px 20px 0px 0px',
+				padding: '0 20px',
+				justifySelf: 'end',
+				userSelect: 'none',
+			}}
+		>
 			{isMobile ? <div /> : loading ? <LinearProgress /> : statsBar}
 			<div>
 				<Socials width={isMobile ? 30 : 40} height={isMobile ? 30 : 40} />
 			</div>
-		</FooterEl>
+		</footer>
 	)
 }

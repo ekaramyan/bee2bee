@@ -20,7 +20,7 @@ export default function CellBox({ isActive, data, showQueue = false }) {
 			<Box
 				className='ScrollbarOrange'
 				style={{
-					background: '#fff4',
+					background: '#fff',
 					height: '150px',
 					width: '100%',
 					minWidth: 150,

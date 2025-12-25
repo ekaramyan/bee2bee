@@ -38,7 +38,7 @@ export default function RealCell({ data }) {
 									height: isMobile ? 90 : 115,
 									padding: '20%',
 									display: 'flex',
-									alignItems: 'end',
+									alignItems: 'center',
 									justifyContent: 'center',
 									textAlign: 'center',
 								}}

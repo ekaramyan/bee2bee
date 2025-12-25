@@ -17,13 +17,12 @@ export default function DropdownLabel({ name, title }) {
 		fontWeight: 400,
 		textTransform: 'uppercase',
 		borderRadius: '5px',
-		border: '1px solid #80f7ff',
+		border: '1px solid #F9AA13',
 		background: '#EAEEE8',
 		cursor: 'pointer',
 		transition: '.3s',
 		'&:hover': {
-			border: '1px solid #80f7ff',
-			background: "#dAdEd8"
+			border: '1px solid #E06B00',
 		},
 		'&:disabled': {
 			cursor: 'not-allowed',
@@ -32,7 +31,7 @@ export default function DropdownLabel({ name, title }) {
 			background: 'rgba(217, 217, 217, 0.2)',
 		},
 		p: {
-			color: '#008000',
+			color: '#E06B00',
 			fontSize: 16,
 			fontWeight: 700,
 		},

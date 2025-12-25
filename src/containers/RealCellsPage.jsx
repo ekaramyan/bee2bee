@@ -18,7 +18,7 @@ export default function RealCells() {
 			const dataForLevel = await getCells('real_cells', { levelId: i })
 			tempData.push(dataForLevel?.data || [])
 		}
-		setData([tempData])
+		setData(tempData)
 	}
 	const onRefreshClick = () => {
 		setData(null)

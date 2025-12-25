@@ -28,16 +28,16 @@ export default function Follower({
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center',
 				backgroundSize: 'contain',
-				width: isMobile ? '70px' : '134px',
-				height: isMobile ? '70px' : '141px',
+				width: isMobile ? '70px' : '100px',
+				height: isMobile ? '70px' : '100px',
 				cursor: user ? 'pointer' : 'default',
 			}}
 		>
 			<UserAvatar
 				avatarUrl={avatar}
-				width={isMobile ? 60 : 119}
-				height={isMobile ? 65 : 127}
-				style={{ position: 'relative', transform: 'translateY(3%)' }}
+				width={isMobile ? 60 : 83}
+				height={isMobile ? 65 : 94}
+				style={{ position: 'relative', transform: 'translateY(0%)' }}
 			/>
 			{isReturn && (
 				<Image

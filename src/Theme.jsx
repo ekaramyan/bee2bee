@@ -10,12 +10,12 @@ const theme = createTheme({
 		MuiCheckbox: {
 			styleOverrides: {
 				root: {
-					color: '#80f7ff',
+					color: '#e06b00',
 					'&:hover': {
 						backgroundColor: 'transparent',
 					},
 					'&.Mui-checked': {
-						color: '#80f7ff',
+						color: '#e06b00',
 					},
 				},
 			},
@@ -35,9 +35,9 @@ const theme = createTheme({
 		MuiInputLabel: {
 			styleOverrides: {
 				root: {
-					color: '#ceb2f2',
+					color: 'rgba(0, 0, 0, 0.7)',
 					'&.Mui-focused': {
-						color: '#80f7ff',
+						color: '#e06b00',
 					},
 				},
 			},
@@ -48,7 +48,7 @@ const theme = createTheme({
 					fontFamily: 'Noto Sans',
 					fontSize: 16,
 					fontWeight: 500,
-					color: '#ffffff',
+					color: '#1B170F',
 				},
 			},
 		},
@@ -56,13 +56,13 @@ const theme = createTheme({
 			styleOverrides: {
 				underline: {
 					'&:before': {
-						borderBottom: '2px solid #ffffff',
+						borderBottom: '2px solid #c0c0c0c',
 					},
 					'&:hover:not(.Mui-disabled):before': {
-						borderBottom: '2px solid rgb(105, 204, 211)',
+						borderBottom: '2px solid #A5560F',
 					},
 					'&:after': {
-						borderBottom: '2px solid #80f7ff',
+						borderBottom: '2px solid #e06b00',
 					},
 				},
 			},
@@ -71,7 +71,7 @@ const theme = createTheme({
 
 	palette: {
 		primary: {
-			main: '#80f7ff',
+			main: '#FF5733',
 			contrastText: '#FFF',
 		},
 		secondary: {
@@ -108,18 +108,19 @@ const theme = createTheme({
 		body1: {
 			fontFamily: 'Noto Sans',
 			fontSize: 16,
-			color: '#FFFFFF',
+			color: '#8C7F77',
 			fontWeight: 300,
 		},
 		main_head: {
 			fontSize: 36,
-			color: '#63b6bb',
+			color: '#A5560F',
 			fontWeight: 400,
 			textShadow: '1px 1px 1px rgba(0, 0, 0, 0.25)',
 			textTransform: 'uppercase',
 		},
 		main_bottom_highlight: {
-			color: '#FFFFFF',
+			color: '#E06B00',
+			textShadow: ' 1px 1px 1px #A5560F',
 			fontSize: 56,
 			fontWeight: 900,
 			textTransform: 'uppercase',
@@ -128,8 +129,9 @@ const theme = createTheme({
 			},
 		},
 		main_bottom: {
-			color: '#80f7ff',
-			fontSize: 72,
+			color: '#1B170F',
+			textShadow: ' 1px 1px 1px #E06B00',
+			fontSize: 76,
 			fontWeight: 700,
 			letterSpacing: '-0.7px',
 			textTransform: 'uppercase',
@@ -145,7 +147,7 @@ const theme = createTheme({
 			whiteSpace: 'nowrap',
 			width: '10%',
 			height: '100%',
-			fontSize: 40,
+			fontSize: 48,
 			fontWeight: 900,
 			textTransform: 'uppercase',
 			cursor: 'pointer',
@@ -161,13 +163,13 @@ const theme = createTheme({
 			fontWeight: 500,
 			textTransform: 'uppercase',
 			active: {
-				color: '#75e1e8',
+				color: '#E06B00',
 				textDecoration: 'underline',
 			},
 		},
 		header_buttons: {
 			cursor: 'pointer',
-			color: '#ffffff',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 16,
 			fontWeight: 400,
@@ -178,7 +180,7 @@ const theme = createTheme({
 			},
 		},
 		block_header: {
-			color: '#ffffff',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 42,
 			fontWeight: 700,
@@ -195,7 +197,7 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 		},
 		level_small: {
-			color: '#ce69ff',
+			color: '#FFF',
 			textAlign: 'center',
 			fontFamily: 'Noto Sans',
 			fontSize: 30,
@@ -214,21 +216,21 @@ const theme = createTheme({
 		},
 		my_cells_button: {
 			cursor: 'pointer',
-			color: '#ffffff',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 32,
 			fontWeight: 700,
 			textDecoration: 'none',
 			textTransform: 'uppercase',
 			active: {
-				color: '#80f7ff',
+				color: '#E06B00',
 			},
 			'@media(max-width:1300px)': {
 				fontSize: 24,
 			},
 		},
 		h6: {
-			color: '#FFFFFF',
+			color: '#1B170F',
 			fontFamily: ' Noto Sans',
 			fontSize: 36,
 			fontWeight: 700,
@@ -245,9 +247,9 @@ const theme = createTheme({
 			},
 		},
 		user_key: {
-			color: '#FFFFFF',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
-			fontSize: 20,	
+			fontSize: 20,
 			fontWeight: 400,
 		},
 		user_item: {
@@ -257,7 +259,7 @@ const theme = createTheme({
 			fontWeight: 700,
 		},
 		account_item: {
-			color: '#119A48',
+			color: '#E06B00',
 			fontFamily: 'Noto Sans',
 			fontSize: 20,
 			fontWeight: 700,
@@ -282,7 +284,7 @@ const theme = createTheme({
 			},
 		},
 		cell_user_subtext: {
-			color: '#1b170f',
+			color: '#fff',
 			fontFamily: 'Noto Sans',
 			fontSize: 16,
 			fontWeight: 400,
@@ -304,7 +306,7 @@ const theme = createTheme({
 			lineHeight: 1,
 		},
 		date: {
-			color: '#FFFFFF',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 18,
 			fontWeight: 400,
@@ -332,14 +334,14 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 		},
 		level_dark: {
-			color: '#FFFFFF',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 24,
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
 		my_cells_titles: {
-			color: '#fff',
+			color: '#1B170F',
 			fontFamily: 'Noto Sans',
 			fontSize: 20,
 			fontWeight: 700,
@@ -347,14 +349,14 @@ const theme = createTheme({
 		},
 		real_cells_queue: {
 			textAlign: 'center',
-			color: '#1b170f',
+			color: '#FFF',
 			fontFamily: 'Noto Sans',
 			fontSize: 14,
 			fontWeight: 700,
 			textTransform: 'uppercase',
 		},
 		consultant_name: {
-			color: '#80f7ff',
+			color: '#E06B00',
 			fontFamily: 'Noto Sans',
 			fontSize: 24,
 			fontWeight: 700,
@@ -390,7 +392,7 @@ const theme = createTheme({
 			textTransform: 'uppercase',
 		},
 		join_cells_titles_mobile: {
-			color: '#63b6bb',
+			color: '#A5560F',
 			fontFamily: 'Noto Sans',
 			fontSize: 16,
 			fontWeight: 700,
