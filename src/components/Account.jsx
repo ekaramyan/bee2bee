@@ -29,16 +29,15 @@ export default function Account({ onEditClick, data, lottery }) {
 				<div
 					style={{
 						position: 'relative',
-						width: '190px',
-						height: '198px',
+						width: '174px',
+						height: '204px',
 						backgroundImage: `url(${avatarBg.src})`,
 						zIndex: 2,
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
 						display: 'flex',
-						alignItems: 'end',
-						paddingBottom: 7,
+						alignItems: 'center',
 						justifyContent: 'center',
 					}}
 				>
@@ -47,8 +46,8 @@ export default function Account({ onEditClick, data, lottery }) {
 						isClickable={true}
 						clickUrl='/account-settings'
 						avatarUrl='/users/me/photo'
-						width={164}
-						height={172}
+						width={158}
+						height={184}
 					/>
 				</div>
 				<Box
@@ -118,7 +117,7 @@ export default function Account({ onEditClick, data, lottery }) {
 				</Grid> */}
 				<AuthButton
 					variant='contained'
-					style={{ background: '#63b6bb' }}
+					style={{ background: '#A5560F' }}
 					onClick={onEditClick}
 				>
 					Edit Account

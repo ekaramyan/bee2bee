@@ -40,9 +40,7 @@ const Wrapper = ({ children, style, ...props }) => {
 		height: isMobile ? '100%' : '80dvh',
 		maxHeight: isMobile ? 'unset' : '100%',
 		minHeight: isMobile ? 'unset' : '1200px',
-		background: 'linear-gradient(90deg, #E06B0050, #C03AFF50, #80F7FF50)', // Градиент фона
-		border: 'solid 2px #b55bff',
-		boxSizing: 'border-box',
+		background: '#EAEEE8',
 		borderRadius: 20,
 		overflow: 'hidden',
 		padding: isMobile ? '10px 30px 20px' : '25px 10px 20px 30px',
@@ -51,13 +49,11 @@ const Wrapper = ({ children, style, ...props }) => {
 		gap: 30,
 		...style,
 	}
-	
 	return (
 		<Box style={styles} {...props} className='ScrollbarDefault'>
-			<Box style={{width: "100%"}}>
+			<Box>
 				<Box
 					sx={{
-						width: "100%",
 						display: 'flex',
 						alignItems: 'center',
 						gap: 2,
@@ -77,9 +73,8 @@ const Wrapper = ({ children, style, ...props }) => {
 				<div
 					style={{
 						transform: 'translateX(-20px)',
-						borderBottom: '3px solid #80f7ff',
+						borderBottom: '1px solid #E06B00',
 						width: 100,
-						marginLeft: 30
 					}}
 				/>
 			</Box>

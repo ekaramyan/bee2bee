@@ -65,15 +65,14 @@ export default function MainPage() {
 				</Typography>
 				<Image
 					src={main.src}
-					width={isMobile ? 245 : 672}
-					height={isMobile ? 175 : 482}
+					width={isMobile ? 245 : 600}
+					height={isMobile ? 218 : 530}
 				/>
 				<div
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
 						alignSelf: isMobile ? 'center' : 'end',
-						marginRight: isMobile ? '0' : '-35%',
 						marginTop: isMobile ? '0' : '-14%',
 						textAlign: isMobile ? 'center' : 'unset',
 					}}

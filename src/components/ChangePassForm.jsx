@@ -164,7 +164,7 @@ export default function ChangePassForm({
 							}}
 						>
 							<Typography variant='forgot'>Forgot Your Password?</Typography>
-							<Link href='/auth/reset' style={{ color: '#63b6bb' }}>
+							<Link href='/auth/reset' style={{ color: '#E06B00' }}>
 								Reset It Here
 							</Link>
 						</Grid>

@@ -29,7 +29,6 @@ import snowflake2 from '../../assets/img/snowflake2.png'
 import snowflake3 from '../../assets/img/snowflake3.png'
 import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
-import { Fireworks } from '@fireworks-js/react';
 
 const token = Cookies.get('access_token')
 const url = process.env.API_URL
@@ -42,7 +41,7 @@ const HolydayContainer = styled('div')`
 	right: 0;
 	z-index: 0;
 	overflow: hidden;
-	background: #00000050;
+	background: #00000040;
 	width: 100%;
 	height: 100vh;
 `
@@ -55,10 +54,9 @@ const SnowfallContainer = styled('div')`
 	right: 0;
 	z-index: 0;
 	overflow: hidden;
-	background: #00000050;
+	background: #00000040;
 	width: 100%;
 	height: 100vh;
-	filter: blur(500px);
 `
 
 const IndexWrapper = ({ children, ...props }) => {
@@ -209,7 +207,7 @@ const IndexWrapper = ({ children, ...props }) => {
 							</AuthButton>
 							<AuthButton
 								onClick={() => router.push('/login')}
-								style={{ background: '#63b6bb', width: '50%' }}
+								style={{ background: '#A5560F', width: '50%' }}
 							>
 								Log in
 							</AuthButton>

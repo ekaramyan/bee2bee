@@ -4,16 +4,16 @@ import { styled } from '@mui/system'
 const StyledButton = styled(Button)`
 	&& {
 		cursor: pointer;
-		color: #1b170f;
+		color: #eaeee8;
 		font-family: Noto Sans;
 		font-size: 20px;
 		font-weight: 400;
 		text-transform: uppercase;
 		border-radius: 5px;
-		background: #80f7ff;
+		background: #e06b00;
 		transition: 0.3s;
 		&:hover {
-			background: #75e1e8;
+			opacity: 0.8;
 		}
 		@media (max-width: 1300px) {
 			font-size: 18px;

@@ -134,28 +134,28 @@ export default function UserMenu() {
 										gap: 5,
 										alignItems: 'center',
 										...(activeTab === tab && {
-											color: '#80F7FF',
+											color: '#E06B00',
 											textDecoration: 'underline',
 										}),
 									}}
 								>
 									{tab === 'cells' && (
 										<DashboardIcon
-											fill={activeTab === tab ? '#80F7FF' : '#ffffff'}
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
 										/>
 									)}
 									{tab === 'account' && (
 										<AccountIcon
-											fill={activeTab === tab ? '#80F7FF' : '#ffffff'}
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
 										/>
 									)}
 									{tab === 'account-settings' && (
 										<SettingsIcon
-											fill={activeTab === tab ? '#80F7FF' : '#ffffff'}
+											fill={activeTab === tab ? '#E06B00' : '#1B170F'}
 										/>
 									)}
 									{tab === 'faq' && (
-										<FaqIcon fill={activeTab === tab ? '#80F7FF' : '#ffffff'} />
+										<FaqIcon fill={activeTab === tab ? '#E06B00' : '#1B170F'} />
 									)}
 									{tabNames[tab]}
 								</Typography>
@@ -163,11 +163,11 @@ export default function UserMenu() {
 						))}
 					</List>
 				)}
-				<Box style={{ display: 'flex', alignItems: 'center', gap: 10, color: "#ffffff" }}>
+				<Box style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 					<div
 						style={{
 							position: 'relative',
-							width: '54px',
+							width: '50px',
 							height: '56px',
 							backgroundImage: `url(${account.src})`,
 							zIndex: 0,
@@ -175,17 +175,17 @@ export default function UserMenu() {
 							backgroundPosition: 'center',
 							backgroundRepeat: 'no-repeat',
 							display: 'flex',
-							alignItems: 'end',
-							paddingBottom: 2,
+							alignItems: 'center',
 							justifyContent: 'center',
 						}}
 					>
 						<UserAvatar
 							previewImage={null}
-							width={47}
-							height={50}
+							width={44}
+							height={52}
 							isClickable={true}
 							avatarUrl='/users/me/photo'
+							style={{ transform: 'translateY(2%)' }}
 						/>
 					</div>
 					{!isMobile && (
@@ -199,7 +199,7 @@ export default function UserMenu() {
 					{isMobile ? (
 						<ButtonBase
 							onClick={onExitClick}
-							style={{ cursor: 'pointer', minWidth: 20, padding: 0, margin: 0, color: "#ffffff" }}
+							style={{ cursor: 'pointer', minWidth: 20, padding: 0, margin: 0 }}
 						>
 							<Image src={logout.src} width={18} height={18} />
 						</ButtonBase>
@@ -208,7 +208,7 @@ export default function UserMenu() {
 							<UserMenuDropdown options={options} />
 							<Button
 								onClick={onExitClick}
-								style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0, color: "#ffffff" }}
+								style={{ cursor: 'pointer', width: 20, padding: 0, margin: 0 }}
 							>
 								<Image src={logout.src} width={18} height={18} />
 							</Button>

@@ -18,11 +18,12 @@ export default function SideModal({ children, ...props }) {
 				width: '45%',
 				height: '100%',
 				background: props.isRight
-					? `url(${register.src}) no-repeat center / 100% auto`
-					: `url(${login.src}) no-repeat center / 100% auto`,
+					? `url(${register.src}) no-repeat center / cover`
+					: `url(${login.src}) no-repeat center / cover`,
 
 				transition: 'all 0.3s ease-in-out',
 			}}
+			{...props}
 		>
 			{children}
 		</div>

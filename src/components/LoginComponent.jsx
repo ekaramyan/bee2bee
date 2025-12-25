@@ -25,7 +25,7 @@ import Link from 'next/link'
 export default function LoginComponent() {
 	const captchaKey = process.env.CAPTCHA_KEY
 	const { login, loading, error, success } = useLogin()
-	const [captchaValue, setCaptchaValue] = useState(true)
+	const [captchaValue, setCaptchaValue] = useState(null)
 	const [err, setError] = useState(null)
 	const handleCaptchaChange = value => {
 		setCaptchaValue(value)
@@ -220,7 +220,7 @@ export default function LoginComponent() {
 				>
 					<Typography variant='forgot'>
 						Forgot Your Password?
-						<Link href='/auth/reset' style={{ color: '#63b6bb' }}>
+						<Link href='/auth/reset' style={{ color: '#E06B00' }}>
 							Reset It Here
 						</Link>
 					</Typography>

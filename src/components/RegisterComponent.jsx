@@ -190,7 +190,7 @@ export default function RegisterComponent() {
 		setShowConfirmPassword(prevShow => !prevShow)
 	}
 	const isMobile = useMediaQuery('@media(max-width:1300px)')
-	const showRegistration = true
+	const showRegistration = false
 	return (
 		<>
 			<Box
@@ -590,7 +590,7 @@ export default function RegisterComponent() {
 										Agree with{' '}
 										<Link
 											href='privacy-policy'
-											style={{ color: '#63b6bb', textDecoration: 'underline' }}
+											style={{ color: '#E06B00', textDecoration: 'underline' }}
 										>
 											Privacy policy
 										</Link>

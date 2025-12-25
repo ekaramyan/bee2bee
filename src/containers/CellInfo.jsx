@@ -127,7 +127,7 @@ export default function CellInfo({ data }) {
 	}, [])
 
 	useEffect(() => {
-		if (acceptedCount === 3 && isActive) {
+		if (acceptedCount === 6 && isActive) {
 			closeCell(cellId, closeData)
 			setIsBoxVisible(true)
 		}
@@ -143,7 +143,7 @@ export default function CellInfo({ data }) {
 				}}
 			>
 				{isBoxVisible &&
-					(acceptedCount >= 2 || acceptedCount === 3) &&
+					(acceptedCount >= 5 || acceptedCount === 6) &&
 					cellClosing && (
 						<BoxComponent
 							onClose={() => {

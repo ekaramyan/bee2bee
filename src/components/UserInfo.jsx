@@ -66,11 +66,11 @@ export default function UserInfo({
 		setModalOpen(true)
 	}
 
-	useEffect(() => {
-		if (followers?.length === 3 && acceptedCount === 3) {
-			// router.push('/cells')
-		}
-	}, [acceptedCount])
+	// useEffect(() => {
+	// 	if (followers?.length === 6 && acceptedCount === 6) {
+	// 		// router.push('/cells')
+	// 	}
+	// }, [acceptedCount])
 
 	const handleConfirmAction = () => {
 		if (actionToConfirm) {
@@ -120,10 +120,10 @@ export default function UserInfo({
 			console.error('Error:', error.message)
 		}
 	}
-	const onDeleteClick = () => {
-		deleteFollower(cellUserId)
-		setActiveUser(null)
-	}
+	// const onDeleteClick = () => {
+	// 	deleteFollower(cellUserId)
+	// 	setActiveUser(null)
+	// }
 	const onLeaveClick = () => {
 		deleteFollower(cellUserId)
 		router.push('/cells')
@@ -149,15 +149,14 @@ export default function UserInfo({
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-						width: '148px',
+						width: '140px',
 						height: '156px',
 					}}
 				>
 					<CellUserAvatar
 						avatarUrl={user?.avatarUrl}
-						width={129}
-						height={139}
-						style={{transform: "translateY(3%)"}}
+						width={125}
+						height={145}
 					/>
 				</div>
 				<Typography component={'h6'} variant='h6_light'>
@@ -207,22 +206,21 @@ export default function UserInfo({
 							>
 								accept
 							</AuthButton>
-							<AuthButton
+							{/* <AuthButton
 								variant='contained'
 								onClick={() => handleOpenModal(onDeleteClick, 'delete')}
 								type='submit'
 								style={{
-									padding: "6px 48px",
-									background: '#FF0000',	
+									background: '#FF0000',
 									width: '50%',
 								}}
 							>
 								delete
-							</AuthButton>
+							</AuthButton> */}
 						</Box>
-						<Typography variant='cell_user_subtext'>
+						{/* <Typography variant='cell_user_subtext'>
 							votes to remove: 0/5
-						</Typography>
+						</Typography> */}
 					</>
 				)}
 				{userId === myId &&
@@ -237,7 +235,7 @@ export default function UserInfo({
 							onClick={() => handleOpenModal(onLeaveClick, 'leave')}
 							type='submit'
 							style={{
-								background: '#63b6bb',
+								background: '#A5560F',
 								width: '30%',
 							}}
 						>
