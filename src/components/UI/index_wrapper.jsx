@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Fireworks from '@fireworks-js/react'
 import { fetchData } from '@/api/fetchData'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -152,7 +153,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						0 0 100px 100px rgba(0, 0, 0, 0.25)
 						0 0 150px 150px rgba(0, 0, 0, 0.2)
 						0 0 200px 200px rgba(0, 0, 0, 0.15)
-					`
+					`,
 				}}
 				className='ScrollbarWhite'
 			>
@@ -169,6 +170,26 @@ const IndexWrapper = ({ children, ...props }) => {
 						width={311}
 						height={270}
 						alt='georgia flag'
+					/>
+					<Fireworks
+						options={{
+							speed: 2,
+							acceleration: 1.05,
+							friction: 0.97,
+							gravity: 1.5,
+							particles: 200,
+							trace: 3,
+							explosion: 5,
+							intensity: 60,
+						}}
+						style={{
+							top: 0,
+							left: 0,
+							width: '100%',
+							height: '100%',
+							position: 'fixed',
+							background: 'transparent',
+						}}
 					/>
 				</HolydayContainer>
 				<Container
