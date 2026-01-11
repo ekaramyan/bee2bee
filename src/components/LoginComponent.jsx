@@ -41,10 +41,10 @@ export default function LoginComponent() {
 			client_id: '',
 			client_secret: '',
 		}
-		if (!captchaValue) {
-			setError('Please pass captcha')
-			return
-		}
+		// if (!captchaValue) {
+		// 	setError('Please pass captcha')
+		// 	return
+		// }
 		login(formData)
 		if (success) {
 			router.push('/cells')
@@ -172,14 +172,14 @@ export default function LoginComponent() {
 							justifyContent: 'center',
 						}}
 					>
-						<div style={{ transform: 'scale(0.8)' }}>
+						{/* <div style={{ transform: 'scale(0.8)' }}>
 							<ReCAPTCHA
 								sitekey={captchaKey}
 								theme='light'
 								size='normal'
 								onChange={handleCaptchaChange}
 							/>
-						</div>
+						</div> */}
 					</Grid>
 
 					<Grid
