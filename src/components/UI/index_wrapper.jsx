@@ -24,11 +24,11 @@ const SideModal = dynamic(() => import('./SideModal'))
 const ConfirmationModal = dynamic(() => import('./ConfirmationModal'))
 import background from '../../assets/img/background.webp'
 import georgia from '@/assets/img/Georgia.gif'
-import Snowfall from 'react-snowfall'
-import snowflake1 from '../../assets/img/snowflake1.png'
-import snowflake2 from '../../assets/img/snowflake2.png'
-import snowflake3 from '../../assets/img/snowflake3.png'
-import snowflake4 from '../../assets/img/snowflake4.png'
+// import Snowfall from 'react-snowfall'
+// import snowflake1 from '../../assets/img/snowflake1.png'
+// import snowflake2 from '../../assets/img/snowflake2.png'
+// import snowflake3 from '../../assets/img/snowflake3.png'
+// import snowflake4 from '../../assets/img/snowflake4.png'
 // import NewYearPage from './Garland/Garland'
 
 const token = Cookies.get('access_token')
@@ -157,13 +157,13 @@ const IndexWrapper = ({ children, ...props }) => {
 				}}
 				className='ScrollbarWhite'
 			>
-				<SnowfallContainer>
+				{/* <SnowfallContainer>
 					<Snowfall
 						snowflakeCount={400}
 						radius={[5.5, 20.0]}
 						images={snowflakeImages}
 					/>
-				</SnowfallContainer>
+				</SnowfallContainer> */}
 				<HolydayContainer>
 					<Image
 						src={georgia.src}
@@ -171,7 +171,7 @@ const IndexWrapper = ({ children, ...props }) => {
 						height={270}
 						alt='georgia flag'
 					/>
-					<Fireworks
+					{/* <Fireworks
 						options={{
 							speed: 2,
 							acceleration: 1.05,
@@ -190,7 +190,7 @@ const IndexWrapper = ({ children, ...props }) => {
 							position: 'fixed',
 							background: 'transparent',
 						}}
-					/>
+					/> */}
 				</HolydayContainer>
 				<Container
 					className='ScrollbarDefault'
